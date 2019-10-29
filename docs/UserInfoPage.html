@@ -158,7 +158,7 @@
                 <div class = list-group style = "margin-left: 2%; margin-right: 2%">
 
 <!--                    Example of published comment        -->
-                    <a href="#" class = "list-group-item list-group-item-action list-group-item-success">
+                    <a href="#" data-toggle="modal" data-target="#editComment" class = "list-group-item list-group-item-action list-group-item-success">
                         <div class = "container-fluid" style = "margin: 5px">
                             <div class = row>
                                 <div class = "col-4 col-md-1">
@@ -232,7 +232,7 @@
                     </a>
 
 <!--                    Example of changed data that is currently processed by admin team-->
-                    <a href="#" class = "list-group-item list-group-item-action list-group-item-warning">
+                    <a href="#" data-toggle="modal" data-target="#showCorrection" class = "list-group-item list-group-item-action list-group-item-warning">
                         <div class = "container-fluid" style = "margin: 5px">
                             <div class = row>
                                 <div class = "col-4 col-md-1">
@@ -252,7 +252,7 @@
                     </a>
 
 <!--                    Example of changed data that was refused by admin team-->
-                    <a href="#" class = "list-group-item list-group-item-action list-group-item-danger">
+                    <a href="#" data-toggle="modal" data-target="#showCorrection" class = "list-group-item list-group-item-action list-group-item-danger">
                         <div class = "container-fluid" style = "margin: 5px">
                             <div class = row>
                                 <div class = "col-4 col-md-1">
@@ -274,6 +274,70 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+<!--    Modal for editing comments  -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="editComment">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class = "modal-body">
+                    <h6 style = "margin-bottom: 25px"><i>Objavljeno, 4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                    <form>
+                        <div class = "form-group">
+                            <label for = "comment">Komentar</label>
+                            <textarea class="form-control" id = comment rows = "5"></textarea>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit" data-dismiss="modal">Posodobi</button>
+                        <button class="btn btn-danger" type="submit" data-dismiss="modal">Izbriši</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    Modal for showing correction details-->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="showCorrection">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class = "modal-body">
+                    <h6 style = "margin-bottom: 25px"><i>Zavrnjen, 4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                    <form>
+
+                        <div class="form-group">
+                            <label for="correctionType">Status</label>
+                            <input type="text" class="form-control" id="correctionType" value="Lokacija" readonly>
+                        </div>
+
+                        <div class = "form-group">
+                            <label for = "comment">Opis popravka</label>
+                            <textarea class="form-control" id = "corretionDescription" rows = "5" readonly>Večna pot 112</textarea>
+                        </div>
+
+                        <div class = "form-group">
+                            <label for = "comment">Opomba administratorja</label>
+                            <textarea class="form-control" id = "adminComment" rows = "5" readonly>Lokacija je napačna. Pravilna lokacija, je že vnešena.</textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
