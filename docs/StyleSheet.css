@@ -1,0 +1,10 @@
+/*color-scheme
+USING - var(--color)
+*/
+
+:root {
+    --lightBlue: #7395AE;
+    --darkBlue: #557A95;
+    --lightGrey: #ADADAD;
+    --darkGrey: #5D5C61;
+}
