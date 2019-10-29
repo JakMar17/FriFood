@@ -49,3 +49,7 @@ html,body {
 .tableElement {
     margin: 5px;
 }
+
+.hr {
+    color: white;
+}
