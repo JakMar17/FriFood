@@ -5,11 +5,49 @@
     width: 100%;
     overflow:hidden;
     position:relative;
+    padding-top: 10vh;
 }
+
 .map-container iframe{
     left:0;
     top:0;
     height:100%;
     width:100%;
     position:relative;
+}
+
+.restaurant-list-scrollable{
+    height:100vh;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #7395AE;
+}
+
+.restaurant {
+    height: 20vh;
+    width: 100%;
+    background-color: #7395AE;
+}
+.restaurant:focus {
+    background-color: #557A95;
+    outline-color: #5D5C61;
+}
+.container-fluid {
+    background-color: #ADADAD;
+}
+/* CUSTOM SCROLL BAR */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #557A95;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #5D5C61;
 }
