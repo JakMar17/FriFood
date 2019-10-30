@@ -28,12 +28,31 @@
     height: auto;
     width: auto;
     background-color: #7395AE;
+    outline: 0;
 }
 .restaurant:focus {
     background-color: #557A95;
+    border-radius: 5px;
 }
-.container-fluid {
-    background-color: #ADADAD;
+.rs-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.rs-image-row {
+    padding-right: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.rs-image-logo {
+    width: 7vh;
+    height: 7vh;
+}
+.logo-row {
+    height: 8vh;
+}
+.row-fill {
+    padding-top: 1vh;
 }
 /* CUSTOM SCROLL BAR */
 ::-webkit-scrollbar {
