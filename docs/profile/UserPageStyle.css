@@ -1,5 +1,5 @@
-@import "custom.css";
-@import "StyleSheet.css";
+@import "../custom.css";
+@import "../StyleSheet.css";
 
 .dataUnit {
     margin-top: 20px;
