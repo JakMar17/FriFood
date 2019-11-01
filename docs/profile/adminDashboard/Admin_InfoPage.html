@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Nastavitve uporabnika</title>
+<html>
 
-    <link href="../UserPageStyle.css" rel="stylesheet" type="text/css"/>
+<head>
+    <title>Nadzorna plošča administrator</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="./AdminDashboard.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -23,79 +23,115 @@
 
             <div class="row" style = "margin-top: 20px;">
 
-                <!--                TO-DO: on click open setting panel to change user info-->
-                <div class="col rightAlign">
-                    <i class="far fa-times-circle" style = "font-size: 200%; color:white;"></i>
+                <!--                    Switch to admin view (only if user is admin)-->
+                <div class = col>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="adminPageView" checked>
+                        <label class="custom-control-label" style = "color:white" for="adminPageView">Administratorski pogled</label>
+                    </div>
                 </div>
             </div>
 
-            <form>
-                <div class="row">
-                    <div class="col" style="margin-top: 20px;">
-                        <div style="text-align: center;">
-                            <img src="../pics/user_avatar.png" class="avatar"/>
-                            <div class = categoryName style = "margin-bottom: 50px">
-                                <div class = row>
-                                    <div class="form-group col" style="margin-top: 15px">
-                                        <input type="text" class="form-control-sm" id="username" value="JakMar17">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class = "dataUnit" style="text-align: center; margin-top: 40px; margin-bottom: 40px">
+                <h3>Admin Dashboard</h3>
+                <hr style="border-color: white">
+
+            </div>
+
+            <div class = "dataUnit" style = "margin-bottom: 10px; margin-left: 25px">
+                Osnovni pogled
+            </div>
+
+            <div class = categoryName style = "margin-left: 25px; margin-bottom: 20px; margin-top: 40px">
+                Komponente sistema
+
+            </div>
+
+            <div class = "dataUnit" style = "margin-bottom: 10px">
+                <div class="row tab">
+                    <button type="button" class="btn btn-lg menuElement">Čakalna vrsta</button>
                 </div>
 
-                <div class = "dataUnit">
-                    <div class="row">
-                        <div class = "form-group col input-group">
-                            <input type="text" class="form-control" id="name" value="Jakob">
-                            <input type="text" class="form-control" id="surname" value="Marušič">
-                        </div>
-                    </div>
-                    <div class = "row">
-                        <div class = "col infoText">
-                            ime in priimek
-                        </div>
-                    </div>
+                <div class="row tab">
+                    <button type="button" class="btn btn-lg menuElement">Komentarji</button>
                 </div>
 
-                <div class = "dataUnit" style = "margin-bottom: 10px">
-                    <div class = "row">
-                        <div class = "form-group col">
-                            <input type="text" class="form-control" id="mail" value="jm8166@student.uni-lj.si">
-                        </div>
-                    </div>
-                    <div class = "row">
-                        <div class="col infoText">
-                            email
-                        </div>
-                    </div>
+                <div class="row tab">
+                    <button type="button" class="btn btn-lg menuElement">Ocene</button>
                 </div>
 
-                <div class="dataUnit infoText">
-                    <div class="row">
-                        <div class="form-group col" style="margin-top: 15px">
-                            <input type="file" class="form-control-file" id = "avatar" style="text-align: center; color: white">
-                        </div>
-                    </div>
+                <div class="row tab">
+                    <button type="button" class="btn btn-lg menuElement">Lokacije</button>
                 </div>
 
-                <div class="dataUnit" style="margin-bottom: 10px;">
-                    <button type="submit" class="btn btn-primary btn-sm" style="background: white; color: black">Shrani spremembe</button>
+                <div class="row tab">
+                    <button type="button" class="btn btn-lg menuElement">Uporabniki</button>
                 </div>
-            </form>
+            </div>
 
 
         </div>
 
         <!--            User activities - double click to show more info in new panel    -->
         <div class = "col userActivities">
-            <h3 style = "margin-bottom: 25px">Zadnje uporabnikove aktivnosti</h3>
+
+            <div class="row">
+
+                <div class="col-12 col-md-4">
+                    <div class="card waitingListCard">
+                        <h3 class="card-title">18</h3>
+                        <p style="text-align: right">
+                            Čakalna vrsta
+                        </p>
+
+                        <a href="www.google.com" class="stretched-link"></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card usersCard">
+                        <h3 class="card-title">37</h3>
+                        <p style="text-align: right">
+                            Uporabniki
+                        </p>
+
+                        <a href="www.google.com" class="stretched-link"></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="card locationsCard">
+                        <h3 class="card-title">102</h3>
+                        <p style="text-align: right">
+                            Lokacije
+                        </p>
+
+                        <a href="www.google.com" class="stretched-link"></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class = "row" style = "margin-bottom: 30px; margin-top: 50px">
+                <div class = "col">
+                    <h3>Zadnje aktivnosti</h3>
+                </div>
+                <div class = "col-6 col-md-3" style="text-align: right">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="search" placeholder="Iskanje">
+                    </div>
+                </div>
+            </div>
 
             <div class = "list-group tableActivities">
 
                 <!--                    Example of published comment        -->
-                <a href="#" class = "list-group-item list-group-item-action list-group-item-success">
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-success">
                     <div class = "container-fluid tableElement">
                         <div class = row>
                             <div class = "col-4 col-md-1">
@@ -115,7 +151,7 @@
                 </a>
 
                 <!--                    Example of published rating     -->
-                <a href="#" class = "list-group-item list-group-item-action">
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action">
                     <div class = "container-fluid tableElement">
                         <div class = row>
                             <div class = "col-4 col-md-1">
@@ -169,7 +205,7 @@
                 </a>
 
                 <!--                    Example of changed data that is currently processed by admin team-->
-                <a href="#" class = "list-group-item list-group-item-action list-group-item-warning">
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-warning">
                     <div class = "container-fluid tableElement">
                         <div class = row>
                             <div class = "col-4 col-md-1">
@@ -189,7 +225,7 @@
                 </a>
 
                 <!--                    Example of changed data that was refused by admin team-->
-                <a href="#" class = "list-group-item list-group-item-action list-group-item-danger">
+                <a href="#" data-toggle="modal" data-target="#detailView" class = "list-group-item list-group-item-action list-group-item-danger">
                     <div class = "container-fluid tableElement">
                         <div class = row>
                             <div class = "col-4 col-md-1">
@@ -211,6 +247,58 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<!--    Modal for showing correction details-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="detailView">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Podrobnosti elementa: komentar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class = "modal-body">
+                <h6 style = "margin-bottom: 25px"><i>4.10.2019, na lokaciji: FRI menza 123</i></h6>
+
+                <form>
+
+                    <div class="form-group">
+                        <label for="user">Uporabnik</label>
+                        <input type="text" class="form-control" id="user" value="JakMar17" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status objave</label>
+                        <select class="form-control" id="status">
+                            <option>Objavljeno</option>
+                            <option>V obdelavi</option>
+                            <option>Zavrnjeno</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correctionType">Vrsta popravka</label>
+                        <input type="text" class="form-control" id="correctionType" value="Lokacija">
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "corretionDescription">Opis popravka</label>
+                        <textarea class="form-control" id = "corretionDescription" rows = "5">Večna pot 112</textarea>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for = "adminComment">Opomba administratorja</label>
+                        <textarea class="form-control" id = "adminComment" rows = "5"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal">Posodobi</button>
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
