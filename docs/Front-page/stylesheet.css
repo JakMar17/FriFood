@@ -1,0 +1,30 @@
+.welcome-header{
+
+}
+@media screen and (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
+}
+@media screen and (min-width: 1900px) {
+    .container {
+        max-width:1900px;
+    }
+}
+
+#catchphrase, #storitve-text{
+    text-align: center;
+}
+
+.storitve-text-subscript{
+    font-style: italic;
+}
+
+.btn-primary {
+    background-color: #828fae !important;
+    border-color: #677491 !important;
+}
+
+.btn-primary:hover{
+    background-color: #5e6783 !important;
+}
