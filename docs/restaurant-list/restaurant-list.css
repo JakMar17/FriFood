@@ -54,7 +54,16 @@
 .row-fill {
     padding-top: 1vh;
 }
-/* CUSTOM SCROLL BAR */
+a:link {
+    color: lightGrey;
+}
+a:visited {
+    color: darkBlue;
+}
+a:hover {
+    color: darkGrey;
+}
+/* CUSTOM SCROLL BAR - Does not work on Firefox */
 ::-webkit-scrollbar {
     width: 10px;
 }
