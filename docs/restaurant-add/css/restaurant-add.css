@@ -1,7 +1,37 @@
 input.currency {
     text-align: right;
-    padding-right: 15px;
+    padding-right: 2vh;
 }
 .add-pay-form {
-    padding-top: 1vh;
+    width: 35vh;
+    padding-left: 0.3vh;
+}
+.container-fluid {
+    background-color: lightgrey;
+}
+.add-pay-form-input {
+    width: 15vh;
+    padding-left: 0.1vh;
+}
+.separate {
+    padding: 1vh;
+}
+.separate-2{
+    padding: 0.2vh;
+}
+.first-form {
+    width: 40vh;
+}
+.text-muted {
+    color: #557A95;
+}
+.day-label {
+    align-self: center;
+    width: 100%;
+}
+.day-row {
+    padding-left: 0.2vh;
+}
+.hour-form {
+    width: 100%;
 }

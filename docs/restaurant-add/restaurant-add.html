@@ -9,122 +9,194 @@
     <title>Restaurant Add</title>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <h1>Add a new restaurant</h1>
-    </div>
-    <div class="row">
-        <form>
-            <div class="form-group">
-                <label for="inputRestaurantName">Ime restavracije</label>
-                <input type="text" class="form-control" id="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Restavracija 123">
-                <small id="restNameHelp" class="form-text text-muted">Tukaj vnesite polno ime restavracije.</small>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="row">
+                <h1>Dodaj novo restavracijo</h1>
             </div>
-            <div class="form-group">
-                <label for="inputRestaurantAddress">Naslov restavracije</label>
-                <input type="text" class="form-control" id="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Večna pot 113, 1000 Ljubljana">
-                <small id="restAddHelp" class="form-text text-muted">Tukaj vnesite točen naslov restavracije.</small>
+            <div class="row">
+                <form>
+                    <div class="form-group">
+                        <label for="inputRestaurantName">Ime restavracije</label>
+                        <input type="text" class="form-control first-form" id="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Restavracija 123">
+                        <small id="restNameHelp" class="form-text text-muted">Tukaj vnesite polno ime restavracije.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRestaurantAddress">Naslov restavracije</label>
+                        <input type="text" class="form-control first-form" id="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Večna pot 113, 1000 Ljubljana">
+                        <small id="restAddHelp" class="form-text text-muted">Tukaj vnesite točen naslov restavracije.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRestaurantDescription">Opis restavracije</label>
+                        <textarea class="form-control first-form" id="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije"></textarea>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="inputRestaurantDescription">Opis restavracije</label>
-                <textarea class="form-control" id="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije"></textarea>
+            <div class="row">
+                <form>
+                    <span>Ali lahko v vaši restavraciji študentje uporabljajo študentske bone?</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="yesBoni" id="boni1" value="option1" checked>
+                        <label class="form-check-label" for="boni1">
+                            Da
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="noBoni" id="boni2" value="option2">
+                        <label class="form-check-label" for="boni2">
+                            Ne
+                        </label>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <form>
-            <span>Ali lahko v vaši restavraciji študentje uporabljajo študentske bone?</span>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="yesBoni" id="boni1" value="option1" checked>
-                <label class="form-check-label" for="boni1">
-                    Da
-                </label>
+            <div class="separate"></div>
+            <div class="row">
+                <form>
+                    <div class="form-row add-pay-form">
+                        <label for="c1">Koliko stane doplačilo študentskega menija?</label>
+                        <div class="input-group add-pay-form-input">
+                            <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c1" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="noBoni" id="boni2" value="option2">
-                <label class="form-check-label" for="boni2">
-                    Ne
-                </label>
+            <div class="separate"></div>
+            <div class="row">
+                <form>
+                    <div class="form-row add-pay-form">
+                        <label for="c2">Koliko stane povprečna dnevna malica?</label>
+                        <div class="input-group add-pay-form-input">
+                            <input type="number" value="6.30" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <form>
-            <div class="form-row add-pay-form">
-                <label for="c2">Koliko stane doplačilo študentskega menija?</label>
-                <div class="input-group">
-                    <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
-                </div>
+            <div class="separate"></div>
+            <div class="row">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addRestaurantLogo">Naloži</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="addRestaurantLogo1"
+                                   aria-describedby="addRestaurantLogo">
+                            <label class="custom-file-label" for="addRestaurantLogo1">Logotip restavracije</label>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <form>
-            <div class="form-row add-pay-form">
-                <label for="c2">Koliko stane vaša dnevna malica?</label>
-                <div class="input-group">
-                    <input type="number" value="6.30" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
-                </div>
+            <div class="separate"></div>
+            <div class="row">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addRestaurantLogo2">Naloži</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="addRestaurantLogo3"
+                                   aria-describedby="addRestaurantLogo2">
+                            <label class="custom-file-label" for="addRestaurantLogo3">Naslovna slika restavracije</label>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <form>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text" id="addRestaurantLogo">Naloži</span>
+            <div class="separate"></div>
+            <div class="row">
+                <span>Kdaj je restavracija odprta na posamezen dan?</span>
             </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="addRestaurantLogo1"
-                           aria-describedby="addRestaurantLogo">
-                    <label class="custom-file-label" for="addRestaurantLogo1">Logotip restavracije</label>
-                </div>
+            <div class="separate-2"></div>
+            <div class="row">
+                <form>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Ponedeljek:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Torek:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Sreda:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Četrtek:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Petek:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Sobota:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                    <div class="separate-2"></div>
+                    <div class="form-row day-row">
+                        <div class="col-md-4 day-label">
+                            <span>Nedelja:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24">
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-    <div class="row">
-        <form>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addRestaurantLogo2">Naloži</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="addRestaurantLogo3"
-                           aria-describedby="addRestaurantLogo2">
-                    <label class="custom-file-label" for="addRestaurantLogo3">Naslovna slika restavracije</label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="row">
-        <span>Kdaj je restavracija odprta na posamezen dan?</span>
-    </div>
-    <div class="row">
-        <form>
-            <div class="form-row">
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Ponedeljek" min="0" max="24" step="1">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Torek">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Sreda">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Četrtek">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Petek">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Sobota">
-                </div>
-                <div class="col">
-                    <input type="number" class="form-control" placeholder="Nedelja">
-                </div>
-            </div>
-        </form>
+        </div>
+        <div class="col-md-3"></div>
     </div>
 </div>
 
