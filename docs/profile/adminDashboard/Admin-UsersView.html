@@ -159,14 +159,39 @@
                 </button>
             </div>
             <div class = "modal-body">
-                <h6 style = "margin-bottom: 25px"><i>4.10.2019, na lokaciji: FRI menza 123</i></h6>
+                <h6 style = "margin-bottom: 25px"><i>Datum registracije: 4.10.2019</i></h6>
 
                 <form>
 
                     <div class="form-group">
                         <label for="user">Uporabnik</label>
-                        <input type="text" class="form-control" id="user" value="JakMar17" readonly>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="id" value="1" disabled>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="user" value="JakMar17">
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="name">Ime in priimek</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" value="Jakob">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="surname" value="Marušič">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Email</label>
+                        <input type="text" class="form-control" id="mail" value="jm8166@student.uni-lj.si">
+                    </div>
+
 
                     <!--                    <div class="form-group">-->
                     <!--                        <label for="status">Status objave</label>-->
@@ -178,22 +203,37 @@
                     <!--                    </div>-->
 
                     <div class="form-group">
-                        <label for="correctionType">Vrsta popravka</label>
-                        <input type="text" class="form-control" id="correctionType" value="Lokacija">
+                        <label for="status">Vrsta uporabnika</label>
+                        <select class="form-control" id="status">
+                            <option>navaden uporabnik</option>
+                            <option>administrator</option>
+                            <option>blokiran uporabnik</option>
+                        </select>
                     </div>
 
-                    <div class = "form-group">
-                        <label for = "corretionDescription">Opis popravka</label>
-                        <textarea class="form-control" id = "corretionDescription" rows = "5">Večna pot 112</textarea>
-                    </div>
-
-                    <div class = "form-group">
-                        <label for = "adminComment">Opomba administratorja</label>
-                        <textarea class="form-control" id = "adminComment" rows = "5"></textarea>
-                    </div>
-
+                    <h6>Statistika uporabnika</h6>
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th>Dodanih komentarjev</th>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <th>Dodanih ocen</th>
+                            <td>17</td>
+                        </tr>
+                        <tr>
+                            <th>Dodanih lokacij</th>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <th>Dodaanih popravkov</th>
+                            <td>8</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
                     <button class="btn btn-success" type="submit" data-dismiss="modal">Posodobi</button>
-                    <button class="btn btn-danger" type="submit" data-dismiss="modal">Spremeni</button>
 
                 </form>
             </div>
