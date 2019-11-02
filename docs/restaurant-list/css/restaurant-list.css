@@ -1,0 +1,80 @@
+.map-container{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 100%;
+    overflow:hidden;
+    position:relative;
+    padding-top: 10vh;
+}
+
+.map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:relative;
+}
+
+.restaurant-list-scrollable{
+    height:100vh;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #7395AE;
+}
+
+.restaurant {
+    height: auto;
+    width: auto;
+    background-color: #7395AE;
+    outline: 0;
+}
+.restaurant:focus {
+    background-color: #557A95;
+    border-radius: 5px;
+}
+.rs-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.rs-image-row {
+    padding-right: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.rs-image-logo {
+    width: 7vh;
+    height: 7vh;
+}
+.logo-row {
+    height: 8vh;
+}
+.row-fill {
+    padding-top: 1vh;
+}
+a:link {
+    color: lightGrey;
+}
+a:visited {
+    color: darkBlue;
+}
+a:hover {
+    color: darkGrey;
+}
+/* CUSTOM SCROLL BAR - Does not work on Firefox */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #557A95;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #5D5C61;
+}
