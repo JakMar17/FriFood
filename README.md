@@ -61,9 +61,9 @@ Primerjali smo brskalnike: Google Chrome, Firefox, Edge.
     * Google Chrome - Polje za pisanje številk pokaže puščice za večanje in manjšanje šele po tem, ko gremo skozi z miško
     * Firefox - Polje za pisanje številk ima puščice vidne vedno
     * Edge - Nima puščic ampak ima namesto njih opcijo "križec" za brisanje celotnega polja
-* Razlikuje se ureditev stranskega prikazovalnika lokacije strani (scroll bar)
-    * Google Chrome - lahko smo naredili svoj scroll-bar v css z "-webkit-scrollbar "
-    * Edge & Firefox - ne podpirata te funkcije in je scroll-bar isti povsod
+* Razlikuje se stil drsne vrstice (scroll bar)
+    * Google Chrome - lahko smo naredili svoj stil drsne vrstice v css z "-webkit-scrollbar "
+    * Edge & Firefox - ne podpirata te funkcije in je drsna vrstica enaka povsod
 
 ## 2. LP
 
