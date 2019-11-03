@@ -12,9 +12,9 @@ Uporabnik se lahko registrira ali prijavi z uporabo Google ali Facebook računa.
 Administrator sistema ima pregled na registrirani uporabniki (tem lahko spreminja pravice - možnost popravljanja informacij, dodajanja komentarjev, ocen, administratorske pravice). Administrator ima pregled nad vsemi komentarji in ocenami, ki jih lahko ureja in briše. Vsako spremembo, ki jo uporabnik vnese k restavraciji, mora potrditi administrator.
 
 ## Prijava in registracija uporabnika
-### [Login.html](docs/Login-Register/Register.html)
+### [Login.html](docs/Login-Register/Login.html)
 Stran za prijavit v sistem z možnostjo registracije
-### [Register.html](docs/Login-Register/Login.html)
+### [Register.html](docs/Login-Register/Register.html)
 Stran za registrirati v sistem, z potrditvijo registracije preko emaila in možnostjo obvescanja po emailu
     
 ## [RestaurantView.html](docs/Restaurant-View-Page/RestaurantView.html)
