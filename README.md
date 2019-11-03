@@ -128,6 +128,8 @@ Primerjali smo brskalnike: Google Chrome, Firefox, Edge.
     * Google Chrome - lahko smo naredili svoj stil drsne vrstice v css z "-webkit-scrollbar "
     * Edge & Firefox - ne podpirata te funkcije in je drsna vrstica enaka povsod
 
+Dokončali smo LP1 dne 3.11. 2019 - 21:00
+
 # 2. LP
 
 Dinamična spletna aplikacija z logiko na strani strežnika
