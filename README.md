@@ -41,6 +41,14 @@ to uporabnik omogoči.
 Vsak vnos seznama ima ime, naslov in oceno restavracije, ter ceno malice in doplačilo na bone če to restavracija omogoča.
 Na koncu imamo pa še dve povezavi in sicer na _RestaurantView.html_ (Več o restavraciji), ter na _CommentPage.html_ (Oceni ali komentiraj).
 
+## Glavna stran [front-page.html](docs/Front-page/front-page.html)
+Stran ima implementiran pogled takoj po prijavi, kjer se userja lepo pozdravi na stran in mu da glavni action button
+za pregled restavracij.
+
+## Navigacijska vrstica [Navbar.html](docs/Navbar/navbar.html)
+Datoteka ima implementirano navigacijsko vrstico, ki bo uporabljena čez celotno stran. 
+Na njej ima gumb za pregled podstrani, gumb za iskanje in gumb za pregled profila.
+
 ## 2. LP
 
 Dinamična spletna aplikacija z logiko na strani strežnika
