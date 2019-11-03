@@ -106,7 +106,7 @@ V pregledu lokacij lahko administrator pregleduje vse objavljene in arhivirane l
 
 Lokacijo lahko ureja prek pogleda [modal-detailLocationView.html](docs/profile/adminDashboard/modals/modal-detailLocationView.html).
 
-### Uporabniki
+### Uporabniki [Admin_UsersView.html](docs/profile/adminDashboard/Admin_UsersView.html)
 
 V pregledu uporabnikov lahko administrator pregleduje vse aktivne in neaktivne uporabnike. Do podrobnosti uporabnika dostopa s klikom na gumb za urejanje.
 
