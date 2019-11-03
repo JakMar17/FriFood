@@ -15,7 +15,7 @@ Administrator sistema ima pregled na registrirani uporabniki (tem lahko spreminj
 ### [Login.html](docs/Login-Register/Register.html)
 Stran za prijavit v sistem z možnostjo registracije
 ### [Register.html](docs/Login-Register/Login.html)
-Stran za registrirati v sistem
+Stran za registrirati v sistem, z potrditvijo registracije preko emaila in možnostjo obvescanja po emailu
     
 ## [RestaurantView.html](docs/Restaurant-View-Page/RestaurantView.html)
 V tem pogledu se bo videl podrobnejši opis restavracije ter slike restavracije in komentarji, ki jih lahko pišejo uporabniki o restavracijah. Iz te strani se 
