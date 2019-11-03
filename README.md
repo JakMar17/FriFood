@@ -24,7 +24,7 @@ bo mozno prestaviti z navigacijo na dodajanje restavracije, zemljevid, link rest
 ## [CommentPage.html](docs/Comment-Page/CommentPage.html)
 Stran na kateri lahko dodajamo komentarje o posamezni restavraciji, jih brišemo in urejamo
 
-## [restaurant-add.html](docs/restaurant-add/restaurant-add.html)
+## Dodaj restavracijo [restaurant-add.html](docs/restaurant-add/restaurant-add.html)
 Stran na kateri je implementirana forma za dodajanje restavracije v naš seznam restavracij.
 Oddati je potrebno ime, naslov, opis restavracije in prav tako čas obratovanja.
 Seveda ne smemo pozabiti na ceno doplačila za študentski meni (če restavracija podpira to možnost),
@@ -32,14 +32,14 @@ ter tudi povprečna malica. Priložili smo tudi možnost oddaje ikone restavraci
 Na koncu mora oseba, ki oddaja formo sprejeti pogoje uporabe, ter klikniti gumb za oddajo.
 Kasneje mora administrator to oddajo pregledati in jo potrditi.
 
-## [restaurant-list.html](docs/restaurant-list/restaurant-list.html)
+## Seznam restavracij [restaurant-list.html](docs/restaurant-list/restaurant-list.html)
 Stran na kateri je implementiran seznam vseh restavracij oziroma restavracije,
 ki so bile poiskane po ključnih besedah iz navigacijskega menija.
 Na vsako stran oz. vnos v tem seznamu se da klikniti na kar se odzove zemljevid na desni strani in
 pokaže kje se ta restavracija nahaja. Zemljevid prav tako omogoča predstaviti optimalno pot od trenutne lokacije, če
 to uporabnik omogoči.  
 Vsak vnos seznama ima ime, naslov in oceno restavracije, ter ceno malice in doplačilo na bone če to restavracija omogoča.
-Na koncu imamo pa še dve povezavi in sicer na _RestaurantView.html_ (Več o restavraciji), ter na _CommentPage.html_.
+Na koncu imamo pa še dve povezavi in sicer na _RestaurantView.html_ (Več o restavraciji), ter na _CommentPage.html_ (Oceni ali komentiraj).
 
 ## 2. LP
 
