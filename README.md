@@ -45,7 +45,7 @@ Na koncu imamo pa še dve povezavi in sicer na _RestaurantView.html_ (Več o res
 Stran ima implementiran pogled takoj po prijavi, kjer se userja lepo pozdravi na stran in mu da glavni action button
 za pregled restavracij.
 
-## Navigacijska vrstica [Navbar.html](docs/Navbar/navbar.html)
+## Navigacijska vrstica [Navbar.html](docs/Navbar/Navbar.html)
 Datoteka ima implementirano navigacijsko vrstico, ki bo uporabljena čez celotno stran. 
 Na njej ima gumb za pregled podstrani, gumb za iskanje in gumb za pregled profila.
 
