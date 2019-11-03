@@ -49,6 +49,69 @@ za pregled restavracij.
 Datoteka ima implementirano navigacijsko vrstico, ki bo uporabljena čez celotno stran. 
 Na njej ima gumb za pregled podstrani, gumb za iskanje in gumb za pregled profila.
 
+## Uporabniški profil
+
+V sistemu obstajata dve vrsti uporabnikov: običajen uporabnik in administrator. Administrator ima dostop do vseh strani do katerih ima dostop navaden uporabnik kakor tudi do *Admin Dashboarda* od koder lahko ureja vsebino spletne aplikacije.
+
+### Pregled uporabniškega profila [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html)
+Stran do katerega lahko vsak prijavljen uporabnik dostopa prek navigacijske vrstice. Stran je razdeljena na levi pregledni pogled, kjer ima uporabnik pregled do, ob registraciji, vnešenih podatkov, kakor tudi dostop do lastne statistike aktivnosti na strani.
+
+V desnem pregledu uporabnik najde svoje zadnje aktivnosti na strani, kjer barva določene aktivnosti določa:
+* *zelena* - aktivnost (razen ocena) je objavljena,
+* *bela* - ocena je obajvljena,
+* *rumena* - aktivnost je v obdelavi (administrator mora določene aktivnosti potrditi)
+* *rdeča* - aktivnosti ni objavljena, administrator jo je zavrnil
+
+Ob kliku na katero izmed aktivnosti (razen oceno) se uporabniku prikaže okno (*bootstrap modal*) v katerem dostopa do podrobnosti posamezne aktivnosti.
+
+#### Podrobnosti elementa: komentar [modal-editComment.html](docs/profile/userProfile/modals/modal-editComment.html)
+
+Uporabnik lahko v prikazanem oknu (*bootstrap modal*) spreminja objavljen komentar ali ga popolnoma izbriše.
+
+#### Podrobnosti elementa: popravek [modal-detailCorrectionView.html](docs/profile/userProfile/modals/modal-detailCorrectionView.html)
+
+Uporabnik lahko v prikazanem oknu (*bootstrap modal*) dostopa do podrobnosti popravka, katerega je predlagal administratorski ekipi. Uporabnik popravka ne more spreminjati.
+
+### Spreminjanje podatkov uporabnika [UserSetting.html](docs/profile/userProfile/UserSetting.html)
+
+Uporabnik lahko s klikom na ikono koleščka nad sliko uporabnika v [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html) dostopa do nastavitev svojega profila. Tu lahko spreminja svoje podatke. Pri spreminjanju gesla in/ali epošte uporabnika sistem dodatno obvesti preko vnešene epošte.
+
+## Administratorska nadzorna plošča [Admin_InfoPage.html](docs/profile/adminDashboard/Admin_InfoPage.html)
+
+Uporabnik, ki ima status administratorja, lahko preko svojega uporabniškega profila [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html) dostopa do administratorskega pogleda. To stori s klikom na *Administratorski pogled*.
+
+V pregledu sistema lahko dostopa do komponent nadzorne plošče, ki so opisane v nadaljevanju. V glavne delu zaslonske makse lahko preko hitrih dostopov pregleduje odprte zahtevke ter do njih dostopa.
+
+Pod *Zadnje aktivnosti* lahko pregleduje, išče in  dostopa do zadnjih aktivnosti, ki so bile umeščene na spletno stran. Barva aktivnosti predstavlja stanje le-teh. Klik na katero izmed aktivnosti odpre [modal-detailCommentsView.html](docs/profile/adminDashboard/modals/modal-detailCommentsView.html) *bootstrap modal* okno preko katerega lahko administrator ureja in pregleduje posamezne aktivnosti.
+
+### Čakalna vrsta [Admin_WaitingList.html](docs/profile/adminDashboard/Admin_WaitingList.html)
+
+V čakalni vrsti ima administrator dostop do odprtih zahtevkov. Zahtevke delimo med popravke delovnega časa, cenika, lokacije ali zahtevek po odprtju nove lokacije (restavracije). Vsak zahtevek mora predhodno administrator potrditi (ali zavreči).
+
+Administrator s klikom na gumb za urejanje (ki se nahaja ob vsakem posameznem zahtevku) dostopa do podrobnosti zahtevka [modal-waitingListElement.html](docs/profile/adminDashboard/modals/modal-waitingListElement.html). Ob zahtevek lahko zapiše svojo opombo in ga potrdi ali ovrže.
+
+### Komentarji [Admin_CommentsView.html](docs/profile/adminDashboard/Admin_CommentsView.html)
+
+V pregledu komentarjev lahko administrator dostopa do vseh objavljenih in arhiviranih komentarjev. Za objavo komentarjev uporabnik ne potrebuje potrditve administratorja, vendar lahko administrator komentar uredi ali izbriše v kolikor smatra, da komentar krši pravila spletnega mesta.
+
+Administrator s klikom na gumb za urejanje (ki se nahaja ob vsakem posameznem komentarju) dostopa do podrobnosti komentarja [modal-detailCommentsView.html](docs/profile/adminDashboard/modals/modal-detailCommentsView.html). Komentar lahko ureja ali izbriše.
+
+### Ocene [Admin_RatingsView.html](docs/profile/adminDashboard/Admin_RatingsView.html)
+
+V pregledu ocen lahko administrator dostopa do vseh objavljenih ocen. Za objavo ocene uporabnik ne potrebuje potrditve s strani administratorja, vendar lahko oceno administrator izbriše v kolikor predvideva, da ocena krši pravila spletnega mesta.
+
+### Lokacije [Admin_LocationsView.html](docs/profile/adminDashboard/Admin_LocationsView.html)
+
+V pregledu lokacij lahko administrator pregleduje vse objavljene in arhivirane lokacije. Do podrobnosti posamezne lokacije dostopa s klikom na gumb za urejanje.
+
+Lokacijo lahko ureja prek pogleda [modal-detailLocationView.html](docs/profile/adminDashboard/modals/modal-detailLocationView.html).
+
+### Uporabniki
+
+V pregledu uporabnikov lahko administrator pregleduje vse aktivne in neaktivne uporabnike. Do podrobnosti uporabnika dostopa s klikom na gumb za urejanje.
+
+Uporabniku lahko ureja določene atribute preko pogleda [modal-detailUserView.html](docs/profile/adminDashboard/modals/modal-detailUserView.html). V tem oknu lahko dostopa tudi do uporabnikove statistike in mu določa vrsto računa (navaden uporabnik, administrator).
+
 ## 2. LP
 
 Dinamična spletna aplikacija z logiko na strani strežnika
