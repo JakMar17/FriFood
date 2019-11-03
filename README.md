@@ -49,6 +49,22 @@ za pregled restavracij.
 Datoteka ima implementirano navigacijsko vrstico, ki bo uporabljena čez celotno stran. 
 Na njej ima gumb za pregled podstrani, gumb za iskanje in gumb za pregled profila.
 
+# Razlike brskalnikov
+Primerjali smo brskalnike: Google Chrome, Firefox, Edge.
+
+* Razlikujejo se odebeljenosti naslovnih textov
+* Razlikujejo se upload-file html prikazi, med vsemi tremi so razlike: (Choose file - Chrome, Browse... - Edge in Firefox)
+    * Google Chrome - Gumb ima napis "Choose File"
+    * Firefox - Gumb ima napis "Browse..." in sledi isto kot Google Chrome
+    * Edge - Gumb ima napis isti kot Firefox ampak ima polje za vnos pred gumbom
+* Razlikujejo se input-form html prikazi, med vsemi tremi so razlike
+    * Google Chrome - Polje za pisanje številk pokaže puščice za večanje in manjšanje šele po tem, ko gremo skozi z miško
+    * Firefox - Polje za pisanje številk ima puščice vidne vedno
+    * Edge - Nima puščic ampak ima namesto njih opcijo "križec" za brisanje celotnega polja
+* Razlikuje se ureditev stranskega prikazovalnika lokacije strani (scroll bar)
+    * Google Chrome - lahko smo naredili svoj scroll-bar v css z "-webkit-scrollbar "
+    * Edge & Firefox - ne podpirata te funkcije in je scroll-bar isti povsod
+
 ## 2. LP
 
 Dinamična spletna aplikacija z logiko na strani strežnika
