@@ -1,2 +1,3 @@
 # git will ignore the following files
 .idea
+node_modules
