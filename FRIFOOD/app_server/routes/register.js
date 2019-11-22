@@ -3,7 +3,6 @@ var router = express.Router();
 var ctrlMain = require('../controllers/main');
 /* GET users listing. */
 
-router.get('/', ctrlMain.users);
-
+router.get('/', ctrlMain.register);
 
 module.exports = router;
