@@ -17,7 +17,7 @@ Stran za prijavit v sistem z možnostjo registracije
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
 Stran za registrirati v sistem, z potrditvijo registracije preko emaila in možnostjo obvescanja po emailu
     
-## [RestaurantView.html](docs/Restaurant-View-Page/RestaurantView.html)
+## [RestaurantView.html](FRIFOOD/app_server/views/Restaurant-View-Page/RestaurantView.html)
 V tem pogledu se bo videl podrobnejši opis restavracije ter slike restavracije in komentarji, ki jih lahko pišejo uporabniki o restavracijah. Iz te strani se 
 bo mozno prestaviti z navigacijo na dodajanje restavracije, zemljevid, link restavracije in nazaj na prvo stran
 
