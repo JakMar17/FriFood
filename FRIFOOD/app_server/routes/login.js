@@ -5,5 +5,12 @@ var ctrlMain = require('../controllers/main');
 
 router.get('/', ctrlMain.login);
 
+router.post('/', function (req, res) {
+    if (req.body.email === 'v@v' && req.body.passwd === 'v') {
+        res.redirect('/');
+    } else {
+        res.status(401).send("Wrong Email or Password");
+    }
+})
 
 module.exports = router;

@@ -25,8 +25,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/login', loginRouter);
+app.use('/loginCheck', loginRouter);
+
 app.use('/register', registerRouter);
+app.use('/registerCheck', registerRouter)
+
 app.use('/commentPage', commentPageRouter);
 app.use('/restaurantView', restaurantViewRouter);
 

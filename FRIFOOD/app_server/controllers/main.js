@@ -1,7 +1,7 @@
 /* GET home page. */
 var index = (req, res) => {
     //res.render('index', { title: 'Express' });
-    res.render('Login-register/Login', {registerPage: 'register'});
+    res.render('RestaurantView.hbs');
 };
 
 var users = (req, res) => {
@@ -9,19 +9,19 @@ var users = (req, res) => {
 };
 
 var login = (req, res) => {
-    res.render('Login-register/Login', {registerPage: 'register'});
+    res.render('Login', {registerPage: 'register'});
 };
 
 var register = (req, res) => {
-    res.render('Login-register/Register');
+    res.render('Register');
 };
 
 var commentPage = (req, res) => {
-    res.render('Comment-Page/CommentPage');
+    res.render('CommentPage');
 };
 
 var restaurantView = (req, res) => {
-    res.render('Restaurant-View-Page/RestaurantView.hbs');
+    res.render('RestaurantView.hbs');
 };
 
 module.exports = {
