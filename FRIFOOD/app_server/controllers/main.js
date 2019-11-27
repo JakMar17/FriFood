@@ -15,10 +15,15 @@ var register = (req, res) => {
     res.render('Login-register/Register');
 };
 
+var commentPage = (req, res) => {
+    res.render('Comment-Page/CommentPage');
+};
+
 
 module.exports = {
     index,
     users,
     login,
-    register
+    register,
+    commentPage
 };
