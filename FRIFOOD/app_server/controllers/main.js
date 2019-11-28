@@ -16,8 +16,9 @@ var register = (req, res) => {
     res.render('Register');
 };
 
+var commentsJSON = require('../models/seznamKomntarjev.json');
 var commentPage = (req, res) => {
-    res.render('CommentPage');
+    res.render('commentPage', commentsJSON);
 };
 
 var restaurantView = (req, res) => {
