@@ -79,16 +79,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="myform" method="POST" action="/addComment/newComment">
 
                     <div class="form-group">
-                        <textarea class="form-control" id="message-text" placeholder="Write reply here."></textarea>
+                        <textarea class="form-control" name="newCommentText" id="message-text" placeholder="Write reply here."></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
-                <button type="button" class="btn btn-primary">Objavi odgovor</button>
+                <button type="submit" form="myform" class="btn btn-primary" >Objavi odgovor</button>
             </div>
         </div>
     </div>

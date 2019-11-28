@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="stylesheets/RestaurantView.css">
-    <title>RestaurantView</title>
+    <title>{{title}}</title>
 </head>
 <body>
 
@@ -42,7 +42,7 @@
 
                 <h1>Ime Restavracije</h1>
                 <h2>Opis</h2>
-                <p>To je opis restavracije</p>
+                <p>{{opis}}</p>
 
             </div>
         </div>
@@ -62,11 +62,9 @@
                         <th>Friday</th>
                     </tr>
                     <tr>
-                        <td>24h</td>
-                        <td>24h</td>
-                        <td>24h</td>
-                        <td>24h</td>
-                        <td>24h</td>
+                    {{#each timeTable as |dan|}}
+                        <td>{{dan}}</td>
+                    {{/each}}
                     </tr>
                 </table>
             </div>
@@ -82,7 +80,7 @@
 
 <div class="container">
     <div class="row mt-4 justify-content-end mt-2 ">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Glej komentarje</a>
+        <a class="btn btn-primary btn-lg" href="CommentPage" role="button">Glej komentarje</a>
     </div>
 </div>
 

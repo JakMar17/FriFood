@@ -37,6 +37,8 @@ app.use('/register', registerRouter);
 app.use('/registerCheck', registerRouter)
 
 app.use('/commentPage', commentPageRouter);
+app.use('/addComment', commentPageRouter);
+
 app.use('/restaurantView', restaurantViewRouter);
 
 // catch 404 and forward to error handler
