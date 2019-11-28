@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
+require('./uporabnikSchema');
 
-const dbURI = 'mongodb://localhost/EduGeoCache';
+var dbURI = 'mongodb://localhost/FRIFOOD';
+if (process.env.NODE_ENV === 'production') {
+    dbURI = process.env.MONGODB_CLOUD_URI;
+}
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
