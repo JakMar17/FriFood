@@ -34,7 +34,6 @@ app.use('/login', loginRouter);
 app.use('/loginCheck', loginRouter);
 
 app.use('/register', registerRouter);
-app.use('/registerCheck', registerRouter)
 
 app.use('/commentPage', commentPageRouter);
 app.use('/addComment', commentPageRouter);
