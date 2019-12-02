@@ -33,7 +33,7 @@
 
                     <!--                TO-DO: on click open setting panel to change user info-->
                     <div class="col rightAlign">
-                        <i class="fas fa-cog" style = "font-size: 200%; color: white" onclick="location.href='/profile-edit';"></i>
+                        <i class="fas fa-cog" style = "font-size: 200%; color: white" onclick="location.href='/userSetting';"></i>
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@
                 <div class = "dataUnit">
                     <div class="row">
                         <div id = "nameSurname" class = "col">
-                            Jakob Marušič
+                            {{name}} {{surname}}
                         </div>
                     </div>
                     <div class = "row">
@@ -70,7 +70,7 @@
                 <div class = "dataUnit" style = "margin-bottom: 10px">
                     <div class = "row">
                         <div id = "email" class = "col">
-                            jm8166@student.uni-lj.si
+                            {{mail}}
                         </div>
                     </div>
                     <div class = "row">
@@ -87,7 +87,7 @@
                 <div class = dataUnit>
                     <div class = row>
                         <div id = "userComments" class = col>
-                            6
+                            {{addedComments}}
                         </div>
                     </div>
                     <div class = row>
@@ -100,7 +100,7 @@
                 <div class = dataUnit>
                     <div class = row>
                         <div id = "userRatings" class = col>
-                            6
+                            {{addedRevies}}
                         </div>
                     </div>
                     <div class = row>
@@ -113,7 +113,7 @@
                 <div class = dataUnit>
                     <div class = row>
                         <div id = "userAddedData" class = col>
-                            7 <i>(2)</i>
+                            {{addedData}} <i>({{dataInReview}})</i>
                         </div>
                     </div>
                     <div class = row>
@@ -136,10 +136,10 @@
                         <div class = "container-fluid tableElement">
                             <div class = row>
                                 <div class = "col-4 col-md-1">
-                                    13.10
+                                    {{date}}
                                 </div>
                                 <div class = "col-8 col-md-3">
-                                    FRI 123 Menza
+                                    {{location}}
                                 </div>
                                 <div class="col-12 col-md-6">
                                     Hrana bi lahko bila boljša, osebje odlično
@@ -262,12 +262,12 @@
                     </button>
                 </div>
                 <div class = "modal-body">
-                    <h6 style = "margin-bottom: 25px"><i>Objavljeno, 4.10.2019, na lokaciji: FRI menza 123</i></h6>
+                    <h6 style = "margin-bottom: 25px"><i>Objavljeno, {{fullDate}}, na lokaciji: {{location}}</i></h6>
 
                     <form>
                         <div class = "form-group">
                             <label for = "comment">Komentar</label>
-                            <textarea class="form-control" id = comment rows = "5"></textarea>
+                            <textarea class="form-control" id = comment rows = "5">{{comment}}</textarea>
                         </div>
 
                         <button class="btn btn-primary" type="submit" data-dismiss="modal">Posodobi</button>

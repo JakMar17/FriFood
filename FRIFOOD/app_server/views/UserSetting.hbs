@@ -14,9 +14,19 @@
 </head>
 
 <body>
+
+<script type="text/javascript">
+    var leftPanel = document.getElementById("leftBar-template").innerHTML;
+    var template = hbs.compile(leftPanel);
+
+    var leftBar = template({
+        name: "Jakob"
+    });
+    document.getElementById('leftBar').innerHTML += leftBar;
+</script>
+
 <div class="container-fluid h-100">
     <div class="row h-100">
-
         <!--            User panel (left size)      -->
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 userPanel">
 
@@ -39,7 +49,7 @@
                             <div class = categoryName style = "margin-bottom: 50px">
                                 <div class = row>
                                     <div class="form-group col" style="margin-top: 15px">
-                                        <input type="text" class="form-control-sm" id="username" value="JakMar17">
+                                        <input type="text" class="form-control-sm" id="username" value="{{username}}">
                                     </div>
                                 </div>
                             </div>
@@ -50,8 +60,8 @@
                 <div class = "dataUnit">
                     <div class="row">
                         <div class = "form-group col input-group">
-                            <input type="text" class="form-control" id="name" value="Jakob">
-                            <input type="text" class="form-control" id="surname" value="Marušič">
+                            <input type="text" class="form-control" id="name" value="{{name}}">
+                            <input type="text" class="form-control" id="surname" value="{{surname}}">
                         </div>
                     </div>
                     <div class = "row">
@@ -64,7 +74,7 @@
                 <div class = "dataUnit" style = "margin-bottom: 10px">
                     <div class = "row">
                         <div class = "form-group col">
-                            <input type="text" class="form-control" id="mail" value="jm8166@student.uni-lj.si">
+                            <input type="text" class="form-control" id="mail" value="{{mail}}">
                         </div>
                     </div>
                     <div class = "row">
@@ -96,8 +106,6 @@
                     <button type="submit" class="btn btn-primary btn-sm" style="background: white; color: black" onclick = "window.alert('Shranjeno')">Shrani spremembe</button>
                 </div>
             </form>
-
-
         </div>
 
         <!--            User activities - double click to show more info in new panel    -->

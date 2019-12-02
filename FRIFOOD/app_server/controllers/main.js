@@ -16,12 +16,14 @@ var register = (req, res) => {
     res.render('Register');
 };
 
+var userJSON = require('../models/user');
+var commentJSON = require('../models/comment');
+let usrJSON = Object.assign({}, userJSON, commentJSON);
 var userProfile = (req, res) => {
-    res.render('userInfoPage');
+    res.render('userInfoPage', Object.assign({}, userJSON, commentJSON));
 };
-
 var userSetting = (req, res) => {
-    res.render('userSetting');
+    res.render('userSetting', userJSON);
 };
 
 var commentsJSON = require('../models/coments');

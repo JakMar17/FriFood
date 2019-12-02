@@ -43,7 +43,7 @@ app.use('/addComment', commentPageRouter);
 app.use('/restaurantView', restaurantViewRouter);
 
 app.use('/profile', userProfileRouter);
-app.use('/profile-edit', userSettingRouter);
+app.use('/userSetting', userSettingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
