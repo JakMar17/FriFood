@@ -13,6 +13,8 @@ var loginRouter = require('./app_server/routes/login');
 var registerRouter = require('./app_server/routes/register');
 var commentPageRouter = require('./app_server/routes/commentPage');
 var restaurantViewRouter = require('./app_server/routes/restaurantView');
+var userProfileRouter = require('./app_server/routes/userProfile');
+var userSettingRouter = require('./app_server/routes/userSetting');
 
 var app = express();
 
@@ -39,6 +41,9 @@ app.use('/commentPage', commentPageRouter);
 app.use('/addComment', commentPageRouter);
 
 app.use('/restaurantView', restaurantViewRouter);
+
+app.use('/profile', userProfileRouter);
+app.use('/profile-edit', userSettingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

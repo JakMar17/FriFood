@@ -16,6 +16,14 @@ var register = (req, res) => {
     res.render('Register');
 };
 
+var userProfile = (req, res) => {
+    res.render('userInfoPage');
+};
+
+var userSetting = (req, res) => {
+    res.render('userSetting');
+};
+
 var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
     res.render('commentPage', commentsJSON);
@@ -32,5 +40,7 @@ module.exports = {
     login,
     register,
     commentPage,
-    restaurantView
+    restaurantView,
+    userProfile,
+    userSetting
 };
