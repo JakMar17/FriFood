@@ -1,0 +1,45 @@
+{
+  "title": "Restaurant List",
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "This is restaurant 1",
+      "address": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "rating": 3,
+      "meal-price": 6.00,
+      "student-price": 2.30
+    },
+    {
+      "id": "2",
+      "name": "This is restaurant 2",
+      "address": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "rating": 3,
+      "meal-price": 6.00,
+      "student-price": 2.30
+    },
+    {
+      "id": "3",
+      "name": "This is restaurant 3",
+      "address": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "rating": 3,
+      "meal-price": 6.00,
+      "student-price": 2.30
+    },
+    {
+      "id": "4",
+      "name": "This is restaurant 4",
+      "address": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "rating": 3,
+      "meal-price": 6.00,
+      "student-price": 2.30
+    },
+    {
+      "id": "5",
+      "name": "This is restaurant 5",
+      "address": "Cesta na grad 78, 3000 Celje, Slovenija",
+      "rating": 3,
+      "meal-price": 6.00,
+      "student-price": 2.30
+    }
+  ]
+}

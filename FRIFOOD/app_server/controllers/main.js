@@ -26,11 +26,22 @@ var restaurantView = (req, res) => {
     res.render('RestaurantView.hbs', restaurantJSON);
 };
 
+var restaurantsJSON = require('../models/restaurants');
+const restaurantList = (req, res) => {
+    res.render('restaurant-list.hbs', restaurantsJSON);
+};
+
+const restaurantViewSpecific = (req, res) => {
+    res.render('RestaurantView.hbs', restaurantsJSON[1], { title : "Restaurant View" })
+};
+
 module.exports = {
     index,
     users,
     login,
     register,
     commentPage,
-    restaurantView
+    restaurantView,
+    restaurantList,
+    restaurantViewSpecific
 };

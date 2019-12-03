@@ -5,4 +5,6 @@ var ctrlMain = require('../controllers/main');
 
 router.get('/', ctrlMain.restaurantView);
 
+router.post('/', ctrlMain.restaurantViewSpecific)
+
 module.exports = router;
