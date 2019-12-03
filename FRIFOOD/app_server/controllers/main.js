@@ -1,10 +1,9 @@
 /* GET home page. */
-var index = (req, res) => {
-    res.render('index', { title: 'Dobrodošli' });
-};
+const request = require("request");
 
-var users = (req, res) => {
-    res.render('layout', { title: 'uporabniki' , body: "<p>kai ti </p>"});
+var index = (req, res) => {
+    //res.render('index', { title: 'Express' });
+    res.redirect("/restaurantView");
 };
 
 var login = (req, res) => {
@@ -24,9 +23,23 @@ var userSetting = (req, res) => {
     res.render('userSetting', Object.assign({}, userJSON, commentJSON));
 };
 
-var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
-    res.render('CommentPage', commentsJSON);
+
+    const url = "http://localhost:3000/api/komentarji";
+    request.get(url, (error, response, body) => {
+
+        let json = JSON.parse(body);
+
+        console.log(json);
+
+        res.render('commentPage',
+            {"title": "Comments",
+            "restaurantName": "KRNEKI",
+            "komentarji": json
+            });
+    });
+
+
 };
 
 var restaurantJSON = require('../models/restaurant');
@@ -63,13 +76,8 @@ var adminWaitingList = (req, res) => {
     res.render('admin_waitingList');
 };
 
-var restaurantAdd = (req, res) => {
-    res.render('restaurant-add.hbs');
-};
-
 module.exports = {
     index,
-    users,
     login,
     register,
     commentPage,
@@ -82,6 +90,5 @@ module.exports = {
     adminRates,
     adminComments,
     adminUsers,
-    adminWaitingList,
-    restaurantAdd
+    adminWaitingList
 };
