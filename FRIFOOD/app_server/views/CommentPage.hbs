@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" >
+    <script src="HBS_Helpers/changeString.js"></script>
     <title>{{title}}</title>
 </head>
 <body>
@@ -29,24 +29,61 @@
                         <div class="card col-10 offset-1 col-md-8 offset-md-2">
 
                             <div class="row">
-                                <p class="card-text m-4">{{komentar.value}}</p>
+                                <form id={{komentar._id}} hidden>
+                                    <input type="hidden" value={{komentar._id}} name="komentarID">
+                                    <input type="hidden" value="/commentPage" name="returnADR">
+                                </form>
+                                <p class="card-text m-4">{{komentar.opis}}</p>
                             </div>
 
 
                             <div class="row justify-content-end">
-                                <div class="btn-group dropright m-1">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Odgovori</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropright</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Urejaj</a>
-                                        <a class="dropdown-item" href="#">Briši</a>
+
+                                <div class="dropdown show m-1">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Več
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                        <button class="dropdown-item btn-danger" type="button" data-toggle="modal" data-target="#{{ changeModal komentar._id }}" data-whatever="@mdo">Uredi</button>
+
+                                        <button class="dropdown-item btn-danger" type="submit" formmethod="post" formaction="api/komentarji/brisi" form={{ komentar._id }} >Brisi</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                  </div>
+
+                <div class="modal fade" id={{ changeModal komentar._id }} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Spremeni komentar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" id={{ changeID komentar._id }} action="/api/komentarji/uredi">
+                                    <input type="hidden" value={{ komentar._id }} name="komentarID">
+                                    <input type="hidden" value="testZaUredboForme" name="test">
+                                    <input type="hidden" value="/commentPage" name="returnADR">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
+                                    </div>
+
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="submit" form={{ changeID komentar._id }} class="btn btn-primary" >Spremeni</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             {{/each}}
 
 
@@ -55,7 +92,7 @@
                     <div class="col-10 offset-1 col-md-8 offset-md-2">
                         <div class="row justify-content-end">
                             <div class="btn-group dropright m-1">
-                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Objavi</button>
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Nov komentar</button>
 
                             </div>
                         </div>
@@ -79,10 +116,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="myform" method="POST" action="/api/objaviKomentar">
+                <form id="myform" method="POST" action="/api/komentarji">
 
                     <div class="form-group">
-                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
+                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
                     </div>
                 </form>
             </div>
@@ -103,10 +140,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="myform1" method="POST" action="/api/objaviKomentar">
+                <form id="myform1" method="POST" action="/api/komentarji">
 
                     <div class="form-group">
-                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
+                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
                     </div>
                 </form>
             </div>
@@ -118,8 +155,16 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-<script src="javascripts/popper.min.js" ></script>
-<script src="javascripts/bootstrap.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+
+
+<script src="javascripts/commentSuport.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

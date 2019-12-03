@@ -7,6 +7,13 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 
 router.post('/uporabniki', ctrlUporabniki.narediUporabnika);
 
-router.post('/objaviKomentar', ctrlKomentarji.narediKomentar);
+
+router.get('/komentarji', ctrlKomentarji.vrniKomentarje);
+
+router.post('/komentarji', ctrlKomentarji.narediKomentar);
+
+router.post('/komentarji/brisi', ctrlKomentarji.brisiKomentar);
+
+router.post('/komentarji/uredi', ctrlKomentarji.posodobiKomentar);
 
 module.exports = router;

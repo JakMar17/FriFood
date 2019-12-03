@@ -1,11 +1,9 @@
 /* GET home page. */
+const request = require("request");
+
 var index = (req, res) => {
     //res.render('index', { title: 'Express' });
     res.redirect("/restaurantView");
-};
-
-var users = (req, res) => {
-    res.render('layout', { title: 'uporabniki' , body: "<p>kai ti </p>"});
 };
 
 var login = (req, res) => {
@@ -25,9 +23,23 @@ var userSetting = (req, res) => {
     res.render('userSetting', Object.assign({}, userJSON, commentJSON));
 };
 
-var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
-    res.render('commentPage', commentsJSON);
+
+    const url = "http://localhost:3000/api/komentarji";
+    request.get(url, (error, response, body) => {
+
+        let json = JSON.parse(body);
+
+        console.log(json);
+
+        res.render('commentPage',
+            {"title": "Comments",
+            "restaurantName": "KRNEKI",
+            "komentarji": json
+            });
+    });
+
+
 };
 
 var restaurantJSON = require('../models/restaurant');
@@ -66,7 +78,6 @@ var adminWaitingList = (req, res) => {
 
 module.exports = {
     index,
-    users,
     login,
     register,
     commentPage,
