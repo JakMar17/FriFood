@@ -7,7 +7,8 @@
       "address": "Cesta na grad 78, 3000 Celje, Slovenija",
       "rating": 3,
       "meal-price": 6.00,
-      "student-price": 2.30
+      "student-price": 2.30,
+      "student": true
     },
     {
       "id": "2",
@@ -15,7 +16,8 @@
       "address": "Cesta na grad 78, 3000 Celje, Slovenija",
       "rating": 3,
       "meal-price": 6.00,
-      "student-price": 2.30
+      "student-price": 2.30,
+      "student": true
     },
     {
       "id": "3",
@@ -23,7 +25,8 @@
       "address": "Cesta na grad 78, 3000 Celje, Slovenija",
       "rating": 3,
       "meal-price": 6.00,
-      "student-price": 2.30
+      "student-price": 2.30,
+      "student": false
     },
     {
       "id": "4",
@@ -31,7 +34,8 @@
       "address": "Cesta na grad 78, 3000 Celje, Slovenija",
       "rating": 3,
       "meal-price": 6.00,
-      "student-price": 2.30
+      "student-price": 2.30,
+      "student": false
     },
     {
       "id": "5",
@@ -39,7 +43,8 @@
       "address": "Cesta na grad 78, 3000 Celje, Slovenija",
       "rating": 3,
       "meal-price": 6.00,
-      "student-price": 2.30
+      "student-price": 2.30,
+      "student": false
     }
   ]
 }
