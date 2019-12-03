@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 /*uporabniki: [{
     name: 'kai',
     surname: 'ti',
@@ -16,7 +16,15 @@ const uporabnikiShema = new mongoose.Schema({
     name: String,
     surname: String,
     email: String,
-    passwd: String
+    passwd: String,
+    komentarjiUporabnika: [{ type: Schema.Types.ObjectId, ref: 'komentarji' }]
 });
 
-mongoose.model('uporabniki', uporabnikiShema, "Uporabnik");
+const komentarjiShema = new mongoose.Schema({
+    opis: String,
+    uporabnik: { type: Schema.Types.ObjectId, ref: 'uporabniki' }
+});
+
+var komentarji = mongoose.model('komentarji', komentarjiShema, "Komentar");
+var uporabniki = mongoose.model('uporabniki', uporabnikiShema, "Uporabnik");
+
