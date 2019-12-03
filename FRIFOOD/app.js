@@ -14,6 +14,7 @@ var loginRouter = require('./app_server/routes/login');
 var registerRouter = require('./app_server/routes/register');
 var commentPageRouter = require('./app_server/routes/commentPage');
 var restaurantViewRouter = require('./app_server/routes/restaurantView');
+var restaurantListRouter = require('./app_server/routes/restaurant-list');
 var userProfileRouter = require('./app_server/routes/userProfile');
 var userSettingRouter = require('./app_server/routes/userSetting');
 
@@ -30,6 +31,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 hbs.registerPartials(__dirname + '/app_server/views/partials');
 app.set('view engine', 'hbs');
+
+require('./app_server/views/helpers/handlebar-helpers.js');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -51,6 +54,7 @@ app.use('/addComment', commentPageRouter);
 
 app.use('/restaurantView', restaurantViewRouter);
 
+app.use('/restaurant-list', restaurantListRouter);
 app.use('/profile', userProfileRouter);
 app.use('/userSetting', userSettingRouter);
 

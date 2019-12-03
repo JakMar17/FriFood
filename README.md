@@ -137,7 +137,7 @@ Dokončali smo LP1 dne 3.11. 2019 - 21:00
 # 2. LP
 
 ### [Login.html](FRIFOOD/app_server/views/Login-Register/Login.html)
-Dovoljen vnos email z znakom @ in geslo
+Dovoljen vnos male, velike crke, stevilke, in znak @
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
 Vnos pri imenu in primku ne sme biti prazen, gesla se morata ujemati, in email mora vsebovat @
 

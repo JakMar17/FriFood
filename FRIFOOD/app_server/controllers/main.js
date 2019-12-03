@@ -35,6 +35,10 @@ var restaurantView = (req, res) => {
     res.render('RestaurantView.hbs', restaurantJSON);
 };
 
+var restaurantsJSON = require('../models/restaurants');
+const restaurantList = (req, res) => {
+    res.render('restaurant-list.hbs', restaurantsJSON);
+};
 
 var adminOverview = (req, res) => {
     res.render('admin_overview.hbs');
@@ -67,6 +71,7 @@ module.exports = {
     register,
     commentPage,
     restaurantView,
+    restaurantList,
     userProfile,
     userSetting,
     adminOverview,
