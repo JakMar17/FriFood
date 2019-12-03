@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs');
 
 require('./app_api/models/db');
 
@@ -14,11 +15,14 @@ var registerRouter = require('./app_server/routes/register');
 var commentPageRouter = require('./app_server/routes/commentPage');
 var restaurantViewRouter = require('./app_server/routes/restaurantView');
 var restaurantListRouter = require('./app_server/routes/restaurant-list');
+var userProfileRouter = require('./app_server/routes/userProfile');
+var userSettingRouter = require('./app_server/routes/userSetting');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
+hbs.registerPartials(__dirname + '/app_server/views/partials');
 app.set('view engine', 'hbs');
 
 require('./app_server/views/helpers/handlebar-helpers.js');
@@ -44,6 +48,8 @@ app.use('/addComment', commentPageRouter);
 app.use('/restaurantView', restaurantViewRouter);
 
 app.use('/restaurant-list', restaurantListRouter);
+app.use('/profile', userProfileRouter);
+app.use('/userSetting', userSettingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

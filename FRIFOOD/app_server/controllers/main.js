@@ -16,6 +16,16 @@ var register = (req, res) => {
     res.render('Register');
 };
 
+var userJSON = require('../models/user');
+var commentJSON = require('../models/comment');
+let usrJSON = Object.assign({}, userJSON, commentJSON);
+var userProfile = (req, res) => {
+    res.render('userInfoPage', Object.assign({}, userJSON, commentJSON));
+};
+var userSetting = (req, res) => {
+    res.render('userSetting', userJSON);
+};
+
 var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
     res.render('commentPage', commentsJSON);
@@ -38,5 +48,10 @@ module.exports = {
     register,
     commentPage,
     restaurantView,
+<<<<<<< HEAD
     restaurantList
+=======
+    userProfile,
+    userSetting
+>>>>>>> 4ae9f9d5da7f4d415a2bcf3113fa5be083729eb2
 };
