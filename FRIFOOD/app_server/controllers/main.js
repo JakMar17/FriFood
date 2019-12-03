@@ -31,10 +31,6 @@ const restaurantList = (req, res) => {
     res.render('restaurant-list.hbs', restaurantsJSON);
 };
 
-const restaurantViewSpecific = (req, res) => {
-    res.render('RestaurantView.hbs', restaurantsJSON[1], { title : "Restaurant View" })
-};
-
 module.exports = {
     index,
     users,
@@ -42,6 +38,5 @@ module.exports = {
     register,
     commentPage,
     restaurantView,
-    restaurantList,
-    restaurantViewSpecific
+    restaurantList
 };
