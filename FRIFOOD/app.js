@@ -17,6 +17,13 @@ var restaurantViewRouter = require('./app_server/routes/restaurantView');
 var userProfileRouter = require('./app_server/routes/userProfile');
 var userSettingRouter = require('./app_server/routes/userSetting');
 
+var adminOverviewRouter = require('./app_server/routes/adminOverview');
+var adminLocationsRouter = require('./app_server/routes/adminLocations');
+var adminRatesRouter = require('./app_server/routes/adminRates');
+var adminCommentsRouter = require('./app_server/routes/adminComments');
+var adminUsersRouter = require('./app_server/routes/adminUsers');
+var adminWaitinglistRouter = require ('./app_server/routes/adminWaitingList');
+
 var app = express();
 
 // view engine setup
@@ -46,6 +53,13 @@ app.use('/restaurantView', restaurantViewRouter);
 
 app.use('/profile', userProfileRouter);
 app.use('/userSetting', userSettingRouter);
+
+app.use('/admin', adminOverviewRouter);
+app.use('/admin-locations', adminLocationsRouter);
+app.use('/admin-rates', adminRatesRouter);
+app.use('/admin-comments', adminCommentsRouter);
+app.use('/admin-users', adminUsersRouter);
+app.use('/admin-waitinglist', adminWaitinglistRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
