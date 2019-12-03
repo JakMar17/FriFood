@@ -2,8 +2,7 @@
 const request = require("request");
 
 var index = (req, res) => {
-    //res.render('index', { title: 'Express' });
-    res.redirect("/restaurantView");
+    res.render('index', { title: 'Dobrodošli' });
 };
 
 var login = (req, res) => {

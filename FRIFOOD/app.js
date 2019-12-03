@@ -10,6 +10,8 @@ require('./app_api/models/db');
 var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
 var loginRouter = require('./app_server/routes/login');
+
+
 var registerRouter = require('./app_server/routes/register');
 var commentPageRouter = require('./app_server/routes/commentPage');
 var restaurantViewRouter = require('./app_server/routes/restaurantView');
