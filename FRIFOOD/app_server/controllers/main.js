@@ -48,10 +48,7 @@ module.exports = {
     register,
     commentPage,
     restaurantView,
-<<<<<<< HEAD
-    restaurantList
-=======
+    restaurantList,
     userProfile,
     userSetting
->>>>>>> 4ae9f9d5da7f4d415a2bcf3113fa5be083729eb2
 };

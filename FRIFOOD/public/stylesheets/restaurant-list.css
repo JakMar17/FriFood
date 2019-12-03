@@ -21,17 +21,17 @@
     width: 100%;
     overflow: hidden;
     overflow-y: scroll;
-    background-color: #7395AE;
+    background-color: #CBDCFF;
 }
 
 .restaurant {
     height: auto;
     width: auto;
-    background-color: #7395AE;
+    background-color: #CBDCFF;
     outline: 0;
 }
 .restaurant:focus {
-    background-color: #557A95;
+    background-color: #adc8ff;
     border-radius: 5px;
 }
 .rs-image {
@@ -55,13 +55,13 @@
     padding-top: 1vh;
 }
 a:link {
-    color: lightGrey;
+    color: #7395AE;
 }
 a:visited {
     color: darkBlue;
 }
 a:hover {
-    color: darkGrey;
+    color: #5D5C61;
 }
 /* CUSTOM SCROLL BAR - Does not work on Firefox */
 ::-webkit-scrollbar {
@@ -72,7 +72,7 @@ a:hover {
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #557A95;
+    background: #7395AE;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
