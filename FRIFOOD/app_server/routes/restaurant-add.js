@@ -3,9 +3,9 @@ var router = express.Router();
 var ctrlMain = require('../controllers/main');
 
 // rout to restaurant list
-router.get('/', ctrlMain.restaurantAdd);
+//router.get('/', ctrlMain.restaurantAdd);
 
-router.post('/addRestaurant', function (req, res) {
+/*router.post('/addRestaurant', function (req, res) {
 
     if(req.body.newCommentText != undefined)
     {
@@ -20,6 +20,6 @@ router.post('/addRestaurant', function (req, res) {
     }
     else
         res.status(401).send("No text entered");
-});
+});*/
 
 module.exports = router;

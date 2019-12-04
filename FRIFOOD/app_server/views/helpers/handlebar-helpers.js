@@ -5,6 +5,12 @@ hbs.registerHelper("makeLink", function(text, url) {
     return new hbs.SafeString(link);
 });
 
-hbs.registerHelper("clickReturnAddress", function(address) {
-    console.log(address);
+hbs.registerHelper('changeID', function (input) {
+    console.log("XX"+this._id);
+    return "XX"+this._id;
+});
+
+hbs.registerHelper('changeModal', function (input) {
+    console.log("XXXX"+this._id);
+    return "XXXX"+this._id;
 });
