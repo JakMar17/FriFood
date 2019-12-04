@@ -4,6 +4,6 @@ var ctrlMain = require('../controllers/main');
 
 /* GET users listing. */
 
-router.get('/', ctrlMain.adminProfile);
+router.get('/', ctrlMain.adminUsers);
 
 module.exports = router;
