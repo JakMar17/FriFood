@@ -22,6 +22,7 @@
     overflow: hidden;
     overflow-y: scroll;
     background-color: #CBDCFF;
+    border-radius: 5px;
 }
 
 .restaurant {
