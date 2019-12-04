@@ -9,115 +9,112 @@
     <title>{{title}}</title>
 </head>
 <body>
+    <div class="container mb-5">
 
-<div class="container mb-5">
+        <div class="card mt-5">
+            <div class="row">
+                <div class="col-12 mt-3" >
 
-    <div class="card mt-5">
-        <div class="row">
-            <div class="col-12 mt-3" >
-
-                <h2 class="card-title h2 text-center">Komentarji</h2>
-                <div class="col-11 col-sm-10 col-md-11 col-lg-11">
-
-
-                    <p class="ml-3">Tu se vidi komentarje o restavraciji: {{ restaurantName }}</p>
-                </div>
+                    <h2 class="card-title h2 text-center">Komentarji</h2>
+                    <div class="col-11 col-sm-10 col-md-11 col-lg-11">
 
 
-            {{#each komentarji as |komentar|}}
-                <div class="row mt-3 mb-3" id = "komentar">
-                        <div class="card col-10 offset-1 col-md-8 offset-md-2">
-
-                            <div class="row">
-                                <p class="card-text m-4">{{komentar.value}}</p>
-                            </div>
+                        <p class="ml-3">Tu se vidi komentarje o restavraciji: {{ restaurantName }}</p>
+                    </div>
 
 
-                            <div class="row justify-content-end">
-                                <div class="btn-group dropright m-1">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Odgovori</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="sr-only">Toggle Dropright</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Urejaj</a>
-                                        <a class="dropdown-item" href="#">Briši</a>
+                {{#each komentarji as |komentar|}}
+                    <div class="row mt-3 mb-3" id = "komentar">
+                            <div class="card col-10 offset-1 col-md-8 offset-md-2">
+
+                                <div class="row">
+                                    <p class="card-text m-4">{{komentar.value}}</p>
+                                </div>
+
+
+                                <div class="row justify-content-end">
+                                    <div class="btn-group dropright m-1">
+                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Odgovori</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropright</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Urejaj</a>
+                                            <a class="dropdown-item" href="#">Briši</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                 </div>
-            {{/each}}
+                     </div>
+                {{/each}}
 
 
 
-                <div class="row mt-3 mb-3">
-                    <div class="col-10 offset-1 col-md-8 offset-md-2">
-                        <div class="row justify-content-end">
-                            <div class="btn-group dropright m-1">
-                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Objavi</button>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-10 offset-1 col-md-8 offset-md-2">
+                            <div class="row justify-content-end">
+                                <div class="btn-group dropright m-1">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Objavi</button>
 
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
-
-
-
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Odgovori</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="myform" method="POST" action="/api/objaviKomentar">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Odgovori</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="myform" method="POST" action="/api/objaviKomentar">
 
-                    <div class="form-group">
-                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="myform" class="btn btn-primary" >Objavi odgovor</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Objavi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="myform1" method="POST" action="/api/objaviKomentar">
-
-                    <div class="form-group">
-                        <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" form="myform1" class="btn btn-primary" >Objavi</button>
+                        <div class="form-group">
+                            <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="myform" class="btn btn-primary" >Objavi odgovor</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Objavi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="myform1" method="POST" action="/api/objaviKomentar">
 
+                        <div class="form-group">
+                            <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Write reply here."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="myform1" class="btn btn-primary" >Objavi</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="javascripts/popper.min.js" ></script>
 <script src="javascripts/bootstrap.min.js" ></script>

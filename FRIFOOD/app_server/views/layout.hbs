@@ -17,9 +17,8 @@
             crossorigin="anonymous"></script>
 
     <!-- Prevedena in minimizirana JavaScript koda verzije 4.3.1 -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 
     <!-- Personalised css -->
     <link rel="stylesheet" href="stylesheets/layoutStylesheet.css">
@@ -37,9 +36,8 @@
                         <img src="images/layoutImages/menu_ico.png"/>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-top: 8px; margin-left: -20px; background-color:#cbdcff; border-radius: 0px; border-color: #cbdcff; border-width: 0px;">
-                        <a class="dropdown-item" href="#" style="color: #677491; font-size: 18px">PREGLED RESTAVRACIJ</a>
-                        <a class="dropdown-item" href="#" style="color: #677491; font-size: 18px">DODAJANJE RESTAVRACIJ</a>
-                        <a class="dropdown-item" href="#" style="color: #677491; font-size: 18px">PREGLED SPREMEMB</a>
+                        <a class="dropdown-item" href="/restaurant-list" style="color: #677491; font-size: 18px">PREGLED RESTAVRACIJ</a>
+                        <a class="dropdown-item" href="/restaurant-add" style="color: #677491; font-size: 18px">DODAJANJE RESTAVRACIJ</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -47,7 +45,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 d-none d-sm-block">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="search" placeholder="Poišči restavracije" aria-label="Search">
                 <button class="btn my-2" type="submit" style="margin-left: -5px;"><img src="images/layoutImages/search_ico.png" width="30px" height="30px"/></button>
             </form>
             <ul class="navbar-nav">
@@ -69,13 +67,22 @@
             {{{body}}}
             <footer class="mt-5">
                 <div class="row">
-                    <div class="col-12">
-                        <p>Put footer here</p>
+                    <div class="col-12" style="background-color: #cbdcff; height: 70px; text-align: center">
+                        <div class="col-md-12 col-sm-12" id="copyright" style="padding-top: 25px">Copyright &copy; <i id="date">2019</i> FRIFOOD</div>
                     </div>
                 </div>
             </footer>
         </div>
     </main>
 
+    <script type="text/javascript">
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("date").innerHTML =  y;
+    </script>
+    <script src="javascripts/popper.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
 </body>
 </html>
