@@ -1,7 +1,6 @@
 /* GET home page. */
 var index = (req, res) => {
-    //res.render('index', { title: 'Express' });
-    res.redirect("/restaurantView");
+    res.render('index', { title: 'Dobrodošli' });
 };
 
 var users = (req, res) => {
