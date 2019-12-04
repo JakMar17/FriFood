@@ -27,7 +27,7 @@ var userSetting = (req, res) => {
 
 var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
-    res.render('commentPage', commentsJSON);
+    res.render('CommentPage', commentsJSON);
 };
 
 var restaurantJSON = require('../models/restaurant');

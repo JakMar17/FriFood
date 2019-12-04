@@ -21,6 +21,6 @@ router.post('/newComment', function (req, res) {
     }
     else
         res.status(401).send("No text entered");
-})
+});
 
 module.exports = router;
