@@ -3,7 +3,7 @@ var router = express.Router();
 var ctrlMain = require('../controllers/main');
 
 // rout to restaurant list
-//router.get('/', ctrlMain.restaurantAdd);
+router.get('/', ctrlMain.restaurantAdd);
 
 /*router.post('/addRestaurant', function (req, res) {
 

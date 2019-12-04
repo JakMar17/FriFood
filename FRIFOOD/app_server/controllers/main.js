@@ -75,6 +75,10 @@ var adminWaitingList = (req, res) => {
     res.render('admin_waitingList');
 };
 
+var restaurantAdd = (req, res) => {
+    res.render('restaurant-add.hbs');
+}
+
 module.exports = {
     index,
     login,
@@ -89,5 +93,6 @@ module.exports = {
     adminRates,
     adminComments,
     adminUsers,
-    adminWaitingList
+    adminWaitingList,
+    restaurantAdd
 };
