@@ -25,6 +25,8 @@ var adminCommentsRouter = require('./app_server/routes/adminComments');
 var adminUsersRouter = require('./app_server/routes/adminUsers');
 var adminWaitinglistRouter = require ('./app_server/routes/adminWaitingList');
 
+var restaurantAddRouter = require('./app_server/routes/restaurant-add');
+
 var app = express();
 
 // view engine setup
@@ -64,6 +66,8 @@ app.use('/admin-rates', adminRatesRouter);
 app.use('/admin-comments', adminCommentsRouter);
 app.use('/admin-users', adminUsersRouter);
 app.use('/admin-waitinglist', adminWaitinglistRouter);
+
+app.use('/restaurant-add', restaurantAddRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

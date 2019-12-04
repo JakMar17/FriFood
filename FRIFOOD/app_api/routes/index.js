@@ -9,4 +9,6 @@ router.post('/uporabniki', ctrlUporabniki.narediUporabnika);
 
 router.post('/objaviKomentar', ctrlKomentarji.narediKomentar);
 
+//router.post('/addRestaurant', ctrlRestaurants.addRestaurant);
+
 module.exports = router;
