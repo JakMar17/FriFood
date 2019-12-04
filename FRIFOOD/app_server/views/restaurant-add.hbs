@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/restaurant-add.css">
+    <script src="javascripts/restaurantAddValidation.js"></script>
     <title>Restaurant Add</title>
 </head>
 <body>
@@ -25,17 +26,17 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label for="inputRestaurantName">Ime restavracije</label>
-                                <input type="text" class="form-control first-form" id="inputRestaurantName" aria-describedby="restNameHelp" placeholder="This is a restaurant name">
+                                <input type="text" class="form-control first-form" id="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Ime restavracije" required>
                                 <small id="restNameHelp" class="form-text text-muted">Tukaj vnesite polno ime restavracije.</small>
                             </div>
                             <div class="form-group">
                                 <label for="inputRestaurantAddress">Naslov restavracije</label>
-                                <input type="text" class="form-control first-form" id="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="This is a restaurant location">
+                                <input type="text" class="form-control first-form" id="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Lokacija restavracije" required>
                                 <small id="restAddHelp" class="form-text text-muted">Tukaj vnesite točen naslov restavracije.</small>
                             </div>
                             <div class="form-group">
                                 <label for="inputRestaurantDescription">Opis restavracije</label>
-                                <textarea class="form-control first-form" id="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije"></textarea>
+                                <textarea class="form-control first-form" id="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -43,13 +44,13 @@
                         <div class="col-md-12 col-sm-12">
                             <span>Ali lahko v vaši restavraciji študentje uporabljajo študentske bone?</span>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="yesBoni" id="inputBoniYes" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="boni" id="inputBoniYes" value="option1" onclick="checkedYes()" checked>
                                 <label class="form-check-label" for="boni1">
                                     Da
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="noBoni" id="inputBoniNo" value="option2">
+                                <input class="form-check-input" type="radio" name="boni" id="inputBoniNo" value="option2" onclick="checkedNo()">
                                 <label class="form-check-label" for="boni2">
                                     Ne
                                 </label>
@@ -62,7 +63,7 @@
                             <div class="form-row add-pay-form">
                                 <label for="c1">Koliko stane doplačilo študentskega menija?</label>
                                 <div class="input-group add-pay-form-input">
-                                    <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost" />
+                                    <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost"/>
                                 </div>
                             </div>
                         </div>
@@ -93,114 +94,142 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Ponedeljek:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputMondayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputMondayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openMonday" onclick="zaprtoMonday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Torek:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputTuesdayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputTuesdayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openTuesday" onclick="zaprtoTuesday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Sreda:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputWednesdayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputWednesdayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openWednesday" onclick="zaprtoWednesday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Četrtek:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputThursdayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputThursdayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openThursday" onclick="zaprtoThursday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Petek:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputFridayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputFridayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openFriday" onclick="zaprtoFriday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Sobota:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSaturdayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSaturdayTo">
                                     </label>
                                 </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openSaturday" onclick="zaprtoSaturday()">
+                                    <span>Zaprto</span>
+                                </div>
                             </div>
                             <div class="separate-2"></div>
                             <div class="form-row day-row">
-                                <div class="col-md-4 day-label">
+                                <div class="col-md-3 day-label">
                                     <span>Nedelja:</span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSundayFrom">
                                     </label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>
                                         <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSundayTo">
                                     </label>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 5px">
+                                    <input type="checkbox" id="openSunday" onclick="zaprtoSunday()">
+                                    <span>Zaprto</span>
                                 </div>
                             </div>
                         </div>
