@@ -69,13 +69,20 @@
             {{{body}}}
             <footer class="mt-5">
                 <div class="row">
-                    <div class="col-12">
-                        <p>Put footer here</p>
+                    <div class="col-12" style="background-color: #cbdcff; height: 70px; text-align: center">
+                        <div class="col-md-12 col-sm-12" id="copyright" style="padding-top: 25px">Copyright &copy; <i id="date">2019</i> FRIFOOD</div>
                     </div>
                 </div>
             </footer>
         </div>
     </main>
 
+    <script type="text/javascript">
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("date").innerHTML =  y;
+    </script>
 </body>
 </html>
