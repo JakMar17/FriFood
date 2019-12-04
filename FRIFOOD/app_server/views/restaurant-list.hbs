@@ -16,54 +16,59 @@
                     <div class="col-md-1 col-sm-0 col-xs-0"></div>
                     <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
                         <!-- Each restaurant loaded is shown here -->
-                        {{#each restaurants as |restaurant| }}
-                            <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <h1>{{restaurant.name}}</h1>
-                                        <p>{{restaurant.address}}</p>
-                                        <p class="rs-rating">{{restaurant.rating}}</p>
-                                        <p>Cena malice: &euro;{{restaurant.meal-price}} </p>
-                                        <p>Doplačilo na bone: &euro;{{restaurant.student-price}}</p>
-                                        <p>
-                                            {{makeLink "Več o restavraciji" "/restaurantView"}}
-                                        </p>
-                                        <p>
-                                            {{makeLink "Oceni ali komentiraj" "/commentPage"}}
-                                        </p>
-                                    </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5">
-                                        <div class="row">
-                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                {{#if restaurant.student }}
-                                                    <img class="rs-image-logo" src="/images/student/boni-so.svg" alt="Boni so">
-                                                {{else}}
-                                                    <img class="rs-image-logo" src="/images/student/boni-niso.svg" alt="Boni niso">
-                                                {{/if}}
-                                            </div>
-                                            <div class="col-md-4 col-sm-4 col-xs-4"></div>
-                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                <img class="rs-image-logo" src="" alt="Placeholder">
-                                            </div>
+                        <div class="row-fill"></div>
+                        <div id="showHideRestaurants">
+                            {{#each restaurants as |restaurant| }}
+                                <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <h1>{{restaurant.name}}</h1>
+                                            <p>{{restaurant.address}}</p>
+                                            <p class="rs-rating">{{restaurant.rating}}</p>
+                                            <p>Cena malice: &euro;{{restaurant.meal-price}} </p>
+                                            <p>Doplačilo na bone: &euro;{{restaurant.student-price}}</p>
+                                            <p>
+                                                {{makeLink "Več o restavraciji" "/restaurantView"}}
+                                            </p>
+                                            <p>
+                                                {{makeLink "Oceni ali komentiraj" "/commentPage"}}
+                                            </p>
                                         </div>
-                                        <div class="row rs-image-row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <img class="img-fluid rs-image" src="" alt="Placeholder">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    {{#if restaurant.student }}
+                                                        <img class="rs-image-logo" src="/images/student/boni-so.svg" alt="Boni so">
+                                                    {{else}}
+                                                        <img class="rs-image-logo" src="/images/student/boni-niso.svg" alt="Boni niso">
+                                                    {{/if}}
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4"></div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <img class="rs-image-logo" src="" alt="Placeholder">
+                                                </div>
+                                            </div>
+                                            <div class="row rs-image-row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <img class="img-fluid rs-image" src="" alt="Placeholder">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row-fill"></div>
-                        {{/each}}
+                                <div class="row-fill"></div>
+                            {{/each}}
+                        </div>
+                        <div id="showHideFoundRestaurants" >
+                            <span>LIST RESTAURANTS HERE</span>
+                        </div>
 
                     </div>
                     <div class="col-md-1 col-sm-0 col-xs-0"></div>
                 </div>
             </div>
-            <!-- THIS GOOGLE MAPS CONTENT IS A PLACEHOLDER FOR A RESPONSIVE GOOGLE MAPS -->
             <div class="google-maps col-md-6 col-sm-0 col-xs-0">
                 <div id="rs-map-container-fluid" class="z-depth-1-half rs-map-container">
                     <div id="googleMap"></div>
@@ -74,9 +79,9 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbr15R9FU8TSuU5cRiUgrXaC5h1Dd6zmA&libraries=places&callback=initMap"></script>
     <script src="javascripts/restaurant-list-helper.js"></script>
-    <script src="javascripts/popper.min.js"></script>
-    <script src="javascripts/bootstrap.min.js"></script>
-    <script src="javascripts/jquery-3.4.1.min.js"></script>
+<!--    <script src="javascripts/popper.min.js"></script>-->
+<!--    <script src="javascripts/bootstrap.min.js"></script>-->
+<!--    <script src="javascripts/jquery-3.4.1.min.js"></script>-->
 </body>
 
 </html>
