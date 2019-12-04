@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexApi);
 
-app.use('/index', indexRouter);
+app.use('/', indexRouter);
 
 app.use('/login', loginRouter);
 app.use('/loginCheck', loginRouter);
