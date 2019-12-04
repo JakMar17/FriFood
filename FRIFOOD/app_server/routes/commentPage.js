@@ -16,7 +16,7 @@ router.post('/newComment', function (req, res) {
             "value": req.body.newCommentText.toString(),
             "naslov": "Empty",
         });
-
+        console.log("REDIRECTED");
         res.redirect("/commentPage");
     }
     else

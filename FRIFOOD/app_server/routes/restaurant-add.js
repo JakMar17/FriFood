@@ -5,21 +5,8 @@ var ctrlMain = require('../controllers/main');
 // rout to restaurant list
 router.get('/', ctrlMain.restaurantAdd);
 
-router.post('/addRestaurant', function (req, res) {
-
-    if(req.body.newCommentText != undefined)
-    {
-        var commentsJSON = require('../models/coments');
-
-        commentsJSON.komentarji.push({
-            "value": req.body.newCommentText.toString(),
-            "naslov": "Empty",
-        });
-
-        res.redirect("/commentPage");
-    }
-    else
-        res.status(401).send("No text entered");
-});
+// Require the controllers WHICH WE DID NOT CREATE YET!!
+var restaurant_controller = require('../controllers/restaurant-add');
+router.post('/restaurant-add', restaurant_controller.restaurant_create);
 
 module.exports = router;

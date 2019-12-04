@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-4 col-sm-0"></div>
         </div>
-        <form id="restaurantAdd" method="POST" action="/api/addRestaurant">
+        <form id="restaurantAdd" method="POST" action="/restaurant-add">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3 bc1">
@@ -26,17 +26,17 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label for="inputRestaurantName">Ime restavracije</label>
-                                <input type="text" class="form-control first-form" id="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Ime restavracije" required>
+                                <input type="text" class="form-control first-form" id="inputRestaurantName" name="inputRestaurantName" aria-describedby="restNameHelp" placeholder="Ime restavracije" required>
                                 <small id="restNameHelp" class="form-text text-muted">Tukaj vnesite polno ime restavracije.</small>
                             </div>
                             <div class="form-group">
                                 <label for="inputRestaurantAddress">Naslov restavracije</label>
-                                <input type="text" class="form-control first-form" id="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Lokacija restavracije" required>
+                                <input type="text" class="form-control first-form" id="inputRestaurantAddress" name="inputRestaurantAddress" aria-describedby="restAddHelp" placeholder="Lokacija restavracije" required>
                                 <small id="restAddHelp" class="form-text text-muted">Tukaj vnesite točen naslov restavracije.</small>
                             </div>
                             <div class="form-group">
                                 <label for="inputRestaurantDescription">Opis restavracije</label>
-                                <textarea class="form-control first-form" id="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije" required></textarea>
+                                <textarea class="form-control first-form" id="inputRestaurantDescription" name="inputRestaurantDescription" rows="3" placeholder="Kratek opis restavracije" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -292,19 +292,19 @@
                     <div class="separate"></div>
                 </div>
             </div>
-        </form>
-        <div class="row">
-            <div class="col-md-3 col-sm-0"></div>
-            <div class="col-md-3 col-sm-12">
+            <div class="row">
+                <div class="col-md-3 col-sm-0"></div>
+                <div class="col-md-3 col-sm-12">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <button class="btn btn-primary" form="restaurantAdd" type="submit">Oddaj</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit">Oddaj</button>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-0"></div>
             </div>
-            <div class="col-md-6 col-sm-0"></div>
-        </div>
+        </form>
     </div>
     <script src="javascripts/popper.min.js"></script>
     <script src="javascripts/bootstrap.min.js"></script>
