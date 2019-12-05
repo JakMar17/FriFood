@@ -20,11 +20,5 @@ const uporabnikiShema = new mongoose.Schema({
     komentarjiUporabnika: [{ type: Schema.Types.ObjectId, ref: 'komentarji' }]
 });
 
-const komentarjiShema = new mongoose.Schema({
-    opis: String,
-    uporabnik: { type: Schema.Types.ObjectId, ref: 'uporabniki' }
-});
-
-var komentarji = mongoose.model('komentarji', komentarjiShema, "Komentar");
 var uporabniki = mongoose.model('uporabniki', uporabnikiShema, "Uporabnik");
 

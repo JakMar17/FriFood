@@ -13,6 +13,12 @@
 
 </head>
 
+<script>
+    function fillModal (locationID) {
+        console.log(locationID);
+    }
+</script>
+
 <body>
 <div class="container-fluid h-100">
     <div class="row h-100">
@@ -53,37 +59,29 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>FRI 123</td>
-                        <td>12</td>
-                        <td>
-                            <span class="icon">★</span>
-                            <span class="icon">★</span>
-                            <span class="icon">★</span>
-                            <span class="icon">★</span>
-                        </td>
-                        <td>Objavljeno</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Halo Janez</td>
-                        <td>4</td>
-                        <td>
-                            <span class="icon">★</span>
-                        </td>
-                        <td>Ni aktivno</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    {{#each locations as |location|}}
+                        <tr>
+                            <th scope="row">{{location.locationId}}</th>
+                            <td>{{location.locationName}}</td>
+                            <td>{{location.noOfComments}}</td>
+                            <td>
+                                {{location.rate}}
+                            </td>
+                            <td>
+                                {{#isPublished status 'published'}}
+                                    Objavljen
+                                {{else}}
+                                    Izbrisan
+                                {{/isPublished}}
+<!--                                {{location.status}}-->
+                            </td>
+                            <td>
+                                <a href = "#" data-toggle="modal" data-target="#detailView" onclick = "fillModal('{{location.locationId}}')">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -125,7 +123,7 @@
 
                     <div class="form-group">
                         <label for="locationStreet">Lokacija</label>
-                        <input type="text" class="form-control" id="locationStreet" value="Večna pot 133">
+                        <input type="text" class="form-control" id="locationStreet">
                         <input type="text" class="form-control" id="locationCity" value="1000 Ljubljana">
                     </div>
 
@@ -240,7 +238,7 @@
                         <textarea class="form-control" id="additionalInformations" rows="5">Vsak 5. obrok brezplačen za člane Študentskih ugotnosti</textarea>
                     </div>
 
-                    <button class="btn btn-success" type="submit" data-dismiss="modal">Posodobi</button>
+                    <button class="btn btn-success" type="submit" data-dismiss="modal" onclick="window.location.reload()">Posodobi</button>
 
                 </form>
             </div>
@@ -250,9 +248,9 @@
 
 <script src="javascripts/popper.min.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/locationTable.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

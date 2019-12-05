@@ -1,10 +1,8 @@
 /* GET home page. */
+const request = require("request");
+
 var index = (req, res) => {
     res.render('index', { title: 'Dobrodošli' });
-};
-
-var users = (req, res) => {
-    res.render('layout', { title: 'uporabniki' , body: "<p>kai ti </p>"});
 };
 
 var login = (req, res) => {
@@ -24,9 +22,23 @@ var userSetting = (req, res) => {
     res.render('userSetting', Object.assign({}, userJSON, commentJSON));
 };
 
-var commentsJSON = require('../models/coments');
 var commentPage = (req, res) => {
-    res.render('CommentPage', commentsJSON);
+
+    const url = "http://localhost:3000/api/comments";
+    request.get(url, (error, response, body) => {
+
+        let json = JSON.parse(body);
+
+        console.log(json);
+
+        res.render('commentPage',
+            {"title": "Comments",
+            "restaurantName": "KRNEKI",
+            "komentarji": json
+            });
+    });
+
+
 };
 
 var restaurantJSON = require('../models/restaurant');
@@ -43,8 +55,9 @@ var adminOverview = (req, res) => {
     res.render('admin_overview.hbs');
 };
 
+var locationJSON = require('../models/locations');
 var adminLocations = (req, res) => {
-    res.render('admin_locations.hbs');
+    res.render('admin_locations.hbs', locationJSON);
 };
 
 var adminRates = (req, res) => {
@@ -65,7 +78,7 @@ var adminWaitingList = (req, res) => {
 
 var restaurantAdd = (req, res) => {
     res.render('restaurant-add.hbs');
-};
+}
 
 var addRestaurant = (req, res) => {
 
@@ -86,7 +99,6 @@ var addRestaurant = (req, res) => {
 
 module.exports = {
     index,
-    users,
     login,
     register,
     commentPage,
