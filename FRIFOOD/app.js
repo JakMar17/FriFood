@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
+const bodyParser = require('body-parser');
+
 
 require('./app_api/models/db');
 require('./app_api/models/restaurants');
@@ -11,7 +13,6 @@ require('./app_api/models/restaurants');
 var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
 var loginRouter = require('./app_server/routes/login');
-
 
 var registerRouter = require('./app_server/routes/register');
 var commentPageRouter = require('./app_server/routes/commentPage');
@@ -37,6 +38,9 @@ hbs.registerPartials(__dirname + '/app_server/views/partials');
 app.set('view engine', 'hbs');
 
 require('./app_server/views/helpers/handlebar-helpers.js');
+require('./public/javascripts/restaurant-list-helper');
+
+app.use(bodyParser.json());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -70,6 +74,14 @@ app.use('/admin-users', adminUsersRouter);
 app.use('/admin-waitinglist', adminWaitinglistRouter);
 
 app.use('/restaurant-add', restaurantAddRouter);
+//app.use('/restaurantData', restaurantAddRouter);
+
+app.post('/restaurantData', function(req, res){
+  var data = req.body;
+  let template = hbs.compile(data.param2);
+  console.log(data.param1);
+  res.send(template({foundRestaurant: data.param1}));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,3 +1,4 @@
+
 var map, infoWindow;
 
 function handleAddress(address) {
@@ -48,6 +49,19 @@ var ljubljana = {
 };
 
 var returnRestaurants = [];
+
+var source = "<div class=\"row-fill\"></div>\n" +
+    "{{#each foundRestaurant as |restaurant| }}\n" +
+    "    <div class=\"restaurant\" tabindex=\"1\">\n" +
+    "      <div class=\"row\">\n" +
+    "         <div class=\"col-md-6 col-sm-12\">\n" +
+    "            <h1>{{restaurant.name}}</h1>\n" +
+    "            <p>{{restaurant.formatted_address}}</p>\n" +
+    "          </div>\n" +
+    "       </div>\n" +
+    "     </div>\n" +
+    "    <div class=\"row-fill\"></div>\n" +
+    "{{/each}}";
 
 function initMap() {
 
@@ -108,7 +122,7 @@ function initMap() {
         var request = {
             location: location,
             radius: 300,
-            query: 'Restavracije',
+            query: 'restaurants',
             fields: ['name', 'geometry', 'place_id', 'formatted_address', 'photos'],
         };
 
@@ -121,16 +135,16 @@ function initMap() {
                     if (google.maps.geometry.spherical.computeDistanceBetween(results[i].geometry.location, location) < request.radius) {
                         returnRestaurants.push(results[i]);
                         createMarker(results[i]);
-                        document.getElementById("showHideRestaurants").style.display = "none";
-                        document.getElementById("showHideFoundRestaurants").style.display = "";
                         resultCount++;
                     }
 
                 }
-                // for (var i = 0; i < results.length; i++) {
-                //     console.log(results[i].name);
-                //     createMarker(results[i]);
-                // }
+                document.getElementById("showHideRestaurants").style.display = "none";
+                // let template = hbs.compile(source);
+                // document.getElementById("showHideFoundRestaurants").innerHTML = template({foundRestaurants: returnRestaurants});
+                sendRestaurantDataToNode(returnRestaurants, source);
+
+                document.getElementById("showHideFoundRestaurants").style.display = "";
                 map.setCenter(results[0].geometry.location);
                 console.log(returnRestaurants);
             }
@@ -143,6 +157,22 @@ function initMap() {
     });
 }
 
+function sendRestaurantDataToNode(restaurant, source) {
+
+    var data = {
+        param1: restaurant,
+        param2: source
+    };
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/restaurantData');
+    xhr.onload = function(data) {
+        //console.log('loaded', this.responseText);
+        document.getElementById("showHideFoundRestaurants").innerHTML = this.responseText;
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+}
 
 
 
