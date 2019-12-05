@@ -1,11 +1,11 @@
 .rs-map-container{
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 95vh;
     width: 100%;
     overflow:hidden;
     position:relative;
-    padding-top: 10vh;
+    padding-top: 5vh;
 }
 
 .rs-map-container iframe{
@@ -63,6 +63,10 @@ a:visited {
 }
 a:hover {
     color: #5D5C61;
+}
+#googleMap {
+    height:100%;
+    width:100%;
 }
 /* CUSTOM SCROLL BAR - Does not work on Firefox */
 ::-webkit-scrollbar {
