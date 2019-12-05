@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ctrlUporabniki = require('../controllers/uporabnikAPI');
+var ctrlRestavracija = require('../controllers/restaurantAPI');
 var ctrlComments = require('../controllers/commentsAPI');
 
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
@@ -13,6 +14,6 @@ router.post('/comments', ctrlComments.createComment);
 router.post('/comments/delete', ctrlComments.deleteComment);
 
 
-//router.post('/addRestaurant', ctrlRestaurants.addRestaurant);
+router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 
 module.exports = router;
