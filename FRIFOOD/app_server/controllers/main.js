@@ -33,8 +33,8 @@ var commentPage = (req, res) => {
 
         res.render('commentPage',
             {"title": "Comments",
-            "restaurantName": "KRNEKI",
-            "komentarji": json
+                "restaurantName": "KRNEKI",
+                "komentarji": json
             });
     });
 
@@ -65,7 +65,12 @@ var adminRates = (req, res) => {
 };
 
 var adminComments = (req, res) => {
-    res.render('admin_comments.hbs');
+    const url = "http://localhost:3000/api/comments";
+    request.get(url, (error, response, body) => {
+        let commentsJSON = JSON.parse(body);
+
+        res.render('admin_comments.hbs', {"comments": commentsJSON});
+    });
 };
 
 var adminUsers = (req, res) => {
