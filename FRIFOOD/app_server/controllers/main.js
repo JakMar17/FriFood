@@ -69,7 +69,7 @@ var restaurantAdd = (req, res) => {
 
 var addRestaurant = (req, res) => {
 
-    const url = "http://localhost:3000/api/addRestaurant";
+    const url = "http://localhost:3000/api/restaurantADD";
     request.get(url, (error, response, body) => {
 
         let json = JSON.parse(body);
