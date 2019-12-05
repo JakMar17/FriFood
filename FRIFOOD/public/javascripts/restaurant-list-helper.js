@@ -41,6 +41,8 @@ function createMarker(place) {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
+
+    return marker;
 }
 
 var ljubljana = {
@@ -48,7 +50,7 @@ var ljubljana = {
     lng: 14.505751
 };
 
-var returnRestaurants = [];
+
 
 var source = "<div class=\"row-fill\"></div>\n" +
     "{{#each foundRestaurant as |restaurant| }}\n" +
@@ -62,6 +64,10 @@ var source = "<div class=\"row-fill\"></div>\n" +
     "     </div>\n" +
     "    <div class=\"row-fill\"></div>\n" +
     "{{/each}}";
+
+var circles = [];
+var markers = [];
+var returnRestaurants = [];
 
 function initMap() {
 
@@ -102,6 +108,14 @@ function initMap() {
         var longitude = event.latLng.lng();
         console.log( latitude + ', ' + longitude );
 
+        for (let circle of circles) {
+            circle.setMap(null);
+        }
+
+        for (let marker of markers) {
+            marker.setMap(null);
+        }
+
         radius = new google.maps.Circle({map: map,
             radius: 300,
             center: event.latLng,
@@ -113,7 +127,7 @@ function initMap() {
             draggable: false,    // Dragable
             editable: false      // Resizable
         });
-
+        circles.push(radius);
         // Center of map
         var location = new google.maps.LatLng(latitude, longitude);
         map.panTo(location);
@@ -126,6 +140,8 @@ function initMap() {
             fields: ['name', 'geometry', 'place_id', 'formatted_address', 'photos'],
         };
 
+        returnRestaurants = [];
+
         var service = new google.maps.places.PlacesService(map);
         service.textSearch(request, function(results, status) {
             //console.log(status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS);
@@ -134,7 +150,7 @@ function initMap() {
                 for (var i = 0; i < results.length; i++) {
                     if (google.maps.geometry.spherical.computeDistanceBetween(results[i].geometry.location, location) < request.radius) {
                         returnRestaurants.push(results[i]);
-                        createMarker(results[i]);
+                        markers.push(createMarker(results[i]));
                         resultCount++;
                     }
 
@@ -145,7 +161,7 @@ function initMap() {
                 sendRestaurantDataToNode(returnRestaurants, source);
 
                 document.getElementById("showHideFoundRestaurants").style.display = "";
-                map.setCenter(results[0].geometry.location);
+                map.setCenter(event.latLng);
                 console.log(returnRestaurants);
             }
             else {
