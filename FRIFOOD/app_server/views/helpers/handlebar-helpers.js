@@ -16,8 +16,19 @@ hbs.registerHelper('changeModal', function (input) {
 });
 
 hbs.registerHelper('isPublished', function(status) {
-   if (status === "published")
-       return "Objavljen";
-   else
-       return "Izbrisan";
+    if (status === "published")
+        return "Objavljen";
+    else
+        return "Izbrisan";
+});
+
+hbs.registerHelper('date', function(longDate) {
+    longDate = new Date(longDate);
+
+    var day = longDate.getDay() +1;
+    var month = longDate.getMonth() + 1;
+    var year = longDate.getFullYear();
+
+    var date = day + "." + month + "." + year;
+    return date;
 });

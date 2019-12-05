@@ -53,99 +53,61 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>12.10</td>
-                        <td>hrana bi lahko bila boljša, osebje odlično. cena primerna kakovosti, všeč mi je, da je vsak 5. obrok brezplačen in, da je komentar tako dolg</td>
-                        <td>FRI123</td>
-                        <td>JakMar17</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>12.10</td>
-                        <td>Sprememba lokacije</td>
-                        <td>FRI123</td>
-                        <td>JakMar17</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>12.10</td>
-                        <td>Dodana nova lokacija</td>
-                        <td>FKKT123</td>
-                        <td>JakMar17</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>12.10</td>
-                        <td>Sprememba cenika</td>
-                        <td>FRI123</td>
-                        <td>JakMar17</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    {{#each comments as |comment|}}
+                        <tr>
+                            <th scope="row">{{comment._id}}</th>
+                            <td>{{date comment.date}}</td>
+                            <td>{{comment.comment}}</td>
+                            <td>{{comment.restaurant}}</td>
+                            <td>{{comment.author}}</td>
+                            <td>
+                                <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        <!--    Modal for showing correction details-->
+                        <div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Podrobnosti elementa</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class = "modal-body">
+                                        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant}}</i></h6>
+
+                                        <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">
+                                            <input type = hidden name="komentarID" value="{{comment._id}}">
+                                            <input type="hidden" value="/admin-comments" name="returnADR">
+                                            <div class="form-group">
+                                                <label for="user">Uporabnik</label>
+                                                <input type="text" class="form-control" id="user" value="{{comment.author}}" readonly>
+                                            </div>
+
+                                            <div class = "form-group">
+                                                <label for = "corretionDescription">Komentar</label>
+                                                <textarea class="form-control" name = "newCommentText" rows = "5">{{comment.comment}}</textarea>
+                                            </div>
+
+                                            <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>
+                                            <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment ._id}}">Izbriši</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {{/each}}
                     </tbody>
                 </table>
             </div>
 
         </div>
 
-    </div>
-</div>
-
-<!--    Modal for showing correction details-->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="detailView">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Podrobnosti elementa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class = "modal-body">
-                <h6 style = "margin-bottom: 25px"><i>4.10.2019, na lokaciji: FRI menza 123</i></h6>
-
-                <form>
-
-                    <div class="form-group">
-                        <label for="user">Uporabnik</label>
-                        <input type="text" class="form-control" id="user" value="JakMar17" readonly>
-                    </div>
-
-                    <div class = "form-group">
-                        <label for = "corretionDescription">Komentar</label>
-                        <textarea class="form-control" id = "corretionDescription" rows = "5">Večna pot 112</textarea>
-                    </div>
-
-                    <div class = "form-group">
-                        <label for = "adminComment">Opomba administratorja</label>
-                        <textarea class="form-control" id = "adminComment" rows = "5"></textarea>
-                    </div>
-
-                    <button class="btn btn-success" type="submit" data-dismiss="modal">Posodobi</button>
-                    <button class="btn btn-danger" type="submit" data-dismiss="modal">Izbriši</button>
-
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 
