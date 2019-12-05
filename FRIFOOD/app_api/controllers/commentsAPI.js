@@ -5,18 +5,37 @@ const User = mongoose.model('uporabniki');
 const Comment = mongoose.model('comment');
 // const Restaurant = mongoose.model('restaurant');
 
+const createComment = (req, res) => {
+    var comment = new Comment({
+        comment: req.body.newCommentText.toString(),
+        author: req.body.author.toString(),
+        date: Date.now()
+    });
+
+    comment.save(function (error) {
+        if(error) return console.log(error);
+        else
+            console.log("Shranjeno");
+    });
+
+    res.redirect("/commentPage");
+
+};
+
 const updateComment = (req, res) => {
 
-    console.log(req.body.commentID.toString());
+    console.log(req.body.komentarID.toString());
     console.log("tukaj");
 
-    var id = req.body.commentID.toString();
+    var id = req.body.komentarID.toString();
     var ObjectId = (mongoose.Types.ObjectId);
 
     console.log("Urejanje komentarja: " + id);
 
     Comment.updateOne({"_id": ObjectId(id)}, {$set:
-            { "comment": req.body.newCommentText.toString() }
+            { "comment": req.body.newCommentText.toString(),
+              "date": Date.now()
+            }
     }, function(err, result) {
         if (err)
             console.log(err);
@@ -27,7 +46,7 @@ const updateComment = (req, res) => {
     });
 };
 
-const getComments = (req, res) => {
+const readComments = (req, res) => {
     Comment.find().exec(
         (error, comments) => {
             if (!comments) {
@@ -42,27 +61,24 @@ const getComments = (req, res) => {
     );
 };
 
-const postComment = (req, res) => {
-    var comment = new Comment({
-        comment: req.body.newCommentText.toString(),
-        author: "5ddf2795be59539a039167f2",
-        date: Date.now()
-    });
 
-    comment.save(function (error) {
-        if(error) return console.log(error);
-        else
-            console.log("Shranjeno");
-    });
 
-    res.redirect("/commentPage");
+const deleteComment = (req, res) => {
+    var id = req.body.komentarID.toString();
+    var ObjectID = mongoose.Types.ObjectId;
 
+    Comment.deleteOne(
+        {"_id": ObjectID(id)}, function(error, result){
+                if (error) return console.log(error);
+                else res.redirect(req.body.returnADR.toString());
+            }
+    );
 };
 
 
-
 module.exports = {
-    getComments,
+    createComment,
     updateComment,
-    postComment
+    readComments,
+    deleteComment
 };
