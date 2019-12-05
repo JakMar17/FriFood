@@ -24,13 +24,8 @@ const createComment = (req, res) => {
 
 const updateComment = (req, res) => {
 
-    console.log(req.body.komentarID.toString());
-    console.log("tukaj");
-
     var id = req.body.komentarID.toString();
     var ObjectId = (mongoose.Types.ObjectId);
-
-    console.log("Urejanje komentarja: " + id);
 
     Comment.updateOne({"_id": ObjectId(id)}, {$set:
             { "comment": req.body.newCommentText.toString(),

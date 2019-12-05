@@ -55,9 +55,15 @@ var adminOverview = (req, res) => {
     res.render('admin_overview.hbs');
 };
 
-var locationJSON = require('../models/locations');
+
 var adminLocations = (req, res) => {
-    res.render('admin_locations.hbs', locationJSON);
+
+    const url = "http://localhost:3000/api/restaurants";
+    request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+
+        res.render('admin_locations.hbs', {"locations": json});
+    });
 };
 
 var adminRates = (req, res) => {

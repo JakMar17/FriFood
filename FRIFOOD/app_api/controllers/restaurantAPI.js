@@ -75,6 +75,55 @@ const dodajRestavracijo = (req, res) => {
     });
 };
 
+const readRestaurants = (req, res) => {
+    Restaurant
+        .find()
+        .exec(
+            (error, restaurant) => {
+                if(!restaurant)
+                    return res.status(404).json({
+                        "error": "Restaurants not found"
+                    });
+                else if (error)
+                    return res.status(500).json(error);
+                else
+                    res.status(200).json(restaurant);
+            }
+        )
+};
+
+const deleteRestaurant = (req, res) => {
+    var id = req.body.restaurantID.toString();
+    var ObjectID = mongoose.Types.ObjectId;
+
+    Restaurant.deleteOne(
+        {"_id": ObjectID(id)}, function (error, result) {
+            if(error) return console.lo(error);
+            else res.redirect(req.body.returnADR.toString());
+        }
+    );
+};
+
+const updateResturant = (req, res) => {
+    console.log("Smo sploh tukaj?");
+    var id = req.body.restaurantID.toString();
+    var ObjectID = (mongoose.Types.ObjectId);
+
+    Restaurant.updateOne({"_id": ObjectID(id)}, {$set:
+            {
+
+            }
+    }, function (error, result) {
+        if(err)
+            return res.status(500).json(error);
+        else
+            res.redirect(res.body.returnADR.toString());
+    })
+}
+
 module.exports = {
-    dodajRestavracijo
+    dodajRestavracijo,
+    readRestaurants,
+    deleteRestaurant,
+    updateResturant
 };
