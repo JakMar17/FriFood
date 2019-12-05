@@ -49,6 +49,7 @@
                                     Da
                                 </label>
                             </div>
+                            <div name="boniYes" style="display:none">YES</div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="boni" id="inputBoniNo" value="option2" onclick="checkedNo()">
                                 <label class="form-check-label" for="boni2">
@@ -63,7 +64,7 @@
                             <div class="form-row add-pay-form">
                                 <label for="c1">Koliko stane doplačilo študentskega menija?</label>
                                 <div class="input-group add-pay-form-input">
-                                    <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost"/>
+                                    <input type="number" value="2.20" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost" name="inputBoniCost"/>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +75,7 @@
                             <div class="form-row add-pay-form">
                                 <label for="c2">Koliko stane povprečna dnevna malica?</label>
                                 <div class="input-group add-pay-form-input">
-                                    <input type="number" value="6.30" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputMealCost" />
+                                    <input type="number" value="6.30" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputMealCost" name="inputMealCost" />
                                 </div>
                             </div>
                         </div>
@@ -99,16 +100,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputMondayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputMondayFrom" name="inputMondayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputMondayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputMondayTo" name="inputMondayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openMonday" onclick="zaprtoMonday()">
+                                    <input type="checkbox" id="openMonday" name="openMonday" onclick="zaprtoMonday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -119,16 +120,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputTuesdayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputTuesdayFrom" name="inputTuesdayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputTuesdayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputTuesdayTo" name="inputTuesdayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openTuesday" onclick="zaprtoTuesday()">
+                                    <input type="checkbox" id="openTuesday" name="openTuesday" onclick="zaprtoTuesday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -139,16 +140,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputWednesdayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputWednesdayFrom" name="inputWednesdayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputWednesdayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputWednesdayTo" name="inputWednesdayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openWednesday" onclick="zaprtoWednesday()">
+                                    <input type="checkbox" id="openWednesday" name="openWednesday" onclick="zaprtoWednesday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -159,16 +160,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputThursdayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputThursdayFrom" name="inputThursdayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputThursdayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputThursdayTo" name="inputThursdayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openThursday" onclick="zaprtoThursday()">
+                                    <input type="checkbox" id="openThursday" name="openThursday" onclick="zaprtoThursday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -179,16 +180,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputFridayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputFridayFrom" name="inputFridayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputFridayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputFridayTo" name="inputFridayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openFriday" onclick="zaprtoFriday()">
+                                    <input type="checkbox" id="openFriday" name="openFriday" onclick="zaprtoFriday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -199,16 +200,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSaturdayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSaturdayFrom" name="inputSaturdayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSaturdayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSaturdayTo" name="inputSaturdayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openSaturday" onclick="zaprtoSaturday()">
+                                    <input type="checkbox" id="openSaturday" name="openSaturday" onclick="zaprtoSaturday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -219,16 +220,16 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSundayFrom">
+                                        <input type="number" class="form-control hour-form" placeholder="Od" min="0" max="24" id="inputSundayFrom" name="inputSundayFrom">
                                     </label>
                                 </div>
                                 <div class="col-md-3">
                                     <label>
-                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSundayTo">
+                                        <input type="number" class="form-control hour-form" placeholder="Do" min="0" max="24" id="inputSundayTo" name="inputSundayTo">
                                     </label>
                                 </div>
                                 <div class="col-md-3" style="margin-top: 5px">
-                                    <input type="checkbox" id="openSunday" onclick="zaprtoSunday()">
+                                    <input type="checkbox" id="openSunday" name="openSunday" onclick="zaprtoSunday()">
                                     <span>Zaprto</span>
                                 </div>
                             </div>
@@ -249,7 +250,7 @@
                                     <div class="file-field">
                                         <span>Izberi ikono restavracije</span>
                                         <div class="separate-2"></div>
-                                        <input type="file">
+                                        <input type="file" name="ikonaRestavracije">
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +271,7 @@
                                     <div class="file-field">
                                         <span>Izberi naslovno sliko restavracije</span>
                                         <div class="separate-2"></div>
-                                        <input type="file">
+                                        <input type="file" name="naslovnaSlika">
                                     </div>
                                 </div>
                             </div>
