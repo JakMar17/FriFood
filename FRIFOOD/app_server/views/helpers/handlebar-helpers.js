@@ -8,3 +8,13 @@ hbs.registerHelper("makeLink", function(text, url) {
 hbs.registerHelper("clickReturnAddress", function(address) {
     console.log(address);
 });
+
+hbs.registerHelper('published', function(paramether) {
+    if (paramether == "published") {
+        return "Objavljen";
+    } else {
+        return "Izbrisan";
+    }
+});
+
+// hbs.registerHelper("toJSON", function())

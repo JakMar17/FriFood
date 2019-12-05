@@ -43,8 +43,9 @@ var adminOverview = (req, res) => {
     res.render('admin_overview.hbs');
 };
 
+var locationJSON = require('../models/locations');
 var adminLocations = (req, res) => {
-    res.render('admin_locations.hbs');
+    res.render('admin_locations.hbs', locationJSON);
 };
 
 var adminRates = (req, res) => {
