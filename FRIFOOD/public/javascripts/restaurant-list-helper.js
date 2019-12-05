@@ -54,12 +54,29 @@ var ljubljana = {
 
 var source = "<div class=\"row-fill\"></div>\n" +
     "{{#each foundRestaurant as |restaurant| }}\n" +
-    "    <div class=\"restaurant\" tabindex=\"1\">\n" +
+    "    <div onclick=\"handleAddress('{{restaurant.formatted_address}}')\" class=\"restaurant\" tabindex=\"1\">\n" +
     "      <div class=\"row\">\n" +
     "         <div class=\"col-md-6 col-sm-12\">\n" +
     "            <h1>{{restaurant.name}}</h1>\n" +
     "            <p>{{restaurant.formatted_address}}</p>\n" +
-    "          </div>\n" +
+    "            <p>Ocena: {{restaurant.rating}}</p>\n" +
+    "          </div>" +
+    "          <div class=\"col-md-1\"></div>\n" +
+    "              <div class=\"col-md-5\">\n" +
+    "                   <div class=\"row\">\n" +
+    "                       <div class=\"col-md-1 col-sm-1 col-xs-1\">\n" +
+    "                       </div>\n" +
+    "                       <div class=\"col-md-4 col-sm-4 col-xs-4\"></div>\n" +
+    "                           <div class=\"col-md-1 col-sm-1 col-xs-1\">\n" +
+    "                              <img class=\"rs-image-logo\" src=\"{{restaurant.icon}}\" alt=\"Placeholder\">" +
+    "                           </div>\n" +
+    "                       </div>\n" +
+    "                       <div class=\"row rs-image-row\">\n" +
+    "                           <div class=\"col-md-12 col-sm-12\">\n" +
+    "                               <img class=\"img-fluid rs-image\" src=\"{{restaurant.photo}}\" alt=\"Placeholder\">\n" +
+    "                       </div>\n" +
+    "                    </div>\n" +
+    "            </div>" +
     "       </div>\n" +
     "     </div>\n" +
     "    <div class=\"row-fill\"></div>\n" +
@@ -137,7 +154,7 @@ function initMap() {
             location: location,
             radius: 300,
             query: 'restaurants',
-            fields: ['name', 'geometry', 'place_id', 'formatted_address', 'photos'],
+            fields: ['icon', 'photos', 'name', 'place_id', 'formatted_address'],
         };
 
         returnRestaurants = [];
@@ -149,8 +166,13 @@ function initMap() {
                 var resultCount = 0;
                 for (var i = 0; i < results.length; i++) {
                     if (google.maps.geometry.spherical.computeDistanceBetween(results[i].geometry.location, location) < request.radius) {
-                        returnRestaurants.push(results[i]);
                         markers.push(createMarker(results[i]));
+                        if (results[i].photos !== undefined && results[i].photos.length > 0) {
+                            results[i].photo = results[i].photos[0].getUrl({'maxWidth': 1000}) + '.jpg';
+                        } else {
+                            results[i].photo = 'https://www.themezzaninegroup.com/wp-content/uploads/2017/12/photo-not-available.jpg'
+                        }
+                        returnRestaurants.push(results[i]);
                         resultCount++;
                     }
 
@@ -162,7 +184,7 @@ function initMap() {
 
                 document.getElementById("showHideFoundRestaurants").style.display = "";
                 map.setCenter(event.latLng);
-                console.log(returnRestaurants);
+                //console.log(returnRestaurants);
             }
             else {
                 window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");

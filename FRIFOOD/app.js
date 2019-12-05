@@ -79,7 +79,7 @@ app.use('/restaurant-add', restaurantAddRouter);
 app.post('/restaurantData', function(req, res){
   var data = req.body;
   let template = hbs.compile(data.param2);
-  console.log(data.param1);
+  //console.log(data.param1);
   res.send(template({foundRestaurant: data.param1}));
 });
 
