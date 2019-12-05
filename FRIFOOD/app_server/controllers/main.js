@@ -67,6 +67,23 @@ var restaurantAdd = (req, res) => {
     res.render('restaurant-add.hbs');
 };
 
+var addRestaurant = (req, res) => {
+
+    const url = "http://localhost:3000/api/addRestaurant";
+    request.get(url, (error, response, body) => {
+
+        let json = JSON.parse(body);
+        console.log("ADDED RESTAURANT!");
+        console.log(json);
+        res.render('restaurant-add',
+            {"title": "Restaurant",
+                "restaurantName": req.body.inputRestaurantName
+            });
+    });
+
+
+};
+
 module.exports = {
     index,
     users,
@@ -83,5 +100,6 @@ module.exports = {
     adminComments,
     adminUsers,
     adminWaitingList,
-    restaurantAdd
+    restaurantAdd,
+    addRestaurant
 };
