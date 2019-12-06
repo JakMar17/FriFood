@@ -1,18 +1,31 @@
 
 var map, infoWindow;
+var markers1 = [];
 
 function handleAddress(address) {
     console.log(address);
 
-    map = new google.maps.Map(document.getElementById('googleMap'), {
-        center: {lat: -46.056946 , lng: 14.505751},
-        zoom: 14
-    });
+    // map = new google.maps.Map(document.getElementById('googleMap'), {
+    //     center: {lat: -46.056946 , lng: 14.505751},
+    //     zoom: 14
+    // });
 
     var request = {
         query: address,
         fields: ['name', 'geometry'],
     };
+
+    for (let marker of markers1) {
+        marker.setMap(null);
+    }
+
+    for (let circle of circles) {
+        circle.setMap(null);
+    }
+
+    for (let marker of markers) {
+        marker.setMap(null);
+    }
 
     var service = new google.maps.places.PlacesService(map);
 
@@ -20,7 +33,7 @@ function handleAddress(address) {
         //console.log(status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
-                createMarker(results[i]);
+                markers1.push(createMarker(results[i]));
             }
             map.setCenter(results[0].geometry.location);
         }
@@ -130,6 +143,10 @@ function initMap() {
         }
 
         for (let marker of markers) {
+            marker.setMap(null);
+        }
+
+        for (let marker of markers1) {
             marker.setMap(null);
         }
 
