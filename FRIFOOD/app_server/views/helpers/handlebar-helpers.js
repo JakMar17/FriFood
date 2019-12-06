@@ -32,3 +32,8 @@ hbs.registerHelper('date', function(longDate) {
     var date = day + "." + month + "." + year;
     return date;
 });
+
+hbs.registerHelper("makeLink2", function(text, url1, url2) {
+    let link = '<a href="' + url1 + url2 + '">' + text + '</a>';
+    return new hbs.SafeString(link);
+});

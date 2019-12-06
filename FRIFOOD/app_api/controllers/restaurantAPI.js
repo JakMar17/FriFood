@@ -100,7 +100,7 @@ const deleteRestaurant = (req, res) => {
 
     Restaurant.deleteOne(
         {"_id": ObjectID(id)}, function (error, result) {
-            if(error) return console.lo(error);
+            if(error) return console.log(error);
             else res.redirect(req.body.returnADR.toString());
         }
     );
@@ -121,7 +121,7 @@ const updateResturant = (req, res) => {
         else
             res.redirect(res.body.returnADR.toString());
     })
-}
+};
 
 module.exports = {
     dodajRestavracijo,
