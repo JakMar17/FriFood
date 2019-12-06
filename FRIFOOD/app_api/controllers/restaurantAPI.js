@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 var url  = require('url');
-
+const fs = require('fs');
 const Restaurant = mongoose.model('restaurant');
 
 
 const dodajRestavracijo = (req, res) => {
+    // save image
+
     var boni = true;
     boni = req.body.boniYes == "YES";
 
