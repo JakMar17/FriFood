@@ -128,11 +128,14 @@ Primerjali smo brskalnike: Google Chrome, Firefox, Edge.
     * Google Chrome - lahko smo naredili svoj stil drsne vrstice v css z "-webkit-scrollbar "
     * Edge & Firefox - ne podpirata te funkcije in je drsna vrstica enaka povsod
 
-## Uporaba zunjanega API vmesnika (Google maps - places)
-Uporabili bomo Google Places API, ki nam bo za izbrano ali trenutno lokacijo poiskal restavracije v nekem radiusu.
-Dobili bomo lokacijo in naslovno sliko, brez cen in ocene, razen če je restavracija že v naši databazi.
-
 Dokončali smo LP1 dne 3.11. 2019 - 21:00
+
+## Uporaba zunjanega API vmesnika (Google maps - places) - dodatek k LP1
+Uporabili bomo Google Places API, ki nam bo za izbrano lokacijo poiskal restavracije v nekem radiusu.
+Dobili bomo lokacijo, ime, naslovno sliko, ikono za restavracijo in oceno, brez cen ali prisotnosti bonov.  
+Zaradi izrecnega navodila 'google terms of service' - "delete, obscure, or in any manner alter any brand features, logos, 
+__warnings__, notices... or links that appear in the Service or the Content", smo warning za deprecated feature __*open_now*__ 
+pustili v konzoli.
 
 # 2. LP
 

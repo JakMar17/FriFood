@@ -15,5 +15,8 @@ router.post('/comments/delete', ctrlComments.deleteComment);
 
 
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
+router.get('/restaurants', ctrlRestavracija.readRestaurants);
+router.post('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
+router.post('/restaurants/update', ctrlRestavracija.updateResturant);
 
 module.exports = router;

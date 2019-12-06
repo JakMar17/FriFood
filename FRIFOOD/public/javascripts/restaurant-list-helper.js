@@ -1,3 +1,4 @@
+
 var map, infoWindow;
 
 function handleAddress(address) {
@@ -40,6 +41,8 @@ function createMarker(place) {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
+
+    return marker;
 }
 
 var ljubljana = {
@@ -47,6 +50,40 @@ var ljubljana = {
     lng: 14.505751
 };
 
+
+
+var source = "<div class=\"row-fill\"></div>\n" +
+    "{{#each foundRestaurant as |restaurant| }}\n" +
+    "    <div onclick=\"handleAddress('{{restaurant.formatted_address}}')\" class=\"restaurant\" tabindex=\"1\">\n" +
+    "      <div class=\"row\">\n" +
+    "         <div class=\"col-md-6 col-sm-12\">\n" +
+    "            <h1>{{restaurant.name}}</h1>\n" +
+    "            <p>{{restaurant.formatted_address}}</p>\n" +
+    "            <p>Ocena: {{restaurant.rating}}</p>\n" +
+    "          </div>" +
+    "          <div class=\"col-md-1\"></div>\n" +
+    "              <div class=\"col-md-5\">\n" +
+    "                   <div class=\"row\">\n" +
+    "                       <div class=\"col-md-1 col-sm-1 col-xs-1\">\n" +
+    "                       </div>\n" +
+    "                       <div class=\"col-md-4 col-sm-4 col-xs-4\"></div>\n" +
+    "                           <div class=\"col-md-1 col-sm-1 col-xs-1\">\n" +
+    "                              <img class=\"rs-image-logo\" src=\"{{restaurant.icon}}\" alt=\"Placeholder\">" +
+    "                           </div>\n" +
+    "                       </div>\n" +
+    "                       <div class=\"row rs-image-row\">\n" +
+    "                           <div class=\"col-md-12 col-sm-12\">\n" +
+    "                               <img class=\"img-fluid rs-image\" src=\"{{restaurant.photo}}\" alt=\"Placeholder\">\n" +
+    "                       </div>\n" +
+    "                    </div>\n" +
+    "            </div>" +
+    "       </div>\n" +
+    "     </div>\n" +
+    "    <div class=\"row-fill\"></div>\n" +
+    "{{/each}}";
+
+var circles = [];
+var markers = [];
 var returnRestaurants = [];
 
 function initMap() {
@@ -88,6 +125,14 @@ function initMap() {
         var longitude = event.latLng.lng();
         console.log( latitude + ', ' + longitude );
 
+        for (let circle of circles) {
+            circle.setMap(null);
+        }
+
+        for (let marker of markers) {
+            marker.setMap(null);
+        }
+
         radius = new google.maps.Circle({map: map,
             radius: 300,
             center: event.latLng,
@@ -99,7 +144,7 @@ function initMap() {
             draggable: false,    // Dragable
             editable: false      // Resizable
         });
-
+        circles.push(radius);
         // Center of map
         var location = new google.maps.LatLng(latitude, longitude);
         map.panTo(location);
@@ -108,9 +153,11 @@ function initMap() {
         var request = {
             location: location,
             radius: 300,
-            query: 'Restavracije',
-            fields: ['name', 'geometry', 'place_id', 'formatted_address', 'photos'],
+            query: 'restaurants',
+            fields: ['icon', 'photos', 'name', 'place_id', 'formatted_address'],
         };
+
+        returnRestaurants = [];
 
         var service = new google.maps.places.PlacesService(map);
         service.textSearch(request, function(results, status) {
@@ -119,20 +166,25 @@ function initMap() {
                 var resultCount = 0;
                 for (var i = 0; i < results.length; i++) {
                     if (google.maps.geometry.spherical.computeDistanceBetween(results[i].geometry.location, location) < request.radius) {
+                        markers.push(createMarker(results[i]));
+                        if (results[i].photos !== undefined && results[i].photos.length > 0) {
+                            results[i].photo = results[i].photos[0].getUrl({'maxWidth': 1000}) + '.jpg';
+                        } else {
+                            results[i].photo = 'https://www.themezzaninegroup.com/wp-content/uploads/2017/12/photo-not-available.jpg'
+                        }
                         returnRestaurants.push(results[i]);
-                        createMarker(results[i]);
-                        document.getElementById("showHideRestaurants").style.display = "none";
-                        document.getElementById("showHideFoundRestaurants").style.display = "";
                         resultCount++;
                     }
 
                 }
-                // for (var i = 0; i < results.length; i++) {
-                //     console.log(results[i].name);
-                //     createMarker(results[i]);
-                // }
-                map.setCenter(results[0].geometry.location);
-                console.log(returnRestaurants);
+                document.getElementById("showHideRestaurants").style.display = "none";
+                // let template = hbs.compile(source);
+                // document.getElementById("showHideFoundRestaurants").innerHTML = template({foundRestaurants: returnRestaurants});
+                sendRestaurantDataToNode(returnRestaurants, source);
+
+                document.getElementById("showHideFoundRestaurants").style.display = "";
+                map.setCenter(event.latLng);
+                //console.log(returnRestaurants);
             }
             else {
                 window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");
@@ -143,6 +195,22 @@ function initMap() {
     });
 }
 
+function sendRestaurantDataToNode(restaurant, source) {
+
+    var data = {
+        param1: restaurant,
+        param2: source
+    };
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/restaurantData');
+    xhr.onload = function(data) {
+        //console.log('loaded', this.responseText);
+        document.getElementById("showHideFoundRestaurants").innerHTML = this.responseText;
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+}
 
 
 
