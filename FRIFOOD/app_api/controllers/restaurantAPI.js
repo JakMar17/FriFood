@@ -45,6 +45,11 @@ const dodajRestavracijo = (req, res) => {
     }
 
     var commentSection = new Comments([]);
+    var naslovnaSlika = req.body.naslovnaSlika;
+    var naslovnaSlikaEncoded = naslovnaSlika.toString('base64');
+
+    var ikonaSlika = req.body.ikonaRestavracije;
+    var ikonaSlikaEncoded = ikonaSlika.toString('base64');
 
     var restavracija = new Restaurant({
         name: req.body.inputRestaurantName.toString(),
@@ -65,11 +70,11 @@ const dodajRestavracijo = (req, res) => {
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
         icon: {
-            data: req.body.ikonaRestavracije,
+            data: ikonaSlikaEncoded,
             contentType: 'image/png'
         },
         front: {
-            data: req.body.naslovnaSlika,
+            data: naslovnaSlikaEncoded,
             contentType: 'image/png'
         }
     });
