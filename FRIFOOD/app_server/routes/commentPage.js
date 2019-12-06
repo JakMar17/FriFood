@@ -4,6 +4,6 @@ var ctrlMain = require('../controllers/main');
 
 /* GET users listing. */
 
-router.get('/', ctrlMain.commentPage);
+router.get('/:id', ctrlMain.commentPage);
 
 module.exports = router;

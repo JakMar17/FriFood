@@ -70,10 +70,24 @@ const deleteComment = (req, res) => {
     );
 };
 
+const getCommentById = (req, res) => {
+    Comment.findById(req.params.id).exec((error, comment) => {
+        if(!comment)
+            return res.status(404).json({
+                "error": "Restaurants not found"
+            });
+        else if (error)
+            return res.status(500).json(error);
+        else
+            res.status(200).json(comment);
+    })
+};
+
 
 module.exports = {
     createComment,
     updateComment,
     readComments,
-    deleteComment
+    deleteComment,
+    getCommentById
 };

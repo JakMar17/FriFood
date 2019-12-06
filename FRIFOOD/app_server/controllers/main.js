@@ -27,40 +27,41 @@ var userSetting = (req, res) => {
 
 var commentPage = (req, res) => {
 
-    const url = "http://localhost:3000/api/comments";
+    const url = req.protocol + '://' + req.get('host') + "/api/comments/" + req.params.id;
+    const urlRestaurant = req.protocol + '://' + req.get('host') + "/api/restaurants/" + req.params.id;
     request.get(url, (error, response, body) => {
 
-        let json = JSON.parse(body);
-
-        console.log(json);
-
-        res.render('commentPage',
-            {"title": "Comments",
-                "restaurantName": "KRNEKI",
-                "komentarji": json
-            });
+        let comments = JSON.parse(body);
+        request.get(url, (error2, response2, body2) => {
+            let restaurant = JSON.parse(body);
+            res.render('commentPage',
+                {"title": "Comments",
+                    "restaurantName": restaurant.name,
+                    "komentarji": comments
+                });
+        });
     });
-
-
 };
 
 var restaurantJSON = require('../models/restaurant');
 var restaurantView = (req, res) => {
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurants/" + req.params.id;
 
-    Restaurant.findById(req.params.id, (err, restaurant) => {
-        if (err) return res.json({error: err}); // see @partycoder's answer
-        res.render('RestaurantView.hbs', { title: restaurant.name, restaurant: restaurant});
-    })
+    request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+
+        res.render('RestaurantView.hbs', { title: json.name, restaurant: json});
+    });
 };
 
 var restaurantsJSON = require('../models/restaurants');
 const restaurantList = (req, res) => {
-    const url = "http://localhost:3000/api/restaurants";
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
     request.get(url, (error, response, body) => {
 
         let json = JSON.parse(body);
-        console.log("Listing Restaurants");
-        console.log(json);
+        //console.log("Listing Restaurants");
+        //console.log(json);
         res.render('restaurant-list',
             {"title": "Restaurant List",
                 "restaurants": json
@@ -75,7 +76,7 @@ var adminOverview = (req, res) => {
 
 var adminLocations = (req, res) => {
 
-    const url = "http://localhost:3000/api/restaurants";
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
     request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
 
@@ -88,7 +89,7 @@ var adminRates = (req, res) => {
 };
 
 var adminComments = (req, res) => {
-    const url = "http://localhost:3000/api/comments";
+    const url = req.protocol + '://' + req.get('host') + "/api/comments";
     request.get(url, (error, response, body) => {
         let commentsJSON = JSON.parse(body);
 
@@ -109,7 +110,7 @@ var restaurantAdd = (req, res) => {
 };
 
 var addRestaurant = (req, res) => {
-    const url = "http://localhost:3000/api/restaurantADD";
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurantADD";
     request.get(url, (error, response, body) => {
 
         let json = JSON.parse(body);
