@@ -22,9 +22,13 @@ function zaprtoMonday(){
     if(checkedMonday.checked == true){
         fromMonday.disabled = true;
         toMonday.disabled = true;
+        fromMonday.required = false;
+        toMonday.required = false;
     }else{
         fromMonday.disabled = false;
         toMonday.disabled = false;
+        fromMonday.required = true;
+        toMonday.required = true;
     }
 }
 
@@ -35,9 +39,13 @@ function zaprtoTuesday(){
     if(checkedTuesday.checked == true){
         fromTuesday.disabled = true;
         toTuesday.disabled = true;
+        fromTuesday.required = false;
+        toTuesday.required = false;
     }else{
         fromTuesday.disabled = false;
         toTuesday.disabled = false;
+        fromTuesday.required = true;
+        toTuesday.required = true;
     }
 }function zaprtoWednesday(){
     var checkedWednesday = document.getElementById('openWednesday');
@@ -46,9 +54,13 @@ function zaprtoTuesday(){
     if(checkedWednesday.checked == true){
         fromWednesday.disabled = true;
         toWednesday.disabled = true;
+        fromWednesday.required = false;
+        toWednesday.required = false;
     }else{
         fromWednesday.disabled = false;
         toWednesday.disabled = false;
+        fromWednesday.required = true;
+        toWednesday.required = true;
     }
 }function zaprtoThursday(){
     var checkedThursday = document.getElementById('openThursday');
@@ -57,9 +69,13 @@ function zaprtoTuesday(){
     if(checkedThursday.checked == true){
         fromThursday.disabled = true;
         toThursday.disabled = true;
+        fromThursday.required = false;
+        toThursday.required = false;
     }else{
         fromThursday.disabled = false;
         toThursday.disabled = false;
+        fromThursday.required = true;
+        toThursday.required = true;
     }
 }
 function zaprtoFriday(){
@@ -69,9 +85,13 @@ function zaprtoFriday(){
     if(checkedFriday.checked == true){
         fromFriday.disabled = true;
         toFriday.disabled = true;
+        fromFriday.required = false;
+        toFriday.required = false;
     }else{
         fromFriday.disabled = false;
         toFriday.disabled = false;
+        fromFriday.required = true;
+        toFriday.required = true;
     }
 }
 
@@ -82,9 +102,13 @@ function zaprtoSaturday(){
     if(checkedSaturday.checked == true){
         fromSaturday.disabled = true;
         toSaturday.disabled = true;
+        fromSaturday.required = false;
+        toSaturday.required = false;
     }else{
         fromSaturday.disabled = false;
         toSaturday.disabled = false;
+        fromSaturday.required = true;
+        toSaturday.required = true;
     }
 }
 
@@ -95,8 +119,22 @@ function zaprtoSunday(){
     if(checkedSunday.checked == true){
         fromSunday.disabled = true;
         toSunday.disabled = true;
+        fromSunday.required = false;
+        toSunday.required = false;
     }else{
         fromSunday.disabled = false;
         toSunday.disabled = false;
+        fromSunday.required = true;
+        toSunday.required = true;
     }
 }
+
+var loadFile = function(event) {
+    var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+var loadFile2 = function(event) {
+    var image = document.getElementById('output2');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};

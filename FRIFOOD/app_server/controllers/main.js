@@ -106,10 +106,9 @@ var adminWaitingList = (req, res) => {
 
 var restaurantAdd = (req, res) => {
     res.render('restaurant-add.hbs');
-}
+};
 
 var addRestaurant = (req, res) => {
-
     const url = "http://localhost:3000/api/restaurantADD";
     request.get(url, (error, response, body) => {
 
@@ -122,6 +121,7 @@ var addRestaurant = (req, res) => {
             });
     });
 };
+
 
 module.exports = {
     index,
@@ -138,6 +138,5 @@ module.exports = {
     adminComments,
     adminUsers,
     adminWaitingList,
-    restaurantAdd,
-    addRestaurant
+    restaurantAdd
 };

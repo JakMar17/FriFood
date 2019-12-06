@@ -5,7 +5,7 @@ const Restaurant = mongoose.model('restaurant');
 
 
 const dodajRestavracijo = (req, res) => {
-    var boni = false;
+    var boni = true;
     boni = req.body.boniYes == "YES";
 
     // preverjanje odpiralnih časov
