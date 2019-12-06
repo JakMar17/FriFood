@@ -6,9 +6,12 @@ const Comments = mongoose.model('comments');
 
 const dodajRestavracijo = (req, res) => {
     // save image
-
     var boni = true;
-    boni = req.body.boniYes == "YES";
+    if(req.body.boni == "option1"){
+        boni = true;
+    }else{
+        boni = false;
+    }
 
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";

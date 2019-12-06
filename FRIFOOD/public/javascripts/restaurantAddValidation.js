@@ -2,8 +2,6 @@ function checkedYes(){
     if(document.getElementById('inputBoniYes').checked) {
         var studenti = document.getElementById('inputBoniCost');
         studenti.disabled = false;
-        var tester = document.getElementById('boniYes');
-        tester.innerHTML = "YES";
     }
 }
 
@@ -11,10 +9,9 @@ function checkedNo(){
     if(document.getElementById('inputBoniNo').checked) {
         var studenti = document.getElementById('inputBoniCost');
         studenti.disabled = true;
-        var tester = document.getElementById('boniYes');
-        tester.innerHTML = "NO";
     }
 }
+
 function zaprtoMonday(){
     var checkedMonday = document.getElementById('openMonday');
     var fromMonday = document.getElementById('inputMondayFrom');
