@@ -1,4 +1,7 @@
 /* GET home page. */
+const mongoose = require('mongoose');
+const Restaurant = mongoose.model('restaurant');
+
 const request = require("request");
 
 var index = (req, res) => {
@@ -43,12 +46,26 @@ var commentPage = (req, res) => {
 
 var restaurantJSON = require('../models/restaurant');
 var restaurantView = (req, res) => {
-    res.render('RestaurantView.hbs', restaurantJSON);
+
+    Restaurant.findById(req.params.id, (err, restaurant) => {
+        if (err) return res.json({error: err}); // see @partycoder's answer
+        res.render('RestaurantView.hbs', { title: restaurant.name, restaurant: restaurant});
+    })
 };
 
 var restaurantsJSON = require('../models/restaurants');
 const restaurantList = (req, res) => {
-    res.render('restaurant-list.hbs', restaurantsJSON);
+    const url = "http://localhost:3000/api/restaurants";
+    request.get(url, (error, response, body) => {
+
+        let json = JSON.parse(body);
+        console.log("Listing Restaurants");
+        console.log(json);
+        res.render('restaurant-list',
+            {"title": "Restaurant List",
+                "restaurants": json
+            });
+    });
 };
 
 var adminOverview = (req, res) => {
@@ -104,8 +121,6 @@ var addRestaurant = (req, res) => {
                 "restaurantName": req.body.inputRestaurantName
             });
     });
-
-
 };
 
 module.exports = {
