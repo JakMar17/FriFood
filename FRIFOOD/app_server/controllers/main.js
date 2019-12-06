@@ -27,7 +27,7 @@ var userSetting = (req, res) => {
 
 var commentPage = (req, res) => {
 
-    const url = req.protocol + '://' + req.get('host') + "/api/comments/" + req.params.id;
+    const url = req.protocol + '://' + req.get('host') + "/api/commentsByRestaurantId/" + req.params.id;
     const urlRestaurant = req.protocol + '://' + req.get('host') + "/api/restaurants/" + req.params.id;
     request.get(url, (error, response, body) => {
         console.log(body);
@@ -92,6 +92,7 @@ var adminRates = (req, res) => {
 var adminComments = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/comments";
     request.get(url, (error, response, body) => {
+        console.log(body);
         let commentsJSON = JSON.parse(body);
 
         res.render('admin_comments.hbs', {"comments": commentsJSON});
