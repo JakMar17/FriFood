@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 var url  = require('url');
 const fs = require('fs');
 const Restaurant = mongoose.model('restaurant');
-
+const Comments = mongoose.model('comments');
 
 const dodajRestavracijo = (req, res) => {
     // save image
@@ -41,6 +41,7 @@ const dodajRestavracijo = (req, res) => {
         sunday = req.body.inputSundayFrom.toString() + ' - ' + req.body.inputSundayTo.toString();
     }
 
+    var commentSection = new Comments([]);
 
     var restavracija = new Restaurant({
         name: req.body.inputRestaurantName.toString(),
@@ -59,6 +60,7 @@ const dodajRestavracijo = (req, res) => {
             sunday: sunday
         },
         description: req.body.inputRestaurantDescription,
+        comments: commentSection,
         icon: {
             data: req.body.ikonaRestavracije,
             contentType: 'image/png'

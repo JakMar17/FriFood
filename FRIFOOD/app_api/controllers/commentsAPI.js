@@ -2,23 +2,29 @@ const mongoose = require('mongoose');
 var url = require('url');
 
 const User = mongoose.model('uporabniki');
-const Comment = mongoose.model('comment');
+const Comments = mongoose.model('comments');
 // const Restaurant = mongoose.model('restaurant');
 
 const createComment = (req, res) => {
-    var comment = new Comment({
+    var comments = new Comments({
+        restaurant: req.body.restaurant.toString(),
         comment: req.body.newCommentText.toString(),
         author: req.body.author.toString(),
         date: Date.now()
     });
 
-    comment.save(function (error) {
-        if(error) return console.log(error);
+    comments.save(function (error) {
+        if(!comments)
+            return res.status(404).json({
+                "error": "Comment not found!"
+            });
+        else if (error)
+            return res.status(500).json(error);
         else
-            console.log("Shranjeno");
+            res.status(200);
     });
 
-    res.redirect("/commentPage");
+    res.redirect("/commentPage/" + comments.restaurant._id);
 
 };
 
@@ -27,7 +33,7 @@ const updateComment = (req, res) => {
     var id = req.body.komentarID.toString();
     var ObjectId = (mongoose.Types.ObjectId);
 
-    Comment.updateOne({"_id": ObjectId(id)}, {$set:
+    Comments.updateOne({"_id": ObjectId(id)}, {$set:
             { "comment": req.body.newCommentText.toString(),
               "date": Date.now()
             }
@@ -42,7 +48,9 @@ const updateComment = (req, res) => {
 };
 
 const readComments = (req, res) => {
-    Comment.find().exec(
+    var restaurantID = req.params.id;
+    console.log(restaurantID);
+    Comments.find({restaurant: restaurantID}).exec(
         (error, comments) => {
             if (!comments) {
                 return res.status(404).json({
@@ -71,10 +79,10 @@ const deleteComment = (req, res) => {
 };
 
 const getCommentById = (req, res) => {
-    Comment.findById(req.params.id).exec((error, comment) => {
+    Comments.findById(req.params.id).exec((error, comment) => {
         if(!comment)
             return res.status(404).json({
-                "error": "Restaurants not found"
+                "error": "Comment not found"
             });
         else if (error)
             return res.status(500).json(error);

@@ -30,14 +30,15 @@ var commentPage = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/comments/" + req.params.id;
     const urlRestaurant = req.protocol + '://' + req.get('host') + "/api/restaurants/" + req.params.id;
     request.get(url, (error, response, body) => {
-
+        console.log(body);
         let comments = JSON.parse(body);
-        request.get(url, (error2, response2, body2) => {
-            let restaurant = JSON.parse(body);
+        request.get(urlRestaurant, (error2, response2, body2) => {
+            let restaurant = JSON.parse(body2);
             res.render('commentPage',
                 {"title": "Comments",
                     "restaurantName": restaurant.name,
-                    "komentarji": comments
+                    "restaurantID" : restaurant._id,
+                    "comments": comments
                 });
         });
     });
