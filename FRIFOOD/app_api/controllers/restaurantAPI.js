@@ -5,13 +5,14 @@ const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 
 const dodajRestavracijo = (req, res) => {
-    // save image
     var boni = true;
     if(req.body.boni == "option1"){
         boni = true;
     }else{
         boni = false;
     }
+
+    //save image
 
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
@@ -45,11 +46,6 @@ const dodajRestavracijo = (req, res) => {
     }
 
     var commentSection = new Comments([]);
-    var naslovnaSlika = req.body.naslovnaSlika;
-    var naslovnaSlikaEncoded = naslovnaSlika.toString('base64');
-
-    var ikonaSlika = req.body.ikonaRestavracije;
-    var ikonaSlikaEncoded = ikonaSlika.toString('base64');
 
     var restavracija = new Restaurant({
         name: req.body.inputRestaurantName.toString(),
@@ -70,11 +66,11 @@ const dodajRestavracijo = (req, res) => {
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
         icon: {
-            data: ikonaSlikaEncoded,
+            data: req.body.ikonaRestavracije,
             contentType: 'image/png'
         },
         front: {
-            data: naslovnaSlikaEncoded,
+            data: req.body.naslovnaSlika,
             contentType: 'image/png'
         }
     });
@@ -149,10 +145,26 @@ const getRestaurantById = (req, res) => {
     })
 };
 
+const getRestaurantBySearch = (req, res) => {
+    console.log("hello");
+    Restaurant.find(req.body.searchStr).exec((error, restaurant) => {
+        if(!restaurant)
+            return res.status(404).json({
+                "error": "Restaurants not found"
+            });
+        else if (error)
+            return res.status(500).json(error);
+        else
+            res.status(200);
+    })
+    res.redirect('/restaurant-list');
+};
+
 module.exports = {
     dodajRestavracijo,
     readRestaurants,
     deleteRestaurant,
     updateResturant,
-    getRestaurantById
+    getRestaurantById,
+    getRestaurantBySearch
 };

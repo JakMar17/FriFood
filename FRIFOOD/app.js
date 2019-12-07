@@ -30,6 +30,9 @@ var adminWaitinglistRouter = require ('./app_server/routes/adminWaitingList');
 
 var restaurantAddRouter = require('./app_server/routes/restaurant-add');
 
+var databaseRouter = require('./app_server/routes/database');
+
+
 var app = express();
 
 // view engine setup
@@ -75,6 +78,8 @@ app.use('/admin-waitinglist', adminWaitinglistRouter);
 
 app.use('/restaurant-add', restaurantAddRouter);
 //app.use('/restaurantData', restaurantAddRouter);
+
+app.use('/db', databaseRouter);
 
 app.post('/restaurantData', function(req, res){
   var data = req.body;
