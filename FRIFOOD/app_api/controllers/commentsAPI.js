@@ -56,8 +56,11 @@ const readComments = (req, res) => {
                 });
             } else if (error) {
                 return res.status(500).json(error);
-            } else
+            } else {
+                console.log(comments);
+
                 res.status(200).json(comments);
+            }
         }
     );
 };
