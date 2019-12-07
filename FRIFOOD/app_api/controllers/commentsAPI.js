@@ -109,6 +109,17 @@ const getCommentsByRestaurantId = (req, res) => {
     );
 };
 
+// const getCommentsByUser = (req, res) => {
+//     var userID = req.params.authorID;
+//
+//     Comments.find({author: userID})
+//         .exec(
+//             (error, comments) => {
+//
+//             }
+//         )
+// }
+
 
 module.exports = {
     createComment,
