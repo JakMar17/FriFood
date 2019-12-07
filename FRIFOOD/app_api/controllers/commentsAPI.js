@@ -3,7 +3,7 @@ var url = require('url');
 
 const User = mongoose.model('uporabniki');
 const Comments = mongoose.model('comments');
-// const Restaurant = mongoose.model('restaurant');
+const Restaurant = mongoose.model('restaurant');
 
 const createComment = (req, res) => {
     var comments = new Comments({
@@ -71,7 +71,7 @@ const deleteComment = (req, res) => {
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
-    Comment.deleteOne(
+    Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
                 if (error) return console.log(error);
                 else res.redirect(req.body.returnADR.toString());
@@ -109,16 +109,26 @@ const getCommentsByRestaurantId = (req, res) => {
     );
 };
 
-// const getCommentsByUser = (req, res) => {
-//     var userID = req.params.authorID;
-//
-//     Comments.find({author: userID})
-//         .exec(
-//             (error, comments) => {
-//
-//             }
-//         )
-// }
+const getCommentsByUser = (req, res) => {
+    var userID = req.params.authorID;
+
+    var ObjectId = (mongoose.Types.ObjectId);
+
+    Comments.find({author: userID})
+        .exec(
+            (error, comments) => {
+                if(!comments)
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                else if (error)
+                    return res.status(500).json(error);
+                else {
+                    return res.status(200).json(comments);
+                }
+            }
+        );
+};
 
 
 module.exports = {
@@ -127,5 +137,6 @@ module.exports = {
     readComments,
     deleteComment,
     getCommentById,
-    getCommentsByRestaurantId
+    getCommentsByRestaurantId,
+    getCommentsByUser
 };
