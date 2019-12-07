@@ -154,10 +154,11 @@ const getRestaurantBySearch = (req, res) => {
             });
         else if (error)
             return res.status(500).json(error);
-        else
+        else{
             res.status(200);
+            res.redirect('/restaurant-list');
+        }
     })
-    res.redirect('/restaurant-list');
 };
 
 module.exports = {
