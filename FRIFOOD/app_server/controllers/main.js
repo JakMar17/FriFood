@@ -125,6 +125,11 @@ var addRestaurant = (req, res) => {
     });
 };
 
+var database = (req, res) => {
+    res.render('database', { title: 'Database' });
+};
+
+
 
 module.exports = {
     index,
@@ -141,5 +146,6 @@ module.exports = {
     adminComments,
     adminUsers,
     adminWaitingList,
-    restaurantAdd
+    restaurantAdd,
+    database
 };

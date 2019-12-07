@@ -50,6 +50,7 @@ const dodajRestavracijo = (req, res) => {
 
     var ikonaSlika = req.body.ikonaRestavracije;
     var ikonaSlikaEncoded = ikonaSlika.toString('base64');
+    console.log(ikonaSlikaEncoded);
 
     var restavracija = new Restaurant({
         name: req.body.inputRestaurantName.toString(),

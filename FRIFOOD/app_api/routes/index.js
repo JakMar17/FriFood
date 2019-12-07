@@ -3,6 +3,7 @@ var router = express.Router();
 var ctrlUporabniki = require('../controllers/uporabnikAPI');
 var ctrlRestavracija = require('../controllers/restaurantAPI');
 var ctrlComments = require('../controllers/commentsAPI');
+var ctrlDatabase = require('../controllers/databaseAPI');
 
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 
@@ -22,5 +23,7 @@ router.post('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
 router.post('/restaurants/update', ctrlRestavracija.updateResturant);
 
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
+
+router.post('/database/drop', ctrlDatabase.dropDatabase);
 
 module.exports = router;
