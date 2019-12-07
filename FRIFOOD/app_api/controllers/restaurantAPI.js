@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var url  = require('url');
 const fs = require('fs');
+const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 
@@ -12,7 +13,33 @@ const dodajRestavracijo = (req, res) => {
         boni = false;
     }
 
-    //save image
+    if (!req.files || Object.keys(req.files).length === 0) {
+        console.log("FUCK");
+        return res.status(400).send('No files were uploaded.');
+    }
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let naslovna_slika = req.files.naslovnaSlika;
+    let naslovnaPath = "./restaurant-images/" + req.files.naslovnaSlika.name;
+    // Use the mv() method to place the file somewhere on your server
+    naslovna_slika.mv(naslovnaPath, function(err) {
+        if (err){
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
+
+    let ikonaSlika = req.files.ikonaRestavracije;
+    let ikonaPath = "./restaurant-images/" + req.files.ikonaRestavracije.name;
+
+    // Use the mv() method to place the file somewhere on your server
+    ikonaSlika.mv(ikonaPath, function(err) {
+        if (err){
+            console.log("FUCK");
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
 
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
@@ -65,20 +92,13 @@ const dodajRestavracijo = (req, res) => {
         },
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
-        icon: {
-            data: req.body.ikonaRestavracije,
-            contentType: 'image/png'
-        },
-        front: {
-            data: req.body.naslovnaSlika,
-            contentType: 'image/png'
-        }
+        icon: ikonaPath,
+        front: naslovnaPath,
     });
 
     // save model to database
     restavracija.save(function (err) {
         if (err) return console.error(err);
-        console.log(restavracija.name + " saved to DB");
         res.redirect("/restaurant-list");
     });
 };
@@ -146,8 +166,8 @@ const getRestaurantById = (req, res) => {
 };
 
 const getRestaurantBySearch = (req, res) => {
-    console.log("hello");
-    Restaurant.find(req.body.searchStr).exec((error, restaurant) => {
+    var name = req.query.name;
+    Restaurant.find({name: { $regex: '.*' + name + '.*' }}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"
@@ -155,8 +175,7 @@ const getRestaurantBySearch = (req, res) => {
         else if (error)
             return res.status(500).json(error);
         else{
-            res.status(200);
-            res.redirect('/restaurant-list');
+            res.status(200).json(restaurant);
         }
     })
 };
