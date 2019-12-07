@@ -120,15 +120,20 @@ var adminRates = (req, res) => {
 var adminComments = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/comments";
     request.get(url, (error, response, body) => {
-        console.log(body);
-        let commentsJSON = JSON.parse(body);
 
+        let commentsJSON = JSON.parse(body);
         res.render('admin_comments.hbs', {"comments": commentsJSON});
     });
 };
 
+
 var adminUsers = (req, res) => {
-    res.render('admin_users.hbs');
+    const url = req.protocol + '://' + req.get('host') + "/api/users";
+    request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+
+        res.render('admin_users', {"users": json});
+    })
 };
 
 var adminWaitingList = (req, res) => {
