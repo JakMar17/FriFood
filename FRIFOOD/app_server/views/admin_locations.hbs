@@ -53,7 +53,8 @@
                         <th scope="col">#id</th>
                         <th scope="col">Lokacija</th>
                         <th scope="col">Ocena</th>
-                        <th scope="col"></th>
+                        <th scope="col">Izbriši</th>
+                        <th scope="col">Pregled</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,23 +67,19 @@
                             <td>
                                 {{location.rating}}
                             </td>
-                            <td style="text-align: right">
-                                <div class="row">
-                                    <div class = "col-1">
-                                        <form method="post" id = "{{changeID location._id}}" action = "/api/restaurants/delete">
-                                            <input type = "hidden" name="restaurantID" value="{{location._id}}">
-                                            <input type="hidden" value="/admin-comments" name="returnADR">
-                                            <button class="btn btn-link" type="submit" formmethod="post" formaction="/api/restaurants/delete" form="{{ changeID location ._id}}">
-                                                <i style="color: darkred" class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div class="col-1">
-                                        <button class="btn btn-link" onclick = "location.href= 'restaurantView/{{location._id}}'; ">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                            <td>
+                                <form method="post" id = "{{changeID location._id}}" action = "/api/restaurants/delete">
+                                    <input type = "hidden" name="restaurantID" value="{{location._id}}">
+                                    <input type="hidden" value="/admin-locations" name="returnADR">
+                                    <button class="btn btn-link" type="submit" formmethod="post" formaction="/api/restaurants/delete" form="{{ changeID location ._id}}">
+                                        <i style="color: darkred" class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <button class="btn btn-link" onclick = "location.href= 'restaurantView/{{location._id}}'; ">
+                                    <i class="fas fa-eye"></i>
+                                </button>
                             </td>
                         </tr>
 
