@@ -12,8 +12,6 @@ const dodajRestavracijo = (req, res) => {
         boni = false;
     }
 
-    //save image
-
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
     var tuesday = "ZAPRTO";
@@ -66,19 +64,18 @@ const dodajRestavracijo = (req, res) => {
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
         icon: {
-            data: req.body.ikonaRestavracije,
-            contentType: 'image/png'
+            data: req.body.imageEncoder64,
+            contentType: 'base64'
         },
         front: {
-            data: req.body.naslovnaSlika,
-            contentType: 'image/png'
+            data: req.body.imageEncoder64_2,
+            contentType: 'base64'
         }
     });
 
     // save model to database
     restavracija.save(function (err) {
         if (err) return console.error(err);
-        console.log(restavracija.name + " saved to DB");
         res.redirect("/restaurant-list");
     });
 };
@@ -146,8 +143,8 @@ const getRestaurantById = (req, res) => {
 };
 
 const getRestaurantBySearch = (req, res) => {
-    console.log("hello");
-    Restaurant.find(req.body.searchStr).exec((error, restaurant) => {
+    var name = req.query.name;
+    Restaurant.find({name: { $regex: '.*' + name + '.*' }}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"
@@ -155,8 +152,7 @@ const getRestaurantBySearch = (req, res) => {
         else if (error)
             return res.status(500).json(error);
         else{
-            res.status(200);
-            res.redirect('/restaurant-list');
+            res.status(200).json(restaurant);
         }
     })
 };

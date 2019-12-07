@@ -66,7 +66,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" id={{ changeID comment._id }} action="/api/comments/update">
+                                    <form method="POST" id="{{ changeID comment._id }}" action="/api/comments/update">
                                         <input type="hidden" value={{ comment._id }} name="komentarID">
                                         <input type="hidden" name = "author" id = "author" value={{ comment.author }}>
                                         <input type="hidden" value="testZaUredboForme" name="test">
