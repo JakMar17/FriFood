@@ -1,23 +1,3 @@
-function encodeImageFileAsURL(element) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function() {
-        let encodedMsg = document.getElementById('imageEncoder64');
-        encodedMsg.value = reader.result;
-    };
-    reader.readAsDataURL(file);
-}
-
-function encodeImageFileAsURL_2(element) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function() {
-        let encodedMsg = document.getElementById('imageEncoder64_2');
-        encodedMsg.value = reader.result;
-    };
-    reader.readAsDataURL(file);
-}
-
 function checkedYes(){
     if(document.getElementById('inputBoniYes').checked) {
         var studenti = document.getElementById('inputBoniCost');

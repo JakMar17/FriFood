@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-4 col-sm-0"></div>
         </div>
-        <form id="restaurantAdd" method="post" action="/api/restaurantADD">
+        <form id="restaurantAdd" method="POST" action="/api/restaurantADD" encType="multipart/form-data">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-3 bc1">
@@ -247,8 +247,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="file-field">
-                                        <input type="text" value="test" name="imageEncoder64" id="imageEncoder64" style="display: none"/>
-                                        <input type="file" class="form-control-file" accept="image/*" name="ikonaRestavracije" id="file2"  onchange="encodeImageFileAsURL(this); loadFile2(event)" style="display: none;">
+                                        <input type="file" class="form-control-file" accept="image/*" name="ikonaRestavracije" id="file2"  onchange="loadFile2(event)" style="display: none;">
                                     </div>
                                 </div>
                             </div>
@@ -267,8 +266,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="file-field">
-                                        <input type="text" value="test" name="imageEncoder64_2" id="imageEncoder64_2" style="display: none"/>
-                                        <input type="file" class="form-control-file" accept="image/*" name="naslovnaSlika" id="file"  onchange="encodeImageFileAsURL_2(this); loadFile(event)" style="display: none;">
+                                        <input type="file" class="form-control-file" accept="image/*" name="naslovnaSlika" id="file"  onchange="loadFile(event)" style="display: none;">
                                     </div>
                                 </div>
                             </div>

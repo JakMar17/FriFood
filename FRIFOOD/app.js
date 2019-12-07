@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const fileUpload = require('express-fileupload');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -44,7 +45,7 @@ require('./app_server/views/helpers/handlebar-helpers.js');
 require('./public/javascripts/restaurant-list-helper');
 
 app.use(bodyParser.json());
-
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

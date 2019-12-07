@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var url  = require('url');
 const fs = require('fs');
+const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 
@@ -11,6 +12,34 @@ const dodajRestavracijo = (req, res) => {
     }else{
         boni = false;
     }
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+        console.log("FUCK");
+        return res.status(400).send('No files were uploaded.');
+    }
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let naslovna_slika = req.files.naslovnaSlika;
+    let naslovnaPath = "./restaurant-images/" + req.files.naslovnaSlika.name;
+    // Use the mv() method to place the file somewhere on your server
+    naslovna_slika.mv(naslovnaPath, function(err) {
+        if (err){
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
+
+    let ikonaSlika = req.files.ikonaRestavracije;
+    let ikonaPath = "./restaurant-images/" + req.files.ikonaRestavracije.name;
+
+    // Use the mv() method to place the file somewhere on your server
+    ikonaSlika.mv(ikonaPath, function(err) {
+        if (err){
+            console.log("FUCK");
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
 
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
@@ -63,14 +92,8 @@ const dodajRestavracijo = (req, res) => {
         },
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
-        icon: {
-            data: req.body.imageEncoder64,
-            contentType: 'base64'
-        },
-        front: {
-            data: req.body.imageEncoder64_2,
-            contentType: 'base64'
-        }
+        icon: ikonaPath,
+        front: naslovnaPath,
     });
 
     // save model to database

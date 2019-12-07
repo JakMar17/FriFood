@@ -20,8 +20,8 @@ const restaurantSchema = new mongoose.Schema({
     },
     description: String,
     comments:  [{ type: Schema.Types.ObjectId, ref: 'komentarji' }],
-    icon: { data: Buffer, contentType: String },
-    front: { data: Buffer, contentType: String }
+    icon: String,
+    front: String
 });
 
 var restaurant = mongoose.model('restaurant', restaurantSchema, "Restaurant");
