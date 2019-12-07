@@ -68,6 +68,8 @@ const readComments = (req, res) => {
 
 
 const deleteComment = (req, res) => {
+
+    console.log("TUKAJ");
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
