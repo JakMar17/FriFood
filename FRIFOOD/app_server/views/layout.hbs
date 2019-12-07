@@ -47,8 +47,8 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 d-none d-sm-block" method="GET" action="/api/search">
-                <input class="form-control" type="search" placeholder="Poišči restavracije" aria-label="Search" name="searchStr">
-                <button class="btn my-2" type="submit" style="margin-left: -5px;"><img src="../images/layoutImages/search_ico.png" width="30px" height="30px"/></button>
+                <input id="searchRestaurants" class="form-control" type="search" placeholder="Poišči restavracije" aria-label="Search" name="searchStr">
+                <button id="searchRestaurantButton" class="btn my-2" type="submit" style="margin-left: -5px;"><img src="../images/layoutImages/search_ico.png" width="30px" height="30px" onclick="loadSearchParameters()"/></button>
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -85,5 +85,6 @@
         document.getElementById("date").innerHTML =  y;
     </script>
     <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/layout-helper.js"></script>
 </body>
 </html>
