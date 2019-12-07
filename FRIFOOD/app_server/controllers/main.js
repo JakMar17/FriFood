@@ -71,7 +71,12 @@ const restaurantList = (req, res) => {
 };
 
 var adminOverview = (req, res) => {
-    res.render('admin_overview.hbs');
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+
+        res.render('admin_locations.hbs', {"locations": json});
+    });
 };
 
 
