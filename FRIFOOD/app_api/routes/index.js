@@ -26,4 +26,6 @@ router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 
 router.post('/database/drop', ctrlDatabase.dropDatabase);
 
+router.get('/search', ctrlRestavracija.getRestaurantBySearch);
+
 module.exports = router;

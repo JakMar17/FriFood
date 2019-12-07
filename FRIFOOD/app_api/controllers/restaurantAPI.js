@@ -142,10 +142,26 @@ const getRestaurantById = (req, res) => {
     })
 };
 
+const getRestaurantBySearch = (req, res) => {
+    console.log("hello");
+    Restaurant.find(req.body.searchStr).exec((error, restaurant) => {
+        if(!restaurant)
+            return res.status(404).json({
+                "error": "Restaurants not found"
+            });
+        else if (error)
+            return res.status(500).json(error);
+        else
+            res.status(200);
+    })
+    res.redirect('/restaurant-list');
+};
+
 module.exports = {
     dodajRestavracijo,
     readRestaurants,
     deleteRestaurant,
     updateResturant,
-    getRestaurantById
+    getRestaurantById,
+    getRestaurantBySearch
 };
