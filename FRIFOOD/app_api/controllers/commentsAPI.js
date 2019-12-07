@@ -56,8 +56,11 @@ const readComments = (req, res) => {
                 });
             } else if (error) {
                 return res.status(500).json(error);
-            } else
+            } else {
+                console.log(comments);
+
                 res.status(200).json(comments);
+            }
         }
     );
 };
@@ -68,7 +71,7 @@ const deleteComment = (req, res) => {
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
-    Comment.deleteOne(
+    Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
                 if (error) return console.log(error);
                 else res.redirect(req.body.returnADR.toString());
@@ -105,6 +108,17 @@ const getCommentsByRestaurantId = (req, res) => {
         }
     );
 };
+
+// const getCommentsByUser = (req, res) => {
+//     var userID = req.params.authorID;
+//
+//     Comments.find({author: userID})
+//         .exec(
+//             (error, comments) => {
+//
+//             }
+//         )
+// }
 
 
 module.exports = {

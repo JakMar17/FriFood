@@ -101,6 +101,9 @@ const readRestaurants = (req, res) => {
 };
 
 const deleteRestaurant = (req, res) => {
+
+    console.log(req.body);
+
     var id = req.body.restaurantID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
