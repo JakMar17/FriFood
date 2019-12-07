@@ -12,8 +12,6 @@ const dodajRestavracijo = (req, res) => {
         boni = false;
     }
 
-    //save image
-
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
     var tuesday = "ZAPRTO";
@@ -66,19 +64,18 @@ const dodajRestavracijo = (req, res) => {
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
         icon: {
-            data: req.body.ikonaRestavracije,
-            contentType: 'image/png'
+            data: req.body.imageEncoder64,
+            contentType: 'base64'
         },
         front: {
-            data: req.body.naslovnaSlika,
-            contentType: 'image/png'
+            data: req.body.imageEncoder64_2,
+            contentType: 'base64'
         }
     });
 
     // save model to database
     restavracija.save(function (err) {
         if (err) return console.error(err);
-        console.log(restavracija.name + " saved to DB");
         res.redirect("/restaurant-list");
     });
 };
