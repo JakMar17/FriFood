@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-/*uporabniki: [{
+/*
+primer userja
+
+uporabniki: [{
     name: 'kai',
     surname: 'ti',
     email: 'v@v',
@@ -10,7 +13,9 @@ const Schema = mongoose.Schema;
     surname: 'test',
     email: 'test@test',
     passwd: 'test'
-}]*/
+}]
+
+*/
 
 const uporabnikiShema = new mongoose.Schema({
     name: String,
