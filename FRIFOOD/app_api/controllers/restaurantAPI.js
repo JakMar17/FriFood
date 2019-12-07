@@ -18,29 +18,6 @@ const dodajRestavracijo = (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }
 
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let naslovna_slika = req.files.naslovnaSlika;
-    let naslovnaPath = "./restaurant-images/" + req.files.naslovnaSlika.name;
-    // Use the mv() method to place the file somewhere on your server
-    naslovna_slika.mv(naslovnaPath, function(err) {
-        if (err){
-            return res.status(500);
-        }
-        console.log("FILE UPLOADED");
-    });
-
-    let ikonaSlika = req.files.ikonaRestavracije;
-    let ikonaPath = "./restaurant-images/" + req.files.ikonaRestavracije.name;
-
-    // Use the mv() method to place the file somewhere on your server
-    ikonaSlika.mv(ikonaPath, function(err) {
-        if (err){
-            console.log("FUCK");
-            return res.status(500);
-        }
-        console.log("FILE UPLOADED");
-    });
-
     // preverjanje odpiralnih časov
     var monday = "ZAPRTO";
     var tuesday = "ZAPRTO";
@@ -92,9 +69,41 @@ const dodajRestavracijo = (req, res) => {
         },
         description: req.body.inputRestaurantDescription,
         comments: commentSection,
-        icon: ikonaPath,
-        front: naslovnaPath,
+        icon: '',
+        front: '',
     });
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let naslovna_slika = req.files.naslovnaSlika;
+    let ns_t = req.files.naslovnaSlika.name;
+    let naslovnaPath = "./public/restaurant-images/" + restavracija._id + '-ns.' + ns_t[ns_t.length - 1];
+    // Use the mv() method to place the file somewhere on your server
+    naslovna_slika.mv(naslovnaPath, function(err) {
+        if (err){
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
+
+    let ikonaSlika = req.files.ikonaRestavracije;
+    let ns_i = req.files.ikonaRestavracije.name.split('.');
+
+    let ikonaPath = "./public/restaurant-images/" + restavracija._id + '-ik.' + ns_i[ns_i.length - 1];
+
+    // Use the mv() method to place the file somewhere on your server
+    ikonaSlika.mv(ikonaPath, function(err) {
+        if (err){
+            console.log("FUCK");
+            return res.status(500);
+        }
+        console.log("FILE UPLOADED");
+    });
+
+    ikonaPath = "./restaurant-images/" + restavracija._id + '-ik.' + ns_i[ns_i.length - 1];
+    naslovnaPath = "./restaurant-images/" + restavracija._id + '-ns.' + ns_t[ns_t.length - 1];
+
+    restavracija.icon = ikonaPath;
+    restavracija.front = naslovnaPath;
 
     // save model to database
     restavracija.save(function (err) {
