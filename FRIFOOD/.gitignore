@@ -1,7 +1,9 @@
+
+restaurant-images
 # Logs
 logs
 *.log
-npm-debug.log*
+npm-debug.log*S
 yarn-debug.log*
 yarn-error.log*
 
