@@ -18,8 +18,25 @@ var register = (req, res) => {
 
 var userJSON = require('../models/user');
 var commentJSON = require('../models/comment');
+
+//hardCodedUserID
+var userID = "5debc555d4c7ec28983681d7";
+
 var userProfile = (req, res) => {
-    res.render('userInfoPage', Object.assign({}, userJSON, commentJSON));
+
+    const userURL = req.protocol + '://' + req.get('host') + "/api/user/" + userID;
+    const commentsURL = req.protocol + '://' + req.get('host') + "/api/commentAuthor/" + userID;
+
+    request.get(userURL, (error, response, body) => {
+        let user = JSON.parse(body);
+        console.log(user);
+        request(commentsURL, (error2, response2, body2) => {
+            let comments = JSON.parse(body2);
+
+            res.render('userInfoPage', {"comments": comments, "user": user});
+        });
+    });
+
 };
 var userSetting = (req, res) => {
     res.render('userSetting', Object.assign({}, userJSON, commentJSON));
@@ -38,7 +55,8 @@ var commentPage = (req, res) => {
                 {"title": "Comments",
                     "restaurantName": restaurant.name,
                     "restaurantID" : restaurant._id,
-                    "comments": comments
+                    "comments": comments,
+                    "userID": userID
                 });
         });
     });

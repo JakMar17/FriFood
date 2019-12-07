@@ -17,6 +17,22 @@ const vrniUporabnika = (req, res) => {
         });
 };
 
+const getUserById = (req, res) => {
+    var userID = req.params.userID;
+
+    Uporabnik.findOne({"_id": userID}, function (error, user) {
+        if (!user)
+            return res.status(404).json({
+                "error": "User not found"
+            });
+        else if (error)
+            return res.status(500).json(error);
+        else {
+            return res.status(200).json(user);
+        }
+    })
+};
+
 const narediUporabnika = (req, res) => {
 
     var name = req.body.name.toString();
@@ -60,5 +76,6 @@ const narediUporabnika = (req, res) => {
 
 module.exports = {
     vrniUporabnika,
-    narediUporabnika
+    narediUporabnika,
+    getUserById
 };
