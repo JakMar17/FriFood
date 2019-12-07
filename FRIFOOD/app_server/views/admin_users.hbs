@@ -65,6 +65,89 @@
                                 </a>
                             </td>
                         </tr>
+
+
+                        <!--    Modal for showing correction details-->
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="{{ changeModal user._id}}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Podrobnosti uporabnika</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class = "modal-body">
+                                        <!--                <h6 style = "margin-bottom: 25px"><i>Datum registracije: 4.10.2019</i></h6>-->
+
+                                        <form>
+
+                                            <div class="form-group">
+                                                <label for="user">Uporabnik</label>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" id="id" value="{{user._id}}" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="name">Ime in priimek</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="name" value="{{user.name}}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" id="surname" value="{{user.surname}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="mail">Email</label>
+                                                <input type="text" class="form-control" id="mail" value="{{user.email}}">
+                                            </div>
+
+                                            <!--                    <div class="form-group">-->
+                                            <!--                        <label for="status">Vrsta uporabnika</label>-->
+                                            <!--                        <select class="form-control" id="status">-->
+                                            <!--                            <option>navaden uporabnik</option>-->
+                                            <!--                            <option>administrator</option>-->
+                                            <!--                            <option>blokiran uporabnik</option>-->
+                                            <!--                        </select>-->
+                                            <!--                    </div>-->
+
+                                            <!--                    <h6>Statistika uporabnika</h6>-->
+                                            <!--                    <table class="table table-hover">-->
+                                            <!--                        <tbody>-->
+                                            <!--                        <tr>-->
+                                            <!--                            <th>Dodanih komentarjev</th>-->
+                                            <!--                            <td>5</td>-->
+                                            <!--                        </tr>-->
+                                            <!--                        <tr>-->
+                                            <!--                            <th>Dodanih ocen</th>-->
+                                            <!--                            <td>17</td>-->
+                                            <!--                        </tr>-->
+                                            <!--                        <tr>-->
+                                            <!--                            <th>Dodanih lokacij</th>-->
+                                            <!--                            <td>8</td>-->
+                                            <!--                        </tr>-->
+                                            <!--                        <tr>-->
+                                            <!--                            <th>Dodaanih popravkov</th>-->
+                                            <!--                            <td>8</td>-->
+                                            <!--                        </tr>-->
+                                            <!--                        </tbody>-->
+                                            <!--                    </table>-->
+
+                                            <button class="btn btn-success" type="submit" data-dismiss="modal">Posodobi</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     {{/each}}
                     
                     </tbody>
@@ -76,88 +159,7 @@
     </div>
 </div>
 
-<!--    Modal for showing correction details-->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="detailView">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Podrobnosti elementa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class = "modal-body">
-                <h6 style = "margin-bottom: 25px"><i>Datum registracije: 4.10.2019</i></h6>
 
-                <form>
-
-                    <div class="form-group">
-                        <label for="user">Uporabnik</label>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" id="id" value="1" disabled>
-                            </div>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="user" value="JakMar17">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Ime in priimek</label>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="name" value="Jakob">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="surname" value="Marušič">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mail">Email</label>
-                        <input type="text" class="form-control" id="mail" value="jm8166@student.uni-lj.si">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Vrsta uporabnika</label>
-                        <select class="form-control" id="status">
-                            <option>navaden uporabnik</option>
-                            <option>administrator</option>
-                            <option>blokiran uporabnik</option>
-                        </select>
-                    </div>
-
-                    <h6>Statistika uporabnika</h6>
-                    <table class="table table-hover">
-                        <tbody>
-                        <tr>
-                            <th>Dodanih komentarjev</th>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <th>Dodanih ocen</th>
-                            <td>17</td>
-                        </tr>
-                        <tr>
-                            <th>Dodanih lokacij</th>
-                            <td>8</td>
-                        </tr>
-                        <tr>
-                            <th>Dodaanih popravkov</th>
-                            <td>8</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <button class="btn btn-success" type="submit" data-dismiss="modal">Posodobi</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="javascripts/popper.min.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
