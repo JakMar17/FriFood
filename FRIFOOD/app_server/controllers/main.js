@@ -47,8 +47,19 @@ var commentPage = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/commentsByRestaurantId/" + req.params.id;
     const urlRestaurant = req.protocol + '://' + req.get('host') + "/api/restaurants/" + req.params.id;
     request.get(url, (error, response, body) => {
-        console.log(body);
+
         let comments = JSON.parse(body);
+        console.log(comments);
+        console.log("DOLZINA: "+ comments.length)
+        for(var i=0; i<comments.length; i++)
+        {
+            comments[i].time = comments[i].date.toString().substring(11, 16);
+            console.log(comments[i].time)
+
+            comments[i].date = comments[i].date.toString().substring(0, 10);
+            console.log(comments[i].date);
+        }
+
         request.get(urlRestaurant, (error2, response2, body2) => {
             let restaurant = JSON.parse(body2);
             res.render('commentPage',
