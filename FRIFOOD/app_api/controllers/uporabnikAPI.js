@@ -74,8 +74,26 @@ const narediUporabnika = (req, res) => {
     }
 };
 
+
+const getUsers = (req, res) => {
+    Uporabnik.find().exec(
+        (error, users) => {
+            if (!users) {
+                return res.status(404).json({
+                    "error": "users not found"
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            } else {
+                res.status(200).json(users);
+            }
+        }
+    );
+};
+
 module.exports = {
     vrniUporabnika,
     narediUporabnika,
-    getUserById
+    getUserById,
+    getUsers
 };

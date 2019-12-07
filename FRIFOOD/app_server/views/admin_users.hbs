@@ -45,7 +45,6 @@
                     <thead>
                     <tr>
                         <th scope="col">#id</th>
-                        <th scope="col">Uporabniško ime</th>
                         <th scope="col">Ime</th>
                         <th scope="col">Priimek</th>
                         <th scope="col">email</th>
@@ -53,30 +52,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>JakMar17</td>
-                        <td>Jakob</td>
-                        <td>Marušič</td>
-                        <td>jm8166@student.uni-lj.si</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>JakMar17</td>
-                        <td>Jakob</td>
-                        <td>Marušič</td>
-                        <td>jm8166@student.uni-lj.si</td>
-                        <td>
-                            <a href = "#" data-toggle="modal" data-target="#detailView">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
+
+                    {{#each users as |user|}}
+                        <tr>
+                            <th scope="row">{{user._id}}</th>
+                            <td>{{user.name}}</td>
+                            <td>{{user.surname}}</td>
+                            <td>{{user.email}}</td>
+                            <td>
+                                <a href = "#" data-toggle="modal" data-target="#{{ changeModal user._id}}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    
                     </tbody>
                 </table>
             </div>
