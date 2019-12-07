@@ -126,6 +126,7 @@ var adminUsers = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/users";
     request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
+
         res.render('admin_users', {"users": json});
     })
 };

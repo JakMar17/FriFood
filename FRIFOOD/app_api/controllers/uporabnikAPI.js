@@ -91,9 +91,31 @@ const getUsers = (req, res) => {
     );
 };
 
+const updateUser = (req, res) => {
+
+    var id = req.body.userID.toString();
+    var ObjectId = (mongoose.Types.ObjectId);
+
+    Uporabnik.updateOne({"_id": id}, {$set:
+            {
+                "name": req.body.name.toString(),
+                "surname": req.body.surname.toString(),
+                "email": req.body.email.toString()
+            }
+    }, function (error, result) {
+        if (error)
+            return res.status(500).json(error);
+        else {
+
+            res.redirect(req.body.returnADR.toString());
+        }
+    });
+};
+
 module.exports = {
     vrniUporabnika,
     narediUporabnika,
     getUserById,
-    getUsers
+    getUsers,
+    updateUser
 };

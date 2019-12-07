@@ -9,6 +9,7 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 router.post('/uporabniki', ctrlUporabniki.narediUporabnika);
 router.get('/users', ctrlUporabniki.getUsers);
+router.post('/users', ctrlUporabniki.updateUser);
 
 router.post('/comments/update', ctrlComments.updateComment);
 router.get('/comments', ctrlComments.readComments);
