@@ -20,7 +20,7 @@ var userJSON = require('../models/user');
 var commentJSON = require('../models/comment');
 
 //hardCodedUserID
-var userID = "5ddf2795be59539a039167f2";
+var userID = "5debc555d4c7ec28983681d7";
 
 var userProfile = (req, res) => {
 
@@ -55,7 +55,8 @@ var commentPage = (req, res) => {
                 {"title": "Comments",
                     "restaurantName": restaurant.name,
                     "restaurantID" : restaurant._id,
-                    "comments": comments
+                    "comments": comments,
+                    "userID": userID
                 });
         });
     });

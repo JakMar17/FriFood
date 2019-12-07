@@ -119,7 +119,7 @@
             </div>
             <div class="modal-body">
                 <form id="myform" method="POST" action="/api/comments">
-                    <input type="hidden" id = "author" value="5ddf2795be59539a039167f2" name="author">
+                    <input type="hidden" id = "author" value="{{userID}}" name="author">
                     <div class="form-group">
                         <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
                     </div>
@@ -143,7 +143,7 @@
             </div>
             <div class="modal-body">
                 <form id="myform1" method="POST" action="/api/comments">
-                    <input type="hidden" id = "author" value="5ddf2795be59539a039167f2" name="author">
+                    <input type="hidden" id = "author" value="{{userID}}" name="author">
                     <input type="hidden" id = "restaurant" value="{{restaurantID}}" name="restaurant">
                     <div class="form-group">
                         <textarea class="form-control" name="newCommentText" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
