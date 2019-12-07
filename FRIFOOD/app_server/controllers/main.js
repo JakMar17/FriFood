@@ -57,13 +57,17 @@ var restaurantView = (req, res) => {
 
 var restaurantsJSON = require('../models/restaurants');
 const restaurantList = (req, res) => {
-    console.log(req.body);
-    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    let url = '';
+    if (req.query.name !== undefined ) {
+        url = req.protocol + '://' + req.get('host') + "/api/search" + req.url;
+    } else {
+        url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    }
+
     request.get(url, (error, response, body) => {
 
         let json = JSON.parse(body);
-        //console.log("Listing Restaurants");
-        //console.log(json);
+
         res.render('restaurant-list',
             {"title": "Restaurant List",
                 "restaurants": json
