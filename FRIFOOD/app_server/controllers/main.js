@@ -57,12 +57,17 @@ var restaurantView = (req, res) => {
 
 var restaurantsJSON = require('../models/restaurants');
 const restaurantList = (req, res) => {
-    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    let url = '';
+    if (req.query.name !== undefined ) {
+        url = req.protocol + '://' + req.get('host') + "/api/search" + req.url;
+    } else {
+        url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    }
+
     request.get(url, (error, response, body) => {
 
         let json = JSON.parse(body);
-        //console.log("Listing Restaurants");
-        //console.log(json);
+
         res.render('restaurant-list',
             {"title": "Restaurant List",
                 "restaurants": json
@@ -71,7 +76,12 @@ const restaurantList = (req, res) => {
 };
 
 var adminOverview = (req, res) => {
-    res.render('admin_overview.hbs');
+    const url = req.protocol + '://' + req.get('host') + "/api/restaurants";
+    request.get(url, (error, response, body) => {
+        let json = JSON.parse(body);
+
+        res.render('admin_locations.hbs', {"locations": json});
+    });
 };
 
 

@@ -98,6 +98,9 @@ const readRestaurants = (req, res) => {
 };
 
 const deleteRestaurant = (req, res) => {
+
+    console.log(req.body);
+
     var id = req.body.restaurantID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
@@ -140,8 +143,8 @@ const getRestaurantById = (req, res) => {
 };
 
 const getRestaurantBySearch = (req, res) => {
-    console.log("hello");
-    Restaurant.find(req.body.searchStr).exec((error, restaurant) => {
+    var name = req.query.name;
+    Restaurant.find({name: { $regex: '.*' + name + '.*' }}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"
@@ -149,8 +152,7 @@ const getRestaurantBySearch = (req, res) => {
         else if (error)
             return res.status(500).json(error);
         else{
-            res.status(200);
-            res.redirect('/restaurant-list');
+            res.status(200).json(restaurant);
         }
     })
 };
