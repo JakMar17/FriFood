@@ -71,7 +71,7 @@ const deleteComment = (req, res) => {
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
-    Comment.deleteOne(
+    Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
                 if (error) return console.log(error);
                 else res.redirect(req.body.returnADR.toString());
