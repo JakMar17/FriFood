@@ -48,7 +48,9 @@ const updateComment = (req, res) => {
 };
 
 const readComments = (req, res) => {
-    Comments.find().exec(
+    Comments.find()
+        .populate('author')
+        .exec(
         (error, comments) => {
             if (!comments) {
                 return res.status(404).json({
