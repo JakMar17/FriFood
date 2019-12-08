@@ -16,7 +16,7 @@
                     <div class="col-md-1 col-sm-0 col-xs-0"></div>
                     <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
                         <!-- Each restaurant loaded is shown here -->
-                        <div class="row-fill"></div>
+                        <div class="row-fill"><form action="/restaurant-list"><button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button></form></div>
                         <div id="showHideRestaurants">
                             {{#each restaurants as |restaurant| }}
                                 <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
