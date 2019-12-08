@@ -26,7 +26,6 @@ var userProfile = (req, res) => {
 
     request.get(userURL, (error, response, body) => {
         let user = JSON.parse(body);
-        console.log(user);
         userID = user[0]._id;
         commentsURL += userID;
         request(commentsURL, (error2, response2, body2) => {
