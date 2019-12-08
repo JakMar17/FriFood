@@ -122,6 +122,9 @@ var adminComments = (req, res) => {
     request.get(url, (error, response, body) => {
 
         let commentsJSON = JSON.parse(body);
+        // let authorJSON = JSON.parse(body.author);
+
+        console.log("Rezultat: " + commentsJSON[0].comment);
         res.render('admin_comments.hbs', {"comments": commentsJSON});
     });
 };

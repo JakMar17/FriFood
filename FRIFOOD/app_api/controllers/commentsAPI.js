@@ -48,7 +48,10 @@ const updateComment = (req, res) => {
 };
 
 const readComments = (req, res) => {
-    Comments.find().exec(
+    console.log("tukaj");
+    Comments.find()
+        .populate('author')
+        .exec(
         (error, comments) => {
             if (!comments) {
                 return res.status(404).json({
@@ -57,7 +60,7 @@ const readComments = (req, res) => {
             } else if (error) {
                 return res.status(500).json(error);
             } else {
-                console.log(comments);
+                console.log("Rezultat: " + comments);
 
                 res.status(200).json(comments);
             }
