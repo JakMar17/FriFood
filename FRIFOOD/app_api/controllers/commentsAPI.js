@@ -6,6 +6,8 @@ const Comments = mongoose.model('comments');
 const Restaurant = mongoose.model('restaurant');
 
 const createComment = (req, res) => {
+
+    console.log(req.body);
     var comments = new Comments({
         restaurant: req.body.restaurant.toString(),
         comment: req.body.newCommentText.toString(),
@@ -69,7 +71,6 @@ const readComments = (req, res) => {
 
 const deleteComment = (req, res) => {
 
-    console.log("TUKAJ");
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 

@@ -81,3 +81,7 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #5D5C61;
 }
+
+.draw-star {
+    color: orange;
+}
