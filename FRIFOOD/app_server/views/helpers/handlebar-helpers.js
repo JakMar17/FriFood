@@ -24,12 +24,13 @@ hbs.registerHelper('isPublished', function(status) {
 
 hbs.registerHelper('date', function(longDate) {
     longDate = new Date(longDate);
+    console.log("Začetni datum: " + longDate)
 
-    var day = longDate.getDay() +1;
+    var day = longDate.getDate();
     var month = longDate.getMonth() + 1;
     var year = longDate.getFullYear();
 
-    var date = day + "." + month + "." + year;
+    var date =  day + "." + month + "." + year;
     return date;
 });
 

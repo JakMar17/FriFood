@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
-var url = require('url');
-
-const User = mongoose.model('uporabniki');
 const Comments = mongoose.model('comments');
-const Restaurant = mongoose.model('restaurant');
 
 const createComment = (req, res) => {
 
-    console.log(req.body);
     let ratingNum = parseInt(req.body.rating.toString());
     var comments = new Comments({
         restaurant: req.body.restaurant.toString(),
@@ -45,7 +40,6 @@ const updateComment = (req, res) => {
         if (err)
             console.log(err);
         else {
-            console.log(result);
             res.redirect(req.body.returnADR.toString());
         }
     });
@@ -54,6 +48,7 @@ const updateComment = (req, res) => {
 const readComments = (req, res) => {
     Comments.find()
         .populate('author')
+        .populate('restaurant')
         .exec(
             (error, comments) => {
                 if (!comments) {
@@ -100,7 +95,6 @@ const getCommentById = (req, res) => {
 
 const getCommentsByRestaurantId = (req, res) => {
     var restaurantID = req.params.id;
-    console.log(restaurantID);
     Comments.find({restaurant: restaurantID})
         .populate('author')
         .exec(
@@ -123,6 +117,7 @@ const getCommentsByUser = (req, res) => {
     var ObjectId = (mongoose.Types.ObjectId);
 
     Comments.find({author: userID})
+        .populate('restaurant')
         .exec(
             (error, comments) => {
                 if(!comments)

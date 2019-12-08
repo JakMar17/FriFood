@@ -29,7 +29,7 @@ var userProfile = (req, res) => {
 
     request.get(userURL, (error, response, body) => {
         let user = JSON.parse(body);
-        console.log(user);
+        //console.log(user);
         request(commentsURL, (error2, response2, body2) => {
             let comments = JSON.parse(body2);
 
@@ -49,15 +49,15 @@ var commentPage = (req, res) => {
     request.get(url, (error, response, body) => {
 
         let comments = JSON.parse(body);
-        console.log(comments);
+        //console.log(comments);
         console.log("DOLZINA: "+ comments.length)
         for(var i=0; i<comments.length; i++)
         {
             comments[i].time = comments[i].date.toString().substring(11, 16);
-            console.log(comments[i].time)
+            //console.log(comments[i].time)
 
             comments[i].date = comments[i].date.toString().substring(0, 10);
-            console.log(comments[i].date);
+            //console.log(comments[i].date);
         }
 
         request.get(urlRestaurant, (error2, response2, body2) => {
@@ -133,6 +133,7 @@ var adminComments = (req, res) => {
     request.get(url, (error, response, body) => {
 
         let commentsJSON = JSON.parse(body);
+        console.log("Rezultat: " + body);
         res.render('admin_comments.hbs', {"comments": commentsJSON});
     });
 };
@@ -142,7 +143,6 @@ var adminUsers = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/users";
     request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
-
         res.render('admin_users', {"users": json});
     })
 };
@@ -161,7 +161,7 @@ var addRestaurant = (req, res) => {
 
         let json = JSON.parse(body);
         console.log("ADDED RESTAURANT!");
-        console.log(json);
+        //console.log(json);
         res.render('restaurant-add',
             {"title": "Restaurant",
                 "restaurantName": req.body.inputRestaurantName

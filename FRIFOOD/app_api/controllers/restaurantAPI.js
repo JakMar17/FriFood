@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
-var url  = require('url');
-const fs = require('fs');
-const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
+const request = require('request');
 
 const dodajRestavracijo = (req, res) => {
     var boni = true;
@@ -131,7 +129,7 @@ const readRestaurants = (req, res) => {
 
 const deleteRestaurant = (req, res) => {
 
-    console.log(req.body);
+    //console.log(req.body);
 
     var id = req.body.restaurantID.toString();
     var ObjectID = mongoose.Types.ObjectId;

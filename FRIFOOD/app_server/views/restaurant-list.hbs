@@ -26,7 +26,7 @@
                                         <div class="col-md-6 col-sm-12">
                                             <h1>{{restaurant.name}}</h1>
                                             <p>{{restaurant.address}}</p>
-                                            <p id="rating" class="rs-rating"></p>
+                                            <p id="{{restaurant._id}}" class="rs-rating"></p>
                                             <script type="text/javascript">
                                                 var result = "";
                                                 var star = "<span class=\"fa fa-star draw-star\"></span>";
@@ -38,7 +38,7 @@
                                                 for (let i = rate; i < 5; i++) {
                                                     result += noStar;
                                                 }
-                                                document.getElementById("rating").innerHTML = result;
+                                                document.getElementById("{{restaurant._id}}").innerHTML = result;
                                             </script>
                                             <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
                                             {{#if restaurant.student}}

@@ -3,7 +3,7 @@ var map, infoWindow;
 var markers1 = [];
 
 function handleAddress(address) {
-    console.log(address);
+    //console.log(address);
 
     // map = new google.maps.Map(document.getElementById('googleMap'), {
     //     center: {lat: -46.056946 , lng: 14.505751},

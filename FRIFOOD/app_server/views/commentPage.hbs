@@ -30,12 +30,20 @@
                 {{#each comments as |comment|}}
                     <div class="row mt-3 mb-3" id = "komentar">
                         <div class="card col-10 offset-1 col-md-8 offset-md-2">
-<!--                            <p><span class="fa fa-star draw-star"></span>-->
-<!--                                <span class="fa fa-star draw-star"></span>-->
-<!--                                <span class="fa fa-star draw-star"></span>-->
-<!--                                <span class="fa fa-star draw-star"></span>-->
-<!--                                <span class="fa fa-star"></span>-->
-<!--                            </p>-->
+                            <p id="{{comment._id}}" class="rs-rating"></p>
+                            <script type="text/javascript">
+                                var result = "";
+                                var star = "<span class=\"fa fa-star draw-star\"></span>";
+                                var noStar = "<span class=\"fa fa-star\"></span>";
+                                var rate = Math.round({{comment.rating}});
+                                for (let i = 0; i < rate; i++) {
+                                    result += star;
+                                }
+                                for (let i = rate; i < 5; i++) {
+                                    result += noStar;
+                                }
+                                document.getElementById("{{comment._id}}").innerHTML = result;
+                            </script>
                             <div class="row">
                                 <form id={{comment._id}} hidden>
                                     <input type="hidden" value={{comment._id}} name="komentarID">
@@ -48,7 +56,7 @@
 
                             <div class="row justify-content-end">
 
-                                <p class="card-text text-secondary mr-3 mt-3">{{comment.date}} {{comment.time}} - {{comment.author.name}}</p>
+                                <p class="card-text text-secondary mr-3 mt-3">{{comment.date}} {{comment.time}} - {{comment.author.name}} {{comment.author.surname}}</p>
 
                                 <div class="dropdown show m-2">
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
