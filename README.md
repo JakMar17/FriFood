@@ -165,6 +165,13 @@ Vnos pri imenu in primku ne sme biti prazen, gesla se morata ujemati, in email m
 ### Dostop do aplikacije
 5. Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
 
+## Podprte naprave
+
+Aplikacija deluje na vseh **računalnikih** s sistemom Windows, Linux ali macOS, ki podpirajo zadnje aktualne verzije spletnih brskalnikov Chrome (verzija 78 in več), Microsoft Edge (verzija 44 in več) ali Firefox (verzija 71 in več).
+
+Aplikacija deluje na vseh **mobilnih napravah** s sistemom **AndroidOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
+
+Aplikacije delujejo na **mobilnih napravah** s sistemom **iOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
 
 # 4. LP
 
