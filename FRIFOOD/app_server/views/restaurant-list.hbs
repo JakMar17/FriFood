@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/restaurant-list.css">
+    <!-- STARS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{title}}</title>
 </head>
 <body>
-<img src=".../restaurant-images/mariachi.png">
     <div class="container-fluid">
         <div class="row">
             <div class="column col-md-6">
@@ -17,7 +18,7 @@
                     <div class="col-md-1 col-sm-0 col-xs-0"></div>
                     <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
                         <!-- Each restaurant loaded is shown here -->
-                        <div class="row-fill"></div>
+                        <div class="row-fill"><form action="/restaurant-list"><button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button></form></div>
                         <div id="showHideRestaurants">
                             {{#each restaurants as |restaurant| }}
                                 <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
@@ -25,7 +26,20 @@
                                         <div class="col-md-6 col-sm-12">
                                             <h1>{{restaurant.name}}</h1>
                                             <p>{{restaurant.address}}</p>
-                                            <p class="rs-rating">{{restaurant.rating}}</p>
+                                            <p id="rating" class="rs-rating"></p>
+                                            <script type="text/javascript">
+                                                var result = "";
+                                                var star = "<span class=\"fa fa-star draw-star\"></span>";
+                                                var noStar = "<span class=\"fa fa-star\"></span>";
+                                                var rate = Math.round({{restaurant.rating}});
+                                                for (let i = 0; i < rate; i++) {
+                                                    result += star;
+                                                }
+                                                for (let i = rate; i < 5; i++) {
+                                                    result += noStar;
+                                                }
+                                                document.getElementById("rating").innerHTML = result;
+                                            </script>
                                             <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
                                             {{#if restaurant.student}}
                                                 <p>Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
@@ -49,13 +63,12 @@
                                                 </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-4"></div>
                                                 <div class="col-md-1 col-sm-1 col-xs-1">
-                                                    <img class="rs-image-logo" src=".{{restaurant.icon}}" alt="Ikona">
+                                                    <img class="rs-image-logo" src="{{restaurant.icon}}" alt="Ikona">
                                                 </div>
                                             </div>
                                             <div class="row rs-image-row">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <div>{{restaurant.front}}</div>
-                                                    <img class="img-fluid rs-image" src=".{{restaurant.front}}" alt="Naslovna slika">
+                                                    <img class="img-fluid rs-image" src="{{restaurant.front}}" alt="Naslovna slika">
                                                 </div>
                                             </div>
                                         </div>

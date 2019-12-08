@@ -36,6 +36,7 @@ function handleAddress(address) {
                 markers1.push(createMarker(results[i]));
             }
             map.setCenter(results[0].geometry.location);
+            document.getElementById("googleMap").focus();
         }
         else {
             window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");
@@ -227,6 +228,17 @@ function sendRestaurantDataToNode(restaurant, source) {
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
+}
+
+function handleRating(rating) {
+    var result = "";
+    var star = "<span class=\"fa fa-star checked\"></span>";
+    var noStar = "<span class=\"fa fa-star\"></span>";
+
+    var rate = Math.round(rating);
+    console.log(rate);
+    console.log("IM HERE");
+
 }
 
 
