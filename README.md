@@ -145,8 +145,17 @@ pustili v konzoli.
 
 Vnosno polje kot vnos sprejema epoštni naslov. Dovoljene so male in velike črke, šteilke in znaki *. , _ -*. Vnosno polje ne sme biti prazno, obvezen je znak *@*.
 
+Vnosno polje *geslo* sprejema geslo, ki ne sme biti prazno. Dovoljene so velike in male črke, številke ter znaki.
+
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
-Vnos pri imenu in primku ne sme biti prazen, gesla se morata ujemati, in email mora vsebovat @
+
+Vnosno polje *ime* ne sme biti prazno sprejema velike in male črke.
+
+Vnosno polje *priimek* ne sme biti prazno sprejema velike in male črke.
+
+Vnosno polje *email naslov* ne sme biti prazno, sprejema velike in male črke, številke in znake . , _ -. Vnosno polje mora imet en znak @.
+
+Vnosni polji *geslo* in *ponovi geslo* sprejemata velike in male črke, številke ter posebne znake.
 
 
 
