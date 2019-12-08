@@ -17,12 +17,12 @@ var register = (req, res) => {
 };
 
 let userMAIL = "v@v";
+const userURL = req.protocol + '://' + req.get('host') + "/api/uporabniki/" + userMAIL;
 let userID = "5ded6bbb0edcf02af01f918e";
 
 var userProfile = (req, res) => {
 
     let commentsURL = req.protocol + '://' + req.get('host') + "/api/commentAuthor/";
-    const userURL = req.protocol + '://' + req.get('host') + "/api/uporabniki/" + userMAIL;
 
     request.get(userURL, (error, response, body) => {
         let user = JSON.parse(body);
