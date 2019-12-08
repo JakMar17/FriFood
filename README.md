@@ -149,6 +149,8 @@ Vnosno polje *geslo* sprejema geslo, ki ne sme biti prazno. Dovoljene so velike 
 
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
 
+Vsa vnosna polja morajo biti izpolnjene.
+
 Vnosno polje *ime* ne sme biti prazno sprejema velike in male črke.
 
 Vnosno polje *priimek* ne sme biti prazno sprejema velike in male črke.
@@ -157,10 +159,35 @@ Vnosno polje *email naslov* ne sme biti prazno, sprejema velike in male črke, �
 
 Vnosni polji *geslo* in *ponovi geslo* sprejemata velike in male črke, številke ter posebne znake.
 
-### 
+### Dodajanje in urejanje komentarja na `commentPage`
 
+Ocenjevanje restvracije z zvezdico je obvezno.
 
-# 3. LP
+Polje za vnos komentarja ne sme biti prazno. Dovoljene so velike in male črke, številke ter znaki.
+
+### Urejanje komentarjev v uporabniškem profilu `/profile`
+
+Polje za urejanje komentarja ne sme biti prazno. Dovoljene so velike in male črke, številke in znaki.
+
+### Urejanje komentarjev v Admin Dashboard `/admin-comments`
+
+Polje za urejanje komentarja ne sme biti prazno. Dovoljene so velike in male črke, številke in znaki.
+
+### Urejanje uporabniških računov v Admin Dashboard `/admin-users`
+
+Vsa polja morajo biti izpolnjena. Polja ime in priimek sprejemata velike in male črke.
+
+Polje email sprejema epoštni račun. Dovoljene so male in velike črke, številke ter znaki . , - _. Obvezen znak je @.
+
+## Podprte naprave
+
+Aplikacija deluje na vseh **računalnikih** s sistemom Windows, Linux ali macOS, ki podpirajo zadnje aktualne verzije spletnih brskalnikov Chrome (verzija 78 in več), Microsoft Edge (verzija 44 in več) ali Firefox (verzija 71 in več).
+
+Aplikacija deluje na vseh **mobilnih napravah** s sistemom **AndroidOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
+
+Aplikacije delujejo na **mobilnih napravah** s sistemom **iOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
+
+# 3. LP: [Heroku spletna aplikacija](https://frifood-2019.herokuapp.com/)
 
 ## Namestitev aplikacije v lokalnem okolju
 > Navodila v nadaljevanju predvidevajo, da je v lokalnem okolju mogoče izvajati ukaze `npm` in poganjanje podatkovne baze mongoDB.
@@ -176,14 +203,6 @@ Vnosni polji *geslo* in *ponovi geslo* sprejemata velike in male črke, številk
 
 ### Dostop do aplikacije
 5. Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
-
-## Podprte naprave
-
-Aplikacija deluje na vseh **računalnikih** s sistemom Windows, Linux ali macOS, ki podpirajo zadnje aktualne verzije spletnih brskalnikov Chrome (verzija 78 in več), Microsoft Edge (verzija 44 in več) ali Firefox (verzija 71 in več).
-
-Aplikacija deluje na vseh **mobilnih napravah** s sistemom **AndroidOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
-
-Aplikacije delujejo na **mobilnih napravah** s sistemom **iOS**, ki podpirajo aktualne verzije spletnih brskalnikov Chrome (verzija 76 in več).
 
 # 4. LP
 
