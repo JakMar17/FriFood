@@ -8,10 +8,12 @@ const Restaurant = mongoose.model('restaurant');
 const createComment = (req, res) => {
 
     console.log(req.body);
+    let ratingNum = parseInt(req.body.rating.toString());
     var comments = new Comments({
         restaurant: req.body.restaurant.toString(),
         comment: req.body.newCommentText.toString(),
         author: req.body.author.toString(),
+        rating: ratingNum,
         date: Date.now()
     });
 
