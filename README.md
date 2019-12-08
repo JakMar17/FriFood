@@ -139,15 +139,31 @@ pustili v konzoli.
 
 # 2. LP
 
+## Veljavni uporabniški vnosi
+
 ### [Login.html](FRIFOOD/app_server/views/Login-Register/Login.html)
 Dovoljen vnos male, velike crke, stevilke, in znak @
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
 Vnos pri imenu in primku ne sme biti prazen, gesla se morata ujemati, in email mora vsebovat @
 
 
+
 # 3. LP
 
-Dinamična spletna aplikacija s podatkovno bazo
+## Namestitev aplikacije v lokalnem okolju
+> Navodila v nadaljevanju predvidevajo, da je v lokalnem okolju mogoče izvajati ukaze `npm` in poganjanje podatkovne baze mongoDB.
+
+### Namestitev potrebnih datotek za zagon aplikacije
+
+1. Z ukazom `git clone https://github.com/sp-2019-2020/LP-14.git` v trenutno mapo namestimo datoteke iz oddaljenega repozitorija.
+2. Premaknemo se v mapo `.\LP-14\FRIFOOD`
+3.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
+
+### Poganjanje aplikacije
+4.  V mapi `.\LP-14\FRIFOOD\` izvedemo ukaz `node app.js`. V konzoli dobimo podatek o povezavi na podatkovno bazo.
+
+### Dostop do aplikacije
+5. Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
 
 
 # 4. LP
