@@ -80,7 +80,7 @@ var restaurantView = (req, res) => {
     request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
 
-        res.render('RestaurantView.hbs', { title: json.name, restaurant: json});
+        res.render('restaurantView.hbs', { title: json.name, restaurant: json});
     });
 };
 
