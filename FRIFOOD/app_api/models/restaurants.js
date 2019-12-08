@@ -19,7 +19,7 @@ const restaurantSchema = new mongoose.Schema({
         sunday: String
     },
     description: String,
-    comments:  [{ type: Schema.Types.ObjectId, ref: 'komentarji' }],
+    comments:  { type: Schema.Types.ObjectId, ref: 'komentarji' },
     icon: String,
     front: String
 });

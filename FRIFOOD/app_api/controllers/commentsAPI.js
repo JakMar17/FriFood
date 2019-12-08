@@ -41,16 +41,16 @@ const updateComment = (req, res) => {
         if (err)
             console.log(err);
         else {
-            console.log(result);
             res.redirect(req.body.returnADR.toString());
         }
     });
 };
 
 const readComments = (req, res) => {
-    console.log("tukaj");
     Comments.find()
         .populate('author')
+        .populate('restaurant')
+        // .populate('restaurant')
         .exec(
         (error, comments) => {
             if (!comments) {
@@ -60,8 +60,6 @@ const readComments = (req, res) => {
             } else if (error) {
                 return res.status(500).json(error);
             } else {
-                console.log("Rezultat: " + comments);
-
                 res.status(200).json(comments);
             }
         }
@@ -72,7 +70,6 @@ const readComments = (req, res) => {
 
 const deleteComment = (req, res) => {
 
-    console.log("TUKAJ");
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
@@ -99,7 +96,6 @@ const getCommentById = (req, res) => {
 
 const getCommentsByRestaurantId = (req, res) => {
     var restaurantID = req.params.id;
-    console.log(restaurantID);
     Comments.find({restaurant: restaurantID}).exec(
         (error, comments) => {
             if (!comments) {
@@ -120,6 +116,7 @@ const getCommentsByUser = (req, res) => {
     var ObjectId = (mongoose.Types.ObjectId);
 
     Comments.find({author: userID})
+        .populate('restaurant')
         .exec(
             (error, comments) => {
                 if(!comments)

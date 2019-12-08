@@ -27,16 +27,16 @@
                 <div class = "col">
                     <h3 style = "margin-bottom: 30px">Komentarji</h3>
                 </div>
-                <div class = "col-6 col-md-3" style="text-align: right">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <input type="text" class="form-control" id="search" placeholder="Iskanje">
-                    </div>
-                </div>
+<!--                <div class = "col-6 col-md-3" style="text-align: right">-->
+<!--                    <div class="input-group mb-2">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                            <div class="input-group-text">-->
+<!--                                <i class="fas fa-search"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        <input type="text" class="form-control" id="search" placeholder="Iskanje">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
 
             </div>
 
@@ -58,7 +58,7 @@
                             <th scope="row">{{comment._id}}</th>
                             <td>{{date comment.date}}</td>
                             <td>{{comment.comment}}</td>
-                            <td>{{comment.restaurant}}</td>
+                            <td>{{comment.restaurant.name}}</td>
                             <td>{{comment.author.name}} {{comment.author.surname}}</td>
                             <td>
                                 <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
@@ -78,7 +78,7 @@
                                         </button>
                                     </div>
                                     <div class = "modal-body">
-                                        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant}}</i></h6>
+                                        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant.name}}</i></h6>
 
                                         <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">
                                             <input type = hidden name="komentarID" value="{{comment._id}}">
