@@ -142,7 +142,9 @@ pustili v konzoli.
 ## Veljavni uporabniški vnosi
 
 ### [Login.html](FRIFOOD/app_server/views/Login-Register/Login.html)
-Dovoljen vnos male, velike crke, stevilke, in znak @
+
+Vnosno polje kot vnos sprejema epoštni naslov. Dovoljene so male in velike črke, šteilke in znaki *. , _ -*. Vnosno polje ne sme biti prazno, obvezen je znak *@*.
+
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
 Vnos pri imenu in primku ne sme biti prazen, gesla se morata ujemati, in email mora vsebovat @
 
