@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Analytics = mongoose.model('analytics');
 
 const returnAnalyticsByName = (req, res) => {
+    console.log('request');
     Analytics
-        .find({name: req.params.name})
+        .find()
         .exec((error, analytics) => {
             if (!analytics) {
                 return res.status(404).json({
