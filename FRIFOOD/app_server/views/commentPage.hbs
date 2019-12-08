@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/stylesheets/commentPage.css">
     <title>{{title}}</title>
 </head>
-<body>
+<body onload="updateRestaurantRate('{{restaurantID}}')">
 
 <div class="container mb-5">
 
@@ -30,19 +30,19 @@
                 {{#each comments as |comment|}}
                     <div class="row mt-3 mb-3" id = "komentar">
                         <div class="card col-10 offset-1 col-md-8 offset-md-2">
-                            <p id="{{comment._id}}" class="rs-rating"></p>
+                            <p id="{{comment._id}}rating" class="rs-rating"></p>
                             <script type="text/javascript">
                                 var result = "";
                                 var star = "<span class=\"fa fa-star draw-star\"></span>";
                                 var noStar = "<span class=\"fa fa-star\"></span>";
-                                var rate = Math.round({{comment.rating}});
+                                var rate = Math.floor({{comment.rating}});
                                 for (let i = 0; i < rate; i++) {
                                     result += star;
                                 }
                                 for (let i = rate; i < 5; i++) {
                                     result += noStar;
                                 }
-                                document.getElementById("{{comment._id}}").innerHTML = result;
+                                document.getElementById("{{comment._id}}rating").innerHTML = result;
                             </script>
                             <div class="row">
                                 <form id={{comment._id}} hidden>
@@ -66,7 +66,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
                                         <button class="dropdown-item btn-danger" type="button" data-toggle="modal" data-target="#{{ changeModal comment._id }}" data-whatever="@mdo">Uredi</button>
-                                        <button class="dropdown-item btn-danger" type="submit" formmethod="post" formaction="/api/comments/delete" form={{ comment._id }} >Izbriši</button>
+                                        <button class="dropdown-item btn-danger" type="submit" formmethod="post" formaction="/api/comments/delete" form={{ comment._id }}>Izbriši</button>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="myform1" method="POST" action="/api/comments">
+                <form id="myform1">
                     <input type="hidden" id = "author" value="{{userID}}" name="author">
                     <input type="hidden" id = "restaurant" value="{{restaurantID}}" name="restaurant">
                     <div class="form-group">
@@ -174,7 +174,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="myform1" class="btn btn-primary" >Objavi</button>
+                <button type="submit" class="btn btn-primary" formmethod="post" formaction="/api/comments" form="myform1">Objavi</button>
             </div>
         </div>
     </div>

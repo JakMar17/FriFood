@@ -230,17 +230,6 @@ function sendRestaurantDataToNode(restaurant, source) {
     xhr.send(JSON.stringify(data));
 }
 
-function handleRating(rating) {
-    var result = "";
-    var star = "<span class=\"fa fa-star checked\"></span>";
-    var noStar = "<span class=\"fa fa-star\"></span>";
-
-    var rate = Math.round(rating);
-    console.log(rate);
-    console.log("IM HERE");
-
-}
-
 
 
 

@@ -19,6 +19,7 @@ router.get('/comment/:id', ctrlComments.getCommentById);
 router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
 
 router.get('/commentsByRestaurantId/:id', ctrlComments.getCommentsByRestaurantId);
+router.get('/updateRestaurantRating/:id', ctrlComments.updateRestaurantRating);
 
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 router.get('/restaurants', ctrlRestavracija.readRestaurants);

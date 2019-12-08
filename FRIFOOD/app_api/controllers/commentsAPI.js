@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 
 const createComment = (req, res) => {
@@ -98,17 +99,55 @@ const getCommentsByRestaurantId = (req, res) => {
     Comments.find({restaurant: restaurantID})
         .populate('author')
         .exec(
-        (error, comments) => {
-            if (!comments) {
-                return res.status(404).json({
-                    "error": "Comments not found"
-                });
-            } else if (error) {
-                return res.status(500).json(error);
-            } else
-                res.status(200).json(comments);
-        }
-    );
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else
+                    res.status(200).json(comments);
+            }
+        );
+};
+
+const updateRestaurantRating = (req, res) => {
+    var restaurantID = req.params.id;
+    Comments.find({restaurant: restaurantID})
+        .populate('author')
+        .exec(
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    let sumRating = 0;
+                    let num = 0;
+                    for (let i in comments) {
+                        sumRating += comments[i].rating;
+                        num++;
+                    }
+                    let rate = 0;
+                    if (num > 0) {
+                        rate = sumRating/num;
+                    }
+                    Restaurant.updateOne({"_id": restaurantID},
+                        {rating: rate},
+                        function (error, result) {
+                        if(error)
+                            res.status(500).json(error);
+                        else {
+                            return result;
+                        }
+                    });
+                    res.status(200).json({rating: sumRating/num});
+                }
+            }
+        );
 };
 
 const getCommentsByUser = (req, res) => {
@@ -141,5 +180,6 @@ module.exports = {
     deleteComment,
     getCommentById,
     getCommentsByRestaurantId,
-    getCommentsByUser
+    getCommentsByUser,
+    updateRestaurantRating
 };

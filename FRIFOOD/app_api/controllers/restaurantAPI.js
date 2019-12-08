@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+var url  = require('url');
+const fs = require('fs');
+const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
-const request = require('request');
 
 const dodajRestavracijo = (req, res) => {
     var boni = true;
