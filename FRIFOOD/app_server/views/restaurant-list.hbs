@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/restaurant-list.css">
+    <!-- STARS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{title}}</title>
 </head>
 <body>
@@ -16,7 +18,7 @@
                     <div class="col-md-1 col-sm-0 col-xs-0"></div>
                     <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
                         <!-- Each restaurant loaded is shown here -->
-                        <div class="row-fill"></div>
+                        <div class="row-fill"><form action="/restaurant-list"><button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button></form></div>
                         <div id="showHideRestaurants">
                             {{#each restaurants as |restaurant| }}
                                 <div onclick="handleAddress('{{restaurant.address}}')" class="restaurant" tabindex="1">
@@ -24,7 +26,20 @@
                                         <div class="col-md-6 col-sm-12">
                                             <h1>{{restaurant.name}}</h1>
                                             <p>{{restaurant.address}}</p>
-                                            <p class="rs-rating">{{restaurant.rating}}</p>
+                                            <p id="rating" class="rs-rating"></p>
+                                            <script type="text/javascript">
+                                                var result = "";
+                                                var star = "<span class=\"fa fa-star draw-star\"></span>";
+                                                var noStar = "<span class=\"fa fa-star\"></span>";
+                                                var rate = Math.round({{restaurant.rating}});
+                                                for (let i = 0; i < rate; i++) {
+                                                    result += star;
+                                                }
+                                                for (let i = rate; i < 5; i++) {
+                                                    result += noStar;
+                                                }
+                                                document.getElementById("rating").innerHTML = result;
+                                            </script>
                                             <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
                                             {{#if restaurant.student}}
                                                 <p>Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
