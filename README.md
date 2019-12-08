@@ -157,6 +157,7 @@ Vnosno polje *email naslov* ne sme biti prazno, sprejema velike in male črke, �
 
 Vnosni polji *geslo* in *ponovi geslo* sprejemata velike in male črke, številke ter posebne znake.
 
+### 
 
 
 # 3. LP
