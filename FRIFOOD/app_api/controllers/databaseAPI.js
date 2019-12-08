@@ -37,18 +37,11 @@ const fillDatabase = (req, res) => {
 
         var uporabnik = new Uporabnik(
             {
-                name: 'kai',
-                surname: 'ti',
-                email: 'v@v',
-                passwd: 'v'
+                name: 'Janez',
+                surname: 'Novak',
+                email: 'janez.novak@gmail.com',
+                passwd: 'supergeslo'
             }
-            /*, {
-                name: 'test',
-                surname: 'test',
-                email: 'test@test',
-                passwd: 'test'
-            }]
-            */
         );
 
         uporabnik.save(function (err) {
@@ -115,6 +108,7 @@ const fillDatabase = (req, res) => {
             restaurant: restavracija._id.toString(),
             comment: "Včasih meh, vedno pa super zaposleni!",
             date: Date.now(),
+            rating: 3,
             author: uporabnik
         });
 
@@ -127,6 +121,7 @@ const fillDatabase = (req, res) => {
             restaurant: restavracija2._id.toString(),
             comment: "VEDNO NAJBOLJŠI WOHOOO!",
             date: Date.now(),
+            rating: 5,
             author: uporabnik
         });
 
@@ -134,31 +129,6 @@ const fillDatabase = (req, res) => {
             if (err) return console.error(err);
             console.log("ADDING COMMENT TWO SUCCESSFUL");
         });
-
-/*
-        console.log("id uporabnika: "+uporabnik.id);
-        console.log("id coment1: "+comments.id);
-        console.log("id coment2: "+comments2.id);
-
-        var ObjectId = (mongoose.Types.ObjectId);
-
-        Uporabnik.updateOne({"_id":uporabnik.id},
-            {
-               $set:
-                {
-                    "komentarjiUporabnika": [
-                        comments.id,
-                        comments2.id
-                    ]
-                }
-        }, function (error, result) {
-            if (error)
-                console.error(error);
-            else {
-                console.log("ADDING COMMENTS TO USER SUCCESSFUL");
-            }
-        });
-*/
 
     } else {
         return res.status(400).json({

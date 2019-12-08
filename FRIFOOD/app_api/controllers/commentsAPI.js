@@ -52,21 +52,22 @@ const updateComment = (req, res) => {
 };
 
 const readComments = (req, res) => {
-    Comments.find().exec(
-        (error, comments) => {
-            if (!comments) {
-                return res.status(404).json({
-                   "error": "Comments not found"
-                });
-            } else if (error) {
-                return res.status(500).json(error);
-            } else {
-                console.log(comments);
-
-                res.status(200).json(comments);
+    Comments.find()
+        .populate('author')
+        .exec(
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    console.log("Rezultat: " + comments);
+                    res.status(200).json(comments);
+                }
             }
-        }
-    );
+        );
 };
 
 
@@ -100,7 +101,9 @@ const getCommentById = (req, res) => {
 const getCommentsByRestaurantId = (req, res) => {
     var restaurantID = req.params.id;
     console.log(restaurantID);
-    Comments.find({restaurant: restaurantID}).exec(
+    Comments.find({restaurant: restaurantID})
+        .populate('author')
+        .exec(
         (error, comments) => {
             if (!comments) {
                 return res.status(404).json({
