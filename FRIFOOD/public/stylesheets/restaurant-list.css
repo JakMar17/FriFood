@@ -37,7 +37,6 @@
 }
 .rs-image {
     width: 30vh;
-    height: 25vh;
     border-radius: 5px;
 }
 .rs-image-row {
@@ -47,7 +46,6 @@
 }
 .rs-image-logo {
     width: 5vh;
-    height: 4vh;
 }
 .logo-row {
     height: 8vh;

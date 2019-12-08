@@ -50,8 +50,8 @@ const fillDatabase = (req, res) => {
             },
             description: "Restavracija v drugem nadstropju objekta X. Poceni, dobro in včasih iz vrečke.",
             comments: commentSection,
-            icon: '',
-            front: '',
+            icon: '../images/ikona123.png',
+            front: '../images/naslovna123.png',
         });
         // save model to database
         restavracija.save(function (err) {
@@ -78,8 +78,8 @@ const fillDatabase = (req, res) => {
             },
             description: "Restavracija v najboljšem delu kompleksa, avla FRI. Poceni, dobro in vedno iz vrečke.",
             comments: commentSection2,
-            icon: '',
-            front: '',
+            icon: '../images/ikonafri.png',
+            front: '../images/naslovnafri.png',
         });
         // save model to database
         restavracija2.save(function (err) {

@@ -14,22 +14,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="" alt="First slide">
-                    </div>
-
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+            <img class="img-fluid rs-image" src="{{restaurant.front}}" alt="Naslovna slika" style="width: 100vw">
         </div>
     </div>
 </div>
@@ -47,20 +32,24 @@
 
 <div class="jumbotron mb-5" >
     <div class="container ">
+        <div class="row">
+            <h2>Urnik</h2><br>
+        </div>
         <div class="row mt-4">
 
-            <h2>Urnik</h2>
-            <table style="width:100%">
+            <table>
                 <tr>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
+                    <th>PON&nbsp;&nbsp;&nbsp;</th>
+                    <th>TOR&nbsp;&nbsp;&nbsp;</th>
+                    <th>SRE&nbsp;&nbsp;&nbsp;</th>
+                    <th>ČET&nbsp;&nbsp;&nbsp;</th>
+                    <th>PET&nbsp;&nbsp;&nbsp;</th>
+                    <th>SOB&nbsp;&nbsp;&nbsp;</th>
+                    <th>NED&nbsp;&nbsp;&nbsp;</th>
                 </tr>
                 <tr>
                     {{#each restaurant.timeTable as |dan|}}
-                        <td>{{dan}}</td>
+                        <td>{{dan}}&nbsp;&nbsp;&nbsp;</td>
                     {{/each}}
                 </tr>
             </table>
