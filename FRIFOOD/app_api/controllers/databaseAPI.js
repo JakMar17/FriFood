@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 const Uporabnik = mongoose.model('uporabniki');
+const Analytics = mongoose.model('analytics');
 
 const dropDatabase = (req, res) => {
     console.log("Trying to delete database");
@@ -32,6 +33,15 @@ const fillDatabase = (req, res) => {
     if (req.body.validation === 'THIS_IS_VALIDATION_KEY') {
         console.log("Got valid key 2: " + req.body.validation);
 
+        var analytics = new Analytics({
+            name: 'googleAPI',
+            numAPICalls: 0
+        });
+
+        analytics.save(function (err) {
+            if (err) return console.error(err);
+            console.log("ADDING Analytics SUCCESSFUL");
+        });
 
         var commentSection = new Comments([]);
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('./uporabnikSchema');
 require('./comments');
+require('./analytics');
 
 var dbURI = 'mongodb://localhost/FRIFOOD';
 if (process.env.NODE_ENV === 'production') {

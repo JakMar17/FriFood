@@ -4,6 +4,7 @@ var ctrlUporabniki = require('../controllers/uporabnikAPI');
 var ctrlRestavracija = require('../controllers/restaurantAPI');
 var ctrlComments = require('../controllers/commentsAPI');
 var ctrlDatabase = require('../controllers/databaseAPI');
+var ctrlAnalytics = require('../controllers/analyticsAPI');
 
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 router.get('/user/:userID', ctrlUporabniki.getUserById);
@@ -32,5 +33,8 @@ router.post('/database/drop', ctrlDatabase.dropDatabase);
 router.post('/database/fill', ctrlDatabase.fillDatabase);
 
 router.get('/search', ctrlRestavracija.getRestaurantBySearch);
+
+router.get('/analytics/:name', ctrlAnalytics.returnAnalyticsByName);
+router.post('/analytics', ctrlAnalytics.updateAnalyticsByName);
 
 module.exports = router;
