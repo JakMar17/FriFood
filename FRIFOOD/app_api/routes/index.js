@@ -28,6 +28,7 @@ router.post('/restaurants/update', ctrlRestavracija.updateResturant);
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 
 router.post('/database/drop', ctrlDatabase.dropDatabase);
+router.post('/database/fill', ctrlDatabase.fillDatabase);
 
 router.get('/search', ctrlRestavracija.getRestaurantBySearch);
 
