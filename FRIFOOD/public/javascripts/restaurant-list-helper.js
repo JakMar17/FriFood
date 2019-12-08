@@ -3,7 +3,7 @@ var map, infoWindow;
 var markers1 = [];
 
 function handleAddress(address) {
-    console.log(address);
+    //console.log(address);
 
     // map = new google.maps.Map(document.getElementById('googleMap'), {
     //     center: {lat: -46.056946 , lng: 14.505751},
@@ -35,7 +35,9 @@ function handleAddress(address) {
             for (var i = 0; i < results.length; i++) {
                 markers1.push(createMarker(results[i]));
             }
+            updateAnalytics();
             map.setCenter(results[0].geometry.location);
+            document.getElementById("googleMap").focus();
         }
         else {
             window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");
@@ -192,8 +194,8 @@ function initMap() {
                         returnRestaurants.push(results[i]);
                         resultCount++;
                     }
-
                 }
+                updateAnalytics();
                 document.getElementById("showHideRestaurants").style.display = "none";
                 // let template = hbs.compile(source);
                 // document.getElementById("showHideFoundRestaurants").innerHTML = template({foundRestaurants: returnRestaurants});
@@ -224,6 +226,21 @@ function sendRestaurantDataToNode(restaurant, source) {
     xhr.onload = function(data) {
         //console.log('loaded', this.responseText);
         document.getElementById("showHideFoundRestaurants").innerHTML = this.responseText;
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+}
+
+function updateAnalytics() {
+
+    var data = {
+        name: 'googleAPI'
+    };
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/api/analytics');
+    xhr.onload = function(data) {
+        //console.log("HERE");
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));

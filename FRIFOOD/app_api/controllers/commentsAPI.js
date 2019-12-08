@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-var url = require('url');
-
-const User = mongoose.model('uporabniki');
-const Comments = mongoose.model('comments');
 const Restaurant = mongoose.model('restaurant');
+const Comments = mongoose.model('comments');
 
 const createComment = (req, res) => {
+
+    let ratingNum = parseInt(req.body.rating.toString());
     var comments = new Comments({
         restaurant: req.body.restaurant.toString(),
         comment: req.body.newCommentText.toString(),
         author: req.body.author.toString(),
+        rating: ratingNum,
         date: Date.now()
     });
 
@@ -41,35 +41,35 @@ const updateComment = (req, res) => {
         if (err)
             console.log(err);
         else {
-            console.log(result);
             res.redirect(req.body.returnADR.toString());
         }
     });
 };
 
 const readComments = (req, res) => {
-    Comments.find().exec(
-        (error, comments) => {
-            if (!comments) {
-                return res.status(404).json({
-                   "error": "Comments not found"
-                });
-            } else if (error) {
-                return res.status(500).json(error);
-            } else {
-                console.log(comments);
-
-                res.status(200).json(comments);
+    Comments.find()
+        .populate('author')
+        .populate('restaurant')
+        .exec(
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    console.log("Rezultat: " + comments);
+                    res.status(200).json(comments);
+                }
             }
-        }
-    );
+        );
 };
 
 
 
 const deleteComment = (req, res) => {
 
-    console.log("TUKAJ");
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
@@ -96,19 +96,58 @@ const getCommentById = (req, res) => {
 
 const getCommentsByRestaurantId = (req, res) => {
     var restaurantID = req.params.id;
-    console.log(restaurantID);
-    Comments.find({restaurant: restaurantID}).exec(
-        (error, comments) => {
-            if (!comments) {
-                return res.status(404).json({
-                    "error": "Comments not found"
-                });
-            } else if (error) {
-                return res.status(500).json(error);
-            } else
-                res.status(200).json(comments);
-        }
-    );
+    Comments.find({restaurant: restaurantID})
+        .populate('author')
+        .exec(
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else
+                    res.status(200).json(comments);
+            }
+        );
+};
+
+const updateRestaurantRating = (req, res) => {
+    var restaurantID = req.params.id;
+    Comments.find({restaurant: restaurantID})
+        .populate('author')
+        .exec(
+            (error, comments) => {
+                if (!comments) {
+                    return res.status(404).json({
+                        "error": "Comments not found"
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    let sumRating = 0;
+                    let num = 0;
+                    for (let i in comments) {
+                        sumRating += comments[i].rating;
+                        num++;
+                    }
+                    let rate = 0;
+                    if (num > 0) {
+                        rate = sumRating/num;
+                    }
+                    Restaurant.updateOne({"_id": restaurantID},
+                        {rating: rate},
+                        function (error, result) {
+                        if(error)
+                            res.status(500).json(error);
+                        else {
+                            return result;
+                        }
+                    });
+                    res.status(200).json({rating: sumRating/num});
+                }
+            }
+        );
 };
 
 const getCommentsByUser = (req, res) => {
@@ -117,6 +156,7 @@ const getCommentsByUser = (req, res) => {
     var ObjectId = (mongoose.Types.ObjectId);
 
     Comments.find({author: userID})
+        .populate('restaurant')
         .exec(
             (error, comments) => {
                 if(!comments)
@@ -140,5 +180,6 @@ module.exports = {
     deleteComment,
     getCommentById,
     getCommentsByRestaurantId,
-    getCommentsByUser
+    getCommentsByUser,
+    updateRestaurantRating
 };

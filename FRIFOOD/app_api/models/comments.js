@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
-        restaurant: {type: Schema.Types.ObjectId, ref: 'restaurants'},
+        restaurant: {type: Schema.Types.ObjectId, ref: 'restaurant'},
         author: {type: Schema.Types.ObjectId, ref: 'uporabniki'},
         comment: String,
         rating: Number,

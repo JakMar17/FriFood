@@ -28,3 +28,15 @@ function submitForm(action)
     document.getElementById('columnarForm').action = action;
     document.getElementById('columnarForm').submit();
 }
+
+function updateRestaurantRate(restaurantId) {
+    var data = {
+        id: restaurantId
+    };
+    console.log("HEY IM HERE");
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', '/api/updateRestaurantRating/' + restaurantId);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+}

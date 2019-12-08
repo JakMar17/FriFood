@@ -16,24 +16,23 @@ var register = (req, res) => {
     res.render('Register');
 };
 
-var userJSON = require('../models/user');
-var commentJSON = require('../models/comment');
 
-//hardCodedUserID
-var userID = "5debc555d4c7ec28983681d7";
+let userMAIL = "v@v";
+let userID = "5ded6bbb0edcf02af01f918e";
 
 var userProfile = (req, res) => {
 
-    const userURL = req.protocol + '://' + req.get('host') + "/api/user/" + userID;
-    const commentsURL = req.protocol + '://' + req.get('host') + "/api/commentAuthor/" + userID;
+    let commentsURL = req.protocol + '://' + req.get('host') + "/api/commentAuthor/";
+    const userURL = req.protocol + '://' + req.get('host') + "/api/uporabniki/" + userMAIL;
 
     request.get(userURL, (error, response, body) => {
         let user = JSON.parse(body);
-        console.log(user);
+        userID = user[0]._id;
+        commentsURL += userID;
         request(commentsURL, (error2, response2, body2) => {
             let comments = JSON.parse(body2);
 
-            res.render('userInfoPage', {"comments": comments, "user": user});
+            res.render('userInfoPage', {"comments": comments, "user": user[0]});
         });
     });
 
@@ -49,19 +48,15 @@ var commentPage = (req, res) => {
     request.get(url, (error, response, body) => {
 
         let comments = JSON.parse(body);
-        console.log(comments);
-        console.log("DOLZINA: "+ comments.length)
-        for(var i=0; i<comments.length; i++)
-        {
-            comments[i].time = comments[i].date.toString().substring(11, 16);
-            console.log(comments[i].time)
 
+        for(var i=0; i<comments.length; i++) {
+            comments[i].time = comments[i].date.toString().substring(11, 16);
             comments[i].date = comments[i].date.toString().substring(0, 10);
-            console.log(comments[i].date);
         }
 
         request.get(urlRestaurant, (error2, response2, body2) => {
             let restaurant = JSON.parse(body2);
+            console.log("ddddd => " + userID);
             res.render('commentPage',
                 {"title": "Comments",
                     "restaurantName": restaurant.name,
@@ -133,6 +128,7 @@ var adminComments = (req, res) => {
     request.get(url, (error, response, body) => {
 
         let commentsJSON = JSON.parse(body);
+        console.log("Rezultat: " + body);
         res.render('admin_comments.hbs', {"comments": commentsJSON});
     });
 };
@@ -142,7 +138,6 @@ var adminUsers = (req, res) => {
     const url = req.protocol + '://' + req.get('host') + "/api/users";
     request.get(url, (error, response, body) => {
         let json = JSON.parse(body);
-
         res.render('admin_users', {"users": json});
     })
 };
@@ -161,7 +156,7 @@ var addRestaurant = (req, res) => {
 
         let json = JSON.parse(body);
         console.log("ADDED RESTAURANT!");
-        console.log(json);
+        //console.log(json);
         res.render('restaurant-add',
             {"title": "Restaurant",
                 "restaurantName": req.body.inputRestaurantName

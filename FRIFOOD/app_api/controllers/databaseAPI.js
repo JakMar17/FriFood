@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 const Uporabnik = mongoose.model('uporabniki');
+const Analytics = mongoose.model('analytics');
 
 const dropDatabase = (req, res) => {
     console.log("Trying to delete database");
@@ -32,23 +33,25 @@ const fillDatabase = (req, res) => {
     if (req.body.validation === 'THIS_IS_VALIDATION_KEY') {
         console.log("Got valid key 2: " + req.body.validation);
 
+        var analytics = new Analytics({
+            name: 'googleAPI',
+            numAPICalls: 0
+        });
+
+        analytics.save(function (err) {
+            if (err) return console.error(err);
+            console.log("ADDING Analytics SUCCESSFUL");
+        });
 
         var commentSection = new Comments([]);
 
         var uporabnik = new Uporabnik(
             {
-                name: 'kai',
-                surname: 'ti',
+                name: 'Janez',
+                surname: 'Novak',
                 email: 'v@v',
-                passwd: 'v'
+                passwd: 'supergeslo'
             }
-            /*, {
-                name: 'test',
-                surname: 'test',
-                email: 'test@test',
-                passwd: 'test'
-            }]
-            */
         );
 
         uporabnik.save(function (err) {
@@ -115,6 +118,7 @@ const fillDatabase = (req, res) => {
             restaurant: restavracija._id.toString(),
             comment: "Včasih meh, vedno pa super zaposleni!",
             date: Date.now(),
+            rating: 3,
             author: uporabnik
         });
 
@@ -127,6 +131,7 @@ const fillDatabase = (req, res) => {
             restaurant: restavracija2._id.toString(),
             comment: "VEDNO NAJBOLJŠI WOHOOO!",
             date: Date.now(),
+            rating: 5,
             author: uporabnik
         });
 
@@ -134,31 +139,6 @@ const fillDatabase = (req, res) => {
             if (err) return console.error(err);
             console.log("ADDING COMMENT TWO SUCCESSFUL");
         });
-
-/*
-        console.log("id uporabnika: "+uporabnik.id);
-        console.log("id coment1: "+comments.id);
-        console.log("id coment2: "+comments2.id);
-
-        var ObjectId = (mongoose.Types.ObjectId);
-
-        Uporabnik.updateOne({"_id":uporabnik.id},
-            {
-               $set:
-                {
-                    "komentarjiUporabnika": [
-                        comments.id,
-                        comments2.id
-                    ]
-                }
-        }, function (error, result) {
-            if (error)
-                console.error(error);
-            else {
-                console.log("ADDING COMMENTS TO USER SUCCESSFUL");
-            }
-        });
-*/
 
     } else {
         return res.status(400).json({
