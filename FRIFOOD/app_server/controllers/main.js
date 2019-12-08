@@ -17,15 +17,14 @@ var register = (req, res) => {
 };
 
 let userMAIL = "v@v";
+const userURL = req.protocol + '://' + req.get('host') + "/api/uporabniki/" + userMAIL;
 let userID = "5ded6bbb0edcf02af01f918e";
 
 var userProfile = (req, res) => {
 
-    const userURL = req.protocol + '://' + req.get('host') + "/api/uporabniki/" + userMAIL;
     let commentsURL = req.protocol + '://' + req.get('host') + "/api/commentAuthor/";
 
     request.get(userURL, (error, response, body) => {
-        console.log
         let user = JSON.parse(body);
         console.log(user);
         userID = user[0]._id;
@@ -50,13 +49,9 @@ var commentPage = (req, res) => {
 
         let comments = JSON.parse(body);
 
-        for(var i=0; i<comments.length; i++)
-        {
+        for(var i=0; i<comments.length; i++) {
             comments[i].time = comments[i].date.toString().substring(11, 16);
-            console.log(comments[i].time)
-
             comments[i].date = comments[i].date.toString().substring(0, 10);
-            console.log(comments[i].date);
         }
 
         request.get(urlRestaurant, (error2, response2, body2) => {
