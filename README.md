@@ -5,17 +5,17 @@ Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2019/
 
 # 1. LP
 
-Spletna aplikacija omogoča pregled nad restavracijami, ki jih uporabnik najde na seznamu vseh restavracij ter na zemljevidu. Vsaka restavracija ima vpisane lastnosti kot so odpiralni časi, menuji, komentarji uporabnikov, ocena ter cene. V kolikor restvracija ponuja obrok na študentski bon je to označeno skupaj s podatkom o doplačilu in času, ko je omogočeno koriščenje bonov.
+Spletna aplikacija omogoča pregled nad restavracijami, ki jih uporabnik najde na seznamu vseh restavracij ter na zemljevidu. Vsaka restavracija ima vpisane lastnosti kot so odpiralni časi, menuji, komentarji uporabnikov, ocena ter cene. V kolikor restavracija ponuja obrok na študentski bon je to označeno skupaj s podatkom o doplačilu.
 
-Uporabnik se lahko registrira ali prijavi z uporabo Google ali Facebook računa. Prijevljenemu uporabniku je omogočeno vnašanje komentarje k posamezni restvraciji in ocenjevanje le teh. Uporabnik lahko dodaja in spreminja podatke o restvraciji, če podatki niso ažurni. Vsako spremembo mora potrditi administrator sistema.
+Uporabnik se lahko registrira ali prijavi. Prijavljenemu uporabniku je omogočeno vnašanje komentarjev k posamezni restvraciji in ocenjevanje le teh.
 
-Administrator sistema ima pregled na registrirani uporabniki (tem lahko spreminja pravice - možnost popravljanja informacij, dodajanja komentarjev, ocen, administratorske pravice). Administrator ima pregled nad vsemi komentarji in ocenami, ki jih lahko ureja in briše. Vsako spremembo, ki jo uporabnik vnese k restavraciji, mora potrditi administrator.
+Administrator sistema ima pregled nad registrirani uporabniki. Administrator ima pregled nad vsemi komentarji in ocenami, ki jih lahko ureja in briše.
 
 ## Prijava in registracija uporabnika
 ### [Login.html](FRIFOOD/app_server/views/Login-Register/Login.html)
 Stran za prijavit v sistem z možnostjo registracije
 ### [Register.html](FRIFOOD/app_server/views/Login-Register/Register.html)
-Stran za registrirati v sistem, z potrditvijo registracije preko emaila in možnostjo obvescanja po emailu
+Stran za registrirati v sistem, z potrditvijo registracije preko emaila in možnostjo obveščanja po emailu.
     
 ## [RestaurantView.html](FRIFOOD/app_server/views/Restaurant-View-Page/RestaurantView.html)
 V tem pogledu se bo videl podrobnejši opis restavracije ter slike restavracije in komentarji, ki jih lahko pišejo uporabniki o restavracijah. Iz te strani se 
@@ -36,8 +36,8 @@ Kasneje mora administrator to oddajo pregledati in jo potrditi.
 Stran na kateri je implementiran seznam vseh restavracij oziroma restavracije,
 ki so bile poiskane po ključnih besedah iz navigacijskega menija.
 Na vsako stran oz. vnos v tem seznamu se da klikniti na kar se odzove zemljevid na desni strani in
-pokaže kje se ta restavracija nahaja. Zemljevid prav tako omogoča predstaviti optimalno pot od trenutne lokacije, če
-to uporabnik omogoči.  
+pokaže kje se ta restavracija nahaja.
+
 Vsak vnos seznama ima ime, naslov in oceno restavracije, ter ceno malice in doplačilo na bone če to restavracija omogoča.
 Na koncu imamo pa še dve povezavi in sicer na _RestaurantView.html_ (Več o restavraciji), ter na _CommentPage.html_ (Oceni ali komentiraj).
 
@@ -56,61 +56,36 @@ V sistemu obstajata dve vrsti uporabnikov: običajen uporabnik in administrator.
 ### Pregled uporabniškega profila [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html)
 Stran do katerega lahko vsak prijavljen uporabnik dostopa prek navigacijske vrstice. Stran je razdeljena na levi pregledni pogled, kjer ima uporabnik pregled do, ob registraciji, vnešenih podatkov, kakor tudi dostop do lastne statistike aktivnosti na strani.
 
-V desnem pregledu uporabnik najde svoje zadnje aktivnosti na strani, kjer barva določene aktivnosti določa:
-* *zelena* - aktivnost (razen ocena) je objavljena,
-* *bela* - ocena je obajvljena,
-* *rumena* - aktivnost je v obdelavi (administrator mora določene aktivnosti potrditi)
-* *rdeča* - aktivnosti ni objavljena, administrator jo je zavrnil
+V desnem pregledu uporabnik najde svoje zadnje aktivnosti na strani.
 
-Ob kliku na katero izmed aktivnosti (razen oceno) se uporabniku prikaže okno (*bootstrap modal*) v katerem dostopa do podrobnosti posamezne aktivnosti.
+Ob kliku na katero izmed aktivnosti se uporabniku prikaže okno (*bootstrap modal*) v katerem dostopa do podrobnosti posamezne aktivnosti.
 
 #### Podrobnosti elementa: komentar [modal-editComment.html](docs/profile/userProfile/modals/modal-editComment.html)
 
 Uporabnik lahko v prikazanem oknu (*bootstrap modal*) spreminja objavljen komentar ali ga popolnoma izbriše.
 
-#### Podrobnosti elementa: popravek [modal-detailCorrectionView.html](docs/profile/userProfile/modals/modal-detailCorrectionView.html)
 
-Uporabnik lahko v prikazanem oknu (*bootstrap modal*) dostopa do podrobnosti popravka, katerega je predlagal administratorski ekipi. Uporabnik popravka ne more spreminjati.
-
-### Spreminjanje podatkov uporabnika [UserSetting.html](docs/profile/userProfile/UserSetting.html)
-
-Uporabnik lahko s klikom na ikono koleščka nad sliko uporabnika v [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html) dostopa do nastavitev svojega profila. Tu lahko spreminja svoje podatke. Pri spreminjanju gesla in/ali epošte uporabnika sistem dodatno obvesti preko vnešene epošte.
-
-## Administratorska nadzorna plošča [Admin_InfoPage.html](docs/profile/adminDashboard/Admin_InfoPage.html)
+## Administratorska nadzorna plošča
 
 Uporabnik, ki ima status administratorja, lahko preko svojega uporabniškega profila [UserInfoPage.html](docs/profile/userProfile/UserInfoPage.html) dostopa do administratorskega pogleda. To stori s klikom na *Administratorski pogled*.
 
 V pregledu sistema lahko dostopa do komponent nadzorne plošče, ki so opisane v nadaljevanju. V glavne delu zaslonske makse lahko preko hitrih dostopov pregleduje odprte zahtevke ter do njih dostopa.
 
-Pod *Zadnje aktivnosti* lahko pregleduje, išče in  dostopa do zadnjih aktivnosti, ki so bile umeščene na spletno stran. Barva aktivnosti predstavlja stanje le-teh. Klik na katero izmed aktivnosti odpre [modal-detailCommentsView.html](docs/profile/adminDashboard/modals/modal-detailCommentsView.html) *bootstrap modal* okno preko katerega lahko administrator ureja in pregleduje posamezne aktivnosti.
-
-### Čakalna vrsta [Admin_WaitingList.html](docs/profile/adminDashboard/Admin_WaitingList.html)
-
-V čakalni vrsti ima administrator dostop do odprtih zahtevkov. Zahtevke delimo med popravke delovnega časa, cenika, lokacije ali zahtevek po odprtju nove lokacije (restavracije). Vsak zahtevek mora predhodno administrator potrditi (ali zavreči).
-
-Administrator s klikom na gumb za urejanje (ki se nahaja ob vsakem posameznem zahtevku) dostopa do podrobnosti zahtevka [modal-waitingListElement.html](docs/profile/adminDashboard/modals/modal-waitingListElement.html). Ob zahtevek lahko zapiše svojo opombo in ga potrdi ali ovrže.
-
 ### Komentarji [Admin_CommentsView.html](docs/profile/adminDashboard/Admin_CommentsView.html)
 
-V pregledu komentarjev lahko administrator dostopa do vseh objavljenih in arhiviranih komentarjev. Za objavo komentarjev uporabnik ne potrebuje potrditve administratorja, vendar lahko administrator komentar uredi ali izbriše v kolikor smatra, da komentar krši pravila spletnega mesta.
+V pregledu komentarjev lahko administrator dostopa do vseh objavljenih komentarjev. Za objavo komentarjev uporabnik ne potrebuje potrditve administratorja, vendar lahko administrator komentar uredi ali izbriše v kolikor smatra, da komentar krši pravila spletnega mesta.
 
 Administrator s klikom na gumb za urejanje (ki se nahaja ob vsakem posameznem komentarju) dostopa do podrobnosti komentarja [modal-detailCommentsView.html](docs/profile/adminDashboard/modals/modal-detailCommentsView.html). Komentar lahko ureja ali izbriše.
 
-### Ocene [Admin_RatingsView.html](docs/profile/adminDashboard/Admin_RatingsView.html)
-
-V pregledu ocen lahko administrator dostopa do vseh objavljenih ocen. Za objavo ocene uporabnik ne potrebuje potrditve s strani administratorja, vendar lahko oceno administrator izbriše v kolikor predvideva, da ocena krši pravila spletnega mesta.
-
 ### Lokacije [Admin_LocationsView.html](docs/profile/adminDashboard/Admin_LocationsView.html)
 
-V pregledu lokacij lahko administrator pregleduje vse objavljene in arhivirane lokacije. Do podrobnosti posamezne lokacije dostopa s klikom na gumb za urejanje.
-
-Lokacijo lahko ureja prek pogleda [modal-detailLocationView.html](docs/profile/adminDashboard/modals/modal-detailLocationView.html).
+V pregledu lokacij lahko administrator pregleduje vse objavljene in arhivirane lokacije. Do podrobnosti posamezne lokacije dostopa s klikom na gumb. Lokacijo lahko tudi izbriše.
 
 ### Uporabniki [Admin_UsersView.html](docs/profile/adminDashboard/Admin_UsersView.html)
 
-V pregledu uporabnikov lahko administrator pregleduje vse aktivne in neaktivne uporabnike. Do podrobnosti uporabnika dostopa s klikom na gumb za urejanje.
+V pregledu uporabnikov lahko administrator pregleduje vse aktivne uporabnike. Do podrobnosti uporabnika dostopa s klikom na gumb za urejanje.
 
-Uporabniku lahko ureja določene atribute preko pogleda [modal-detailUserView.html](docs/profile/adminDashboard/modals/modal-detailUserView.html). V tem oknu lahko dostopa tudi do uporabnikove statistike in mu določa vrsto računa (navaden uporabnik, administrator).
+Uporabniku lahko ureja določene atribute preko pogleda [modal-detailUserView.html](docs/profile/adminDashboard/modals/modal-detailUserView.html).   
 
 ## Razlike brskalnikov
 Primerjali smo brskalnike: Google Chrome, Firefox, Edge.
