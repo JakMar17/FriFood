@@ -154,6 +154,17 @@ Vsa polja morajo biti izpolnjena. Polja ime in priimek sprejemata velike in male
 
 Polje email sprejema epoštni račun. Dovoljene so male in velike črke, številke ter znaki . , - _. Obvezen znak je @.
 
+### Dodajanje restavracije `/restaurant-add`
+
+|Ime polja|Obvezno?|Dovoljeni vnosi|
+|--|--|--|
+|Ime restavracije|Da|Male in velike črke, številke, znaki|
+|Lokacija restavracije|Da|Male in velike črke, številke, znaki|
+|Kratek opis restavracije|Da|Male in velike črke, številke, znaki|
+|Študentsko doplačilo|Ne|Številke|
+|Cena malice|Ne|Številke|
+|Urnik (ura od do)|Ne|Številke v razponu 0-24|
+
 ## Podprte naprave
 
 Aplikacija deluje na vseh **računalnikih** s sistemom Windows, Linux ali macOS, ki podpirajo zadnje aktualne verzije spletnih brskalnikov Chrome (verzija 78 in več), Microsoft Edge (verzija 44 in več) ali Firefox (verzija 71 in več).
