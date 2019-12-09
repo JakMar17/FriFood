@@ -40,7 +40,7 @@ function handleAddress(address) {
             document.getElementById("googleMap").focus();
         }
         else {
-            window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");
+            //window.alert("Sorry, this location was not found.\nYou will be redirected to your current location.");
             initMap();
         }
     });
