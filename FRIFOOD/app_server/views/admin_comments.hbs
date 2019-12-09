@@ -54,19 +54,20 @@
                     </thead>
                     <tbody>
                     {{#each comments as |comment|}}
-                        <tr>
-                            <th scope="row">{{comment._id}}</th>
-                            <td>{{date comment.date}}</td>
-                            <td>{{comment.comment}}</td>
-                            <td>{{comment.restaurant.name}}</td>
-                            <td>{{comment.author.name}} {{comment.author.surname}}</td>
-                            <td>
-                                <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
-
+                        <table class="table" style="table-layout: fixed; width: 100%">
+                            <tr>
+                                <th scope="row" style="word-wrap: break-word">{{comment._id}}</th>
+                                <td style="word-wrap: break-word">{{date comment.date}}</td>
+                                <td style="word-wrap: break-word">{{comment.comment}}</td>
+                                <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
+                                <td style="word-wrap: break-word">{{comment.author.name}} {{comment.author.surname}}</td>
+                                <td style="word-wrap: break-word">
+                                    <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
                         <!--    Modal for showing correction details-->
                         <div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" role="document">

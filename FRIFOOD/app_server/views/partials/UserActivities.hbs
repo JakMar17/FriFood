@@ -121,21 +121,21 @@
 <!--    </div>-->
 
     <div class = "row">
-        <table class="table table-hover">
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
             <thead>
             <tr>
-                <th scope="col">Datum</th>
-                <th scope="col">Komentar</th>
-                <th scope="col">Lokacija</th>
-                <th scope="col"></th>
+                <th scope="col" style="word-wrap: break-word">Datum</th>
+                <th scope="col" style="word-wrap: break-word">Komentar</th>
+                <th scope="col" style="word-wrap: break-word">Lokacija</th>
+                <th scope="col" style="word-wrap: break-word"></th>
             </tr>
             </thead>
             <tbody>
             {{#each comments as |comment|}}
                 <tr>
-                    <td>{{date comment.date}}</td>
-                    <td>{{comment.comment}}</td>
-                    <td>{{comment.restaurant.name}}</td>
+                    <td style="word-wrap: break-word">{{date comment.date}}</td>
+                    <td style="word-wrap: break-word">{{comment.comment}}</td>
+                    <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
                     <td>
                         <a href = "#" data-toggle="modal" data-target="#{{ changeModal comment._id}}">
                             <i class="fas fa-edit"></i>
