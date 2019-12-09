@@ -41,24 +41,24 @@
             </div>
 
             <div class = "row">
-                <table class="table table-hover">
+                <table class="table table-hover" style="table-layout: fixed; width: 100%">
                     <thead>
                     <tr>
-                        <th scope="col">#id</th>
-                        <th scope="col">Ime</th>
-                        <th scope="col">Priimek</th>
-                        <th scope="col">email</th>
-                        <th scope="col"></th>
+                        <th scope="col" style="word-wrap: break-word">#id</th>
+                        <th scope="col" style="word-wrap: break-word">Ime</th>
+                        <th scope="col" style="word-wrap: break-word">Priimek</th>
+                        <th scope="col" style="word-wrap: break-word">email</th>
+                        <th scope="col" style="word-wrap: break-word"></th>
                     </tr>
                     </thead>
                     <tbody>
 
                     {{#each users as |user|}}
                         <tr>
-                            <th scope="row">{{user._id}}</th>
-                            <td>{{user.name}}</td>
-                            <td>{{user.surname}}</td>
-                            <td>{{user.email}}</td>
+                            <th scope="row" style="word-wrap: break-word">{{user._id}}</th>
+                            <td style="word-wrap: break-word">{{user.name}}</td>
+                            <td style="word-wrap: break-word">{{user.surname}}</td>
+                            <td style="word-wrap: break-word">{{user.email}}</td>
                             <td>
                                 <a href = "#" data-toggle="modal" data-target="#{{ changeModal user._id}}">
                                     <i class="fas fa-edit"></i>
