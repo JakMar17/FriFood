@@ -23,6 +23,22 @@ function fillText(){
     konzola.innerHTML = "FILLING DATABASE!";
 }
 
+function fillAPIText(){
+    let konzola = document.getElementById("konzola");
+    var data = {
+        name: 'googleAPI'
+    };
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', '/api/analytics');
+    xhr.onload = function(data) {
+        konzola.innerHTML = "API CALLS:" + this.responseText;
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+
+}
+
 function fillDatabase(key) {
     var data = {
         validation: key,
@@ -36,3 +52,4 @@ function fillDatabase(key) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
 }
+
