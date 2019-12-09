@@ -49,7 +49,7 @@ const fillDatabase = (req, res) => {
             {
                 name: 'Janez',
                 surname: 'Novak',
-                email: 'v@v',
+                email: 'janez.novak@fri.uni-lj.si',
                 passwd: 'supergeslo'
             }
         );

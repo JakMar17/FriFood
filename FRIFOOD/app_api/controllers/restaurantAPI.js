@@ -75,7 +75,7 @@ const dodajRestavracijo = (req, res) => {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let naslovna_slika = req.files.naslovnaSlika;
-    let ns_t = req.files.naslovnaSlika.name;
+    let ns_t = req.files.naslovnaSlika.name.split('.');
     let naslovnaPath = "./public/restaurant-images/" + restavracija._id + '-ns.' + ns_t[ns_t.length - 1];
     // Use the mv() method to place the file somewhere on your server
     naslovna_slika.mv(naslovnaPath, function(err) {

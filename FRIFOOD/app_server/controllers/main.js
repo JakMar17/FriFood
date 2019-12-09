@@ -17,7 +17,7 @@ var register = (req, res) => {
 };
 
 
-let userMAIL = "v@v";
+let userMAIL = "janez.novak@fri.uni-lj.si";
 let userID = "5ded6bbb0edcf02af01f918e";
 
 var userProfile = (req, res) => {
