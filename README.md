@@ -184,6 +184,8 @@ Aplikacije delujejo na **mobilnih napravah** s sistemom **iOS**, ki podpirajo ak
 2. Premaknemo se v mapo `.\LP-14\FRIFOOD`
 3.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
 
+Dokončali smo LP2&3 dne 9.12. 2019 - 02:45
+
 ### Poganjanje aplikacije
 4.  V mapi `.\LP-14\FRIFOOD\` izvedemo ukaz `node app.js`. V konzoli dobimo podatek o povezavi na podatkovno bazo.
 
