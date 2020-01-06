@@ -7,6 +7,8 @@ import { OgrodjeComponent } from './ogrodje/ogrodje.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { CommentpageComponent } from './commentpage/commentpage.component';
+import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { LoginComponent } from './login/login.component';
     OgrodjeComponent,
     FrontpageComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CommentpageComponent,
+    RestaurantviewComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +27,18 @@ import { LoginComponent } from './login/login.component';
         path: 'login',
         component: LoginComponent
       },
+
       {
         path: 'register',
         component: RegisterComponent
+      },
+      {
+        path: 'commentPage',
+        component: CommentpageComponent
+      },
+      {
+        path: 'restaurantView',
+        component: RestaurantviewComponent
       },
       {
         path: '',
