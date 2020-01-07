@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-commentpage',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   restaurant = {
     _id: "5debddcf5fc3683918ae71a6",
@@ -19,18 +19,21 @@ export class CommentpageComponent implements OnInit {
     front: "naslovna123.png"
   };
 
-
-  comments = {
-    _id: "5debddcf5fc3683918ae71a9",
-    restaurant: "5debddcf5fc3683918ae71a6",
-    comment: "Včasih meh, vedno pa super zaposleni!",
-    author: "5debddcf5fc3683918ae71a5",
-    date: "2019-12-07T17:13:51.533+00:00",
+  user = {
+    _id: "5debddcf5fasdasdasdasdasdasdc3683918ae71a6",
+    name: "Restavracija 123",
+    description: "dodaj opis restavracije",
+    timeTable: [ "7h - 15h", "7h - 15h", "7h - 15h", "7h - 15h", "7h - 15h" ],
+    idKomentarjev: "idZaKomentarje",
 
     front: "naslovna123.png"
-  }
+  };
 
   ngOnInit() {
+    const script = this.renderer.createElement('script');
+    script.src = `./assets/javascripts/commentSuport.js`;
+    this.renderer.appendChild(document.head, script);
   }
+
 
 }

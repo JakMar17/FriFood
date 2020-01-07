@@ -9,6 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CommentpageComponent } from './commentpage/commentpage.component';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
+import { CommentComponent } from './commentpage/comment/comment.component';
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { RestaurantviewComponent } from './restaurantview/restaurantview.compone
     RegisterComponent,
     LoginComponent,
     CommentpageComponent,
-    RestaurantviewComponent
+    RestaurantviewComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { RestaurantviewComponent } from './restaurantview/restaurantview.compone
         path: '',
         component: FrontpageComponent
       }
-    ])
+    ]),
+    FormsModule
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]
