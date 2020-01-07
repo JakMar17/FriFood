@@ -1,4 +1,5 @@
-import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-commentpage',
@@ -7,7 +8,7 @@ import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private route: ActivatedRoute) { }
 
   restaurant = {
     _id: "5debddcf5fc3683918ae71a6",
@@ -29,10 +30,16 @@ export class CommentpageComponent implements OnInit {
     front: "naslovna123.png"
   };
 
+  restaurantId;
+
   ngOnInit() {
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/commentSuport.js`;
     this.renderer.appendChild(document.head, script);
+
+    this.route.paramMap.subscribe(params => {
+        this.restaurantId = params.get("id");
+    });
   }
 
 

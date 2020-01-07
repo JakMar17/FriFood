@@ -47,7 +47,7 @@
 
 <div class="container">
   <div class="row mt-4 justify-content-end mt-2 ">
-    <a class="btn btn-primary btn-lg" routerLink="/commentPage/{{restaurant._id}}" role="button">Glej komentarje</a>
+    <a class="btn btn-primary btn-lg" [routerLink]="['/commentPage',restaurant._id]" role="button">Glej komentarje</a>
   </div>
 </div>
 

@@ -37,7 +37,7 @@ import {FormsModule} from "@angular/forms";
         component: RegisterComponent
       },
       {
-        path: 'commentPage',
+        path: 'commentPage/:id',
         component: CommentpageComponent
       },
       {
