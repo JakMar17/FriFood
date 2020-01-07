@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit {
     time: "123123:57656",
     name: "name",
     surname: "asddas",
+    modal: "exampleModalLabel",
 
     front: "naslovna123.png"
   }]
