@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CommentpageComponent } from './commentpage/commentpage.component';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 import { CommentComponent } from './commentpage/comment/comment.component';
+import { UserProfileComponent } from "./userProfile/userProfile.component";
 import {FormsModule} from "@angular/forms";
 
 
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     LoginComponent,
     CommentpageComponent,
     RestaurantviewComponent,
-    CommentComponent
+    CommentComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,10 @@ import {FormsModule} from "@angular/forms";
       {
         path: '',
         component: FrontpageComponent
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent
       }
     ]),
     FormsModule
