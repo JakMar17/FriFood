@@ -65,6 +65,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  getUserById(userID: string): Promise<User> {
+    const url: string = `${environment.apiUrl}/user/${userID}`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(odgovor => odgovor as User)
+      .catch(this.obdelajNapako);
+  }
+
   getCommentsByRestaurantId(restaurantIdANDPage: any): Promise<unknown> {
     const url: string = `${environment.apiUrl}/commentsByRestaurantIdPerPage/${restaurantIdANDPage.restaurantId}/${restaurantIdANDPage.pageNumber}`;
     console.log(url);

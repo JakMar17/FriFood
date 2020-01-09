@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 // @ts-ignore
 import { Comment } from "../../../classes/Comment";
 import { FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
+import {User} from "../../../classes/User";
 
 @Component({
   selector: 'app-comment',
@@ -77,5 +78,6 @@ export class CommentComponent implements OnInit {
   @Input() komentar: Comment;
 
   ngOnInit() {
+
   }
 }

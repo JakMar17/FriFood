@@ -18,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { GetDateFromDBFormatPipe } from './pipes/change-date.pipe';
 import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
 import {FrifoodPodatkiService} from "../../frifood-podatki.service";
+import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {FrifoodPodatkiService} from "../../frifood-podatki.service";
     CommentComponent,
     GetDateFromDBFormatPipe,
     GetTimeFromDBFormatPipe,
+    ZvezdiceComponent,
   ],
 
   imports: [

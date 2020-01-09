@@ -20,7 +20,7 @@ export class CommentpageComponent implements OnInit {
   pageSize = 10;
   numberOfComments = 0;
 
-  users: User[];
+  users: User[] = [];
 
   restavracija: Restaurant;
 
@@ -78,21 +78,6 @@ export class CommentpageComponent implements OnInit {
     /*let x: User[];
     x = this.inicializirajUporabnike();
     console.log("XXXXX->",x[0]._id);*/
-    this.FrifoodPodatkiService.getUporabniki().then(
-       (data) => {
-        console.log(data[0]);
-
-        data.forEach( x => {
-          console.log(x.name);
-        });
-
-        this.users = data;
-        console.log(this.users[0].name)
-      }
-    );
-
-
-
 
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/commentSuport.js`;
@@ -120,7 +105,22 @@ export class CommentpageComponent implements OnInit {
           (data) => {
             this.komentarji = data[0] as Comment[];
             this.numberOfComments =  data[1];
-            console.log(this.numberOfComments);
+
+            console.log("podatki komentarjev->",this.komentarji);
+
+            this.komentarji.forEach( komentar => {
+
+              this.FrifoodPodatkiService.getUserById(komentar.author._id).then(
+                (data) => {
+                  komentar.name = data.name;
+                  komentar.surname =  data.surname;
+
+                  this.users.push(data);
+
+                  console.log("user->",data);
+                }
+              );
+            });
           }
         );
     });
