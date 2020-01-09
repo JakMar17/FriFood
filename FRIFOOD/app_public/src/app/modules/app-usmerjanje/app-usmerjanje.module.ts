@@ -23,7 +23,7 @@ const poti: Routes = [
     component: CommentpageComponent
   },
   {
-    path: 'restaurantView',
+    path: 'restaurantView/:id',
     component: RestaurantviewComponent
   },
   {

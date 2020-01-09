@@ -17,6 +17,7 @@ import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
 import { GetDateFromDBFormatPipe } from './pipes/change-date.pipe';
 import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
+import {FrifoodPodatkiService} from "../../frifood-podatki.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
     RestaurantviewComponent,
     CommentComponent,
     GetDateFromDBFormatPipe,
-    GetTimeFromDBFormatPipe
+    GetTimeFromDBFormatPipe,
   ],
 
   imports: [

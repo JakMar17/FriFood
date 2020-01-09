@@ -1,6 +1,6 @@
 <div class="container mb-5" >
 
-  <p>{{restaurantId}}</p>
+  <p>{{restaurantPathID}}</p>
 
   <div class="card mt-5">
     <div class="row">
@@ -42,8 +42,8 @@
               </div>
               <div class="modal-body">
                 <form id="myform1">
-                  <input type="hidden" id = "author" value="{{user._id}}" name="author">
-                  <input type="hidden" id = "restaurant" value="{{restaurant._id}}" name="restaurant">
+                  <input *ngIf="users && users.length > 0" type="hidden" id = "author" value="{{users[0]._id}}" name="author">
+                  <input type="hidden" id = "restaurant" value="{{restaurantPathID}}" name="restaurant">
                   <div class="form-group">
                     <h6>Oceni restavracijo:</h6>
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="star5">5 <span class="fa fa-star draw-star"></span></label>
