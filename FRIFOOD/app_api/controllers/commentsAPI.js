@@ -96,9 +96,13 @@ const getCommentById = (req, res) => {
     })
 };
 
-const getCommentsByRestaurantId = (req, res) => {
+const getCommentsByRestaurantIdPerPage = (req, res) => {
     var restaurantID = req.params.id;
-    Comments.find({restaurant: restaurantID})
+    var page = req.params.pageNumber;
+
+    console.log(page);
+
+    Comments.find({restaurant: restaurantID}, null, { skip: page*10 }).limit(10)
         .populate('author')
         .exec(
             (error, comments) => {
@@ -109,7 +113,29 @@ const getCommentsByRestaurantId = (req, res) => {
                 } else if (error) {
                     return res.status(500).json(error);
                 } else
-                    res.status(200).json(comments);
+                {
+                    Comments.find({restaurant: restaurantID}).populate('author').countDocuments((err, count) => {
+
+                        // Get count, but cannot get results of find
+
+                        if(!count)
+                            return res.status(404).json({
+                                "error": "Comments not found"
+                            });
+                        else if(err)
+                            return res.status(500).json(err);
+                        else
+                        {
+                            var arr=[];
+
+                            arr.push(comments);
+                            arr.push(count);
+
+                            return res.status(200).json(arr);
+                        }
+                    });
+                }
+
             }
         );
 };
@@ -181,7 +207,7 @@ module.exports = {
     readComments,
     deleteComment,
     getCommentById,
-    getCommentsByRestaurantId,
+    getCommentsByRestaurantIdPerPage,
     getCommentsByUser,
     updateRestaurantRating
 };

@@ -65,13 +65,13 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
-  getCommentsByRestaurantId(restaurantId: string): Promise<Comment[]> {
-    const url: string = `${environment.apiUrl}/commentsByRestaurantId/${restaurantId}`;
+  getCommentsByRestaurantId(restaurantIdANDPage: any): Promise<unknown> {
+    const url: string = `${environment.apiUrl}/commentsByRestaurantIdPerPage/${restaurantIdANDPage.restaurantId}/${restaurantIdANDPage.pageNumber}`;
     console.log(url);
     return this.http
-      .get(url)
+      .get(url, restaurantIdANDPage)
       .toPromise()
-      .then(odgovor => odgovor as Comment[])
+      .then(odgovor => odgovor as unknown)
       .catch(this.obdelajNapako);
   }
 

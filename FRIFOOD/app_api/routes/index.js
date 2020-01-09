@@ -19,7 +19,7 @@ router.post('/comments/delete', ctrlComments.deleteComment);
 router.get('/comment/:id', ctrlComments.getCommentById);
 router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
 
-router.get('/commentsByRestaurantId/:id', ctrlComments.getCommentsByRestaurantId);
+router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCommentsByRestaurantIdPerPage);
 router.get('/updateRestaurantRating/:id', ctrlComments.updateRestaurantRating);
 
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);

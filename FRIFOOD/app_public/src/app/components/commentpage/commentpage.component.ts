@@ -1,9 +1,11 @@
 import {Component, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {User} from "../../classes/User";
 import {Restaurant} from "../../classes/Restaurant";
 import {Comment} from "../../classes/Comment";
+
+
 
 @Component({
   selector: 'app-commentpage',
@@ -12,7 +14,11 @@ import {Comment} from "../../classes/Comment";
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private FrifoodPodatkiService: FrifoodPodatkiService) { }
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private FrifoodPodatkiService: FrifoodPodatkiService,private router: Router) { }
+
+  page;
+  pageSize = 10;
+  numberOfComments = 0;
 
   users: User[];
 
@@ -53,6 +59,15 @@ export class CommentpageComponent implements OnInit {
 
   }
 
+  loadNewPage(page: number)
+  {
+
+    let oldRoute:string = this.route.snapshot['_routerState'].url;
+    let newRoute:string = oldRoute.substring(0, oldRoute.lastIndexOf('/')+1);
+
+    this.router.navigate([newRoute.concat(page.toString())]);
+  }
+
   ngOnInit() {
 
     /*let x: User[];
@@ -80,6 +95,7 @@ export class CommentpageComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
         this.restaurantPathID = params.get("id");
+        this.page = params.get("page");
 
         this.FrifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
           (data) => {
@@ -90,10 +106,16 @@ export class CommentpageComponent implements OnInit {
           }
         );
 
-        this.FrifoodPodatkiService.getCommentsByRestaurantId(this.restaurantPathID).then(
+        let komentarjiPerPage = {
+          restaurantId: this.restaurantPathID,
+          pageNumber: this.page-1
+        };
+
+        this.FrifoodPodatkiService.getCommentsByRestaurantId(komentarjiPerPage).then(
           (data) => {
-            this.komentarji = data;
-            console.log(this.komentarji);
+            this.komentarji = data[0] as Comment[];
+            this.numberOfComments =  data[1];
+            console.log(this.numberOfComments);
           }
         );
     });

@@ -14,7 +14,9 @@
 
         <div *ngIf="komentarji && komentarji.length > 0" >
 
-          <app-comment *ngFor="let komentar of komentarji; index as i" [komentar]="komentar"></app-comment>
+
+
+            <app-comment *ngFor="let komentar of komentarji" [komentar]="komentar"></app-comment>
 
         </div>
 
@@ -77,6 +79,21 @@
       </div>
     </div>
   </div>
+  <div class="container" *ngIf="komentarji && numberOfComments > 10">
+    <div class="row mt-4 justify-content-md-center" >
+
+      <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="numberOfComments"
+        [directionLinks]="false" (pageChange)="loadNewPage($event)"
+      >
+      </ngb-pagination>
+
+    </div>
+
+  </div>
+
 </div>
 
 

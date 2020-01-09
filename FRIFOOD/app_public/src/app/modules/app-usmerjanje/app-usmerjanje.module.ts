@@ -19,7 +19,7 @@ const poti: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'commentPage/:id',
+    path: 'commentPage/:id/:page',
     component: CommentpageComponent
   },
   {
