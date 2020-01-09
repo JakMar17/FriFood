@@ -46,7 +46,7 @@ export class CommentpageComponent implements OnInit {
         let novKomentar: Comment;
 
         this.komentarji.push(komentar);
-      })
+      });
     } else {
       this.obrazecNapaka = "Zahtevani so vsi podatki, prosim poskusite ponovno!";
     }

@@ -14,6 +14,27 @@ export class FrifoodPodatkiService {
 
   private apiUrl = 'http://localhost:3000/api';
 
+
+  public updateComment(podatkiObrazca: any): Promise<Comment> {
+    const url: string = `${this.apiUrl}/comments/update`;
+    return this.http
+      .post(url, podatkiObrazca)
+      .toPromise()
+      .then(odgovor => odgovor as Comment)
+      .catch(this.obdelajNapako);
+  }
+
+
+
+  public deleteComment(podatkiObrazca: any): Promise<Comment> {
+    const url: string = `${this.apiUrl}/comments/delete`;
+    return this.http
+      .post(url, podatkiObrazca)
+      .toPromise()
+      .then(odgovor => odgovor as Comment)
+      .catch(this.obdelajNapako);
+  }
+
   public dodajKomentar(podatkiObrazca: any): Promise<Comment> {
     const url: string = `${this.apiUrl}/comments`;
     return this.http
