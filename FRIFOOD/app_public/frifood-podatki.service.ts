@@ -1,5 +1,10 @@
-import {HttpClient} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from "./src/app/classes/User";
+import {Injectable} from "@angular/core";
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class FrifoodPodatkiService {
 
@@ -7,9 +12,12 @@ export class FrifoodPodatkiService {
 
   private apiUrl = "http://localhost:3000/api"
 
-  public getUser(userId: number): Promise<User> {
+  //tukaj se doda parameter userId, ko bo seja zrihtana
+  public getUser(): Promise<User> {
     const mail: string = "janez.novak@fri.uni-lj.si";
     const url: string = '${this.apiUrl}/uporabniki/${mail}';
+
+    console.log("tukaj?")
 
     return this.http
       .get(url)
