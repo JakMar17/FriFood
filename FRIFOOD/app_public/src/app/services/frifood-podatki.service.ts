@@ -65,6 +65,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  dodajuporabnika(user: User): Promise<User> {
+    const url: string = `${environment.apiUrl}/uporabniki`;
+    console.log(url);
+    return this.http
+      .post(url, user)
+      .toPromise()
+      .then(odgovor => odgovor as User)
+      .catch(this.obdelajNapako);
+  }
+
   getUserById(userID: string): Promise<User> {
     const url: string = `${environment.apiUrl}/user/${userID}`;
     console.log(url);
