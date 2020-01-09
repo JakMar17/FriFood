@@ -15,6 +15,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModalBackdrop} from "@ng-bootstrap/ng-bootstrap/modal/modal-backdrop";
 import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
+import { GetDateFromDBFormatPipe } from './pipes/change-date.pipe';
+import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {HttpClientModule} from "@angular/common/http";
     LoginComponent,
     CommentpageComponent,
     RestaurantviewComponent,
-    CommentComponent
+    CommentComponent,
+    GetDateFromDBFormatPipe,
+    GetTimeFromDBFormatPipe
   ],
 
   imports: [
