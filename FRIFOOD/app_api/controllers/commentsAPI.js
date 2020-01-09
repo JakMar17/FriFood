@@ -24,7 +24,7 @@ const createComment = (req, res) => {
             res.status(200);
     });
 
-    res.redirect("/commentPage/" + comments.restaurant._id);
+    res.status(200).json(comments);
 
 };
 
@@ -39,9 +39,9 @@ const updateComment = (req, res) => {
             }
     }, function(err, result) {
         if (err)
-            console.log(err);
+            res.status(404).json(result);
         else {
-            res.redirect(req.body.returnADR.toString());
+            res.status(200).json(result);
         }
     });
 };
@@ -73,10 +73,12 @@ const deleteComment = (req, res) => {
     var id = req.body.komentarID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
+    console.log("id za itbris -> ",id);
+
     Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
-                if (error) return console.log(error);
-                else res.redirect(req.body.returnADR.toString());
+                if (error) res.status(404).json(result);
+                else res.status(200).json(result);
             }
     );
 };
