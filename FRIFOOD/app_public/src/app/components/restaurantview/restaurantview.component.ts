@@ -13,10 +13,6 @@ import {KeyValue} from "@angular/common";
 })
 export class RestaurantviewComponent implements OnInit {
 
-  daysOfWork = {
-    week: ["PON", "TOR", "SRE", "ČET", "PET", "SOB", "NED"]
-  };
-
   restavracija: Restaurant;
 
   restaurantPathID: string;

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../classes/User';
 import {Restaurant} from "../classes/Restaurant";
+import {Comment} from "../classes/Comment";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class FrifoodPodatkiService {
       .get(url)
       .toPromise()
       .then(odgovor => odgovor as Restaurant[])
+      .catch(this.obdelajNapako);
+  }
+
+  getCommentsByRestaurantId(restaurantId: string): Promise<Comment[]> {
+    const url: string = `${this.apiUrl}/commentsByRestaurantId/${restaurantId}`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(odgovor => odgovor as Comment[])
       .catch(this.obdelajNapako);
   }
 

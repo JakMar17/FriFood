@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -36,25 +36,7 @@ export class CommentComponent implements OnInit {
   }
 
 
-    komentarji: Comment[] = [{
-        _id: "5debddcf5fc3683918ae71a9",
-        restaurant: "5debddcf5fc3683918ae71a6",
-        comment: "Včasih meh, vedno pa super zaposleni!",
-        author: "5debddcf5fc3683918ae71a5",
-        date: "2019-12-07T17:13:51.533+00:00",
-        name: "name",
-        surname: "asddas",
-      },
-      {
-        _id: "5debddcf5fc36asdas83918ae71a9",
-        restaurant: "5debddcf5fc3683918ae71a6",
-        comment: "asdasdadsasd",
-        author: "5debddcf5fc3683918ae71a5",
-        date: "2019-12-07T17:13:51.533+00:00",
-        name: "name",
-        surname: "asddas",
-
-      }];
+  @Input() komentarji: Comment[];
 
   ngOnInit() {
   }

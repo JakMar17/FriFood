@@ -2,6 +2,8 @@ import {Component, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {User} from "../../classes/User";
+import {Restaurant} from "../../classes/Restaurant";
+import {Comment} from "../../classes/Comment";
 
 @Component({
   selector: 'app-commentpage',
@@ -14,15 +16,9 @@ export class CommentpageComponent implements OnInit {
 
   users: User[];
 
-  restaurant = {
-    _id: "5debddcf5fc3683918ae71a6",
-    name: "Restavracija 123",
-    description: "dodaj opis restavracije",
-    timeTable: [ "7h - 15h", "7h - 15h", "7h - 15h", "7h - 15h", "7h - 15h" ],
-    idKomentarjev: "idZaKomentarje",
+  restavracija: Restaurant;
 
-    front: "naslovna123.png"
-  };
+  komentarji: Comment[];
 
   restaurantPathID;
 
@@ -45,12 +41,30 @@ export class CommentpageComponent implements OnInit {
     );
 
 
+
+
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/commentSuport.js`;
     this.renderer.appendChild(document.head, script);
 
     this.route.paramMap.subscribe(params => {
         this.restaurantPathID = params.get("id");
+
+        this.FrifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
+          (data) => {
+            console.log(data.timeTable);
+
+            this.restavracija = data;
+            console.log(this.restavracija.front)
+          }
+        );
+
+        this.FrifoodPodatkiService.getCommentsByRestaurantId(this.restaurantPathID).then(
+          (data) => {
+            this.komentarji = data;
+            console.log(this.komentarji);
+          }
+        );
     });
   }
 

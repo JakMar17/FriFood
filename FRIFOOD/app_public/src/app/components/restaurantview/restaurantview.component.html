@@ -3,12 +3,12 @@
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <img class="img-fluid rs-image" src="./assets/{{restavracija.front}}" alt="Naslovna slika" style="width: 100vw">
+      <img class="img-fluid rs-image" *ngIf="restavracija != undefined" src="./assets/{{restavracija.front}}" alt="Naslovna slika" style="width: 100vw">
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="restavracija != undefined">
   <!-- Example row of columns -->
   <div class="row">
     <div>
@@ -26,7 +26,7 @@
     </div>
     <div class="row mt-4">
 
-      <table class="table">
+      <table class="table" *ngIf="restavracija != undefined && restavracija.timeTable.monday.length > 0">
           <tr>
             <td *ngFor="let dan of restavracija.timeTable | keyvalue: originalOrder">{{dan.key}}</td>
           </tr>
