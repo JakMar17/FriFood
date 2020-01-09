@@ -8,12 +8,12 @@ const Comments = mongoose.model('comments');
 const dodajRestavracijo = (req, res) => {
     let student = req.body.student;
 
-    console.log(req.body.monday);
+    //console.log(req.body);
 
-    if (!req.body.icon || Object.keys(req.body.icon).length === 0 || !req.body.front || Object.keys(req.body.front).length === 0) {
+    /*if (!req.body.icon || Object.keys(req.body.icon).length === 0 || !req.body.front || Object.keys(req.body.front).length === 0) {
         console.log("Oh snap, no files were uploaded.");
         return res.status(400).send('No files were uploaded.');
-    }
+    }*/
 
     let monday = req.body.monday;
     let tuesday = req.body.tuesday;
@@ -22,11 +22,11 @@ const dodajRestavracijo = (req, res) => {
     let friday = req.body.friday;
     let saturday = req.body.saturday;
     let sunday = req.body.sunday;
-
+    console.log("timeTable");
     let commentSection = new Comments([]);
     let restaurant = new Restaurant({
-        name: req.body.name.toString(),
-        address: req.body.address.toString(),
+        name: req.body.name,
+        address: req.body.address,
         rating: 0,
         mealPrice: req.body.mealPrice,
         student: student,
@@ -45,9 +45,32 @@ const dodajRestavracijo = (req, res) => {
         icon: '',
         front: '',
     });
+    console.log("objekt");
+    console.log(restaurant._id);
+    console.log("C:/Users/Žiga/Desktop/asciiLetters.bmp");
+
+    restaurant.save((err, rez) => {
+        if (err) console.log(err);
+        else {
+            console.log(rez);
+            return res.status(200).json(rez);
+        }
+    });
+
+    //console.log(req.body.front);
+    //restaurant.img.contentType = 'image/png';
+
+
+    /*restaurant.img.data = fs.readFile(imgPath, (err, rez) => {
+
+
+
+    });*/
+
+
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let naslovna_slika = req.body.front;
+    /*let naslovna_slika = req.body.front;
     let ns_t = req.body.front.name.split('.');
     let naslovnaPath = "./public/restaurant-images/" + restaurant._id + '-ns.' + ns_t[ns_t.length - 1];
     // Use the mv() method to place the file somewhere on your server
@@ -80,11 +103,12 @@ const dodajRestavracijo = (req, res) => {
 
     // save model to database
     restaurant.save().exec((error, restaurant) => {
-        if (error)
+        if (error) {
+            console.log(error);
             return res.status(500).json(error);
-        else
+        }else
             res.status(200).json(restaurant);
-    })
+    })*/
 };
 
 const readRestaurants = (req, res) => {

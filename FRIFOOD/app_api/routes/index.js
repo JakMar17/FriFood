@@ -6,6 +6,12 @@ var ctrlComments = require('../controllers/commentsAPI');
 var ctrlDatabase = require('../controllers/databaseAPI');
 var ctrlAnalytics = require('../controllers/analyticsAPI');
 
+
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart({
+    uploadDir: './uploads'
+});
+
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 router.post('/uporabniki', ctrlUporabniki.narediUporabnika);
@@ -36,5 +42,7 @@ router.get('/search', ctrlRestavracija.getRestaurantBySearch);
 
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
 router.post('/analytics', ctrlAnalytics.updateAnalyticsByName);
+
+router.post('/upload',multipartMiddleware, ctrlDatabase.uploadFile);
 
 module.exports = router;

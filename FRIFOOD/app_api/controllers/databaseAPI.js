@@ -148,7 +148,17 @@ const fillDatabase = (req, res) => {
 
 };
 
+function uploadFile(req,res)
+{
+    console.log(req.body, req.files);
+    res.json({
+        'message': 'File uploaded successfully'
+    });
+
+}
+
 module.exports = {
     dropDatabase,
-    fillDatabase
+    fillDatabase,
+    uploadFile
 };

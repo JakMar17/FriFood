@@ -1,7 +1,10 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {Analytics} from "../../classes/Analytics";
-
+import { HttpClient } from '@angular/common/http';
+import {Restaurant} from "../../classes/Restaurant";
+import {FileUploader, FileUploadModule} from 'ng2-file-upload';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-restaurantadd',
   templateUrl: './restaurantadd.component.html',
@@ -11,11 +14,40 @@ export class RestaurantaddComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService) { }
 
+  @ViewChild('file', null) file
+  public files: Set<File> = new Set()
+
+  onFilesAdded() {
+    const files: { [key: string]: File } = this.file.nativeElement.files;
+    for (let key in files) {
+      if (!isNaN(parseInt(key))) {
+        this.files.add(files[key]);
+      }
+    }
+    this.frifoodPodatkiService.upload(this.files);
+  }
+  uploadedFiles: Array < File > ;
+  fileChange(element) {
+    this.uploadedFiles = element.target.files;
+  }
+
+  upload() {
+
+
+
+    let formData = new FormData();
+    for (var i = 0; i < this.uploadedFiles.length; i++) {
+      formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+    }
+
+    this.frifoodPodatkiService.upload(formData);
+
+  }
+
   public restaurantForm = {
     name: '',
     description: '',
     address: '',
-    date: '',
     rating: 0,
     mealPrice: 0,
     student: false,
@@ -35,8 +67,9 @@ export class RestaurantaddComponent implements OnInit {
   };
 
   public formError = '';
+  public uploader:FileUploader = new FileUploader({url: environment.apiUrl});
 
-  public addNewRestaurant(): void {
+  public dodajRestavracijo(): void {
     this.restaurantForm.name = (<HTMLInputElement>document.getElementById("inputRestaurantName")).value;
     this.restaurantForm.description = (<HTMLInputElement>document.getElementById("inputRestaurantDescription")).value;
     this.restaurantForm.address = (<HTMLInputElement>document.getElementById("inputRestaurantAddress")).value;
@@ -96,7 +129,7 @@ export class RestaurantaddComponent implements OnInit {
     this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
     this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
 
-    this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm).then(restaurant => {
+    this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm as Restaurant).then(restaurant => {
       console.log("Restavracija dodana", restaurant)
     });
 
@@ -104,14 +137,26 @@ export class RestaurantaddComponent implements OnInit {
 
   onFileSelectIcon(event) {
     if (event.target.files.length > 0) {
-      this.restaurantForm.icon = event.target.files[0];
+
+      console.log(event.target.files[0].name);
+
+      this.restaurantForm.icon = event.target.files[0].name;
       let image = (<HTMLInputElement>document.getElementById("output2"));
       image.src = URL.createObjectURL(event.target.files[0]);
     }
   }
 
   onFileSelectFront(event) {
-    if (event.target.files.length > 0) {
+
+    console.log(event);
+
+    if (event.type ) {
+      let file = event.target.files[0];
+      let fileReader = new FileReader();
+
+      console.log(fileReader.readAsText(file));
+
+      console.log(event.target.files[0]);
       this.restaurantForm.front = event.target.files[0];
       let image = (<HTMLInputElement>document.getElementById("output"));
       image.src = URL.createObjectURL(event.target.files[0]);

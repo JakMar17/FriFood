@@ -20,6 +20,7 @@ import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
 import {FrifoodPodatkiService} from "../../frifood-podatki.service";
 import { RestaurantaddComponent } from './components/restaurantadd/restaurantadd.component';
 import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
+import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
 
 @NgModule({
@@ -46,7 +47,8 @@ import { RestaurantlistComponent } from './components/restaurantlist/restaurantl
     ReactiveFormsModule,
     AppUsmerjanjeModule,
     NgbModule,
-    NgbModalModule
+    NgbModalModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]
