@@ -17,6 +17,7 @@ export class RestaurantviewComponent implements OnInit {
 
   restaurantPathID: string;
 
+
   constructor(private FrifoodPodatkiService: FrifoodPodatkiService, private route: ActivatedRoute) { }
 
   ngOnInit() {

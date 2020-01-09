@@ -22,6 +22,37 @@ export class CommentpageComponent implements OnInit {
 
   restaurantPathID;
 
+  public formaPodatkiKomentar = {
+    restaurant: '',
+    author: '',
+    newCommentText: '',
+    rating: 5
+  };
+  public modalNewCommentShowing: boolean = false;
+  public obrazecNapaka: string;
+
+  public dodajNovKomentar(): void {
+
+    this.formaPodatkiKomentar.restaurant = this.restaurantPathID;
+    this.formaPodatkiKomentar.author = this.users[0]._id;
+    this.formaPodatkiKomentar.newCommentText = (<HTMLInputElement>document.getElementById("newCommentText")).value;
+
+    this.obrazecNapaka = "";
+    if (this.formaPodatkiKomentar.rating > 0 && this.formaPodatkiKomentar.newCommentText.length > 0) {
+      this.FrifoodPodatkiService.dodajKomentar(this.formaPodatkiKomentar).then(komentar => {
+
+        console.log("Komentar shranjen", komentar);
+
+        let novKomentar: Comment;
+
+        this.komentarji.push(komentar);
+      })
+    } else {
+      this.obrazecNapaka = "Zahtevani so vsi podatki, prosim poskusite ponovno!";
+    }
+
+  }
+
   ngOnInit() {
 
     /*let x: User[];

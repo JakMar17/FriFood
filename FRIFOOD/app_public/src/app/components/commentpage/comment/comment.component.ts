@@ -1,11 +1,14 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+// @ts-ignore
+import { Comment } from "../../../classes/Comment";
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
+
 export class CommentComponent implements OnInit {
 
   closeResult: string;
@@ -36,19 +39,9 @@ export class CommentComponent implements OnInit {
   }
 
 
-  @Input() komentarji: Comment[];
+  @Input() komentar: Comment;
 
   ngOnInit() {
   }
 
-}
-
-export class Comment {
-  _id: string;
-  restaurant: string;
-  comment: string;
-  author: string;
-  date: string;
-  name: string;
-  surname: string;
 }

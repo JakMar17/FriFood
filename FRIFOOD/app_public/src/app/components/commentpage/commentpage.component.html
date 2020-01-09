@@ -12,8 +12,12 @@
         </div>
 
 
+        <div *ngIf="komentarji && komentarji.length > 0" >
 
-        <app-comment *ngIf="komentarji && komentarji.length > 0" [komentarji]="komentarji"></app-comment>
+          <app-comment *ngFor="let komentar of komentarji; index as i" [komentar]="komentar"></app-comment>
+
+        </div>
+
 
 
 
@@ -29,6 +33,7 @@
           </div>
         </div>
 
+
         <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -39,22 +44,31 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form id="myform1">
-                  <input *ngIf="users && users.length > 0" type="hidden" id = "author" value="{{users[0]._id}}" name="author">
-                  <input type="hidden" id = "restaurant" value="{{restaurantPathID}}" name="restaurant">
+
+                <div *ngIf="obrazecNapaka" class="alert alert-danger" role="alert">
+                  {{ obrazecNapaka }}
+                </div>
+
+                <form (ngSubmit)="dodajNovKomentar()" [attr.id]="'myform1'">
+                  <input *ngIf="users && users.length > 0" type="hidden" id = "author" [ngModel]="formaPodatkiKomentar.author" value="{{users[0]._id}}" name="author">
+                  <input type="hidden" id = "restaurant" [ngModel]="formaPodatkiKomentar.restaurant" value="{{restaurantPathID}}" name="restaurant">
                   <div class="form-group">
                     <h6>Oceni restavracijo:</h6>
-                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="star5">5 <span class="fa fa-star draw-star"></span></label>
-                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="star4">4 <span class="fa fa-star draw-star"></span></label>
-                    <input type="radio" id="star3" name="rating" value="3" checked/><label for="star3" title="star3">3 <span class="fa fa-star draw-star"></span></label>
-                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="star2">2 <span class="fa fa-star draw-star"></span></label>
-                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="star1">1 <span class="fa fa-star draw-star"></span></label>
-                    <textarea class="form-control" name="newCommentText" required="required" id="newCommentText" placeholder="Piši sem !" autofocus></textarea>
+
+                    <select [(ngModel)]="formaPodatkiKomentar.rating" id="ocena" name="ocena" class="form-control form-control-sm mb-3">
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="4">4</option>
+                      <option [ngValue]="3">3</option>
+                      <option [ngValue]="2">2</option>
+                      <option [ngValue]="1">1</option>
+                    </select>
+
+                    <textarea [ngModel]="formaPodatkiKomentar.newCommentText" class="form-control" id="newCommentText" name="newCommentText" required="required" placeholder="Piši sem !"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" formmethod="post" formaction="/api/comments" form="myform1">Objavi</button>
+                <button [attr.type]="'submit'" class="btn btn-primary" [attr.form]="'myform1'">Objavi</button>
               </div>
             </div>
           </div>
