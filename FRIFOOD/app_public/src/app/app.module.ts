@@ -11,6 +11,8 @@ import { CommentpageComponent } from './commentpage/commentpage.component';
 import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
 import { CommentComponent } from './commentpage/comment/comment.component';
 import {FormsModule} from "@angular/forms";
+import {NgbModalBackdrop} from "@ng-bootstrap/ng-bootstrap/modal/modal-backdrop";
+import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -24,8 +26,11 @@ import {FormsModule} from "@angular/forms";
     RestaurantviewComponent,
     CommentComponent
   ],
+
   imports: [
     BrowserModule,
+    NgbModule,
+    NgbModalModule,
     RouterModule.forRoot([
       {
         path: 'login',
