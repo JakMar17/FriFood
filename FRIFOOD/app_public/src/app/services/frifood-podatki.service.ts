@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../classes/User';
 import {Restaurant} from "../classes/Restaurant";
 import {Comment} from "../classes/Comment";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class FrifoodPodatkiService {
 
 
   public updateComment(podatkiObrazca: any): Promise<Comment> {
-    const url: string = `${this.apiUrl}/comments/update`;
+    const url: string = `${environment.apiUrl}/comments/update`;
     return this.http
       .post(url, podatkiObrazca)
       .toPromise()
@@ -27,7 +28,7 @@ export class FrifoodPodatkiService {
 
 
   public deleteComment(podatkiObrazca: any): Promise<Comment> {
-    const url: string = `${this.apiUrl}/comments/delete`;
+    const url: string = `${environment.apiUrl}/comments/delete`;
     return this.http
       .post(url, podatkiObrazca)
       .toPromise()
@@ -36,7 +37,7 @@ export class FrifoodPodatkiService {
   }
 
   public dodajKomentar(podatkiObrazca: any): Promise<Comment> {
-    const url: string = `${this.apiUrl}/comments`;
+    const url: string = `${environment.apiUrl}/comments`;
     return this.http
       .post(url, podatkiObrazca)
       .toPromise()
@@ -45,7 +46,7 @@ export class FrifoodPodatkiService {
   }
 
   getUporabniki(): Promise<User[]> {
-    const url: string = `${this.apiUrl}/users`;
+    const url: string = `${environment.apiUrl}/users`;
     console.log(url);
     return this.http
       .get(url)
@@ -55,7 +56,7 @@ export class FrifoodPodatkiService {
   }
 
   getRestaurantById(restaurantId: string): Promise<Restaurant> {
-    const url: string = `${this.apiUrl}/restaurants/${restaurantId}`;
+    const url: string = `${environment.apiUrl}/restaurants/${restaurantId}`;
     console.log(url);
     return this.http
       .get(url)
@@ -65,7 +66,7 @@ export class FrifoodPodatkiService {
   }
 
   getCommentsByRestaurantId(restaurantId: string): Promise<Comment[]> {
-    const url: string = `${this.apiUrl}/commentsByRestaurantId/${restaurantId}`;
+    const url: string = `${environment.apiUrl}/commentsByRestaurantId/${restaurantId}`;
     console.log(url);
     return this.http
       .get(url)
