@@ -51,7 +51,12 @@ export class CommentpageComponent implements OnInit {
 
         let novKomentar: Comment;
 
-        this.komentarji.push(komentar);
+        if(this.komentarji.length < 10)
+          this.komentarji.push(komentar);
+
+        this.numberOfComments++;
+
+
       });
     } else {
       this.obrazecNapaka = "Zahtevani so vsi podatki, prosim poskusite ponovno!";

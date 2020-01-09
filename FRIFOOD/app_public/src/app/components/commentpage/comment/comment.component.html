@@ -47,6 +47,13 @@
       </button>
     </div>
     <div class="modal-body">
+
+
+      <div *ngIf="obrazecNapaka" class="alert alert-danger" role="alert">
+        {{ obrazecNapaka }}
+      </div>
+
+
       <form method="POST" [attr.id]="'modalKomentarForma'+komentar._id" action="/api/comments/update">
         <div class="form-group">
           <textarea class="form-control" ngbAutofocus  name="newCommentText" required="required" [attr.id]="komentar._id+'textKometarja'" placeholder="Piši sem !" [autofocus]>{{komentar.comment}}</textarea>
@@ -54,7 +61,7 @@
 
       </form>
       <div class="modal-footer">
-        <button type="submit" [attr.form]="'modalKomentarForma'+komentar._id" class="btn btn-primary" (click)="modal.close(updateComment())">Spremeni</button>
+        <button type="submit" [attr.form]="'modalKomentarForma'+komentar._id" class="btn btn-primary" (click)="updateComment()">Spremeni</button>
       </div>
 
     </div>

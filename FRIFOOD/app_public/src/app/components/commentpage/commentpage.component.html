@@ -12,11 +12,15 @@
         </div>
 
 
+         <div *ngIf="komentarji == undefined" class="alert alert-danger" role="alert">
+           <p> Loading Comments :) </p>
+        </div>
+
+
+
         <div *ngIf="komentarji && komentarji.length > 0" >
 
-
-
-            <app-comment *ngFor="let komentar of komentarji" [komentar]="komentar"></app-comment>
+          <app-comment *ngFor="let komentar of komentarji" [komentar]="komentar"></app-comment>
 
         </div>
 
