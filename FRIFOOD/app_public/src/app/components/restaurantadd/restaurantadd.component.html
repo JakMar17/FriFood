@@ -10,6 +10,12 @@
 <!--  <title>Restaurant Add</title>-->
 <!--</head>-->
 <!--<body>-->
+
+
+
+<div *ngIf="formError" class="alert alert-danger" role="alert">
+  {{formError}}
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-sm-0"></div>

@@ -76,62 +76,92 @@ export class RestaurantaddComponent implements OnInit {
     this.restaurantForm.student = (<HTMLInputElement>document.getElementById("inputBoniYes")).checked;
     this.restaurantForm.studentPrice = +(<HTMLInputElement>document.getElementById("inputBoniCost")).value;
     this.restaurantForm.mealPrice = +(<HTMLInputElement>document.getElementById("inputMealCost")).value;
+    this.formError = "";
 
-    if ((<HTMLInputElement>document.getElementById("openMonday")).checked) {
-      this.restaurantForm.timeTable.monday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.monday = (<HTMLInputElement>document.getElementById("inputMondayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputMondayTo")).value
+    console.log(name);
+
+    if(this.restaurantForm.name == "" || this.restaurantForm.description=="" || this.restaurantForm.address == ""
+    || this.restaurantForm.studentPrice === 0 || this.restaurantForm.mealPrice === 0)
+      this.formError = "Polja ne smejo biti prazna";
+
+    else
+    {
+
+      if ((<HTMLInputElement>document.getElementById("openMonday")).checked) {
+        this.restaurantForm.timeTable.monday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputMondayFrom")).value){
+        this.restaurantForm.timeTable.monday = (<HTMLInputElement>document.getElementById("inputMondayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputMondayTo")).value
+      }
+      else
+        this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openTuesday")).checked) {
+        this.restaurantForm.timeTable.tuesday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputTuesdayFrom")).value){
+        this.restaurantForm.timeTable.tuesday = (<HTMLInputElement>document.getElementById("inputTuesdayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputTuesdayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openWednesday")).checked) {
+        this.restaurantForm.timeTable.wednesday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputWednesdayFrom")).value)
+      {
+        this.restaurantForm.timeTable.wednesday = (<HTMLInputElement>document.getElementById("inputWednesdayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputWednesdayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openThursday")).checked) {
+        this.restaurantForm.timeTable.thursday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputThursdayFrom")).value){
+        this.restaurantForm.timeTable.thursday = (<HTMLInputElement>document.getElementById("inputThursdayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputThursdayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openFriday")).checked) {
+        this.restaurantForm.timeTable.friday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputFridayFrom")).value){
+        this.restaurantForm.timeTable.friday = (<HTMLInputElement>document.getElementById("inputFridayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputFridayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openSaturday")).checked) {
+        this.restaurantForm.timeTable.saturday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputSaturdayFrom")).value){
+        this.restaurantForm.timeTable.saturday = (<HTMLInputElement>document.getElementById("inputSaturdayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputSaturdayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      if ((<HTMLInputElement>document.getElementById("openSunday")).checked) {
+        this.restaurantForm.timeTable.sunday = 'ZAPRTO';
+      } else if((<HTMLInputElement>document.getElementById("inputSundayFrom")).value)
+      {
+        this.restaurantForm.timeTable.sunday = (<HTMLInputElement>document.getElementById("inputSundayFrom")).value
+          + '-' + (<HTMLInputElement>document.getElementById("inputSundayTo")).value
+      }
+    else
+      this.formError = "prosim podajte cas"
+
+      this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
+      this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
+
+      if(this.formError == "")
+      this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm as Restaurant).then(restaurant => {
+        console.log("Restavracija dodana", restaurant)
+      });
+
     }
 
-    if ((<HTMLInputElement>document.getElementById("openTuesday")).checked) {
-      this.restaurantForm.timeTable.tuesday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.tuesday = (<HTMLInputElement>document.getElementById("inputTuesdayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputTuesdayTo")).value
-    }
-
-    if ((<HTMLInputElement>document.getElementById("openWednesday")).checked) {
-      this.restaurantForm.timeTable.wednesday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.wednesday = (<HTMLInputElement>document.getElementById("inputWednesdayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputWednesdayTo")).value
-    }
-
-    if ((<HTMLInputElement>document.getElementById("openThursday")).checked) {
-      this.restaurantForm.timeTable.thursday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.thursday = (<HTMLInputElement>document.getElementById("inputThursdayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputThursdayTo")).value
-    }
-
-    if ((<HTMLInputElement>document.getElementById("openFriday")).checked) {
-      this.restaurantForm.timeTable.friday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.friday = (<HTMLInputElement>document.getElementById("inputFridayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputFridayTo")).value
-    }
-
-    if ((<HTMLInputElement>document.getElementById("openSaturday")).checked) {
-      this.restaurantForm.timeTable.saturday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.saturday = (<HTMLInputElement>document.getElementById("inputSaturdayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputSaturdayTo")).value
-    }
-
-    if ((<HTMLInputElement>document.getElementById("openSunday")).checked) {
-      this.restaurantForm.timeTable.sunday = 'ZAPRTO';
-    } else {
-      this.restaurantForm.timeTable.sunday = (<HTMLInputElement>document.getElementById("inputSundayFrom")).value
-        + '-' + (<HTMLInputElement>document.getElementById("inputSundayTo")).value
-    }
-
-    this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
-    this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
-
-    this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm as Restaurant).then(restaurant => {
-      console.log("Restavracija dodana", restaurant)
-    });
 
   }
 
