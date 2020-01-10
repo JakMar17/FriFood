@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Uporabnik = mongoose.model('uporabniki');
 
 const vrniUporabnika = (req, res) => {
-
+    console.log("TUKAJJJJJJJJ");
     Uporabnik
         .find( { email: req.params.email.toString() }  )
         .exec((napaka, uporabnik) => {

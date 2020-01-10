@@ -9,30 +9,24 @@ import {switchMap} from "rxjs/operators";
   templateUrl: './userProfile.component.html',
   styleUrls: ['./userProfile.component.css']
 })
+
 export class UserProfileComponent implements OnInit {
-  user: User;
 
-  constructor(private friFoodPodatkiService: FrifoodPodatkiService, private route: ActivatedRoute) { }
+  constructor(private friFoodPodatkiServices: FrifoodPodatkiService) {}
 
-  ngOnInit() {
-    console.log("ja ma nekje tukaj pa sem");
-    // this.route.paramMap
-    //   .pipe(
-    //     switchMap((params: ParamMap) => {
-    //       return this.friFoodPodatkiService.getUser();
-    //     })
-    //   )
-    //   .subscribe((user: User) => {
-    //     this.user = user;
-    //     this.activeUser.name = user.name;
-    //     this.activeUser.surname = user.surname;
-    //     this.activeUser.email = user.email;
-    //
-    //     user.name = "XXX"
-    //   })
+  public user: User;
 
-    this.user.name = "xxx";
+  private getUser(): void {
+    this.friFoodPodatkiServices
+      .getUser()
+      .then(x => this.user = x);
   }
+
+  ngOnInit(): void {
+    this.getUser();
+    console.log(this.user);
+  }
+
 
 }
 
