@@ -17,10 +17,9 @@ import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
 import { GetDateFromDBFormatPipe } from './pipes/change-date.pipe';
 import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
-import {FrifoodPodatkiService} from "../../frifood-podatki.service";
 import { RestaurantaddComponent } from './components/restaurantadd/restaurantadd.component';
 import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
-import {UserProfileComponent} from "./userProfile/userProfile.component";
+import {UserProfileComponent} from "./components/userProfile/userProfile.component";
 
 @NgModule({
   declarations: [

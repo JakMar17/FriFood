@@ -8,7 +8,7 @@ import { LoginComponent } from '../../components/login/login.component';
 import { CommentpageComponent } from '../../components/commentpage/commentpage.component';
 import { RestaurantviewComponent } from '../../components/restaurantview/restaurantview.component';
 import { RestaurantaddComponent} from "../../components/restaurantadd/restaurantadd.component";
-import {UserProfileComponent} from "../../userProfile/userProfile.component";
+import {UserProfileComponent} from "../../components/userProfile/userProfile.component";
 
 
 const poti: Routes = [

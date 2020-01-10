@@ -79,7 +79,7 @@ export class FrifoodPodatkiService {
   getUserById(userID: string): Promise<User> {
     const url: string = `${environment.apiUrl}/user/${userID}`;
     console.log(url);
-    return this.http
+    return  this.http
       .get(url)
       .toPromise()
       .then(odgovor => odgovor as User)
