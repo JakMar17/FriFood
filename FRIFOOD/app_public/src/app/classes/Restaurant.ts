@@ -2,7 +2,6 @@ export class Restaurant {
   _id: string;
   name: string;
   address: string;
-  date: string;
   rating: number;
   mealPrice: number;
   student: boolean;
