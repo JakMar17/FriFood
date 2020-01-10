@@ -14,7 +14,7 @@ import {Comment} from "../../classes/Comment";
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private FrifoodPodatkiService: FrifoodPodatkiService,private router: Router) { }
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private FrifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
 
   page;
   pageSize = 10;
@@ -85,9 +85,6 @@ export class CommentpageComponent implements OnInit {
         console.log(this.users[0].name)
       }
     );
-
-
-
 
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/commentSuport.js`;

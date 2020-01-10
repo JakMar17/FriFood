@@ -7,6 +7,7 @@ import { RegisterComponent } from '../../components/register/register.component'
 import { LoginComponent } from '../../components/login/login.component';
 import { CommentpageComponent } from '../../components/commentpage/commentpage.component';
 import { RestaurantviewComponent } from '../../components/restaurantview/restaurantview.component';
+import { RestaurantaddComponent} from "../../components/restaurantadd/restaurantadd.component";
 
 
 const poti: Routes = [
@@ -29,6 +30,10 @@ const poti: Routes = [
   {
     path: '',
     component: FrontpageComponent
+  },
+  {
+    path: 'restaurant-add',
+    component: RestaurantaddComponent
   }
 ];
 

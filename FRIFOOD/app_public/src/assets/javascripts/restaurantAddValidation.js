@@ -16,7 +16,7 @@ function zaprtoMonday(){
     var checkedMonday = document.getElementById('openMonday');
     var fromMonday = document.getElementById('inputMondayFrom');
     var toMonday = document.getElementById('inputMondayTo');
-    if(checkedMonday.checked == true){
+    if(checkedMonday.checked === true){
         fromMonday.disabled = true;
         toMonday.disabled = true;
         fromMonday.required = false;
@@ -33,7 +33,7 @@ function zaprtoTuesday(){
     var checkedTuesday = document.getElementById('openTuesday');
     var fromTuesday = document.getElementById('inputTuesdayFrom');
     var toTuesday = document.getElementById('inputTuesdayTo');
-    if(checkedTuesday.checked == true){
+    if(checkedTuesday.checked === true){
         fromTuesday.disabled = true;
         toTuesday.disabled = true;
         fromTuesday.required = false;
@@ -48,7 +48,7 @@ function zaprtoTuesday(){
     var checkedWednesday = document.getElementById('openWednesday');
     var fromWednesday = document.getElementById('inputWednesdayFrom');
     var toWednesday = document.getElementById('inputWednesdayTo');
-    if(checkedWednesday.checked == true){
+    if(checkedWednesday.checked === true){
         fromWednesday.disabled = true;
         toWednesday.disabled = true;
         fromWednesday.required = false;
@@ -63,7 +63,7 @@ function zaprtoTuesday(){
     var checkedThursday = document.getElementById('openThursday');
     var fromThursday = document.getElementById('inputThursdayFrom');
     var toThursday = document.getElementById('inputThursdayTo');
-    if(checkedThursday.checked == true){
+    if(checkedThursday.checked === true){
         fromThursday.disabled = true;
         toThursday.disabled = true;
         fromThursday.required = false;
@@ -79,7 +79,7 @@ function zaprtoFriday(){
     var checkedFriday = document.getElementById('openFriday');
     var fromFriday = document.getElementById('inputFridayFrom');
     var toFriday = document.getElementById('inputFridayTo');
-    if(checkedFriday.checked == true){
+    if(checkedFriday.checked === true){
         fromFriday.disabled = true;
         toFriday.disabled = true;
         fromFriday.required = false;
@@ -96,7 +96,7 @@ function zaprtoSaturday(){
     var checkedSaturday = document.getElementById('openSaturday');
     var fromSaturday = document.getElementById('inputSaturdayFrom');
     var toSaturday = document.getElementById('inputSaturdayTo');
-    if(checkedSaturday.checked == true){
+    if(checkedSaturday.checked === true){
         fromSaturday.disabled = true;
         toSaturday.disabled = true;
         fromSaturday.required = false;
@@ -113,7 +113,7 @@ function zaprtoSunday(){
     var checkedSunday = document.getElementById('openSunday');
     var fromSunday = document.getElementById('inputSundayFrom');
     var toSunday = document.getElementById('inputSundayTo');
-    if(checkedSunday.checked == true){
+    if(checkedSunday.checked === true){
         fromSunday.disabled = true;
         toSunday.disabled = true;
         fromSunday.required = false;

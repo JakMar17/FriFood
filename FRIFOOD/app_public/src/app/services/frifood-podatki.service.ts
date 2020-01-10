@@ -75,6 +75,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  addNewRestaurant(restaurantForm: any): Promise<Restaurant> {
+    const url: string = `${environment.apiUrl}/restaurantADD`;
+    console.log(url);
+    return this.http
+      .post(url, restaurantForm)
+      .toPromise()
+      .then(response => response as Restaurant)
+      .catch(this.obdelajNapako);
+  }
+
 
   private obdelajNapako(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);

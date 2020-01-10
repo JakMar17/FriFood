@@ -1,7 +1,12 @@
 export class Restaurant {
   _id: string;
   name: string;
-  description: string;
+  address: string;
+  date: string;
+  rating: number;
+  mealPrice: number;
+  student: boolean;
+  studentPrice: number;
   timeTable: {
     monday: string,
     tuesday: string,
@@ -11,6 +16,8 @@ export class Restaurant {
     saturday: string,
     sunday: string
   };
-  idKomentarjev: string;
+  comments: string;
+  icon: string;
   front: string;
+  description: string;
 }
