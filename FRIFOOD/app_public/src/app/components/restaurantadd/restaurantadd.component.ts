@@ -1,5 +1,6 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
+import {Analytics} from "../../classes/Analytics";
 
 @Component({
   selector: 'app-restaurantadd',
@@ -8,7 +9,7 @@ import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 })
 export class RestaurantaddComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private FrifoodPodatkiService: FrifoodPodatkiService) { }
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService) { }
 
   public restaurantForm = {
     name: '',
@@ -95,7 +96,7 @@ export class RestaurantaddComponent implements OnInit {
     this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
     this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
 
-    this.FrifoodPodatkiService.addNewRestaurant(this.restaurantForm).then(restaurant => {
+    this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm).then(restaurant => {
       console.log("Restavracija dodana", restaurant)
     });
 
@@ -122,6 +123,16 @@ export class RestaurantaddComponent implements OnInit {
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/restaurantAddValidation.js`;
     this.renderer.appendChild(document.head, script);
+
+    let analytics: Analytics;
+    analytics = {
+      _id: '',
+      name: 'RestaurantAddPageViews',
+      numAPICalls: 0,
+    };
+    this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
+      console.log(r)
+    );
   }
 
 }

@@ -4,6 +4,7 @@ import {Restaurant} from "../../classes/Restaurant";
 import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {ActivatedRoute} from "@angular/router";
 import {KeyValue} from "@angular/common";
+import {Analytics} from "../../classes/Analytics";
 
 
 @Component({
@@ -18,14 +19,24 @@ export class RestaurantviewComponent implements OnInit {
   restaurantPathID: string;
 
 
-  constructor(private FrifoodPodatkiService: FrifoodPodatkiService, private route: ActivatedRoute) { }
+  constructor(private frifoodPodatkiService: FrifoodPodatkiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    let analytics: Analytics;
+    analytics = {
+      _id: '',
+      name: 'RestaurantAddPageViews',
+      numAPICalls: 0,
+    };
+    this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
+      console.log(r)
+    );
 
     this.route.paramMap.subscribe(params => {
       this.restaurantPathID = params.get("id");
       //5debddcf5fc3683918ae71a6
-      this.FrifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
+      this.frifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
         (data) => {
           console.log(data.timeTable);
 

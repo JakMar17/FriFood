@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {Analytics} from "../../classes/Analytics";
+import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService) { }
 
 
   info: string;
@@ -44,6 +46,15 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    let analytics: Analytics;
+    analytics = {
+      _id: '',
+      name: 'LoginPageViews',
+      numAPICalls: 0,
+    };
+    this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
+      console.log(r)
+    );
   }
 
 }

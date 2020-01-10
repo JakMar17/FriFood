@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {User} from "../../classes/User";
+import {Analytics} from "../../classes/Analytics";
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,13 @@ import {User} from "../../classes/User";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router, private FrifoodPodatkiService: FrifoodPodatkiService) { }
+  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService) { }
 
   info: string;
 
   registriraj(newUser: any)
   {
-    this.FrifoodPodatkiService.dodajuporabnika(newUser).then(
+    this.frifoodPodatkiService.dodajuporabnika(newUser).then(
       (data) => {
         console.log(data.name);
 
@@ -58,6 +59,15 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    let analytics: Analytics;
+    analytics = {
+      _id: '',
+      name: 'RegisterPageViews',
+      numAPICalls: 0,
+    };
+    this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
+      console.log(r)
+    );
   }
 
 }

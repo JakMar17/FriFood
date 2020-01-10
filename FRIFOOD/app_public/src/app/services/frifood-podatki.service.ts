@@ -5,6 +5,7 @@ import { User } from '../classes/User';
 import {Restaurant} from "../classes/Restaurant";
 import {Comment} from "../classes/Comment";
 import { environment } from '../../environments/environment';
+import {Analytics} from "../classes/Analytics";
 
 @Injectable({
   providedIn: 'root'
@@ -102,6 +103,26 @@ export class FrifoodPodatkiService {
       .post(url, restaurantForm)
       .toPromise()
       .then(response => response as Restaurant)
+      .catch(this.obdelajNapako);
+  }
+
+  updateAnalyticsByName(analytics: any): Promise<Analytics> {
+    const url: string = `${environment.apiUrl}/analytics`;
+    console.log(url);
+    return this.http
+      .post(url, analytics)
+      .toPromise()
+      .then(response => response as Analytics)
+      .catch(this.obdelajNapako);
+  }
+
+  returnAnalytics(): Promise<Analytics[]> {
+    const url: string = `${environment.apiUrl}/analytics`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Analytics[])
       .catch(this.obdelajNapako);
   }
 

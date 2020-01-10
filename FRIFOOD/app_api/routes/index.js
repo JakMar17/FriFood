@@ -34,7 +34,7 @@ router.post('/database/fill', ctrlDatabase.fillDatabase);
 
 router.get('/search', ctrlRestavracija.getRestaurantBySearch);
 
-router.get('/analytics', ctrlAnalytics.returnAnalyticsByName);
+router.get('/analytics', ctrlAnalytics.returnAnalytics);
 router.post('/analytics', ctrlAnalytics.updateAnalyticsByName);
 
 module.exports = router;

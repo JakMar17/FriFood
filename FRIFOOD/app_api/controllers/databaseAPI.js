@@ -40,7 +40,7 @@ const fillDatabase = (req, res) => {
 
         analytics.save(function (err) {
             if (err) return console.error(err);
-            console.log("ADDING Analytics SUCCESSFUL");
+            console.log("ADDING Analytics.ts SUCCESSFUL");
         });
 
         var commentSection = new Comments([]);

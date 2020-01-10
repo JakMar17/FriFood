@@ -4,6 +4,7 @@ import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {User} from "../../classes/User";
 import {Restaurant} from "../../classes/Restaurant";
 import {Comment} from "../../classes/Comment";
+import {Analytics} from "../../classes/Analytics";
 
 
 
@@ -14,7 +15,7 @@ import {Comment} from "../../classes/Comment";
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private FrifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
 
   page;
   pageSize = 10;
@@ -45,7 +46,7 @@ export class CommentpageComponent implements OnInit {
 
     this.obrazecNapaka = "";
     if (this.formaPodatkiKomentar.rating > 0 && this.formaPodatkiKomentar.newCommentText.length > 0) {
-      this.FrifoodPodatkiService.dodajKomentar(this.formaPodatkiKomentar).then(komentar => {
+      this.frifoodPodatkiService.dodajKomentar(this.formaPodatkiKomentar).then(komentar => {
 
         console.log("Komentar shranjen", komentar);
 
@@ -79,7 +80,17 @@ export class CommentpageComponent implements OnInit {
     x = this.inicializirajUporabnike();
     console.log("XXXXX->",x[0]._id);*/
 
-    this.FrifoodPodatkiService.getUporabniki().then(
+    let analytics: Analytics;
+    analytics = {
+      _id: '',
+      name: 'CommentPageViews',
+      numAPICalls: 0,
+    };
+    this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
+      console.log(r)
+    );
+
+    this.frifoodPodatkiService.getUporabniki().then(
        (data) => {
         console.log(data[0]);
 
@@ -100,7 +111,7 @@ export class CommentpageComponent implements OnInit {
         this.restaurantPathID = params.get("id");
         this.page = params.get("page");
 
-        this.FrifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
+        this.frifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
           (data) => {
             console.log(data.timeTable);
 
@@ -114,7 +125,7 @@ export class CommentpageComponent implements OnInit {
           pageNumber: this.page-1
         };
 
-        this.FrifoodPodatkiService.getCommentsByRestaurantId(komentarjiPerPage).then(
+        this.frifoodPodatkiService.getCommentsByRestaurantId(komentarjiPerPage).then(
           (data) => {
             this.komentarji = data[0] as Comment[];
             this.numberOfComments =  data[1];
@@ -123,7 +134,7 @@ export class CommentpageComponent implements OnInit {
 
             this.komentarji.forEach( komentar => {
 
-              this.FrifoodPodatkiService.getUserById(komentar.author._id).then(
+              this.frifoodPodatkiService.getUserById(komentar.author._id).then(
                 (data) => {
                   komentar.name = data.name;
                   komentar.surname =  data.surname;

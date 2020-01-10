@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Analytics = mongoose.model('analytics');
 
-const returnAnalyticsByName = (req, res) => {
-    console.log('request');
+const returnAnalytics = (req, res) => {
     Analytics
         .find()
         .exec((error, analytics) => {
@@ -19,12 +18,11 @@ const returnAnalyticsByName = (req, res) => {
 
 
 const updateAnalyticsByName = (req, res) => {
-    var name = req.body.name;
-    var ObjectId = (mongoose.Types.ObjectId);
-
+    let name = req.body.name;
+    console.log(name);
     Analytics.findOneAndUpdate({ name: name },
-        { $inc: {'numAPICalls': 1 } },
-        {new: true },
+        { $inc: {'numOfVisits': 1 } },
+        {upsert: true },
         function (error, result) {
         if (error)
             return res.status(500).json(error);
@@ -35,6 +33,6 @@ const updateAnalyticsByName = (req, res) => {
 };
 
 module.exports = {
-    returnAnalyticsByName,
+    returnAnalytics,
     updateAnalyticsByName
 };
