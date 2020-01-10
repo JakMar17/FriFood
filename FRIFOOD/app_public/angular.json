@@ -47,7 +47,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/encryption.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
