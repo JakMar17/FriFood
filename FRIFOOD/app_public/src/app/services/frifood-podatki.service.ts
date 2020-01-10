@@ -26,6 +26,15 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  public getCommentsByUser(userID: string): Promise<Comment[]> {
+    const url: string = `${environment.apiUrl}/commentAuthor/${userID}`;
+
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(data => data as Comment[])
+      .catch(this.obdelajNapako);
+  }
 
 
   public deleteComment(podatkiObrazca: any): Promise<Comment> {
