@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {Analytics} from "../../classes/Analytics";
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
-
+import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -16,14 +17,13 @@ export class LoginComponent implements OnInit {
 
   info: string;
 
-
   checkIfOkToLogin()
   {
 
     var userData = {
       email: (<HTMLInputElement>document.getElementById("email")).value,
       passwd: (<HTMLInputElement>document.getElementById("passwd")).value
-    }
+    };
 
 
     this.info = "";
@@ -36,6 +36,13 @@ export class LoginComponent implements OnInit {
               (data) => {
                 //console.log(data);
 
+                //tole rabim tu
+                // var passwd1 = userData.passwd;
+                // var nakljucnaVrednost = data[0].nakljucnaVrednost;
+                // var zgoscenaVrednost = getZgosceno(passwd1, nakljucnaVrednost, 1000, 64, 'sha512');
+                //
+                // in pol tule namest unga ifa tale
+                // if(zgoscenaVrednost === data[0].zgoscenaVrednost)
                 if(userData.passwd === data[0].passwd)
                   this.router.navigate([""]);
                 else
