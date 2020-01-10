@@ -22,6 +22,7 @@ import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
 import {UserProfileComponent} from "./components/userProfile/userProfile.component";
 import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
+import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RestaurantlistComponent } from './components/restaurantlist/restaurantl
     RestaurantviewComponent,
     CommentComponent,
     UserProfileComponent,
+    AdminLocationsComponent,
     GetDateFromDBFormatPipe,
     GetTimeFromDBFormatPipe,
     RestaurantaddComponent,

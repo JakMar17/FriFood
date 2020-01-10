@@ -10,6 +10,7 @@ import { RestaurantviewComponent } from '../../components/restaurantview/restaur
 import { RestaurantaddComponent} from "../../components/restaurantadd/restaurantadd.component";
 import {UserProfileComponent} from "../../components/userProfile/userProfile.component";
 import {RestaurantlistComponent} from "../../components/restaurantlist/restaurantlist.component";
+import {AdminLocationsComponent} from "../../components/adminDashboard/locations/adminLocations.component";
 
 
 const poti: Routes = [
@@ -40,6 +41,10 @@ const poti: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent
+  },
+  {
+    path: 'admin/locations',
+    component: AdminLocationsComponent
   },
   {
     path: 'restaurant-list',
