@@ -20,6 +20,7 @@ import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
 import {FrifoodPodatkiService} from "../../frifood-podatki.service";
 import { RestaurantaddComponent } from './components/restaurantadd/restaurantadd.component';
 import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
+import {UserProfileComponent} from "./userProfile/userProfile.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
     CommentpageComponent,
     RestaurantviewComponent,
     CommentComponent,
-    UserProfileComponent
+    UserProfileComponent,
     GetDateFromDBFormatPipe,
     GetTimeFromDBFormatPipe,
     RestaurantaddComponent,

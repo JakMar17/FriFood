@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-export class User {
-  ime: string;
-  priimek: string;
-  email: string;
-  passwd: string
-}
-=======
 export class User {
   _id: string;
   komentarjiUporabnika: string[];
@@ -15,4 +7,3 @@ export class User {
   passwd: string;
 
 }
->>>>>>> develop
