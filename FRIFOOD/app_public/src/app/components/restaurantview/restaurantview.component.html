@@ -1,23 +1,29 @@
+<div *ngIf="restavracija == undefined" class="alert alert-danger" role="alert">
+  <p> Loading Restaurant :( </p>
+</div>
 
-
+<div class="container" *ngIf="restavracija != undefined">
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <img class="img-fluid rs-image" src="./assets/images/{{restaurant.front}}" alt="Naslovna slika" style="width: 100vw">
+      <img class="img-fluid rs-image" *ngIf="restavracija != undefined" src="./assets/{{restavracija.front}}" alt="Naslovna slika" style="width: 100vw">
     </div>
   </div>
 </div>
 
-<div class="container">
+
+
+
   <!-- Example row of columns -->
+
   <div class="row">
     <div>
-      <h1>{{restaurant.name}}</h1>
+      <h1>{{restavracija.name}}</h1>
       <h2>Opis</h2>
-      <p>{{restaurant.description}}</p>
+      <p>{{restavracija.description}}</p>
     </div>
   </div>
-</div>
+
 
 <div class="jumbotron mb-5" >
   <div class="container ">
@@ -26,13 +32,13 @@
     </div>
     <div class="row mt-4">
 
-      <table class="table">
+      <table class="table" *ngIf="restavracija != undefined && restavracija.timeTable.monday.length > 0">
           <tr>
-            <td *ngFor="let dan of daysOfWork.week">{{dan}}</td>
+            <td *ngFor="let dan of restavracija.timeTable | keyvalue: originalOrder">{{dan.key}}</td>
           </tr>
 
           <tr >
-            <td *ngFor="let dan of restaurant.timeTable">{{dan}}</td>
+            <td *ngFor="let dan of restavracija.timeTable | keyvalue: originalOrder">{{dan.value}}</td>
           </tr>
       </table>
     </div>
@@ -47,7 +53,7 @@
 
 <div class="container">
   <div class="row mt-4 justify-content-end mt-2 ">
-    <a class="btn btn-primary btn-lg" routerLink="/commentPage/{{restaurant._id}}" role="button">Glej komentarje</a>
+    <a class="btn btn-primary btn-lg" [routerLink]="['/commentPage',restaurantPathID,1]" role="button">Glej komentarje</a>
   </div>
 </div>
 
@@ -57,3 +63,4 @@
 <!--<script src="javascripts/popper.min.js"></script>-->
 <!--<script src="javascripts/bootstrap.min.js"></script>-->
 
+</div>

@@ -1,19 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
+
+import { AppUsmerjanjeModule } from './modules/app-usmerjanje/app-usmerjanje.module';
 
 import { AppComponent } from './app.component';
-import { OgrodjeComponent } from './ogrodje/ogrodje.component';
-import { FrontpageComponent } from './frontpage/frontpage.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { CommentpageComponent } from './commentpage/commentpage.component';
-import { RestaurantviewComponent } from './restaurantview/restaurantview.component';
-import { CommentComponent } from './commentpage/comment/comment.component';
-import { UserProfileComponent } from "./userProfile/userProfile.component";
-import {FormsModule} from "@angular/forms";
-
+import { OgrodjeComponent } from './components/ogrodje/ogrodje.component';
+import { FrontpageComponent } from './components/frontpage/frontpage.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { CommentpageComponent } from './components/commentpage/commentpage.component';
+import { RestaurantviewComponent } from './components/restaurantview/restaurantview.component';
+import { CommentComponent } from './components/commentpage/comment/comment.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModalBackdrop} from "@ng-bootstrap/ng-bootstrap/modal/modal-backdrop";
+import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClientModule} from "@angular/common/http";
+import { GetDateFromDBFormatPipe } from './pipes/change-date.pipe';
+import { GetTimeFromDBFormatPipe } from './pipes/get-time-from-dbformat.pipe';
+import {FrifoodPodatkiService} from "../../frifood-podatki.service";
+import { RestaurantaddComponent } from './components/restaurantadd/restaurantadd.component';
+import { ZvezdiceComponent } from './components/zvezdice/zvezdice.component';
 
 @NgModule({
   declarations: [
@@ -26,38 +32,20 @@ import {FormsModule} from "@angular/forms";
     RestaurantviewComponent,
     CommentComponent,
     UserProfileComponent
+    GetDateFromDBFormatPipe,
+    GetTimeFromDBFormatPipe,
+    RestaurantaddComponent,
+    ZvezdiceComponent,
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-
-      {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
-        path: 'commentPage',
-        component: CommentpageComponent
-      },
-      {
-        path: 'restaurantView',
-        component: RestaurantviewComponent
-      },
-      {
-        path: '',
-        component: FrontpageComponent
-      },
-      {
-        path: 'profile',
-        component: UserProfileComponent
-      }
-    ]),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AppUsmerjanjeModule,
+    NgbModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]

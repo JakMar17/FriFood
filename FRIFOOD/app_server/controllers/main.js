@@ -79,6 +79,7 @@ var restaurantView = (req, res) => {
     });
 };
 
+
 var restaurantsJSON = require('../models/restaurants');
 const restaurantList = (req, res) => {
     let url = '';

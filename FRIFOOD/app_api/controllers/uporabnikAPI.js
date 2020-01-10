@@ -41,14 +41,13 @@ const narediUporabnika = (req, res) => {
     var passwd1 = req.body.passwd1.toString();
     var passwd2 = req.body.passwd2.toString();
 
-    /*
+
     console.log(name);
     console.log(surname);
     console.log(email);
     console.log(passwd1);
     console.log(passwd2);
 
-     */
 
     if (name.length != 0 && surname.length != 0)
     {
@@ -63,13 +62,12 @@ const narediUporabnika = (req, res) => {
             })
 
             // save model to database
-            user.save(function (err) {
-                if (err) return console.error(err);
-                console.log(user.name + " saved to DB");
+            user.save(function (err, rez) {
+                if (err)
+                    res.status(500).json(err);
+                else
+                    res.status(200).json(rez)
             });
-
-            console.log("registration OK")
-            res.redirect("/login");
         }
     }
 };

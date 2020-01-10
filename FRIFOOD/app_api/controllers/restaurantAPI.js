@@ -6,58 +6,31 @@ const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 
 const dodajRestavracijo = (req, res) => {
-    var boni = true;
-    if(req.body.boni == "option1"){
-        boni = true;
-    }else{
-        boni = false;
-    }
+    let student = req.body.student;
 
-    if (!req.files || Object.keys(req.files).length === 0) {
-        console.log("FUCK");
+    console.log(req.body.monday);
+
+    if (!req.body.icon || Object.keys(req.body.icon).length === 0 || !req.body.front || Object.keys(req.body.front).length === 0) {
+        console.log("Oh snap, no files were uploaded.");
         return res.status(400).send('No files were uploaded.');
     }
 
-    // preverjanje odpiralnih časov
-    var monday = "ZAPRTO";
-    var tuesday = "ZAPRTO";
-    var wednesday = "ZAPRTO";
-    var thursday = "ZAPRTO";
-    var friday = "ZAPRTO";
-    var saturday = "ZAPRTO";
-    var sunday = "ZAPRTO";
+    let monday = req.body.monday;
+    let tuesday = req.body.tuesday;
+    let wednesday = req.body.wednesday;
+    let thursday = req.body.thursday;
+    let friday = req.body.friday;
+    let saturday = req.body.saturday;
+    let sunday = req.body.sunday;
 
-    if(!req.body.openMonday){
-        monday = req.body.inputMondayFrom.toString() + ' - ' + req.body.inputMondayTo.toString();
-    }
-    if(!req.body.openTuesday){
-        tuesday = req.body.inputTuesdayFrom.toString() + ' - ' + req.body.inputTuesdayTo.toString();
-    }
-    if(!req.body.openWednesday){
-        wednesday = req.body.inputWednesdayFrom.toString() + ' - ' + req.body.inputWednesdayTo.toString();
-    }
-    if(!req.body.openThursday){
-        thursday = req.body.inputThursdayFrom.toString() + ' - ' + req.body.inputThursdayTo.toString();
-    }
-    if(!req.body.openFriday){
-        friday = req.body.inputFridayFrom.toString() + ' - ' + req.body.inputFridayTo.toString();
-    }
-    if(!req.body.openSaturday){
-        saturday = req.body.inputSaturdayFrom.toString() + ' - ' + req.body.inputSaturdayTo.toString();
-    }
-    if(!req.body.openSunday){
-        sunday = req.body.inputSundayFrom.toString() + ' - ' + req.body.inputSundayTo.toString();
-    }
-
-    var commentSection = new Comments([]);
-
-    var restavracija = new Restaurant({
-        name: req.body.inputRestaurantName.toString(),
-        address: req.body.inputRestaurantAddress.toString(),
+    let commentSection = new Comments([]);
+    let restaurant = new Restaurant({
+        name: req.body.name.toString(),
+        address: req.body.address.toString(),
         rating: 0,
-        mealPrice: req.body.inputMealCost,
-        student: boni,
-        studentPrice: req.body.inputBoniCost,
+        mealPrice: req.body.mealPrice,
+        student: student,
+        studentPrice: req.body.studentPrice,
         timeTable: {
             monday: monday,
             tuesday: tuesday,
@@ -67,56 +40,57 @@ const dodajRestavracijo = (req, res) => {
             saturday: saturday,
             sunday: sunday
         },
-        description: req.body.inputRestaurantDescription,
+        description: req.body.description,
         comments: commentSection,
         icon: '',
         front: '',
     });
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let naslovna_slika = req.files.naslovnaSlika;
-    let ns_t = req.files.naslovnaSlika.name.split('.');
-    let naslovnaPath = "./public/restaurant-images/" + restavracija._id + '-ns.' + ns_t[ns_t.length - 1];
+    let naslovna_slika = req.body.front;
+    let ns_t = req.body.front.name.split('.');
+    let naslovnaPath = "./public/restaurant-images/" + restaurant._id + '-ns.' + ns_t[ns_t.length - 1];
     // Use the mv() method to place the file somewhere on your server
-    naslovna_slika.mv(naslovnaPath, function(err) {
-        if (err){
-            return res.status(500);
-        }
-        console.log("FILE UPLOADED");
-    });
+    // naslovna_slika.mv(naslovnaPath, function(err) {
+    //     if (err){
+    //         return res.status(500);
+    //     }
+    //     console.log("FILE UPLOADED");
+    // });
 
-    let ikonaSlika = req.files.ikonaRestavracije;
-    let ns_i = req.files.ikonaRestavracije.name.split('.');
+    let ikonaSlika = req.body.icon;
+    let ns_i = req.body.icon.name.split('.');
 
-    let ikonaPath = "./public/restaurant-images/" + restavracija._id + '-ik.' + ns_i[ns_i.length - 1];
+    let ikonaPath = "./public/restaurant-images/" + restaurant._id + '-ik.' + ns_i[ns_i.length - 1];
 
     // Use the mv() method to place the file somewhere on your server
-    ikonaSlika.mv(ikonaPath, function(err) {
-        if (err){
-            console.log("FUCK");
-            return res.status(500);
-        }
-        console.log("FILE UPLOADED");
-    });
+    // ikonaSlika.mv(ikonaPath, function(err) {
+    //     if (err){
+    //         console.log("FUCK");
+    //         return res.status(500);
+    //     }
+    //     console.log("FILE UPLOADED");
+    // });
 
-    ikonaPath = "./restaurant-images/" + restavracija._id + '-ik.' + ns_i[ns_i.length - 1];
-    naslovnaPath = "./restaurant-images/" + restavracija._id + '-ns.' + ns_t[ns_t.length - 1];
+    ikonaPath = "./restaurant-images/" + restaurant._id + '-ik.' + ns_i[ns_i.length - 1];
+    naslovnaPath = "./restaurant-images/" + restaurant._id + '-ns.' + ns_t[ns_t.length - 1];
 
-    restavracija.icon = ikonaPath;
-    restavracija.front = naslovnaPath;
+    restaurant.icon = ikonaPath;
+    restaurant.front = naslovnaPath;
 
     // save model to database
-    restavracija.save(function (err) {
-        if (err) return console.error(err);
-        res.redirect("/restaurant-list");
-    });
+    restaurant.save().exec((error, restaurant) => {
+        if (error)
+            return res.status(500).json(error);
+        else
+            res.status(200).json(restaurant);
+    })
 };
 
 const readRestaurants = (req, res) => {
     Restaurant
         .find()
-        .exec(
-            (error, restaurant) => {
+        .exec((error, restaurant) => {
                 if(!restaurant)
                     return res.status(404).json({
                         "error": "Restaurants not found"
@@ -125,8 +99,7 @@ const readRestaurants = (req, res) => {
                     return res.status(500).json(error);
                 else
                     res.status(200).json(restaurant);
-            }
-        )
+            })
 };
 
 const deleteRestaurant = (req, res) => {
@@ -162,7 +135,7 @@ const updateResturant = (req, res) => {
 };
 
 const getRestaurantById = (req, res) => {
-    Restaurant.findById(req.params.id).exec((error, restaurant) => {
+    Restaurant.findOne({id_: req.params.id}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"

@@ -14,11 +14,12 @@ export class FrifoodPodatkiService {
 
   //tukaj se doda parameter userId, ko bo seja zrihtana
   public getUser(): Promise<User> {
-    let mail: string = "janez.novak@fri.uni-lj.si";
-    let url: string = this.apiUrl + '/uporabniki/' + mail;
-    // url = this.apiUrl + "/users";
+    const mail: string = "janez.novak@fri.uni-lj.si";
+    const url: string = '${this.apiUrl}/uporabniki/${mail}';
 
-    let nekineki: any =  this.http
+    console.log("tukaj?")
+
+    return this.http
       .get(url)
       .toPromise()
       .then(respond => respond as User)

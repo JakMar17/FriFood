@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const analyticsSchema = new Schema ({
     name: String,
-    numAPICalls: Number
+    numOfVisits: Number
 });
 
 var analytics = mongoose.model('analytics', analyticsSchema, "Analytics");
