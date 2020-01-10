@@ -1,5 +1,8 @@
+<div *ngIf="restavracija == undefined" class="alert alert-danger" role="alert">
+  <p> Loading Restaurant :( </p>
+</div>
 
-
+<div class="container" *ngIf="restavracija != undefined">
 <div class="jumbotron">
   <div class="container">
     <div class="row">
@@ -8,8 +11,11 @@
   </div>
 </div>
 
-<div class="container" *ngIf="restavracija != undefined">
+
+
+
   <!-- Example row of columns -->
+
   <div class="row">
     <div>
       <h1>{{restavracija.name}}</h1>
@@ -17,7 +23,7 @@
       <p>{{restavracija.description}}</p>
     </div>
   </div>
-</div>
+
 
 <div class="jumbotron mb-5" >
   <div class="container ">
@@ -57,3 +63,4 @@
 <!--<script src="javascripts/popper.min.js"></script>-->
 <!--<script src="javascripts/bootstrap.min.js"></script>-->
 
+</div>

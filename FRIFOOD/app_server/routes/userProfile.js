@@ -7,3 +7,4 @@ var ctrlMain = require('../controllers/main');
 router.get('/', ctrlMain.userProfile);
 
 module.exports = router;
+

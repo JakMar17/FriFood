@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 // @ts-ignore
 import { Comment } from "../../../classes/Comment";
 import { FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
+import {User} from "../../../classes/User";
 
 @Component({
   selector: 'app-comment',
@@ -13,6 +14,8 @@ import { FrifoodPodatkiService} from "../../../services/frifood-podatki.service"
 export class CommentComponent implements OnInit {
 
   closeResult: string;
+
+  obrazecNapaka: string;
 
 
   constructor(private modalService: NgbModal, private FrifoodPodatkiService: FrifoodPodatkiService) {
@@ -51,19 +54,30 @@ export class CommentComponent implements OnInit {
   }
 
   public updateComment():void {
-    let komentar = {
-      komentarID: this.komentar._id,
-      newCommentText: (<HTMLInputElement>document.getElementById(this.komentar._id+'textKometarja')).value
-    };
-    this.FrifoodPodatkiService.updateComment(komentar).then(rez => {
-      console.log("Komentar posodobljen", rez);
-      this.komentar.comment = komentar.newCommentText;
-    });
+
+    this.obrazecNapaka = undefined;
+
+    let komentarText = (<HTMLInputElement>document.getElementById(this.komentar._id+'textKometarja')).value;
+
+    if(komentarText.length > 0) {
+      let komentar = {
+        komentarID: this.komentar._id,
+        newCommentText: komentarText
+      };
+      this.FrifoodPodatkiService.updateComment(komentar).then(rez => {
+        console.log("Komentar posodobljen", rez);
+        this.komentar.comment = komentar.newCommentText;
+      });
+      this.modalService.dismissAll();
+    }
+    else
+      this.obrazecNapaka = "Komwntar ne more ostati prazen !!!"
   }
 
 
   @Input() komentar: Comment;
 
   ngOnInit() {
+
   }
 }
