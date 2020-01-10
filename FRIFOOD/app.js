@@ -5,12 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
-const bodyParser = require('body-parser');
-
-
 require('./app_api/models/db');
 require('./app_api/models/restaurants');
-
+const bodyParser = require("body-parser");
 //var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
 var loginRouter = require('./app_server/routes/login');
@@ -52,6 +49,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8081');

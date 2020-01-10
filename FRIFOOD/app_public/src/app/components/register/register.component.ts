@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     this.frifoodPodatkiService.dodajuporabnika(newUser).then(
       (data) => {
         console.log(data.name);
-
+        this.router.navigate(["/login"]);
 
       }
     );
@@ -45,7 +45,6 @@ export class RegisterComponent implements OnInit {
           if(newUser.passwd1.length>0 && newUser.passwd1==newUser.passwd2)
           {
             this.registriraj(newUser);
-            this.router.navigate(["/login"]);
           }
           else
             this.info = "Napacno geslo"

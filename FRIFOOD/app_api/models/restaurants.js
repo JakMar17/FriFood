@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const restaurantSchema = new mongoose.Schema({
     name: String,
     address: String,
-    date: Date,
     rating: Number,
     mealPrice: Number,
     student: Boolean,
@@ -21,7 +20,11 @@ const restaurantSchema = new mongoose.Schema({
     description: String,
     comments:  { type: Schema.Types.ObjectId, ref: 'komentarji' },
     icon: String,
-    front: String
+    front: String,
+
+
+    img: { data: Buffer, contentType: String }
+
 });
 
 var restaurant = mongoose.model('restaurant', restaurantSchema, "Restaurant");

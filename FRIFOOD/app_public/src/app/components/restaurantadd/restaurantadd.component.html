@@ -10,6 +10,12 @@
 <!--  <title>Restaurant Add</title>-->
 <!--</head>-->
 <!--<body>-->
+
+
+
+<div *ngIf="formError" class="alert alert-danger" role="alert">
+  {{formError}}
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-sm-0"></div>
@@ -18,7 +24,7 @@
     </div>
     <div class="col-md-4 col-sm-0"></div>
   </div>
-  <form id="restaurantAdd" (ngSubmit)="addNewRestaurant()" [attr.id]="'restaurantAddForm'">
+  <form id="restaurantAdd" (ngSubmit)="dodajRestavracijo()" [attr.id]="'restaurantAddForm'">
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-3 bc1">
@@ -45,13 +51,13 @@
             <span>Ali lahko v vaši restavraciji študentje uporabljajo študentske bone?</span>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="boni" id="inputBoniYes" value="option1" onclick="checkedYes()" checked>
-              <label class="form-check-label" for="boni1">
+              <label class="form-check-label" >
                 Da
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="boni" id="inputBoniNo" value="option2" onclick="checkedNo()">
-              <label class="form-check-label" for="boni2">
+              <label class="form-check-label">
                 Ne
               </label>
             </div>
@@ -61,7 +67,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12">
             <div class="form-row add-pay-form">
-              <label for="c1">Koliko stane doplačilo študentskega menija?</label>
+              <label >Koliko stane doplačilo študentskega menija?</label>
               <div class="input-group add-pay-form-input">
                 <input type="number"  min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputBoniCost" name="inputBoniCost"/>
               </div>
@@ -72,7 +78,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12">
             <div class="form-row add-pay-form">
-              <label for="c2">Koliko stane povprečna dnevna malica?</label>
+              <label>Koliko stane povprečna dnevna malica?</label>
               <div class="input-group add-pay-form-input">
                 <input type="number" min="0" step="0.1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="inputMealCost" name="inputMealCost" />
               </div>
@@ -266,7 +272,12 @@
             <div class="row">
               <div class="col-md-12 col-sm-12">
                 <div class="file-field">
-                  <input type="file" class="form-control-file" accept="image/*" name="naslovnaSlika" id="file"  (change)="onFileSelectFront($event)" style="display: none;">
+                  <!--<form action="/api/upload" method="post" enctype="multipart/form-data">
+                    <input  (change)="fileChange($event)"  type="file"  class="custom-file-input"  id="inputGroupFile01"  aria-describedby="inputGroupFileAddon01">
+                  </form>
+                  <span  class="input-group-text upload"  (click)="upload()"  id="btnUpload">Upload</span>
+                    -->
+                  <input type="file" #file class="form-control-file" accept="image/*" name="naslovnaSlika" id="file"  (change)="onFilesAdded()" style="display: none;">
                 </div>
               </div>
             </div>

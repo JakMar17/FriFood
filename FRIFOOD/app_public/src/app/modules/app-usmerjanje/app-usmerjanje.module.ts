@@ -8,6 +8,7 @@ import { LoginComponent } from '../../components/login/login.component';
 import { CommentpageComponent } from '../../components/commentpage/commentpage.component';
 import { RestaurantviewComponent } from '../../components/restaurantview/restaurantview.component';
 import { RestaurantaddComponent} from "../../components/restaurantadd/restaurantadd.component";
+import {RestaurantlistComponent} from "../../components/restaurantlist/restaurantlist.component";
 
 
 const poti: Routes = [
@@ -34,6 +35,10 @@ const poti: Routes = [
   {
     path: 'restaurant-add',
     component: RestaurantaddComponent
+  },
+  {
+    path: 'restaurant-list',
+    component: RestaurantlistComponent
   }
 ];
 
