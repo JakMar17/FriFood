@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import {ZgodovinaPipePipe} from "../pipes/zgodovina-pipe.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class ZgodovinaService {
 
   private urlNaslovi: string[] = [];
 
-  constructor(private usmerjevalnik: Router) {
+  constructor(private usmerjevalnik: Router, public zgodovinaPipe: ZgodovinaPipePipe) {
     this.usmerjevalnik.events
-      .pipe(filter(dogodekUsmerjanja => dogodekUsmerjanja instanceof NavigationEnd))
+      .pipe(zgodovinaPipe.transform(dogodekUsmerjanja => dogodekUsmerjanja instanceof NavigationEnd))
       .subscribe((dogodekUsmerjanja: NavigationEnd) => {
         const url = dogodekUsmerjanja.urlAfterRedirects;
         this.urlNaslovi = [...this.urlNaslovi, url];

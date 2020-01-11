@@ -5,6 +5,7 @@ import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {AvtentikacijaService} from "../../services/avtentikacija.service";
+import {ZgodovinaService} from "../../services/zgodovina.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import {AvtentikacijaService} from "../../services/avtentikacija.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService, private authentication: AvtentikacijaService) { }
+  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService, private authentication: AvtentikacijaService, private zgodovina: ZgodovinaService) { }
 
 
   info: string;
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         var token = data.pagetoken;
         this.authentication.shraniZeton(token);
-        this.router.navigate(["/"]);
+        this.router.navigateByUrl(this.zgodovina.vrniPredhodnjeUrlNaslove());
       }
     ).catch((err) => (this.info = "Napacen email ali geslo"));
   }
