@@ -64,12 +64,12 @@ export class FrifoodPodatkiService {
           'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
         })
       };
+      return this.http
+        .put(url, podatkiObrazca, httpLastnosti)
+        .toPromise()
+        .then(responde => responde as unknown as User)
+        .catch(this.obdelajNapako);
     }
-    return this.http
-      .put(url, podatkiObrazca, httpLastnosti)
-      .toPromise()
-      .then(responde => responde as unknown as User)
-      .catch(this.obdelajNapako);
   }
 
   public getCommentsByUser(userID: string): Promise<Comment[]> {
