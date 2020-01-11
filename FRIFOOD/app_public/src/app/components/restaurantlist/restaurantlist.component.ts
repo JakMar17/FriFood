@@ -3,6 +3,7 @@ import {Restaurant} from "../../classes/Restaurant";
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import LatLng = google.maps.LatLng;
 import { AgmCoreModule } from '@agm/core';
+import {GoogleMapsService} from "../../services/google-maps.service";
 
 @Component({
   selector: 'app-restaurantlist',
@@ -12,7 +13,7 @@ import { AgmCoreModule } from '@agm/core';
 export class RestaurantlistComponent implements AfterViewInit {
   private elementRef: any;
 
-  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService) {
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private googleMapsService: GoogleMapsService) {
   }
 
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
@@ -94,12 +95,12 @@ export class RestaurantlistComponent implements AfterViewInit {
       fields: ['icon', 'photos', 'name', 'place_id', 'formatted_address'],
     };
 
-    let service = new google.maps.places.PlacesService(this.map);
+    let service = this.googleMapsService.googleMapsPlacesService(this.map);
     service.textSearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         let resultCount = 0;
         for (let i = 0; i < results.length; i++) {
-          if (google.maps.geometry.spherical.computeDistanceBetween(results[i].geometry.location, location) < request.radius) {
+          if (this.googleMapsService.googleDistance(results[i].geometry.location, location) < request.radius) {
             this.markers.push(this.createMarker(results[i]));
             // if (results[i].photos !== undefined && results[i].photos.length > 0) {
             // } else {
@@ -146,7 +147,7 @@ export class RestaurantlistComponent implements AfterViewInit {
       marker.setMap(null);
     }
 
-    let service = new google.maps.places.PlacesService(this.map);
+    let service = this.googleMapsService.googleMapsPlacesService(this.map);
 
     service.findPlaceFromQuery(request, (results, status) => {
       //console.log(status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS);
