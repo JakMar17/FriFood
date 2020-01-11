@@ -30,7 +30,7 @@ uporabnikiShema.methods.preveriGeslo = function(geslo, nakljucnaVrednost) {
 
 uporabnikiShema.methods.generirajJwt = function() {
     const datumPoteka = new Date();
-    datumPoteka.setDate(datumPoteka.getDate() + 7);
+    datumPoteka.setTime(datumPoteka.getTime() + (60*60*1000));
 
     return jwt.sign({
         _id: this._id,
