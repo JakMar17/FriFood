@@ -33,6 +33,7 @@ import { MatDialogRef} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminCommentsComponent,
     AdminUsersComponent,
     LogoutComponent,
-    ModalComponentComponent
+    ModalComponentComponent,
+    TransformLink2Pipe
   ],
 
   imports: [

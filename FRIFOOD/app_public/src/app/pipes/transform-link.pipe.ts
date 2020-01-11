@@ -5,8 +5,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class TransformLinkPipe implements PipeTransform {
 
-  transform(link: string, id: string, text: string): any {
-    return '<a href="' + link + id + '">' + text + '</a>';
+  transform(link: string, id: string): any {
+    return '/' + link + '/' + id;
   }
 
 }
