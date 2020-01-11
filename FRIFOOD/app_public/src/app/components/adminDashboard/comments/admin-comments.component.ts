@@ -12,7 +12,7 @@ export class AdminCommentsComponent implements OnInit {
 
   constructor(private frifoodPodatkiServices: FrifoodPodatkiService) { }
 
-  private comments: Comment[];
+  public comments: Comment[];
 
   private getComments(): void {
     this.frifoodPodatkiServices.getComments().then(

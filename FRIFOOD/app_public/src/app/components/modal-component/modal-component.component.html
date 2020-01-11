@@ -28,8 +28,8 @@
           </select>
         </div>
 
-        <div *ngIf="restaurantPathID!= undefined && user != undefined">
-          <textarea [ngModel]="formData.newCommentText" class="form-control" id="newCommentText" name="newCommentText" required="required" placeholder="Piši sem !"></textarea>
+        <div class="form-group" *ngIf="restaurantPathID!= undefined && user != undefined">
+          <textarea [ngModel]="formData.newCommentText" class="form-control" id="newCommentText" name="newCommentText" required="required">{{formData.newCommentText}}</textarea>
         </div>
       </div>
     </form>

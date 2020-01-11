@@ -18,10 +18,12 @@ export class ModalComponentComponent implements OnInit {
 
   @Input() openButonClass: string;
 
+  @Input() valueForTextArea: string;
+
   @Input() restaurantPathID: string;
   @Input() user: User = undefined;
 
-
+  tmp: string;
   @Output() formSubmitEvent = new EventEmitter();
 
 
@@ -39,6 +41,7 @@ export class ModalComponentComponent implements OnInit {
   open(content) {
 
     console.log(this.restaurantPathID, "<-->"+this.user);
+    this.tmp = this.valueForTextArea;
 
     this.modalService.open(content, {centered: true, }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -73,5 +76,6 @@ export class ModalComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.valueForTextArea)
   }
 }

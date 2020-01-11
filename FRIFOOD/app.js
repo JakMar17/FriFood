@@ -11,6 +11,39 @@ require('./app_api/models/db');
 require('./app_api/konfiguracija/passport');
 require('./app_api/models/restaurants');
 const bodyParser = require("body-parser");
+
+
+
+var swaggerJsdoc = require("swagger-jsdoc");
+var swaggerUi = require("swagger-ui-express");
+
+
+var swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "FriFood",
+      version: "1.0.0",
+      description: "FriFood REST API"
+    },
+    license: {
+      name: "GNU LGPLv3",
+      url: "https://choosealicense.com/licenses/lgpl-3.0"
+    },
+    servers: [
+      { url: "http://localhost:8081/api" },
+      { url: "https://edugeocache-sp-2019.herokuapp.com/api" }
+    ]
+  },
+  apis: [
+    "./app_api/models/lokacije.js",
+    "./app_api/models/uporabniki.js",
+    "./app_api/routes/index.js"
+  ]
+};
+const swaggerDocument = swaggerJsdoc(swaggerOptions);
+
+
 //var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
 var loginRouter = require('./app_server/routes/login');
@@ -36,6 +69,35 @@ var databaseRouter = require('./app_server/routes/database');
 
 var app = express();
 
+const expressSwagger = require('express-swagger-generator')(app);
+let options = {
+  swaggerDefinition: {
+    info: {
+      description: 'This is a sample server',
+      title: 'Swagger',
+      version: '1.0.0',
+    },
+    host: 'localhost:3000/docs',
+    basePath: '/api/docs',
+    produces: [
+      "application/json",
+      "application/xml"
+    ],
+    schemes: ['http'],
+    securityDefinitions: {
+      JWT: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
+        description: "",
+      }
+    }
+  },
+  basedir: __dirname, //app absolute path
+  files: ['./app_api/routes/**/*.js'] //Path to the API handle folder
+};
+expressSwagger(options)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 hbs.registerPartials(__dirname + '/app_server/views/partials');
@@ -59,12 +121,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8081');
   //res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
+
+
 
 /*app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -73,6 +139,11 @@ app.use('/api', (req, res, next) => {
 });*/
 
 app.use('/api', indexApi);
+
+indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+indexApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
 
 //app.use('/', indexRouter);
 

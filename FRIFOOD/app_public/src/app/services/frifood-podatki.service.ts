@@ -248,6 +248,19 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+
+  public getRestaurantsBySearch(podatki: string): Promise<Restaurant[]> {
+    const url: string = `${environment.apiUrl}/search/${podatki}`;
+
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as unknown as Restaurant[])
+      .catch(this.obdelajNapako);
+  }
+
+
+
   public getRestaurants(): Promise<Restaurant[]> {
     const url: string = `${environment.apiUrl}/restaurants`;
     console.log(url);

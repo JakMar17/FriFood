@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private friFoodPodatkiServices: FrifoodPodatkiService,
     private router: Router,
-    private autenticate: AvtentikacijaService
+    public autenticate: AvtentikacijaService
   ) {}
 
   private mail: string = this.autenticate.decodeToken().email;
@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
-  redirect(url: string): void {
+  public redirect(url: string): void {
     this.router.navigate([url]);
   }
 

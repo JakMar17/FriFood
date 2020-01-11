@@ -63,6 +63,10 @@ const poti: Routes = [
   {
     path: 'restaurant-list',
     component: RestaurantlistComponent
+  },
+  {
+    path: 'restaurant-list/:searchVal',
+    component: RestaurantlistComponent
   }
 ];
 
