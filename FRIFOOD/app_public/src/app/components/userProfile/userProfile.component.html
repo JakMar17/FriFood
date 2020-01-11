@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Pregled uporabnika</title>
-
-  <link href="/assets/stylesheets/UserPageStyle.css" rel="stylesheet" type="text/css"/>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-</head>
-
-<body>
 <div class="container-fluid h-100">
   <div class="row h-100">
 
@@ -27,8 +10,8 @@
         <!--                    Switch to admin view (only if user is admin)-->
         <div class = col>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="adminPageView" onclick = "location.href = '/admin/locations'">
-            <label class="custom-control-label" style = "color:white" for="adminPageView" onclick = "location.href = '/admin/locations'">Administratorski pogled</label>
+            <input type="checkbox" class="custom-control-input" id="adminPageView" (click)="redirect('/admin/locations')">
+            <label class="custom-control-label" style = "color:white" for="adminPageView" (click)="redirect('/admin/locations')">Administratorski pogled</label>
           </div>
         </div>
       </div>
@@ -105,44 +88,3 @@
 
   </div>
 </div>
-
-<!--<script src="javascripts/popper.min.js"></script>-->
-<!--<script src="javascripts/bootstrap.min.js"></script>-->
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
-
-
-<!--    Modal for showing correction details-->
-<!--<div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">-->
-<!--  <div class="modal-dialog" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title">Urejanje komentarja</h5>-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class = "modal-body">-->
-<!--        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant}}</i></h6>-->
-
-<!--        <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">-->
-<!--          <input type = hidden name="komentarID" value="{{comment._id}}">-->
-<!--          <input type="hidden" value="/profile" name="returnADR">-->
-
-<!--          <div class = "form-group">-->
-<!--            <label for = "newCommentText">Komentar</label>-->
-<!--            <textarea class="form-control" name = "newCommentText" rows = "5">{{comment.comment}}</textarea>-->
-<!--          </div>-->
-
-<!--          <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>-->
-<!--          <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment._id}}">Izbriši</button>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

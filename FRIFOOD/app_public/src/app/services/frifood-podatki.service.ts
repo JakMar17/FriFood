@@ -139,6 +139,7 @@ export class FrifoodPodatkiService {
   addNewRestaurant(restaurantForm: Restaurant): Promise<Restaurant> {
     const url: string = `${environment.apiUrl}/restaurantADD`;
     console.log(url);
+    console.log("data to send ->", restaurantForm);
     return this.http
       .post(url, restaurantForm)
       .toPromise()
