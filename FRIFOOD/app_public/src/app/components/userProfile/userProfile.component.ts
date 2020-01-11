@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
+import {Router} from "@angular/router";
 import { User } from "../../classes/User";
 
 @Component({
   selector: 'app-userProfile',
   templateUrl: './userProfile.component.html',
-  styleUrls: ['./userProfile.component.css']
+  styleUrls: [
+    './userProfile.component.css'
+  ]
 })
 
 export class UserProfileComponent implements OnInit {
 
-  constructor(private friFoodPodatkiServices: FrifoodPodatkiService) {}
+  constructor(
+    private friFoodPodatkiServices: FrifoodPodatkiService,
+    private router: Router,
+    //private autentication: AvtentikacijaStoritve
+  ) {}
 
   private mail: string = "janez.novak@fri.uni-lj.si";
   public user: User;
@@ -40,6 +47,10 @@ export class UserProfileComponent implements OnInit {
         this.activities = data;
       }
     )
+  }
+
+  private redirect(url: string): void {
+    this.router.navigate([url]);
   }
 
   ngOnInit(): void {
