@@ -139,7 +139,7 @@ router.post('/prijava', ctrlAvtentikacija.prijava);
  *  /uporabniki/{email}:
  *   get:
  *    summary: pridobi uporabnika
- *    description: Avtentikacija uporabnika.
+ *    description: vrne uporabnika po emailu.
  *    tags: [Uporabniki/Users]
  *    parameters:
  *     - in: path
@@ -164,7 +164,7 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  *  /uporabniki/{userID}:
  *   get:
  *    summary: pridobi uporabnika
- *    description: Avtentikacija uporabnika.
+ *    description: vrne uporabnika po idju.
  *    tags: [Uporabniki/Users]
  *    parameters:
  *     - in: query
@@ -184,6 +184,31 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
+
+
+/**
+ * @swagger
+ * path:
+ *  /users:
+ *   get:
+ *    summary: pridobi uporabnike
+ *    description: vrne vse uporabnike.
+ *    tags: [Uporabniki/Users]
+ *    responses:
+ *     "200":
+ *      description: uporabnik
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            napaka:
+ *                type: array
+ *                items:
+ *                     $ref: "#/components/schemas/uporabnikSchema"
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ */
 router.get('/users', ctrlUporabniki.getUsers);
 router.post('/users', ctrlUporabniki.updateUser);
 
