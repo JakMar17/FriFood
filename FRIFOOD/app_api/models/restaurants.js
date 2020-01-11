@@ -57,9 +57,6 @@ const restaurantSchema = new mongoose.Schema({
     icon: String,
     front: String,
 
-
-    img: { data: Buffer, contentType: String }
-
 });
 
 var restaurant = mongoose.model('restaurant', restaurantSchema, "Restaurant");

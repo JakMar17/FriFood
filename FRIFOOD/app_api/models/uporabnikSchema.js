@@ -3,6 +3,30 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   uporabnikiShema:
+ *    type: object
+ *    properties:
+ *     name:
+ *          type: string
+ *     surname:
+ *          type: string
+ *     email:
+ *          type: string
+ *
+ *     admin:
+ *          type: bool
+ *     zgoscenaVrednost:
+ *          type: string
+ *     nakljucnaVrednost:
+ *          type: string
+ *
+ */
+
 const uporabnikiShema = new mongoose.Schema({
     name: String,
     surname: String,
