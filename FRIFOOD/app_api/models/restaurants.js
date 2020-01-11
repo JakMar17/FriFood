@@ -34,6 +34,8 @@ const Schema = mongoose.Schema;
  *          type: array
  *          items:
  *              type: string
+ *     comments:
+ *          $ref: '#/components/schemas/commentSchema'
  */
 
 const restaurantSchema = new mongoose.Schema({
