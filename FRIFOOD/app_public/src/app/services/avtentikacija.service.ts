@@ -18,6 +18,7 @@ export class AvtentikacijaService {
   }
 
   public logOut(): void{
+    this.shramba.removeItem('zeton');
     this.shramba.clear();
   }
 
@@ -42,7 +43,11 @@ export class AvtentikacijaService {
   public decodeToken() {
     var token = this.vrniZeton().toString();
     if (token === null || token === '') { return { 'upn': '' }; }
+
     const parts = token.split('.');
+
+    console.log(parts);
+
     if (parts.length !== 3) {
 
       throw new Error('JWT must have 3 parts');
@@ -55,6 +60,7 @@ export class AvtentikacijaService {
   }
 
   public vrniZeton(): string {
+    console.log("zeton->",this.shramba.getItem('zeton'))
     return this.shramba.getItem('zeton');
   }
 
