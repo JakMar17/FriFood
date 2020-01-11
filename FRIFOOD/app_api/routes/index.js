@@ -42,21 +42,22 @@ const multipartMiddleware = multipart({
  *    summary: registracija
  *    description: Zapis uporabnika v bazo.
  *    tags: [Registracija]
- *    parameters:
- *     - in: body
- *       name: body
- *       description: podatki
- *       schema:
- *           type: object
- *           properties:
- *               name:
- *                   type: string
- *               surname:
- *                   type: string
- *               email:
- *                   type: string
- *               passwd1:
- *                   type: string
+ *    requestBody:
+ *       description: Prametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                      surname:
+ *                          type: string
+ *                      email:
+ *                          type: string
+ *                      passwd1:
+ *                          type: string
  *    responses:
  *     "200":
  *      description: Registracija uspešna.
@@ -89,17 +90,18 @@ router.post('/registracija', ctrlAvtentikacija.registracija);
  *    summary: prijava
  *    description: Avtentikacija uporabnika.
  *    tags: [Prijava]
- *    parameters:
- *     - in: body
- *       name: body
- *       description: podatki
- *       schema:
- *           type: object
- *           properties:
- *               email:
- *                   type: string
- *               passwd1:
- *                   type: string
+ *    requestBody:
+ *       description: Prametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      email:
+ *                          type: string
+ *                      passwd:
+ *                          type: string
  *    responses:
  *     "200":
  *      description: page Token
