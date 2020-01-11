@@ -106,10 +106,10 @@ export class RestaurantlistComponent implements AfterViewInit {
             //   results[i].photos = 'https://www.themezzaninegroup.com/wp-content/uploads/2017/12/photo-not-available.jpg'
             // }
             resultCount++;
-            //this.googleRestaurants.push(results[i]);
+            this.googleRestaurants.push(results[i]);
           }
         }
-        console.log(this.googleRestaurants);
+        //console.log(this.googleRestaurants);
       }
     });
   }
