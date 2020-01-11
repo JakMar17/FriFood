@@ -24,6 +24,11 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       return this.http
         .post(url, podatkiObrazca)
         .toPromise()
@@ -48,6 +53,11 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       return this.http
         .post(url, podatkiObrazca)
         .toPromise()
@@ -61,6 +71,11 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       return this.http
         .post(url, podatkiObrazca)
         .toPromise()
@@ -169,9 +184,8 @@ export class FrifoodPodatkiService {
     }
   }
 
-  private myError(napaka: string): Promise<any> {
-    console.error('Prišlo je do napake: ', napaka);
-    return Promise.reject(napaka);
+  private myError(napaka: string): void {
+    console.error('Prišlo je do napake (401): Unauthorized access. | ', napaka);
   }
 
 
@@ -189,6 +203,11 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       return this.http
         .get(url)
         .toPromise()
@@ -238,6 +257,11 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       this.http
         .post(url, files)
         .subscribe((response) => {
