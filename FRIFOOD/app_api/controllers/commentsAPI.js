@@ -71,10 +71,11 @@ const readComments = (req, res) => {
 
 const deleteComment = (req, res) => {
 
-    var id = req.body.komentarID.toString();
+    // var id = req.body.komentarID.toString();
+    var id = req.params.id;
     var ObjectID = mongoose.Types.ObjectId;
 
-    console.log("id za itbris -> ",id);
+    //console.log("id za izbris -> ",id);
 
     Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){

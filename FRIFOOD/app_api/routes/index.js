@@ -234,9 +234,10 @@ router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
  *                      type: string
  */
 router.get('/users', ctrlUporabniki.getUsers);
-router.post('/users', ctrlUporabniki.updateUser);
+router.put('/users', ctrlUporabniki.updateUser);
 
 
+router.put('/comments/update', ctrlComments.updateComment);
 router.post('/comments/update', ctrlComments.updateComment);
 
 /**
@@ -271,6 +272,7 @@ router.post('/comments/update', ctrlComments.updateComment);
  */
 router.get('/comments', ctrlComments.readComments);
 router.post('/comments', ctrlComments.createComment);
+router.delete('/comments/delete/:id', ctrlComments.deleteComment);
 router.post('/comments/delete', ctrlComments.deleteComment);
 
 /**
@@ -383,18 +385,18 @@ router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCom
 router.get('/updateRestaurantRating/:id', ctrlComments.updateRestaurantRating);
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
-router.post('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
-router.post('/restaurants/update', ctrlRestavracija.updateResturant);
-router.get('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
+router.delete('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
+router.put('/restaurants/update', ctrlRestavracija.updateResturant);
+router.delete('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 router.get('/search/:name', ctrlRestavracija.getRestaurantBySearch);
 
-router.post('/database/drop', ctrlDatabase.dropDatabase);router.post('/database/fill', ctrlDatabase.fillDatabase);
-
-
+router.post('/database/drop', ctrlDatabase.dropDatabase);
+router.post('/database/fill', ctrlDatabase.fillDatabase);
 
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
-router.post('/analytics', ctrlAnalytics.updateAnalyticsByName);
+
+router.put('/analytics', ctrlAnalytics.updateAnalyticsByName);
 
 router.post('/upload',multipartMiddleware, ctrlDatabase.uploadFile);
 
