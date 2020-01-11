@@ -711,8 +711,7 @@ router.post('/restaurantADD', avtentikacija, ctrlRestavracija.dodajRestavracijo)
  *                      type: string
  */
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
-router.delete('/restaurants/delete', avtentikacija, ctrlRestavracija.deleteRestaurant);
-router.put('/restaurants/update', avtentikacija, ctrlRestavracija.updateResturant);
+
 router.delete('/deleteRestaurant/:id', avtentikacija, ctrlRestavracija.deleteRestaurantByID);
 
 /**
