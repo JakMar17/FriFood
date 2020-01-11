@@ -38,12 +38,16 @@ const getUserById = (req, res) => {
 
 const narediUporabnika = (req, res) => {
 
-    var name = req.body.name.toString();
-    var surname = req.body.surname.toString();
-    var email = req.body.email.toString();
-    var passwd1 = req.body.passwd1.toString();
-    var passwd2 = req.body.passwd2.toString();
+    console.log(req.headers.authorization);
 
+    var name = req.body.name;
+    var surname = req.body.surname;
+    var email = req.body.email;
+    var passwd1 = req.body.passwd1;
+    var passwd2 = req.body.passwd2;
+
+
+    console.log(name);
 
     if (name.length !== 0 && surname.length !== 0)
     {
@@ -54,7 +58,7 @@ const narediUporabnika = (req, res) => {
                 surname: surname,
                 email: email,
                 admin: false
-            })
+            });
 
             // save model to database
             user.save(function (err, rez) {

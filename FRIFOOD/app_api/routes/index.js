@@ -230,9 +230,15 @@ router.get('/user/:userID', ctrlUporabniki.getUserById);
  *               schema:
  *                  type: object
  *                  properties:
+ *                      name:
+ *                          type: string
+ *                      surname:
+ *                          type: string
  *                      email:
  *                          type: string
- *                      passwd:
+ *                      passwd1:
+ *                          type: string
+ *                      passwd2:
  *                          type: string
  *    responses:
  *     "200":
