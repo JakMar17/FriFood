@@ -37,50 +37,151 @@ const multipartMiddleware = multipart({
 /**
  * @swagger
  * path:
- *  /register:
- *   get:
+ *  /registracija:
+ *   post:
  *    summary: registracija
  *    description: Zapis uporabnika v bazo.
  *    tags: [Registracija]
  *    parameters:
- *     - in: query
- *       name: name
+ *     - in: body
+ *       name: body
+ *       description: podatki
  *       schema:
- *        type: string
- *       required: true
- *     - in: query
- *       name: surname
+ *           type: object
+ *           properties:
+ *               name:
+ *                   type: string
+ *               surname:
+ *                   type: string
+ *               email:
+ *                   type: string
+ *               passwd1:
+ *                   type: string
+ *    responses:
+ *     "200":
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: array
+ *         items:
+ *          $ref: "#/components/schemas/uporabnikSchema"
+ *     "400":
+ *      description: Napaka zahteve, manjkajo obvezni parametri.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+*/
+router.post('/registracija', ctrlAvtentikacija.registracija);
+
+
+/**
+ * @swagger
+ * path:
+ *  /prijava:
+ *   post:
+ *    summary: prijava
+ *    description: Avtentikacija uporabnika.
+ *    tags: [Prijava]
+ *    parameters:
+ *     - in: body
+ *       name: body
+ *       description: podatki
  *       schema:
- *        type: string
- *       required: true
- *     - in: query
+ *           type: object
+ *           properties:
+ *               email:
+ *                   type: string
+ *               passwd1:
+ *                   type: string
+ *    responses:
+ *     "200":
+ *      description: page Token
+ *      content:
+ *       application/json:
+ *        schema:
+ *              type: object
+ *              properties:
+ *                  pageToken:
+ *                      type: string
+ *     "400":
+ *      description: Zahtevani so vsi podatki
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "401":
+ *      description: Unathorized
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ */
+router.post('/prijava', ctrlAvtentikacija.prijava);
+
+
+/**
+ * @swagger
+ * path:
+ *  /uporabniki/{email}:
+ *   get:
+ *    summary: pridobi uporabnika
+ *    description: Avtentikacija uporabnika.
+ *    tags: [Uporabniki/Users]
+ *    parameters:
+ *     - in: path
  *       name: email
  *       schema:
  *        type: string
  *       required: true
  *    responses:
  *     "200":
+ *      description: uporabnik
  *      content:
  *       application/json:
  *        schema:
- *         type: object
- *          $ref: "#/components/schemas/uporabnikSchema"
- *     "400":
- *      description: Napaka zahteve, manjkajo obvezni parametri.
- *      content:
- *       application/json:
- *        schema:
- *         $ref: "#/components/schemas/Napaka"
- *        example:
- *         sporočilo: Parametra lng in lat sta obvezna.
+ *         $ref: "#/components/schemas/uporabnikSchema"
  *     "500":
  *      description: Napaka na strežniku pri dostopu do podatkovne baze.
-*/
-router.post('/registracija', ctrlAvtentikacija.registracija);
-router.post('/prijava', ctrlAvtentikacija.prijava);
-
-
+ */
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
+/**
+ * @swagger
+ * path:
+ *  /uporabniki/{userID}:
+ *   get:
+ *    summary: pridobi uporabnika
+ *    description: Avtentikacija uporabnika.
+ *    tags: [Uporabniki/Users]
+ *    parameters:
+ *     - in: query
+ *       name: id
+ *       schema:
+ *        type: string
+ *       required: true
+ *    responses:
+ *     "200":
+ *      description: uporabnik
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/uporabnikSchema"
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
 router.get('/users', ctrlUporabniki.getUsers);

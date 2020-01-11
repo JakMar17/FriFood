@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Uporabnik = mongoose.model('uporabniki');
 
 const registracija = (req, res) => {
+
+    console.log(req.body);
+
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.passwd1) {
         return res.status(400).json({"sporočilo": "Zahtevani so vsi podatki"});
     }
