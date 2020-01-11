@@ -20,22 +20,19 @@ export class UserProfileComponent implements OnInit {
     private autenticate: AvtentikacijaService
   ) {}
 
-  private mail: string = "janez.novak@fri.uni-lj.si";
+  private mail: string = this.autenticate.decodeToken().email;
+  private user_id: string = this.autenticate.decodeToken()._id;
   public user: User;
 
   public activities: any;
 
   private getUserByEmail(): void {
-    this.friFoodPodatkiServices.getuserByEmail(this.mail).then(
-      (data) => {
-        this.user = data;
-        this.getComments();
-      }
-    )
+    this.user = this.autenticate.decodeToken();
+    this.getComments();
   }
 
   private getUserById(): void {
-    this.friFoodPodatkiServices.getUserById("5ded961514d31e5174a468bb").then(
+    this.friFoodPodatkiServices.getUserById(this.user_id).then(
       (data) => {
         this.user = data;
       }

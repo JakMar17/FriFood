@@ -28,7 +28,7 @@
       <div class = "dataUnit">
         <div class="row">
           <div id = "nameSurname" class = "col">
-            {{user.name}} {{user.surname}}
+            {{user.ime}} {{user.priimek}}
           </div>
         </div>
         <div class = "row">
@@ -38,10 +38,10 @@
         </div>
       </div>
 
-      <div class = "dataUnit" style = "margin-bottom: 10px">
+      <div class = "dataUnit" style = "margin-bottom: 10px; font-size: 15px;">
         <div class = "row">
           <div id = "email" class = "col">
-            {{user.email}}
+            {{user.elektronskiNaslov}}
           </div>
         </div>
         <div class = "row">
@@ -74,9 +74,9 @@
             <td style="word-wrap: break-word">{{el.comment}}</td>
             <td style="word-wrap: break-word">{{el.restaurant.name}}</td>
             <td>
-              <a href = "#" data-toggle="modal" data-target="#">
-                <i class="fas fa-edit"></i>
-              </a>
+<!--              <a>-->
+<!--                <i class="fas fa-edit"></i>-->
+<!--              </a>-->
             </td>
           </tr>
 
