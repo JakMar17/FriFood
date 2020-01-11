@@ -31,7 +31,6 @@ const prijava = (req, res) => {
             return res.status(500).json(napaka);
         if (uporabnik) {
             var pagetoken = uporabnik.generirajJwt();
-            Console.log(pagetoken);
             return res.status(200).json({"pagetoken": pagetoken});
         } else {
             return res.status(401).json(informacije);
