@@ -32,7 +32,23 @@
           <div class="col-10 offset-1 col-md-8 offset-md-2">
             <div class="row justify-content-end">
               <div class="btn-group dropright m-1">
-                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo">Nov komentar</button>
+
+                <div>
+                  <app-modal-component
+                  naslov="Nov komentar"
+                  buttonDescription="Nov komentar"
+                  closeButton="Objavi"
+
+                  [restaurantPathID]="restaurantPathID"
+                  [user]="users[0]"
+
+                  (formSubmitEvent)='dodajNovKomentar($event)'>
+
+                </app-modal-component>
+                </div>
+                  <!--[restaurantPathID]="restaurantPathID"
+                  [user]="users[0]"-->
+
 
               </div>
             </div>
@@ -40,7 +56,10 @@
         </div>
 
 
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <!--
+
+          <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -51,11 +70,8 @@
               </div>
               <div class="modal-body">
 
-                <div *ngIf="obrazecNapaka" class="alert alert-danger" role="alert">
-                  {{ obrazecNapaka }}
-                </div>
 
-                <form (ngSubmit)="dodajNovKomentar()" [attr.id]="'myform1'">
+                <form (ngSubmit)="dodajNovKomentar($event)" [attr.id]="'myform1'">
                   <input *ngIf="users && users.length > 0" type="hidden" id = "author" [ngModel]="formaPodatkiKomentar.author" value="{{users[0]._id}}" name="author">
                   <input type="hidden" id = "restaurant" [ngModel]="formaPodatkiKomentar.restaurant" value="{{restaurantPathID}}" name="restaurant">
                   <div class="form-group">
@@ -79,6 +95,10 @@
             </div>
           </div>
         </div>
+
+        -->
+
+
 
       </div>
     </div>
