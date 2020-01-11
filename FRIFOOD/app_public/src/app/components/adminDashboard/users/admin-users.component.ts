@@ -11,7 +11,7 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(private frifoodPodatkiService: FrifoodPodatkiService) { }
 
-  private users: User[];
+  public users: User[];
 
   private getUsers(): void {
     this.frifoodPodatkiService.getUporabniki().then(
