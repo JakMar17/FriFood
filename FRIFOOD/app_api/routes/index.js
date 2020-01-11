@@ -158,20 +158,27 @@ router.post('/prijava', ctrlAvtentikacija.prijava);
  *        schema:
  *         $ref: "#/components/schemas/uporabnikSchema"
  *     "500":
- *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
  */
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 /**
  * @swagger
  * path:
- *  /uporabniki/{userID}:
+ *  /user/{userID}:
  *   get:
  *    summary: pridobi uporabnika
  *    description: vrne uporabnika po idju.
  *    tags: [Uporabniki/Users]
  *    parameters:
- *     - in: query
- *       name: id
+ *     - in: path
+ *       name: userID
  *       schema:
  *        type: string
  *       required: true
@@ -183,7 +190,14 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  *        schema:
  *         $ref: "#/components/schemas/uporabnikSchema"
  *     "500":
- *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
  */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
@@ -210,18 +224,159 @@ router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
  *                items:
  *                     $ref: "#/components/schemas/uporabnikSchema"
  *     "500":
- *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
  */
 router.get('/users', ctrlUporabniki.getUsers);
 router.post('/users', ctrlUporabniki.updateUser);
 
 
 router.post('/comments/update', ctrlComments.updateComment);
+
+/**
+ * @swagger
+ * path:
+ *  /comments:
+ *   get:
+ *    summary: pridobi vse komentarje
+ *    description: vrne vse komentarje v bazi.
+ *    tags: [Comments]
+ *    responses:
+ *     "200":
+ *      description: komentarji
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            napaka:
+ *                type: array
+ *                items:
+ *         $ref: "#/components/schemas/comments"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/comments', ctrlComments.readComments);
 router.post('/comments', ctrlComments.createComment);
 router.post('/comments/delete', ctrlComments.deleteComment);
+
+/**
+ * @swagger
+ * path:
+ *  /comment/{id}:
+ *   get:
+ *    summary: pridobi komentar
+ *    description: vrne komentar po idju.
+ *    tags: [Comments]
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: string
+ *         required: true
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/comments"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/comment/:id', ctrlComments.getCommentById);
+
+
+/**
+ * @swagger
+ * path:
+ *  /commentAuthor/{authorID}:
+ *   get:
+ *    summary: pridobi komentar
+ *    description: vrne komentar po avtorju komentarja.
+ *    tags: [Comments]
+ *    parameters:
+ *     - in: path
+ *       name: authorID
+ *       schema:
+ *         type: string
+ *         required: true
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/comments"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
+
+
+/**
+ * @swagger
+ * path:
+ *  /commentsByRestaurantIdPerPage/{id}/{pageNumber}:
+ *   get:
+ *    summary: pridobi komentar
+ *    description: vrne komentar glede na restavracijo in stran.
+ *    tags: [Comments]
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: string
+ *         required: true
+ *     - in: path
+ *       name: pageNumber
+ *       schema:
+ *         type: number
+ *         required: true
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/comments"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCommentsByRestaurantIdPerPage);
 
 
