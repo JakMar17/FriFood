@@ -12,7 +12,7 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  private redirect(url: string): void {
+  redirect(url: string): void {
     this.router.navigate([url]);
   }
 

@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { SHRAMBA_BRSKALNIKA } from '../classes/token-storage';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +8,15 @@ import { SHRAMBA_BRSKALNIKA } from '../classes/token-storage';
 
 export class AvtentikacijaService {
 
-  constructor(@Inject(SHRAMBA_BRSKALNIKA) public shramba: Storage) { }
+  constructor(@Inject(SHRAMBA_BRSKALNIKA) public shramba: Storage, private router: Router) { }
 
   public isLoggedIn(): boolean{
     if(this.vrniZeton()){
-      return true;
+      if(!this.checkExpired()){
+        return false;
+      }else{
+        return true;
+      }
     }else{
       return false;
     }
@@ -20,6 +25,17 @@ export class AvtentikacijaService {
   public logOut(): void{
     this.shramba.removeItem('zeton');
     this.shramba.clear();
+  }
+
+  private checkExpired(): boolean{
+    var decoded = this.decodeToken();
+    var expires = decoded.datumPoteka;
+    if(Date.now() >= expires * 1000){
+      this.logOut();
+      this.router.navigate(['login']);
+      return false;
+    }
+    return true;
   }
 
   private urlBase64Decode(str: string) {
@@ -46,7 +62,7 @@ export class AvtentikacijaService {
 
     const parts = token.split('.');
 
-    console.log(parts);
+    //console.log(parts);
 
     if (parts.length !== 3) {
 
@@ -60,7 +76,7 @@ export class AvtentikacijaService {
   }
 
   public vrniZeton(): string {
-    console.log("zeton->",this.shramba.getItem('zeton'))
+    //console.log("zeton->",this.shramba.getItem('zeton'))
     return this.shramba.getItem('zeton');
   }
 

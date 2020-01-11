@@ -34,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
+import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -58,9 +59,12 @@ import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
     AdminUsersComponent,
     LogoutComponent,
     ModalComponentComponent,
-    TransformLink2Pipe
+    TransformLink2Pipe,
+    ZgodovinaPipePipe
   ],
-
+  exports: [
+    ZgodovinaPipePipe
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -77,7 +81,9 @@ import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
   providers: [{
     provide: MatDialogRef,
     useValue: {}
-  }],
+  },
+    ZgodovinaPipePipe
+  ],
   bootstrap: [OgrodjeComponent],
   entryComponents: [ModalComponentComponent]
 })

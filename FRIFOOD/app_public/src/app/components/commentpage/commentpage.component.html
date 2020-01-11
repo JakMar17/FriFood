@@ -31,7 +31,7 @@
 
         <div *ngIf="komentarji && komentarji.length > 0" >
 
-          <app-comment *ngFor="let komentar of komentarji" [canChange] = "komentar.author._id == authenticate.isLoggedIn()"  [komentar]="komentar"></app-comment>
+          <app-comment *ngFor="let komentar of komentarji" [user] = "user"  [komentar]="komentar"></app-comment>
 
         </div>
 
@@ -44,7 +44,7 @@
             <div class="row justify-content-end">
               <div class="btn-group dropright m-1">
 
-                <div *ngIf="loggedIn==true">
+                <div *ngIf="authenticate.isLoggedIn()">
                   <app-modal-component
                   naslov="Nov komentar"
                   buttonDescription="Nov komentar"

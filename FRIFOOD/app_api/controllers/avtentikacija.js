@@ -10,6 +10,7 @@ const registracija = (req, res) => {
     uporabnik.name = req.body.name;
     uporabnik.surname = req.body.surname;
     uporabnik.email = req.body.email;
+    uporabnik.admin = false;
     var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
     uporabnik.nakljucnaVrednost = vrednosti[0];
     uporabnik.zgoscenaVrednost = vrednosti[1];

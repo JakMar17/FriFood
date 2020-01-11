@@ -17,7 +17,8 @@ export class CommentComponent implements OnInit {
   closeResult: string;
 
   obrazecNapaka: string;
-  @Input() canChange: boolean;
+  canChange: boolean;
+  @Input() user: User;
 
 
   constructor(private modalService: NgbModal, private FrifoodPodatkiService: FrifoodPodatkiService, private avtentikacija: AvtentikacijaService) {
@@ -29,7 +30,7 @@ export class CommentComponent implements OnInit {
       komentarID: this.komentar._id
     };
     this.FrifoodPodatkiService.deleteComment(komentar).then(komentar => {
-      console.log("Komentar izbrisan", komentar);
+      //console.log("Komentar izbrisan", komentar);
       this.komentar = undefined;
     });
   }
@@ -39,11 +40,13 @@ export class CommentComponent implements OnInit {
     if(data.newCommentText.length > 0) {
       let komentar = {
         komentarID: this.komentar._id,
-        newCommentText: data.newCommentText
+        newCommentText: data.newCommentText,
+        rating: data.rating
       };
       this.FrifoodPodatkiService.updateComment(komentar).then(rez => {
-        console.log("Komentar posodobljen", rez);
+        //console.log("Komentar posodobljen", rez);
         this.komentar.comment = komentar.newCommentText;
+        this.komentar.rating = komentar.rating;
       });
       this.modalService.dismissAll();
     }
@@ -55,6 +58,22 @@ export class CommentComponent implements OnInit {
   @Input() komentar: Comment;
 
   ngOnInit() {
+
+
+
+    if(this.komentar.author != undefined && this.user != undefined)
+    {
+
+
+      //console.log("this.komentar.author._id ",this.komentar.author._id, "this.user._id ",this.user._id)
+      if(this.komentar.author._id == this.user._id)
+        this.canChange = true;
+      else
+        this.canChange = false;
+
+    }
+
+
 
   }
 }
