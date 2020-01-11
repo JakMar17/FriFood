@@ -35,21 +35,25 @@
             <th scope="col">Komentar</th>
             <th scope="col">Lokacija</th>
             <th scope="col">Uporabnik</th>
-            <th scope="col"></th>
+            <th scope="col">Izbriši</th>
           </tr>
           </thead>
           <tbody>
 
           <tr *ngFor="let comment of comments">
             <th scope="row" style="word-wrap: break-word">{{comment._id}}</th>
-            <td style="word-wrap: break-word">{{comment.date}}</td>
+            <td style="word-wrap: break-word">{{comment.date | date: 'dd.MM.yyy'}}</td>
             <td style="word-wrap: break-word">{{comment.comment}}</td>
             <td style="word-wrap: break-word">{{comment.restaurant.name}}</td>
             <td style="word-wrap: break-word">{{comment.author.name}} {{comment.author.surname}}</td>
             <td style="word-wrap: break-word">
-              <a href = "#" data-toggle="modal" data-target="#{{ comment._id}}">
-                <i class="fas fa-edit"></i>
-              </a>
+              <form method="post" id = "{{ comment._id}}" action = "/api/restaurants/delete">
+                <input type = "hidden" name="restaurantID" value="{{comment._id}}">
+                <input type="hidden" value="/admin-locations" name="returnADR">
+                <button class="btn btn-link" (click)="deleteComment(comment)">
+                  <i style="color: darkred" class="fas fa-trash"></i>
+                </button>
+              </form>
             </td>
           </tr>
 

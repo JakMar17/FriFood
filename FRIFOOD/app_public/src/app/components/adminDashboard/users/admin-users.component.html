@@ -45,9 +45,7 @@
             <td style="word-wrap: break-word">{{user.surname}}</td>
             <td style="word-wrap: break-word">{{user.email}}</td>
             <td>
-              <a href = "#" data-toggle="modal" data-target="#{{ user._id}}">
-                <i class="fas fa-edit"></i>
-              </a>
+                <i class="fas fa-edit" (click) = "redirect(user)"></i>
             </td>
           </tr>
 

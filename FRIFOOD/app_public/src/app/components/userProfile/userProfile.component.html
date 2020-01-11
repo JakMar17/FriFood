@@ -65,7 +65,7 @@
             <th scope="col" style="word-wrap: break-word">Datum</th>
             <th scope="col" style="word-wrap: break-word">Komentar</th>
             <th scope="col" style="word-wrap: break-word">Lokacija</th>
-            <th scope="col" style="word-wrap: break-word"></th>
+            <th scope="col" style="word-wrap: break-word">Izbriši komentar</th>
           </tr>
           </thead>
           <tbody>
@@ -74,9 +74,9 @@
             <td style="word-wrap: break-word">{{el.comment}}</td>
             <td style="word-wrap: break-word">{{el.restaurant.name}}</td>
             <td>
-<!--              <a>-->
-<!--                <i class="fas fa-edit"></i>-->
-<!--              </a>-->
+                <button class="btn btn-link" (click)="deleteComment(el)">
+                  <i style="color: darkred" class="fas fa-trash"></i>
+                </button>
             </td>
           </tr>
 

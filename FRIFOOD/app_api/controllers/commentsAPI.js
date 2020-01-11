@@ -75,8 +75,6 @@ const deleteComment = (req, res) => {
     var id = req.params.id;
     var ObjectID = mongoose.Types.ObjectId;
 
-    //console.log("id za izbris -> ",id);
-
     Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
                 if (error) res.status(404).json(result);

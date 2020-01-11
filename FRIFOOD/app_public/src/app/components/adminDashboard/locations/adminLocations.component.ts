@@ -18,6 +18,8 @@ export class AdminLocationsComponent implements OnInit {
   private mail: string = this.authentication.decodeToken().elektronskiNaslov;
   public user: User;
 
+
+
   public locations: Restaurant[];
 
   private getUserByEmail(): void {

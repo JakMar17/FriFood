@@ -54,6 +54,24 @@ export class FrifoodPodatkiService {
     }
   }
 
+  public updateUser(podatkiObrazca: any): Promise<User> {
+    const url: string = `${environment.apiUrl}/users`;
+    if(!this.authenticate.isLoggedIn()) {
+      this.myError("User not logged in");
+    } else {
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
+    }
+    return this.http
+      .put(url, podatkiObrazca)
+      .toPromise()
+      .then(responde => responde as User)
+      .catch(this.obdelajNapako);
+  }
+
   public getCommentsByUser(userID: string): Promise<Comment[]> {
     const url: string = `${environment.apiUrl}/commentAuthor/${userID}`;
 

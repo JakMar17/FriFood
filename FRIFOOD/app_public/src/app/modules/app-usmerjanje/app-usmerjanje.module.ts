@@ -14,6 +14,7 @@ import {AdminLocationsComponent} from "../../components/adminDashboard/locations
 import {AdminCommentsComponent} from "../../components/adminDashboard/comments/admin-comments.component";
 import {AdminUsersComponent} from "../../components/adminDashboard/users/admin-users.component";
 import {LogoutComponent} from "../../components/logout/logout.component";
+import {EditUserComponent} from "../../components/adminDashboard/users/edit-user/edit-user.component";
 import {AnalyticsComponent} from "../../components/adminDashboard/analytics/analytics/analytics.component";
 import {ChartsModule} from "ng2-charts";
 
@@ -73,6 +74,10 @@ const poti: Routes = [
   {
     path: 'restaurant-list/:searchVal',
     component: RestaurantlistComponent
+  },
+  {
+    path: 'admin/user/:id',
+    component: EditUserComponent
   }
 ];
 
