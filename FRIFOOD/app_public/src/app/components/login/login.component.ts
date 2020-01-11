@@ -4,6 +4,7 @@ import {Analytics} from "../../classes/Analytics";
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {AvtentikacijaService} from "../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService) { }
+  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService, private authentication: AvtentikacijaService) { }
 
 
   info: string;
@@ -25,6 +26,9 @@ export class LoginComponent implements OnInit {
 
     this.frifoodPodatkiService.prijavuporabnika(userData).then(
       (data) => {
+        console.log(data);
+        var token = data.žeton;
+        this.authentication.shraniZeton(token);
         this.router.navigate(["/"]);
       }
     );

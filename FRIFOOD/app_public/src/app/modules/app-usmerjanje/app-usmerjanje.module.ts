@@ -13,6 +13,7 @@ import {RestaurantlistComponent} from "../../components/restaurantlist/restauran
 import {AdminLocationsComponent} from "../../components/adminDashboard/locations/adminLocations.component";
 import {AdminCommentsComponent} from "../../components/adminDashboard/comments/admin-comments.component";
 import {AdminUsersComponent} from "../../components/adminDashboard/users/admin-users.component";
+import {LogoutComponent} from "../../components/logout/logout.component";
 
 
 const poti: Routes = [
@@ -23,6 +24,9 @@ const poti: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  { path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'commentPage/:id/:page',

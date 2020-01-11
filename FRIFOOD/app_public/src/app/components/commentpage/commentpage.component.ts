@@ -29,24 +29,27 @@ export class CommentpageComponent implements OnInit {
 
   restaurantPathID;
 
-  public formaPodatkiKomentar = {
-    restaurant: '',
-    author: '',
-    newCommentText: '',
-    rating: 5
-  };
   public modalNewCommentShowing: boolean = false;
-  public obrazecNapaka: string;
 
-  public dodajNovKomentar(): void {
+  loadNewPage(page: number)
+  {
 
-    this.formaPodatkiKomentar.restaurant = this.restaurantPathID;
-    this.formaPodatkiKomentar.author = this.users[0]._id;
-    this.formaPodatkiKomentar.newCommentText = (<HTMLInputElement>document.getElementById("newCommentText")).value;
+    let oldRoute:string = this.route.snapshot['_routerState'].url;
+    let newRoute:string = oldRoute.substring(0, oldRoute.lastIndexOf('/')+1);
 
-    this.obrazecNapaka = "";
-    if (this.formaPodatkiKomentar.rating > 0 && this.formaPodatkiKomentar.newCommentText.length > 0) {
-      this.frifoodPodatkiService.dodajKomentar(this.formaPodatkiKomentar).then(komentar => {
+    this.router.navigate([newRoute.concat(page.toString())]);
+  }
+
+  public formaPodatkiKomentar: any;
+
+  public dodajNovKomentar(data: any): void {
+
+    //get form data from modal
+
+    console.log(data);
+
+    if (data.rating > 0 && data.newCommentText.length > 0) {
+      this.frifoodPodatkiService.dodajKomentar(data).then(komentar => {
 
         console.log("Komentar shranjen", komentar);
 
@@ -57,21 +60,9 @@ export class CommentpageComponent implements OnInit {
 
         this.numberOfComments++;
 
-
       });
-    } else {
-      this.obrazecNapaka = "Zahtevani so vsi podatki, prosim poskusite ponovno!";
     }
 
-  }
-
-  loadNewPage(page: number)
-  {
-
-    let oldRoute:string = this.route.snapshot['_routerState'].url;
-    let newRoute:string = oldRoute.substring(0, oldRoute.lastIndexOf('/')+1);
-
-    this.router.navigate([newRoute.concat(page.toString())]);
   }
 
   ngOnInit() {

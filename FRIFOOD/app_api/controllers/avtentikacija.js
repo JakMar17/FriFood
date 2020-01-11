@@ -30,9 +30,11 @@ const prijava = (req, res) => {
         if (napaka)
             return res.status(500).json(napaka);
         if (uporabnik) {
-            res.status(200).json({"žeton": uporabnik.generirajJwt()});
+            var pagetoken = uporabnik.generirajJwt();
+            Console.log(pagetoken);
+            return res.status(200).json({"pagetoken": pagetoken});
         } else {
-            res.status(401).json(informacije);
+            return res.status(401).json(informacije);
         }
     })(req, res);
 }
