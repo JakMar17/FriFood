@@ -7,24 +7,29 @@ import {Comment} from "../classes/Comment";
 import { environment } from '../../environments/environment';
 import {Analytics} from "../classes/Analytics";
 import {Observable, Subject} from "rxjs";
+import {AvtentikacijaService} from "./avtentikacija.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FrifoodPodatkiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticate: AvtentikacijaService) { }
 
   private apiUrl = 'http://localhost:3000/api';
 
 
   public updateComment(podatkiObrazca: any): Promise<Comment> {
     const url: string = `${environment.apiUrl}/comments/update`;
-    return this.http
-      .post(url, podatkiObrazca)
-      .toPromise()
-      .then(odgovor => odgovor as Comment)
-      .catch(this.obdelajNapako);
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else {
+      return this.http
+        .post(url, podatkiObrazca)
+        .toPromise()
+        .then(odgovor => odgovor as Comment)
+        .catch(this.obdelajNapako);
+    }
   }
 
   public getCommentsByUser(userID: string): Promise<Comment[]> {
@@ -40,20 +45,28 @@ export class FrifoodPodatkiService {
 
   public deleteComment(podatkiObrazca: any): Promise<Comment> {
     const url: string = `${environment.apiUrl}/comments/delete`;
-    return this.http
-      .post(url, podatkiObrazca)
-      .toPromise()
-      .then(odgovor => odgovor as Comment)
-      .catch(this.obdelajNapako);
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else {
+      return this.http
+        .post(url, podatkiObrazca)
+        .toPromise()
+        .then(odgovor => odgovor as Comment)
+        .catch(this.obdelajNapako);
+    }
   }
 
   public dodajKomentar(podatkiObrazca: any): Promise<Comment> {
     const url: string = `${environment.apiUrl}/comments`;
-    return this.http
-      .post(url, podatkiObrazca)
-      .toPromise()
-      .then(odgovor => odgovor as Comment)
-      .catch(this.obdelajNapako);
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else {
+      return this.http
+        .post(url, podatkiObrazca)
+        .toPromise()
+        .then(odgovor => odgovor as Comment)
+        .catch(this.obdelajNapako);
+    }
   }
 
   public getComments(): Promise<Comment[]> {
@@ -140,12 +153,22 @@ export class FrifoodPodatkiService {
     const url: string = `${environment.apiUrl}/restaurantADD`;
     console.log(url);
     console.log("data to send ->", restaurantForm);
-    return this.http
-      .post(url, restaurantForm)
-      .toPromise()
-      .then(response => response as Restaurant)
-      .catch(this.obdelajNapako);
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else{
+      return this.http
+        .post(url, restaurantForm)
+        .toPromise()
+        .then(response => response as Restaurant)
+        .catch(this.obdelajNapako);
+    }
   }
+
+  private myError(napaka: string): Promise<any> {
+    console.error('Prišlo je do napake: ', napaka);
+    return Promise.reject(napaka);
+  }
+
 
   getRestaurnats(): Promise<Restaurant[]> {
     const url: string = `${environment.apiUrl}/restaurants`;
@@ -158,11 +181,15 @@ export class FrifoodPodatkiService {
 
   deleteRestaurant(id: string): Promise <Restaurant> {
     const url: string = `${environment.apiUrl}/deleteRestaurant/${id}`;
-    return this.http
-      .get(url)
-      .toPromise()
-      .then(response => response as Restaurant)
-      .catch(this.obdelajNapako);
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else {
+      return this.http
+        .get(url)
+        .toPromise()
+        .then(response => response as Restaurant)
+        .catch(this.obdelajNapako);
+    }
   }
 
   updateAnalyticsByName(analytics: any): Promise<Analytics> {
@@ -203,12 +230,15 @@ export class FrifoodPodatkiService {
 
   public upload(files: any){
       const url: string = `${environment.apiUrl}/upload`;
+    if(!this.authenticate.isLoggedIn()){
+      this.myError("User not logged in!");
+    }else {
       this.http
         .post(url, files)
         .subscribe((response) => {
-        console.log('response received is ', response);
-      })
-
+          console.log('response received is ', response);
+        })
+    }
     /*
 
     // this will be the our resulting map
