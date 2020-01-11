@@ -68,7 +68,7 @@ export class FrifoodPodatkiService {
   }
 
   dodajuporabnika(user: User): Promise<User> {
-    const url: string = `${environment.apiUrl}/uporabniki`;
+    const url: string = `${environment.apiUrl}/registracija`;
     console.log(url);
     return this.http
       .post(url, user)
