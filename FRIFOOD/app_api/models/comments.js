@@ -1,6 +1,24 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   commentSchema:
+ *    type: object
+ *    properties:
+ *    restaurant:
+ *      type: $ref: "#/components/schemas/KomentarBranje"
+ *     comment:
+ *      type: string
+ *     rating:
+ *      type: number
+ *     date:
+ *      type: date
+ */
+
 const commentSchema = new Schema ({
         restaurant: {type: Schema.Types.ObjectId, ref: 'restaurant'},
         author: {type: Schema.Types.ObjectId, ref: 'uporabniki'},

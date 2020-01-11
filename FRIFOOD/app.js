@@ -22,22 +22,17 @@ var swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "EduGeoCache",
+      title: "FriFood",
       version: "1.0.0",
-      description: "EduGeoCache REST API"
+      description: "FriFood REST API"
     },
     license: {
       name: "GNU LGPLv3",
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
-    contact: {
-      name: "Dejan Lavbič",
-      url: "https://www.lavbic.net",
-      email: "dejan@lavbic.net"
-    },
     servers: [
-      { url: "http://localhost:8080/api" },
-      { url: "https://edugeocache-sp-2019-2020.herokuapp.com/api" }
+      { url: "http://localhost:8081/api" },
+      { url: "https://edugeocache-sp-2019.herokuapp.com/api" }
     ]
   },
   apis: [
@@ -73,6 +68,35 @@ var databaseRouter = require('./app_server/routes/database');
 
 
 var app = express();
+
+const expressSwagger = require('express-swagger-generator')(app);
+let options = {
+  swaggerDefinition: {
+    info: {
+      description: 'This is a sample server',
+      title: 'Swagger',
+      version: '1.0.0',
+    },
+    host: 'localhost:3000/docs',
+    basePath: '/api/docs',
+    produces: [
+      "application/json",
+      "application/xml"
+    ],
+    schemes: ['http'],
+    securityDefinitions: {
+      JWT: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
+        description: "",
+      }
+    }
+  },
+  basedir: __dirname, //app absolute path
+  files: ['./app_api/routes/**/*.js'] //Path to the API handle folder
+};
+expressSwagger(options)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
