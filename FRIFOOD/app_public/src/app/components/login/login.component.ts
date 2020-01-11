@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
   info: string;
 
   prijaviUporabnika(){
+
+    this.info = "";
+
     var userData = {
       email: (<HTMLInputElement>document.getElementById("email")).value,
       passwd: (<HTMLInputElement>document.getElementById("passwd")).value
@@ -31,7 +34,7 @@ export class LoginComponent implements OnInit {
         this.authentication.shraniZeton(token);
         this.router.navigate(["/"]);
       }
-    );
+    ).catch((err) => (this.info = "Napacen email ali geslo"));
   }
 
   checkIfOkToLogin()

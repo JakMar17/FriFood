@@ -28,10 +28,10 @@
           <img src="./assets/images/layoutImages/profile_ico.png" height="29px" width="29px"/>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="text-align: right;margin-top: 8px; margin-right: -16px; background-color:#cbdcff; border-radius: 0px; border-color: #cbdcff; border-width: 0px;">
-          <a *ngIf="!authenticate.isLoggedIn()" class="dropdown-item" routerLink="login" style="color: #677491; font-size: 18px">PRIJAVA</a>
-          <a *ngIf="!authenticate.isLoggedIn()" class="dropdown-item" routerLink="register" style="color: #677491; font-size: 18px">REGISTRACIJA</a>
-          <a *ngIf="authenticate.isLoggedIn()" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="profile">OGLED PROFILA</a>
-          <a *ngIf="authenticate.isLoggedIn()" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="logout">ODJAVA</a>
+          <a *ngIf="!loggedIn" class="dropdown-item" routerLink="login" style="color: #677491; font-size: 18px">PRIJAVA</a>
+          <a *ngIf="!loggedIn" class="dropdown-item" routerLink="register" style="color: #677491; font-size: 18px">REGISTRACIJA</a>
+          <a *ngIf="loggedIn" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="profile">OGLED PROFILA</a>
+          <a *ngIf="loggedIn" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="logout">ODJAVA</a>
         </div>
       </li>
     </ul>

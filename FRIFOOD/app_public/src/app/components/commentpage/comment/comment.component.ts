@@ -4,6 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Comment } from "../../../classes/Comment";
 import { FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
 import {User} from "../../../classes/User";
+import {AvtentikacijaService} from "../../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-comment',
@@ -16,9 +17,10 @@ export class CommentComponent implements OnInit {
   closeResult: string;
 
   obrazecNapaka: string;
+  @Input() canChange: boolean;
 
 
-  constructor(private modalService: NgbModal, private FrifoodPodatkiService: FrifoodPodatkiService) {
+  constructor(private modalService: NgbModal, private FrifoodPodatkiService: FrifoodPodatkiService, private avtentikacija: AvtentikacijaService) {
   }
 
 

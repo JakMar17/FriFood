@@ -11,10 +11,10 @@
             </form>
           </div>
           <div *ngIf="restaurants">
-            <div class="restaurant mb-4" tabindex="1" *ngFor="let restaurant of restaurants"
+            <div class="restaurant mb-4 "    tabindex="1" *ngFor="let restaurant of restaurants"
                  (click)="handleAddress(restaurant.address)">
-              <div class="row">
-                <div class="col-md-6 col-sm-12">
+              <div class="row" >
+                <div class="col-md-6 col-sm-12" >
                   <h1>{{restaurant.name}}</h1>
                   <p>{{restaurant.address}}</p>
                   <p id="{{restaurant._id}}" class="rs-rating"></p>

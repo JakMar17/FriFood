@@ -8,9 +8,14 @@ import {AvtentikacijaService} from "../../services/avtentikacija.service";
 })
 export class OgrodjeComponent implements OnInit {
 
+  loggedIn: boolean;
+
   constructor(public authenticate: AvtentikacijaService, ) { }
 
   ngOnInit() {
+
+    this.loggedIn = this.authenticate.isLoggedIn();
+
   }
 
 }

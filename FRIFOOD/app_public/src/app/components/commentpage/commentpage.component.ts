@@ -5,7 +5,7 @@ import {User} from "../../classes/User";
 import {Restaurant} from "../../classes/Restaurant";
 import {Comment} from "../../classes/Comment";
 import {Analytics} from "../../classes/Analytics";
-
+import {AvtentikacijaService} from "../../services/avtentikacija.service";
 
 
 @Component({
@@ -15,17 +15,16 @@ import {Analytics} from "../../classes/Analytics";
 })
 export class CommentpageComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router, private authenticate: AvtentikacijaService) { }
 
   page;
   pageSize = 10;
   numberOfComments = 0;
 
-  users: User[] = [];
-
   restavracija: Restaurant;
 
   komentarji: Comment[];
+  user: User;
 
   restaurantPathID;
 
@@ -41,12 +40,17 @@ export class CommentpageComponent implements OnInit {
   }
 
   public formaPodatkiKomentar: any;
+  loggedIn: boolean;
 
   public dodajNovKomentar(data: any): void {
 
     //get form data from modal
 
     console.log(data);
+
+    data.author = new User();
+
+    //data.author.name =
 
     if (data.rating > 0 && data.newCommentText.length > 0) {
       this.frifoodPodatkiService.dodajKomentar(data).then(komentar => {
@@ -72,9 +76,14 @@ export class CommentpageComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loggedIn = this.authenticate.isLoggedIn();
+
     /*let x: User[];
     x = this.inicializirajUporabnike();
     console.log("XXXXX->",x[0]._id);*/
+
+    let user = this.authenticate.decodeToken();
+    console.log("user->",user);
 
     let analytics: Analytics;
     analytics = {
@@ -84,19 +93,6 @@ export class CommentpageComponent implements OnInit {
     };
     this.frifoodPodatkiService.updateAnalyticsByName(analytics).then(r =>
       console.log(r)
-    );
-
-    this.frifoodPodatkiService.getUporabniki().then(
-       (data) => {
-        console.log(data[0]);
-
-        data.forEach( x => {
-          console.log(x.name);
-        });
-
-        this.users = data;
-        console.log(this.users[0].name)
-      }
     );
 
     const script = this.renderer.createElement('script');
@@ -125,12 +121,11 @@ export class CommentpageComponent implements OnInit {
           (data) => {
             this.komentarji = data[0] as Comment[];
 
-
-
             this.numberOfComments =  data[1];
 
             console.log("podatki komentarjev->",this.komentarji);
 
+            /*
             this.komentarji.forEach( komentar => {
 
               this.frifoodPodatkiService.getUserById(komentar.author._id).then(
@@ -144,6 +139,8 @@ export class CommentpageComponent implements OnInit {
                 }
               );
             });
+
+            */
           }
         );
     });
