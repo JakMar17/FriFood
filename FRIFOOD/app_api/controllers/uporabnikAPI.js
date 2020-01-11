@@ -90,16 +90,17 @@ const getUsers = (req, res) => {
 
 const updateUser = (req, res) => {
 
-    var id = req.body._id.toString();
+    var id = req.body._id;
     var ObjectId = (mongoose.Types.ObjectId);
 
-    console.log("User:" + req.body.admin.toString());
+    console.log("User:" + id);
+
 
     Uporabnik.updateOne({"_id": ObjectId(id)}, {$set:
             {
-                "name": req.body.name.toString(),
-                "surname": req.body.surname.toString(),
-                "email": req.body.email.toString(),
+                "name": req.body.name,
+                "surname": req.body.surname,
+                "email": req.body.email,
                 "admin": req.body.admin
             }
     }, function (error, result) {

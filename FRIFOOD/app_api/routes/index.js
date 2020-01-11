@@ -265,7 +265,11 @@ router.get('/users', ctrlUporabniki.getUsers);
  *               schema:
  *                  type: object
  *                  properties:
- *                      newCommentText:
+ *                      name:
+ *                          type: string
+ *                      surname:
+ *                          type: string
+ *                      email:
  *                          type: string
  *                      _id:
  *                          type: string
@@ -278,9 +282,14 @@ router.get('/users', ctrlUporabniki.getUsers);
  *         type: object
  *         properties:
  *            napaka:
- *                type: array
- *                items:
- *                     $ref: "#/components/schemas/uporabnikSchema"
+ *                type: object
+ *                properties:
+ *                  n:
+ *                      type: number
+ *                  nModified:
+ *                      type: number
+ *                  ok:
+ *                      type: number
  *     "401":
  *      description: Unauthorized.
  *      content:
@@ -301,100 +310,6 @@ router.get('/users', ctrlUporabniki.getUsers);
  *                      type: string
  */
 router.put('/users', avtentikacija, ctrlUporabniki.updateUser);
-
-/**
- * @swagger
- * path:
- *  /comments/update:
- *   put:
- *    summary: posodobi komentar
- *    description: Posodobi komentar.
- *    tags: [Comments]
- *    security:
- *    - jwt: []
- *    requestBody:
- *       description: Parametri
- *       required: true
- *       content:
- *           application/json:
- *               schema:
- *                  type: object
- *                  properties:
- *                      name:
- *                          type: string
- *                      surname:
- *                          type: string
- *                      email:
- *                          type: string
- *                      _id:
- *                          type: string
- *    responses:
- *     "200":
- *      description: komentar
- *      content:
- *       application/json:
- *        schema:
- *         type: object
- *         properties:
- *            napaka:
- *                type: array
- *                items:
- *                     $ref: "#/components/schemas/comments"
- *     "401":
- *      description: Unauthorized.
- *      content:
- *       application/json:
- *          schema:
- *              type: object
- *              properties:
- *                  napaka:
- *                      type: string
- *     "500":
- *      description: Napaka v podatkovni bazi.
- *      content:
- *       application/json:
- *          schema:
- *              type: object
- *              properties:
- *                  napaka:
- *                      type: string
- */
-router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
-
-/**
- * @swagger
- * path:
- *  /comments:
- *   get:
- *    summary: pridobi vse komentarje
- *    description: vrne vse komentarje v bazi.
- *    tags: [Comments]
- *    responses:
- *     "200":
- *      description: komentarji
- *      content:
- *       application/json:
- *        schema:
- *         type: object
- *         properties:
- *            napaka:
- *                type: array
- *                items:
- *         $ref: "#/components/schemas/comments"
- *     "500":
- *      description: Napaka v podatkovni bazi.
- *      content:
- *       application/json:
- *          schema:
- *              type: object
- *              properties:
- *                  napaka:
- *                      type: string
- */
-router.get('/comments', ctrlComments.readComments);
-router.post('/comments', avtentikacija, ctrlComments.createComment);
-router.delete('/comments/delete/:id', avtentikacija, ctrlComments.deleteComment);
-router.post('/comments/delete', avtentikacija, ctrlComments.deleteComment);
 
 /**
  * @swagger
@@ -501,6 +416,207 @@ router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
  *                      type: string
  */
 router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCommentsByRestaurantIdPerPage);
+
+
+/**
+ * @swagger
+ * path:
+ *  /comments:
+ *   get:
+ *    summary: pridobi vse komentarje
+ *    description: vrne vse komentarje v bazi.
+ *    tags: [Comments]
+ *    responses:
+ *     "200":
+ *      description: komentarji
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            napaka:
+ *                type: array
+ *                items:
+ *         $ref: "#/components/schemas/comments"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
+router.get('/comments', ctrlComments.readComments);
+
+/**
+ * @swagger
+ * path:
+ *  /comments:
+ *   post:
+ *    summary: ustvari komentar
+ *    description: Naredi komentar in ga zapiše v bazo.
+ *    tags: [Comments]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      author:
+ *                          type: string
+ *                      restaurant:
+ *                          type: string
+ *                      rating:
+ *                          type: string
+ *                      newCommentText:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            message:
+ *               $ref: "#/components/schemas/comments"
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
+router.post('/comments', avtentikacija, ctrlComments.createComment);
+
+
+/**
+ * @swagger
+ * path:
+ *  /comments/update:
+ *   put:
+ *    summary: posodobi komentar
+ *    description: Posodobi komentar.
+ *    tags: [Comments]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                      surname:
+ *                          type: string
+ *                      email:
+ *                          type: string
+ *                      _id:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            message:
+ *                type: array
+ *                items:
+ *                     $ref: "#/components/schemas/comments"
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
+router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
+
+/**
+ * @swagger
+ * path:
+ *  /comments/delete/{id}:
+ *   delete:
+ *    summary: odstrani komentar
+ *    description: Odstrani komentar iz podatkovne baze.
+ *    tags: [Comments]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      id:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: sporocilo
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            message:
+ *                type: string
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
+router.delete('/comments/delete/:id', avtentikacija, ctrlComments.deleteComment);
 
 /**
  * @swagger

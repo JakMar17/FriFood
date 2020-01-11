@@ -4,11 +4,12 @@ const Comments = mongoose.model('comments');
 
 const createComment = (req, res) => {
 
-    let ratingNum = parseInt(req.body.rating.toString());
+
+    let ratingNum = parseInt(req.body.rating);
     var comments = new Comments({
-        restaurant: req.body.restaurant.toString(),
-        comment: req.body.newCommentText.toString(),
-        author: req.body.author.toString(),
+        restaurant: req.body.restaurant,
+        comment: req.body.newCommentText,
+        author: req.body.author,
         rating: ratingNum,
         date: Date.now()
     });
@@ -22,11 +23,8 @@ const createComment = (req, res) => {
         else if (error)
             res.status(500).json(error);
         else
-            res.status(200);
+            res.status(200).json(comments);
     });
-
-    res.status(200).json(comments);
-
 };
 
 const updateComment = (req, res) => {
