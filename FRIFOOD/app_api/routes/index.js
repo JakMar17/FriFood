@@ -460,6 +460,8 @@ router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCom
  *    summary: restaurant-add
  *    description: Zapis restavracije v bazo.
  *    tags: [Restaurants]
+ *    security:
+ *      - jwt: []
  *    requestBody:
  *       description: Prametri
  *       required: true
