@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
 import { User } from "../../../classes/User";
+import {Router} from "@angular/router";
+import {Restaurant} from "../../../classes/Restaurant";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,42 +12,46 @@ import { User } from "../../../classes/User";
 
 export class AdminLocationsComponent implements OnInit {
 
-  constructor(private friFoodPodatkiServices: FrifoodPodatkiService) {}
+  constructor(private friFoodPodatkiServices: FrifoodPodatkiService, private router: Router) {}
 
   private mail: string = "janez.novak@fri.uni-lj.si";
   public user: User;
 
-  public activities: any;
+  public locations: Restaurant[];
 
   private getUserByEmail(): void {
     this.friFoodPodatkiServices.getuserByEmail(this.mail).then(
       (data) => {
         this.user = data;
-        this.getComments();
       }
     )
   }
 
-  private getUserById(): void {
-    this.friFoodPodatkiServices.getUserById("5ded961514d31e5174a468bb").then(
+
+  private getRestaurants(): void {
+    this.friFoodPodatkiServices.getRestaurnats().then(
       (data) => {
-        this.user = data;
+        this.locations = data;
       }
     )
   }
 
-  private getComments(): void {
-    this.friFoodPodatkiServices.getCommentsByUser(this.user._id).then(
-      (data) => {
-        this.activities = data;
-      }
-    )
+  public deleteLocation (location: string): void {
+    this.friFoodPodatkiServices.deleteRestaurant(location).then();
+
+    this.ngOnInit();
   }
+
+  public redirectToLocation (location: string): void {
+    let url: string = "restaurantView/" + location;
+    this.router.navigate([url]);
+  }
+
 
   ngOnInit(): void {
     this.getUserByEmail();
+    this.getRestaurants();
   }
-
 
 }
 

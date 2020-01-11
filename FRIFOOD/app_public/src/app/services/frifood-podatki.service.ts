@@ -56,6 +56,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  public getComments(): Promise<Comment[]> {
+    const url: string = `${environment.apiUrl}/comments`;
+
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(responde => responde as Comment[])
+      .catch(this.obdelajNapako);
+  }
+
   getUporabniki(): Promise<User[]> {
     const url: string = `${environment.apiUrl}/users`;
     console.log(url);
@@ -131,6 +141,24 @@ export class FrifoodPodatkiService {
     console.log(url);
     return this.http
       .post(url, restaurantForm)
+      .toPromise()
+      .then(response => response as Restaurant)
+      .catch(this.obdelajNapako);
+  }
+
+  getRestaurnats(): Promise<Restaurant[]> {
+    const url: string = `${environment.apiUrl}/restaurants`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Restaurant[])
+      .catch(this.obdelajNapako);
+  }
+
+  deleteRestaurant(id: string): Promise <Restaurant> {
+    const url: string = `${environment.apiUrl}/deleteRestaurant/${id}`;
+    return this.http
+      .get(url)
       .toPromise()
       .then(response => response as Restaurant)
       .catch(this.obdelajNapako);

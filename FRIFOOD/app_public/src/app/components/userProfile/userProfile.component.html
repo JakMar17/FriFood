@@ -70,7 +70,6 @@
 
     </div>
 
-<!--    {{> UserActivities}}-->
 
     <!--            User activities - double click to show more info in new panel    -->
     <div class = "col userActivities">
@@ -116,3 +115,34 @@
 </body>
 
 </html>
+
+
+<!--    Modal for showing correction details-->
+<!--<div class="modal fade" id = "{{ changeModal comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">Urejanje komentarja</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class = "modal-body">-->
+<!--        <h6 style = "margin-bottom: 25px"><i>{{date comment.date}}, na lokaciji: {{comment.restaurant}}</i></h6>-->
+
+<!--        <form method="post" id = "{{changeID comment._id}}" action = "/api/comments/update">-->
+<!--          <input type = hidden name="komentarID" value="{{comment._id}}">-->
+<!--          <input type="hidden" value="/profile" name="returnADR">-->
+
+<!--          <div class = "form-group">-->
+<!--            <label for = "newCommentText">Komentar</label>-->
+<!--            <textarea class="form-control" name = "newCommentText" rows = "5">{{comment.comment}}</textarea>-->
+<!--          </div>-->
+
+<!--          <button class="btn btn-success" type="submit" form = {{changeID comment._id}} >Posodobi</button>-->
+<!--          <button class="btn btn-danger" type="submit" formmethod="post" formaction="api/comments/delete" form="{{ changeID comment._id}}">Izbriši</button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

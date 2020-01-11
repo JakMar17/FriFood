@@ -23,6 +23,9 @@ import {UserProfileComponent} from "./components/userProfile/userProfile.compone
 import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
 import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
+import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
+import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
+import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import {AdminLocationsComponent} from "./components/adminDashboard/locations/adm
     RestaurantaddComponent,
     ZvezdiceComponent,
     RestaurantlistComponent,
+    AdminPanelComponent,
+    AdminCommentsComponent,
+    AdminUsersComponent,
   ],
 
   imports: [
