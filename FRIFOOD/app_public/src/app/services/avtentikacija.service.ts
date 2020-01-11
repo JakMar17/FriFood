@@ -7,7 +7,7 @@ import { SHRAMBA_BRSKALNIKA } from '../classes/token-storage';
 
 export class AvtentikacijaService {
 
-  constructor(@Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage) { }
+  constructor(@Inject(SHRAMBA_BRSKALNIKA) public shramba: Storage) { }
 
   public isLoggedIn(): boolean{
     if(this.vrniZeton()){

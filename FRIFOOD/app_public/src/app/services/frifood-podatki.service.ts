@@ -156,8 +156,13 @@ export class FrifoodPodatkiService {
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else{
+      const httpLastnosti = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${this.authenticate.shramba.getItem('zeton')}`
+        })
+      };
       return this.http
-        .post(url, restaurantForm)
+        .post(url, restaurantForm, httpLastnosti)
         .toPromise()
         .then(response => response as Restaurant)
         .catch(this.obdelajNapako);
