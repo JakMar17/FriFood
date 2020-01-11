@@ -11,6 +11,44 @@ require('./app_api/models/db');
 require('./app_api/konfiguracija/passport');
 require('./app_api/models/restaurants');
 const bodyParser = require("body-parser");
+
+
+
+var swaggerJsdoc = require("swagger-jsdoc");
+var swaggerUi = require("swagger-ui-express");
+
+
+var swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "EduGeoCache",
+      version: "1.0.0",
+      description: "EduGeoCache REST API"
+    },
+    license: {
+      name: "GNU LGPLv3",
+      url: "https://choosealicense.com/licenses/lgpl-3.0"
+    },
+    contact: {
+      name: "Dejan Lavbič",
+      url: "https://www.lavbic.net",
+      email: "dejan@lavbic.net"
+    },
+    servers: [
+      { url: "http://localhost:8080/api" },
+      { url: "https://edugeocache-sp-2019-2020.herokuapp.com/api" }
+    ]
+  },
+  apis: [
+    "./app_api/models/lokacije.js",
+    "./app_api/models/uporabniki.js",
+    "./app_api/routes/index.js"
+  ]
+};
+const swaggerDocument = swaggerJsdoc(swaggerOptions);
+
+
 //var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
 var loginRouter = require('./app_server/routes/login');
@@ -59,12 +97,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8081');
   //res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
+
+
 
 /*app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -73,6 +115,11 @@ app.use('/api', (req, res, next) => {
 });*/
 
 app.use('/api', indexApi);
+
+indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+indexApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
 
 //app.use('/', indexRouter);
 

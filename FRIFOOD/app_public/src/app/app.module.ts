@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
 import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
 import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
+import {CommentModalComponent} from "./components/adminDashboard/comments/comment-modal/comment-modal.component";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ModalPopupComponent } from './components/modal-popup/modal-popup.compon
     ModalComponentComponent,
     TransformLink2Pipe,
     ZgodovinaPipePipe,
-    ModalPopupComponent
+    ModalPopupComponent,
+    CommentModalComponent
   ],
   exports: [
     ZgodovinaPipePipe
