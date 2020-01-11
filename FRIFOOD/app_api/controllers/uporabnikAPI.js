@@ -41,23 +41,15 @@ const narediUporabnika = (req, res) => {
     var passwd2 = req.body.passwd2.toString();
 
 
-    console.log(name);
-    console.log(surname);
-    console.log(email);
-    console.log(passwd1);
-    console.log(passwd2);
-
-
-    if (name.length != 0 && surname.length != 0)
+    if (name.length !== 0 && surname.length !== 0)
     {
-        console.log("name & surname OK");
-        if(email.search("@") != -1 && passwd1 === passwd2)
+        if(email.search("@") !== -1 && passwd1 === passwd2)
         {
             var user = new Uporabnik({
                 name: name,
                 surname: surname,
                 email: email,
-                passwd: passwd1
+                admin: false
             })
 
             // save model to database
