@@ -40,7 +40,7 @@ export class AvtentikacijaService {
   }
 
   public decodeToken() {
-    var token = this.vrniZeton();
+    var token = this.vrniZeton().toString();
     if (token === null || token === '') { return { 'upn': '' }; }
     const parts = token.split('.');
     if (parts.length !== 3) {
