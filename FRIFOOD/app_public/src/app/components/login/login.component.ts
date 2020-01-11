@@ -17,6 +17,19 @@ export class LoginComponent implements OnInit {
 
   info: string;
 
+  prijaviUporabnika(){
+    var userData = {
+      email: (<HTMLInputElement>document.getElementById("email")).value,
+      passwd: (<HTMLInputElement>document.getElementById("passwd")).value
+    };
+
+    this.frifoodPodatkiService.prijavuporabnika(userData).then(
+      (data) => {
+        this.router.navigate(["/"]);
+      }
+    );
+  }
+
   checkIfOkToLogin()
   {
 
