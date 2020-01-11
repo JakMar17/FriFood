@@ -133,6 +133,12 @@ const deleteRestaurant = (req, res) => {
     var id = req.body.restaurantID.toString();
     var ObjectID = mongoose.Types.ObjectId;
 
+    Comments.delete(
+        {"restaurant": ObjectID(id)}, function (error, result) {
+            if (error) return error;
+        }
+    );
+
     Restaurant.deleteOne(
         {"_id": ObjectID(id)}, function (error, result) {
             if(error) return console.log(error);

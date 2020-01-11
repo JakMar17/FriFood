@@ -56,6 +56,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  public getComments(): Promise<Comment[]> {
+    const url: string = `${environment.apiUrl}/comments`;
+
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(responde => responde as Comment[])
+      .catch(this.obdelajNapako);
+  }
+
   getUporabniki(): Promise<User[]> {
     const url: string = `${environment.apiUrl}/users`;
     console.log(url);
