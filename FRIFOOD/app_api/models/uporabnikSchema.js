@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
  * @swagger
  * components:
  *  schemas:
- *   uporabnikiShema:
+ *   uporabnikSchema:
  *    type: object
  *    properties:
  *     name:
