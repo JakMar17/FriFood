@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import { FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {User} from "../../classes/User";
 import {Analytics} from "../../classes/Analytics";
-import { ZgodovinaService } from '../../services/zgodovina.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +11,7 @@ import { ZgodovinaService } from '../../services/zgodovina.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService, private zgodovinaStoritev: ZgodovinaService) { }
+  constructor(private router: Router, private frifoodPodatkiService: FrifoodPodatkiService) { }
 
   info: string;
 
@@ -21,7 +20,7 @@ export class RegisterComponent implements OnInit {
     this.frifoodPodatkiService.dodajuporabnika(newUser).then(
       (data) => {
         console.log(data.name);
-        this.router.navigateByUrl(this.zgodovinaStoritev.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije());
+        this.router.navigate(["/login"]);
 
       }
     );
