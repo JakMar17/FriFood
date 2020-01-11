@@ -1,6 +1,41 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   restaurantSchema:
+ *    type: object
+ *    properties:
+ *     name:
+ *          type: string
+ *     address:
+ *          type: string
+ *     rating:
+ *          type: number
+ *
+ *     mealPrice:
+ *          type: number
+ *     student:
+ *          type: number
+ *     studentPrice:
+ *          type: number
+ *
+ *
+ *     description:
+ *          type: string
+ *     icon:
+ *          type: string
+ *     front:
+ *          type: string
+ *     timeTable:
+ *          type: array
+ *          items:
+ *              type: string
+ */
+
 const restaurantSchema = new mongoose.Schema({
     name: String,
     address: String,

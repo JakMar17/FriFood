@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const m2s = require('mongoose-to-swagger');
 
 /**
  * @swagger
@@ -9,8 +9,7 @@ const Schema = mongoose.Schema;
  *   commentSchema:
  *    type: object
  *    properties:
- *    restaurant:
- *      type: $ref: "#/components/schemas/KomentarBranje"
+*
  *     comment:
  *      type: string
  *     rating:
@@ -28,3 +27,4 @@ const commentSchema = new Schema ({
 });
 
 var comment = mongoose.model('comments', commentSchema, "Comments");
+
