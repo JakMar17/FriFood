@@ -1,6 +1,12 @@
+
+
+
 <div class="container mb-5" >
 
   <div class="card mt-5" *ngIf="restavracija">
+
+
+
     <div class="row">
       <div class="col-12 mt-3" >
 
@@ -9,12 +15,17 @@
 
 
           <p class="ml-3">Vabljeni k komentiranju restavracije {{ restavracija.name }}!</p>
+
+
+
+
         </div>
 
 
-         <div *ngIf="komentarji == undefined" class="alert alert-danger" role="alert">
-           <p> Loading Comments :) </p>
+        <div *ngIf="komentarji == undefined" class="alert alert-info" role="alert">
+          <p> No comments yet :) </p>
         </div>
+
 
 
 

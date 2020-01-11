@@ -108,7 +108,7 @@ const getCommentsByRestaurantIdPerPage = (req, res) => {
             (error, comments) => {
                 if (!comments) {
                     return res.status(404).json({
-                        "error": "Comments not found"
+                        "error": "no rstaurant"
                     });
                 } else if (error) {
                     return res.status(500).json(error);
@@ -120,7 +120,7 @@ const getCommentsByRestaurantIdPerPage = (req, res) => {
 
                         if(!count)
                             return res.status(404).json({
-                                "error": "Comments not found"
+                                "error": "no comments yet"
                             });
                         else if(err)
                             return res.status(500).json(err);

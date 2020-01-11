@@ -55,8 +55,13 @@ export class CommentpageComponent implements OnInit {
 
         let novKomentar: Comment;
 
-        if(this.komentarji.length < 10)
+        if(this.komentarji && this.komentarji.length < 10)
           this.komentarji.push(komentar);
+        else if(this.komentarji == undefined)
+        {
+          this.komentarji = new Array() ;
+          this.komentarji.push(komentar);
+        }
 
         this.numberOfComments++;
 
@@ -119,6 +124,9 @@ export class CommentpageComponent implements OnInit {
         this.frifoodPodatkiService.getCommentsByRestaurantId(komentarjiPerPage).then(
           (data) => {
             this.komentarji = data[0] as Comment[];
+
+
+
             this.numberOfComments =  data[1];
 
             console.log("podatki komentarjev->",this.komentarji);

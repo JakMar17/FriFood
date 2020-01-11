@@ -5,13 +5,13 @@
         <div class="col-md-1 col-sm-0 col-xs-0"></div>
         <div class="restaurant-list-scrollable col-md-10 col-sm-12 col-xs-12">
           <!-- Each restaurant loaded is shown here -->
-          <div class="row-fill">
+          <div class="row-fill mb-4">
             <form (click)="refreshRestaurants()">
               <button id="welcome-search-button" class="btn btn-primary">OSVEŽITE SEZNAM</button>
             </form>
           </div>
           <div *ngIf="restaurants">
-            <div class="restaurant" tabindex="1" *ngFor="let restaurant of restaurants"
+            <div class="restaurant mb-4" tabindex="1" *ngFor="let restaurant of restaurants"
                  (click)="handleAddress(restaurant.address)">
               <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -21,8 +21,13 @@
                   <app-zvezdice [ocena]="restaurant.rating"></app-zvezdice>
                   <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
                   <p *ngIf="restaurant.student">Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
-                  <p [innerHTML]="'/restaurantView/' | transformLink:restaurant._id:'Več o restavraciji'"></p>
-                  <p [innerHTML]="'/commentPage/' | transformLink:restaurant._id:'Oceni in komentiraj'"></p>
+
+
+                  <button  type="button" [routerLink]="'/restaurantView/'+restaurant._id" class="btn btn-link">Več o restavraciji</button>
+
+                  <button type="button" [routerLink]="'/commentPage/'+restaurant._id+'/1'" class="btn btn-link mb-4">Oceni in komentiraj</button>
+
+
                 </div>
               </div>
               <div class="col-md-1"></div>
