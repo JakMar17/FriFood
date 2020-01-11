@@ -59,6 +59,7 @@ const multipartMiddleware = multipart({
  *                   type: string
  *    responses:
  *     "200":
+ *      description: Registracija uspešna.
  *      content:
  *       application/json:
  *        schema:
