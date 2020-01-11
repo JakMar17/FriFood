@@ -63,8 +63,7 @@ const multipartMiddleware = multipart({
  *      content:
  *       application/json:
  *        schema:
- *         type: array
- *         items:
+ *         type: object
  *          $ref: "#/components/schemas/uporabnikSchema"
  *     "400":
  *      description: Napaka zahteve, manjkajo obvezni parametri.
