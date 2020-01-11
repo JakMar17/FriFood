@@ -14,6 +14,7 @@ const vrniUporabnika = (req, res) => {
             }
             res.status(200).json(uporabnik);
         });
+
 };
 
 const getUserById = (req, res) => {

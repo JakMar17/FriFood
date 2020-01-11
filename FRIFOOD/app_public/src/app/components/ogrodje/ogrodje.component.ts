@@ -12,6 +12,8 @@ export class OgrodjeComponent implements OnInit {
 
   constructor(public authenticate: AvtentikacijaService, ) { }
 
+
+
   ngOnInit() {
 
     this.loggedIn = this.authenticate.isLoggedIn();
