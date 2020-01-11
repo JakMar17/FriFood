@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {Router} from "@angular/router";
 import { User } from "../../classes/User";
+import {AvtentikacijaService} from "../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-userProfile',
@@ -16,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private friFoodPodatkiServices: FrifoodPodatkiService,
     private router: Router,
-    //private autentication: AvtentikacijaStoritve
+    private autenticate: AvtentikacijaService
   ) {}
 
   private mail: string = "janez.novak@fri.uni-lj.si";

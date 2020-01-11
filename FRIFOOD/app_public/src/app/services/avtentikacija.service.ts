@@ -10,6 +10,17 @@ export class AvtentikacijaService {
 
   constructor(@Inject(SHRAMBA_BRSKALNIKA) public shramba: Storage, private router: Router) { }
 
+
+  public isAdmin(): boolean{
+    var data = this.decodeToken();
+    console.log(data.admin);
+    if(data.admin === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   public isLoggedIn(): boolean{
     if(this.vrniZeton()){
       if(!this.checkExpired()){

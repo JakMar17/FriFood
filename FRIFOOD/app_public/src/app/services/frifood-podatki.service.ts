@@ -8,16 +8,33 @@ import { environment } from '../../environments/environment';
 import {Analytics} from "../classes/Analytics";
 import {Observable, Subject} from "rxjs";
 import {AvtentikacijaService} from "./avtentikacija.service";
+import {ModalPopupComponent} from "../components/modal-popup/modal-popup.component";
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FrifoodPodatkiService {
 
-  constructor(private http: HttpClient, private authenticate: AvtentikacijaService) { }
+  constructor(private http: HttpClient, private authenticate: AvtentikacijaService, private matDialog: MatDialog) { }
 
   private apiUrl = 'http://localhost:3000/api';
 
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(ModalPopupComponent, dialogConfig);
+  }
+
+  private myError(napaka: string): void {
+    this.openModal();
+    console.error('Prišlo je do napake (401): Unauthorized access. | ', napaka);
+  }
 
   public updateComment(podatkiObrazca: any): Promise<Comment> {
     const url: string = `${environment.apiUrl}/comments/update`;
@@ -183,11 +200,6 @@ export class FrifoodPodatkiService {
         .catch(this.obdelajNapako);
     }
   }
-
-  private myError(napaka: string): void {
-    console.error('Prišlo je do napake (401): Unauthorized access. | ', napaka);
-  }
-
 
   getRestaurnats(): Promise<Restaurant[]> {
     const url: string = `${environment.apiUrl}/restaurants`;
