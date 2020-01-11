@@ -48,28 +48,35 @@ export class CommentpageComponent implements OnInit {
 
     console.log(data);
 
-    data.author = new User();
+
+    data.author = this.user._id;
+    //data.author.name = this.user.name;
+    //data.author.surname = this.user.surname;
 
     //data.author.name =
 
     if (data.rating > 0 && data.newCommentText.length > 0) {
       this.frifoodPodatkiService.dodajKomentar(data).then(komentar => {
 
-        console.log("Komentar shranjen", komentar);
 
-        let novKomentar: Comment;
+        komentar.author = new User();
+        komentar.author._id = this.user._id;
+        komentar.name = this.user.name;
+        komentar.surname = this.user.surname;
+
+        console.log("Komentar shranjen", komentar);
 
         if(this.komentarji && this.komentarji.length < 10)
           this.komentarji.push(komentar);
         else if(this.komentarji == undefined)
         {
-          this.komentarji = new Array() ;
+          this.komentarji = [] ;
           this.komentarji.push(komentar);
         }
 
         this.numberOfComments++;
 
-      });
+      }).catch(err => console.log(err));
     }
 
   }
@@ -82,8 +89,6 @@ export class CommentpageComponent implements OnInit {
     x = this.inicializirajUporabnike();
     console.log("XXXXX->",x[0]._id);*/
 
-    let user = this.authenticate.decodeToken();
-    console.log("user->",user);
 
     let analytics: Analytics;
     analytics = {
@@ -103,12 +108,22 @@ export class CommentpageComponent implements OnInit {
         this.restaurantPathID = params.get("id");
         this.page = params.get("page");
 
+        if(this.authenticate.isLoggedIn()){
+          let userDecoded = this.authenticate.decodeToken();
+          //console.log(userDecoded);
+
+          this.user = new User();
+          this.user._id = userDecoded._id;
+          this.user.name = userDecoded.ime;
+          this.user.surname = userDecoded.priimek;
+        }
+
         this.frifoodPodatkiService.getRestaurantById(this.restaurantPathID).then(
           (data) => {
-            console.log(data.timeTable);
+            //console.log(data.timeTable);
 
             this.restavracija = data;
-            console.log(this.restavracija.front)
+            //console.log(this.restavracija.front)
           }
         );
 
@@ -123,24 +138,21 @@ export class CommentpageComponent implements OnInit {
 
             this.numberOfComments =  data[1];
 
-            console.log("podatki komentarjev->",this.komentarji);
+            //console.log("podatki komentarjev->",this.komentarji);
 
-            /*
+
             this.komentarji.forEach( komentar => {
 
               this.frifoodPodatkiService.getUserById(komentar.author._id).then(
                 (data) => {
                   komentar.name = data.name;
                   komentar.surname =  data.surname;
-
-                  this.users.push(data);
-
-                  console.log("user->",data);
+                  //console.log("user->",data);
                 }
               );
             });
 
-            */
+
           }
         );
     });

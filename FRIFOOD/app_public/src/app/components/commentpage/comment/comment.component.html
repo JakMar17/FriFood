@@ -8,9 +8,9 @@
       </div>
 
 
-      <div class="row justify-content-end">
+      <div class="row justify-content-end" >
 
-        <p class="card-text text-secondary mr-3 mt-3"><app-zvezdice [ocena]="komentar.rating"></app-zvezdice> - {{komentar.date | getDateFromDBFormat}} - {{komentar.date | getTimeFromDBFormat}} - {{komentar.author.name}} {{komentar.author.surname}}</p>
+        <p class="card-text text-secondary mr-3 mt-3"><app-zvezdice [ocena]="komentar.rating"></app-zvezdice> - {{komentar.date | getDateFromDBFormat}} - {{komentar.date | getTimeFromDBFormat}} - {{komentar.name}} {{komentar.surname}}</p>
 
         <div class="dropdown show m-2" *ngIf="canChange">
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,7 +18,7 @@
           </a>
 <!--[attr.data-target]="'#'+komentar._id+'modalZaKomentar'" data-whatever="@mdo"-->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <div>
+            <div >
               <app-modal-component
                 naslov="Uredi komentar"
                 buttonDescription="Spremeni"

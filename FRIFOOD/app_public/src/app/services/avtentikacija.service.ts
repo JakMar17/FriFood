@@ -7,7 +7,7 @@ import { SHRAMBA_BRSKALNIKA } from '../classes/token-storage';
 
 export class AvtentikacijaService {
 
-  constructor(@Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage) { }
+  constructor(@Inject(SHRAMBA_BRSKALNIKA) public shramba: Storage) { }
 
   public isLoggedIn(): boolean{
     if(this.vrniZeton()){
@@ -46,7 +46,7 @@ export class AvtentikacijaService {
 
     const parts = token.split('.');
 
-    console.log(parts);
+    //console.log(parts);
 
     if (parts.length !== 3) {
 
@@ -60,7 +60,7 @@ export class AvtentikacijaService {
   }
 
   public vrniZeton(): string {
-    console.log("zeton->",this.shramba.getItem('zeton'))
+    //console.log("zeton->",this.shramba.getItem('zeton'))
     return this.shramba.getItem('zeton');
   }
 

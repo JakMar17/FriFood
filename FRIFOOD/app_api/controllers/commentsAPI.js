@@ -13,13 +13,14 @@ const createComment = (req, res) => {
         date: Date.now()
     });
 
+
     comments.save(function (error) {
         if(!comments)
-            return res.status(404).json({
+            res.status(404).json({
                 "error": "Comment not found!"
             });
         else if (error)
-            return res.status(500).json(error);
+            res.status(500).json(error);
         else
             res.status(200);
     });
