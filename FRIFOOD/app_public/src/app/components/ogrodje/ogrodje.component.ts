@@ -8,7 +8,7 @@ import {AvtentikacijaService} from "../../services/avtentikacija.service";
 })
 export class OgrodjeComponent implements OnInit {
 
-  constructor(public authenticate: AvtentikacijaService) { }
+  constructor(public authenticate: AvtentikacijaService, ) { }
 
   ngOnInit() {
   }
