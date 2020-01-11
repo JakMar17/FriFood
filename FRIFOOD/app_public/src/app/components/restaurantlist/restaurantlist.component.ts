@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {Restaurant} from "../../classes/Restaurant";
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
-import {GeoLocationService} from "../../services/geo-location.service"
 import LatLng = google.maps.LatLng;
 import { AgmCoreModule } from '@agm/core';
 
@@ -13,7 +12,7 @@ import { AgmCoreModule } from '@agm/core';
 export class RestaurantlistComponent implements AfterViewInit {
   private elementRef: any;
 
-  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private geoLocationService: GeoLocationService) {
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService) {
   }
 
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
@@ -169,12 +168,6 @@ export class RestaurantlistComponent implements AfterViewInit {
     this.frifoodPodatkiService.getRestaurants().then(restaurants => {
       console.log("Received restaurants");
       this.restaurants = restaurants;
-    });
-    this.geoLocationService.getPosition().subscribe((pos: Position) => {
-      this.coordinates = {
-        latitude: +(pos.coords.latitude),
-        longitude: +(pos.coords.longitude)
-      };
     });
     google.maps.event.addListener(this.map, 'click',  $event => {
       this.fetchLocations($event);

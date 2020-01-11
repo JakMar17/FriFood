@@ -24,6 +24,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
 import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
 import { TransformLinkPipe } from './pipes/transform-link.pipe';
+import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
+import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
+import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { TransformLinkPipe } from './pipes/transform-link.pipe';
     ZvezdiceComponent,
     RestaurantlistComponent,
     TransformLinkPipe,
+    AdminPanelComponent,
+    AdminCommentsComponent,
+    AdminUsersComponent,
   ],
 
   imports: [

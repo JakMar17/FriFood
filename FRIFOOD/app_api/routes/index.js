@@ -5,12 +5,16 @@ var ctrlRestavracija = require('../controllers/restaurantAPI');
 var ctrlComments = require('../controllers/commentsAPI');
 var ctrlDatabase = require('../controllers/databaseAPI');
 var ctrlAnalytics = require('../controllers/analyticsAPI');
+var ctrlAvtentikacija = require('../controllers/avtentikacija');
 
 
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
     uploadDir: './uploads'
 });
+
+router.post('/registracija', ctrlAvtentikacija.registracija);
+router.post('/prijava', ctrlAvtentikacija.prijava);
 
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 router.get('/user/:userID', ctrlUporabniki.getUserById);
@@ -32,6 +36,7 @@ router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
 router.post('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
 router.post('/restaurants/update', ctrlRestavracija.updateResturant);
+router.get('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
 
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 

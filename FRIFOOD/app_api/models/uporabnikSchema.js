@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
 const uporabnikiShema = new mongoose.Schema({
@@ -6,8 +8,39 @@ const uporabnikiShema = new mongoose.Schema({
     surname: String,
     email: String,
     passwd: String,
-    komentarjiUporabnika: [{ type: Schema.Types.ObjectId, ref: 'komentarji' }]
+    komentarjiUporabnika: [{ type: Schema.Types.ObjectId, ref: 'komentarji' }],
+    zgoscenaVrednost: String,
+    nakljucnaVrednost: String
 });
+
+uporabnikiShema.methods.nastaviGeslo = function(geslo) {
+    var nakljucnaVrednost = crypto.randomBytes(16).toString('hex');
+    var zgoscenaVrednost = crypto
+        .pbkdf2Sync(geslo, nakljucnaVrednost, 1000, 64, 'sha512')
+        .toString('hex');
+    return [nakljucnaVrednost, zgoscenaVrednost];
+};
+
+uporabnikiShema.methods.preveriGeslo = function(geslo, nakljucnaVrednost) {
+    var zgoscenaVrednost = crypto
+        .pbkdf2Sync(geslo, nakljucnaVrednost, 1000, 64, 'sha512')
+        .toString('hex');
+    return this.zgoscenaVrednost === zgoscenaVrednost;
+};
+
+uporabnikiShema.methods.generirajJwt = function() {
+    const datumPoteka = new Date();
+    datumPoteka.setDate(datumPoteka.getDate() + 7);
+
+    return jwt.sign({
+        _id: this._id,
+        elektronskiNaslov: this.email,
+        ime: this.name,
+        priimek: this.surname,
+        datumPoteka: parseInt(datumPoteka.getTime() / 1000, 10)
+    }, process.env.JWT_GESLO);
+};
+
 
 var uporabniki = mongoose.model('uporabniki', uporabnikiShema, "Uporabnik");
 

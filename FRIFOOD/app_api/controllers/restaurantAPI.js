@@ -141,8 +141,20 @@ const deleteRestaurant = (req, res) => {
     );
 };
 
+const deleteRestaurantByID = (req, res) => {
+    let id = req.params.id;
+    let ObjectID = mongoose.Types.ObjectId;
+
+    Restaurant.deleteOne(
+        {"_id": ObjectID(id)}, function (error, result) {
+            if(error) return error;
+            else return null;
+        }
+    )
+}
+
 const updateResturant = (req, res) => {
-    console.log("Smo sploh tukaj?");
+
     var id = req.body.restaurantID.toString();
     var ObjectID = (mongoose.Types.ObjectId);
 
@@ -192,5 +204,6 @@ module.exports = {
     deleteRestaurant,
     updateResturant,
     getRestaurantById,
-    getRestaurantBySearch
+    getRestaurantBySearch,
+    deleteRestaurantByID
 };
