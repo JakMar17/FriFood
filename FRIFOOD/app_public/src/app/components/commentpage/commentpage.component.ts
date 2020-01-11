@@ -48,19 +48,13 @@ export class CommentpageComponent implements OnInit {
 
     console.log(data);
 
-
     data.author = this.user._id;
-    //data.author.name = this.user.name;
-    //data.author.surname = this.user.surname;
-
-    //data.author.name =
 
     if (data.rating > 0 && data.newCommentText.length > 0) {
       this.frifoodPodatkiService.dodajKomentar(data).then(komentar => {
 
 
-        komentar.author = new User();
-        komentar.author._id = this.user._id;
+        komentar.author = this.user;
         komentar.name = this.user.name;
         komentar.surname = this.user.surname;
 
