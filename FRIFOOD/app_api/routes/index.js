@@ -246,9 +246,119 @@ router.get('/user/:userID', ctrlUporabniki.getUserById);
  *                      type: string
  */
 router.get('/users', ctrlUporabniki.getUsers);
+
+/**
+ * @swagger
+ * path:
+ *  /users:
+ *   put:
+ *    summary: posodobi uporabnika
+ *    description: posodobi uporabnika.
+ *    tags: [Uporabniki/Users]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      newCommentText:
+ *                          type: string
+ *                      _id:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: uporabnik
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            napaka:
+ *                type: array
+ *                items:
+ *                     $ref: "#/components/schemas/uporabnikSchema"
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.put('/users', avtentikacija, ctrlUporabniki.updateUser);
 
-
+/**
+ * @swagger
+ * path:
+ *  /comments/update:
+ *   put:
+ *    summary: posodobi komentar
+ *    description: Posodobi komentar.
+ *    tags: [Comments]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                      surname:
+ *                          type: string
+ *                      email:
+ *                          type: string
+ *                      _id:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: komentar
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            napaka:
+ *                type: array
+ *                items:
+ *                     $ref: "#/components/schemas/comments"
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
 
 /**

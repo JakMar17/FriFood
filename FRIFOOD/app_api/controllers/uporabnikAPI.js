@@ -89,7 +89,6 @@ const getUsers = (req, res) => {
 };
 
 const updateUser = (req, res) => {
-    console.log("tukaj");
 
     var id = req.body._id.toString();
     var ObjectId = (mongoose.Types.ObjectId);
