@@ -146,6 +146,16 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  public getRestaurants(): Promise<Restaurant[]> {
+    const url: string = `${environment.apiUrl}/restaurants`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Restaurant[])
+      .catch(this.obdelajNapako);
+  }
+
 
   private obdelajNapako(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);

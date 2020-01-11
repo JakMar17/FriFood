@@ -71,7 +71,7 @@ export class CommentComponent implements OnInit {
       this.modalService.dismissAll();
     }
     else
-      this.obrazecNapaka = "Komwntar ne more ostati prazen !!!"
+      this.obrazecNapaka = "Komentar ne more ostati prazen !!!"
   }
 
 
