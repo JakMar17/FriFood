@@ -32,6 +32,7 @@ router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
 router.post('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
 router.post('/restaurants/update', ctrlRestavracija.updateResturant);
+router.get('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
 
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 

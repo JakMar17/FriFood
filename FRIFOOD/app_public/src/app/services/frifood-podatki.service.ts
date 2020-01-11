@@ -126,6 +126,24 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
+  getRestaurnats(): Promise<Restaurant[]> {
+    const url: string = `${environment.apiUrl}/restaurants`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Restaurant[])
+      .catch(this.obdelajNapako);
+  }
+
+  deleteRestaurant(id: string): Promise <Restaurant> {
+    const url: string = `${environment.apiUrl}/deleteRestaurant/${id}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Restaurant)
+      .catch(this.obdelajNapako);
+  }
+
   updateAnalyticsByName(analytics: any): Promise<Analytics> {
     const url: string = `${environment.apiUrl}/analytics`;
     console.log(url);
