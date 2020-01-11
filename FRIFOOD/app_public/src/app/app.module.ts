@@ -39,6 +39,7 @@ import { ModalPopupComponent } from './components/modal-popup/modal-popup.compon
 import {CommentModalComponent} from "./components/adminDashboard/comments/comment-modal/comment-modal.component";
 import { AnalyticsComponent } from './components/adminDashboard/analytics/analytics/analytics.component';
 import {ChartsModule} from "ng2-charts";
+import { ModalPogojiComponent } from './components/modal-pogoji/modal-pogoji.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {ChartsModule} from "ng2-charts";
     ZgodovinaPipePipe,
     ModalPopupComponent,
     CommentModalComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    ModalPogojiComponent
   ],
   exports: [
     ZgodovinaPipePipe
@@ -93,6 +95,6 @@ import {ChartsModule} from "ng2-charts";
     ZgodovinaPipePipe
   ],
   bootstrap: [OgrodjeComponent],
-  entryComponents: [ModalComponentComponent, ModalPopupComponent]
+  entryComponents: [ModalComponentComponent, ModalPopupComponent, ModalPogojiComponent]
 })
 export class AppModule { }
