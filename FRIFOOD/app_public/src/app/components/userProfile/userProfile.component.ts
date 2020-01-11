@@ -49,7 +49,7 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
-  private redirect(url: string): void {
+  redirect(url: string): void {
     this.router.navigate([url]);
   }
 
