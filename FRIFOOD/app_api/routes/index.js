@@ -40,6 +40,7 @@ router.get('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
 
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 
+
 router.post('/database/drop', ctrlDatabase.dropDatabase);
 router.post('/database/fill', ctrlDatabase.fillDatabase);
 

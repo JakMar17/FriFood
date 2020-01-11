@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.frifoodPodatkiService.prijavuporabnika(userData).then(
       (data) => {
-        console.log(data);
+        console.log(data.pagetoken);
         var token = data.pagetoken;
         this.authentication.shraniZeton(token);
         this.router.navigateByUrl(this.zgodovinaStoritev.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije());

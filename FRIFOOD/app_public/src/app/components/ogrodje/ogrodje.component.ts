@@ -11,6 +11,8 @@ export class OgrodjeComponent implements OnInit {
 
   constructor(public authenticate: AvtentikacijaService, private zgodovinaService: ZgodovinaService) { }
 
+
+
   ngOnInit() {
 
   }

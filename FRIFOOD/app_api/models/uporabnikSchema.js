@@ -7,7 +7,7 @@ const uporabnikiShema = new mongoose.Schema({
     name: String,
     surname: String,
     email: String,
-    passwd: String,
+    admin: Boolean,
     komentarjiUporabnika: [{ type: Schema.Types.ObjectId, ref: 'komentarji' }],
     zgoscenaVrednost: String,
     nakljucnaVrednost: String
