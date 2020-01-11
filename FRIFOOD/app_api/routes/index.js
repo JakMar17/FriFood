@@ -577,16 +577,12 @@ router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
  *    tags: [Comments]
  *    security:
  *    - jwt: []
- *    requestBody:
- *       description: Parametri
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *        type: string
  *       required: true
- *       content:
- *           application/json:
- *               schema:
- *                  type: object
- *                  properties:
- *                      id:
- *                          type: string
  *    responses:
  *     "200":
  *      description: sporocilo
