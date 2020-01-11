@@ -51,7 +51,9 @@
             <div *ngIf="googleRestaurants.length == 0 && (restaurants == undefined || restaurants.length == 0)"
                  class="warning alert-warning"
                  role="alert">
-              <p> Loading restaurants, please wait. :) </p>
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{error}}
+              </div>
             </div>
             <div class="restaurant" tabindex="1" *ngFor="let restaurant of googleRestaurants">
               <div class="row" (click)="handleAddress(restaurant.formatted_address)">

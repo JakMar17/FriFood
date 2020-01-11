@@ -44,7 +44,7 @@ router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
 router.post('/database/drop', ctrlDatabase.dropDatabase);
 router.post('/database/fill', ctrlDatabase.fillDatabase);
 
-router.get('/search', ctrlRestavracija.getRestaurantBySearch);
+router.get('/search/:name', ctrlRestavracija.getRestaurantBySearch);
 
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
 router.post('/analytics', ctrlAnalytics.updateAnalyticsByName);

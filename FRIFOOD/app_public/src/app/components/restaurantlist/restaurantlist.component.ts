@@ -1,20 +1,23 @@
-import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Restaurant} from "../../classes/Restaurant";
 import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import LatLng = google.maps.LatLng;
 import { AgmCoreModule } from '@agm/core';
 import {GoogleMapsService} from "../../services/google-maps.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-restaurantlist',
   templateUrl: './restaurantlist.component.html',
   styleUrls: ['./restaurantlist.component.css']
 })
-export class RestaurantlistComponent implements AfterViewInit {
+export class RestaurantlistComponent implements AfterViewInit, OnInit {
   private elementRef: any;
 
-  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private googleMapsService: GoogleMapsService) {
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private googleMapsService: GoogleMapsService, private route: ActivatedRoute) {
   }
+
+
 
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
 
@@ -39,7 +42,7 @@ export class RestaurantlistComponent implements AfterViewInit {
     this.changed = false;
     this.infoWindow = new google.maps.InfoWindow;
 
-    console.log(this.coordinates);
+   // console.log(this.coordinates);
     if (this.coordinates != undefined) {
       this.infoWindow.setPosition(this.coordinates);
       this.infoWindow.setContent('You are here.');
@@ -124,6 +127,7 @@ export class RestaurantlistComponent implements AfterViewInit {
   }
 
   restaurants: Restaurant[];
+  error: string;
 
   refreshRestaurants() {
     this.frifoodPodatkiService.getRestaurants().then(restaurants => {
@@ -164,12 +168,48 @@ export class RestaurantlistComponent implements AfterViewInit {
     });
   }
 
+  ngOnInit(): void {
+
+    this.error = "";
+
+    this.route.paramMap.subscribe(params => {
+
+      let searchVal = params.get("searchVal")
+
+      console.log(searchVal)
+
+      if(searchVal != undefined && searchVal != "")
+      {
+        this.frifoodPodatkiService.getRestaurantsBySearch(searchVal.toString()).then(restaurants => {
+          console.log("restaurants->",restaurants);
+          this.restaurants = restaurants;
+
+          if(this.restaurants.length == 0)
+            this.error = "Nobene restavracije s tem imenom :("
+
+        });
+      }
+      else
+      {
+
+        this.frifoodPodatkiService.getRestaurants().then(restaurants => {
+          console.log("Received restaurants");
+          this.restaurants = restaurants;
+
+          if(this.restaurants.length == 0)
+            this.error = "Nobena restavracija ni vnešena :("
+
+        });
+
+      }
+
+    });
+
+  }
+
   ngAfterViewInit() {
     this.mapInitializer();
-    this.frifoodPodatkiService.getRestaurants().then(restaurants => {
-      console.log("Received restaurants");
-      this.restaurants = restaurants;
-    });
+
     google.maps.event.addListener(this.map, 'click',  $event => {
       this.fetchLocations($event);
     });

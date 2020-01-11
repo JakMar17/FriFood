@@ -184,8 +184,13 @@ const getRestaurantById = (req, res) => {
 };
 
 const getRestaurantBySearch = (req, res) => {
-    var name = req.query.name;
-    Restaurant.find({name: { $regex: '.*' + name + '.*' }}).exec((error, restaurant) => {
+    var name = req.params.name;
+
+    console.log(name)
+
+    const regex = new RegExp(name, 'i')
+
+    Restaurant.find({name: { $regex: regex }}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"

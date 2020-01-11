@@ -18,9 +18,9 @@
         <a class="nav-link" style="font-size: 25px; margin-top: -5px" routerLink="/"><img src="./assets/images/fri_logo.png" width="150px"></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0 d-none d-sm-block" method="GET" action="/restaurant-list">
+    <form class="form-inline my-2 my-lg-0 d-none d-sm-block">
       <input id="searchRestaurants" class="form-control" type="search" placeholder="Poišči restavracije" aria-label="Search" name="name">
-      <button id="searchRestaurantButton" class="btn my-2" type="submit" style="margin-left: -5px;"><img src="./assets/images/layoutImages/search_ico.png" width="30px" height="30px"/></button>
+      <button id="searchRestaurantButton" class="btn my-2" (click)="getRestaurantsBySearch()" style="margin-left: -5px;"><img src="./assets/images/layoutImages/search_ico.png" width="30px" height="30px"/></button>
     </form>
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
@@ -31,7 +31,7 @@
           <a *ngIf="!authenticate.isLoggedIn()" class="dropdown-item" routerLink="login" style="color: #677491; font-size: 18px">PRIJAVA</a>
           <a *ngIf="!authenticate.isLoggedIn()" class="dropdown-item" routerLink="register" style="color: #677491; font-size: 18px">REGISTRACIJA</a>
           <a *ngIf="authenticate.isLoggedIn()" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="profile">OGLED PROFILA</a>
-          <a *ngIf="authenticate.isLoggedIn()" class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="logout">ODJAVA</a>
+          <a *ngIf="authenticate.isLoggedIn() " class="dropdown-item" style="color: #677491; font-size: 18px" routerLink="logout">ODJAVA</a>
         </div>
       </li>
     </ul>
