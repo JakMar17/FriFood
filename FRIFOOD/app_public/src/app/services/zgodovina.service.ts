@@ -11,8 +11,9 @@ export class ZgodovinaService {
 
   private urlNaslovi: string[] = [];
 
-  constructor(private usmerjevalnik: Router, private cev: ZgodovinaPipePipe) {
-    cev.transform(this.usmerjevalnik.events)
+  constructor(private usmerjevalnik: Router, public zgodovinaPipe: ZgodovinaPipePipe) {
+    this.usmerjevalnik.events
+      .pipe(zgodovinaPipe.transform(dogodekUsmerjanja => dogodekUsmerjanja instanceof NavigationEnd))
       .subscribe((dogodekUsmerjanja: NavigationEnd) => {
         const url = dogodekUsmerjanja.urlAfterRedirects;
         this.urlNaslovi = [...this.urlNaslovi, url];

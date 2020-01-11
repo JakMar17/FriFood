@@ -62,7 +62,9 @@ import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
     TransformLink2Pipe,
     ZgodovinaPipePipe
   ],
-
+  exports: [
+    ZgodovinaPipePipe
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -79,7 +81,9 @@ import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
   providers: [{
     provide: MatDialogRef,
     useValue: {}
-  }],
+  },
+    ZgodovinaPipePipe
+  ],
   bootstrap: [OgrodjeComponent],
   entryComponents: [ModalComponentComponent]
 })
