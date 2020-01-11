@@ -18,7 +18,7 @@ router.post('/prijava', ctrlAvtentikacija.prijava);
 
 router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
 router.get('/user/:userID', ctrlUporabniki.getUserById);
-router.post('/uporabniki', ctrlUporabniki.narediUporabnika);
+router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
 router.get('/users', ctrlUporabniki.getUsers);
 router.post('/users', ctrlUporabniki.updateUser);
 
