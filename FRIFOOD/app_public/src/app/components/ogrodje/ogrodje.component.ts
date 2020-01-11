@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AvtentikacijaService} from "../../services/avtentikacija.service";
+import { ZgodovinaService } from '../../services/zgodovina.service';
 
 @Component({
   selector: 'app-ogrodje',
@@ -8,13 +9,9 @@ import {AvtentikacijaService} from "../../services/avtentikacija.service";
 })
 export class OgrodjeComponent implements OnInit {
 
-  loggedIn: boolean;
-
-  constructor(public authenticate: AvtentikacijaService, ) { }
+  constructor(public authenticate: AvtentikacijaService, private zgodovinaService: ZgodovinaService) { }
 
   ngOnInit() {
-
-    this.loggedIn = this.authenticate.isLoggedIn();
 
   }
 
