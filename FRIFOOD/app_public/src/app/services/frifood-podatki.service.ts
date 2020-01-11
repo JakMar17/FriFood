@@ -76,8 +76,8 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
-  getRestaurantById(restaurantId: string): Promise<Restaurant> {
-    const url: string = `${environment.apiUrl}/restaurants/${restaurantId}`;
+  getRestaurantById(id: string): Promise<Restaurant> {
+    const url: string = `${environment.apiUrl}/restaurants/${id}`;
     console.log(url);
     return this.http
       .get(url)
@@ -181,6 +181,16 @@ export class FrifoodPodatkiService {
       .get(url)
       .toPromise()
       .then(response => response as Analytics[])
+      .catch(this.obdelajNapako);
+  }
+
+  public getRestaurants(): Promise<Restaurant[]> {
+    const url: string = `${environment.apiUrl}/restaurants`;
+    console.log(url);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Restaurant[])
       .catch(this.obdelajNapako);
   }
 

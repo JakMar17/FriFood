@@ -171,7 +171,7 @@ const updateResturant = (req, res) => {
 };
 
 const getRestaurantById = (req, res) => {
-    Restaurant.findOne({id_: req.params.id}).exec((error, restaurant) => {
+    Restaurant.findOne({_id: req.params.id}).exec((error, restaurant) => {
         if(!restaurant)
             return res.status(404).json({
                 "error": "Restaurants not found"

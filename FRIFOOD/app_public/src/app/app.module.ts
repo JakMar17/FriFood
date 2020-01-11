@@ -23,10 +23,16 @@ import {UserProfileComponent} from "./components/userProfile/userProfile.compone
 import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
 import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
+import { TransformLinkPipe } from './pipes/transform-link.pipe';
 import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
 import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
 import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { ModalComponentComponent as ModalComponentComponent } from './components/modal-component/modal-component.component';
+import { MatDialogRef} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,10 +51,12 @@ import { LogoutComponent } from './components/logout/logout.component';
     RestaurantaddComponent,
     ZvezdiceComponent,
     RestaurantlistComponent,
+    TransformLinkPipe,
     AdminPanelComponent,
     AdminCommentsComponent,
     AdminUsersComponent,
     LogoutComponent,
+    ModalComponentComponent
   ],
 
   imports: [
@@ -59,9 +67,16 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppUsmerjanjeModule,
     NgbModule,
     NgbModalModule,
-    FileUploadModule
+    FileUploadModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [OgrodjeComponent]
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
+  bootstrap: [OgrodjeComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }
