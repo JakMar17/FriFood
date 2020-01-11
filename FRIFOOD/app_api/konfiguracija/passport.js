@@ -6,8 +6,8 @@ const Uporabnik = mongoose.model('uporabniki');
 passport.use(
   new LokalnaStrategija(
     {
-      usernameField: 'elektronskiNaslov',
-      passwordField: 'geslo'
+      usernameField: 'email',
+      passwordField: 'passwd'
     },
     (uporabniskoIme, geslo, pkKoncano) => {
       Uporabnik.findOne(
@@ -20,7 +20,7 @@ passport.use(
               "sporočilo": "Napačno uporabniško ime"
             });
           }
-          if (!uporabnik.preveriGeslo(geslo)) {
+          if (!uporabnik.preveriGeslo(geslo, uporabnik.nakljucnaVrednost)) {
             return pkKoncano(null, false, {
               "sporočilo": "Napačno geslo"
             });
