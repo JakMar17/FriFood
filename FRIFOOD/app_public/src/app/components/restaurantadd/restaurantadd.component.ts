@@ -178,8 +178,8 @@ export class RestaurantaddComponent implements OnInit {
     else
       this.formError = "prosim podajte cas";
 
-      this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
-      this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
+      // this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
+      // this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
 
       if(this.formError == "")
       this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm as Restaurant).then(restaurant => {
