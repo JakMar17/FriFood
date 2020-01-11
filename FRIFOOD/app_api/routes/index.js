@@ -13,6 +13,17 @@ const multipartMiddleware = multipart({
     uploadDir: './uploads'
 });
 
+/**
+ * Varnostna shema dostopa
+ * @swagger
+ * components:
+ *  securitySchemes:
+ *   jwt:
+ *    type: http
+ *    scheme: bearer
+ *    in: header
+ *    bearerFormat: JWT
+ */
 
 /**
  * Kategorije dostopnih točk
@@ -198,6 +209,62 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  *                      type: string
  */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
+
+
+
+/**
+ * @swagger
+ * path:
+ *  /uporabniki:
+ *   post:
+ *    summary: kreiranje uporabnika
+ *    description: s to metodo se kreira uporabnik
+ *    tags: [Uporabniki/Users]
+ *    security:
+ *    - jwt: []
+ *    requestBody:
+ *       description: Parametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      email:
+ *                          type: string
+ *                      passwd:
+ *                          type: string
+ *    responses:
+ *     "200":
+ *      description: page Token
+ *      content:
+ *       application/json:
+ *        schema:
+ *              type: object
+ *              properties:
+ *                  pageToken:
+ *                      type: string
+ *     "400":
+ *      description: Zahtevani so vsi podatki
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "401":
+ *      description: Unathorized
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ */
 router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
 
 
