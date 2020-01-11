@@ -9,6 +9,18 @@ export class AvtentikacijaService {
 
   constructor(@Inject(SHRAMBA_BRSKALNIKA) private shramba: Storage) { }
 
+  public isLoggedIn(): boolean{
+    if(this.vrniZeton()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  public logOut(): void{
+    this.shramba.clear();
+  }
+
   public vrniZeton(): string {
     return this.shramba.getItem('zeton');
   }

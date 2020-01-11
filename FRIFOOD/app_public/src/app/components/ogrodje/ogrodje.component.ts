@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AvtentikacijaService} from "../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-ogrodje',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OgrodjeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authenticate: AvtentikacijaService) { }
 
   ngOnInit() {
   }

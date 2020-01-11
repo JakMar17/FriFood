@@ -27,9 +27,8 @@ import { TransformLinkPipe } from './pipes/transform-link.pipe';
 import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
 import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
 import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
+import { LogoutComponent } from './components/logout/logout.component';
 import { ModalComponentComponent as ModalComponentComponent } from './components/modal-component/modal-component.component';
-
-
 import { MatDialogRef} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -56,8 +55,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminPanelComponent,
     AdminCommentsComponent,
     AdminUsersComponent,
+    LogoutComponent,
     ModalComponentComponent
-
   ],
 
   imports: [
