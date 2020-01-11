@@ -28,14 +28,22 @@ export class LoginComponent implements OnInit {
       passwd: (<HTMLInputElement>document.getElementById("passwd")).value
     };
 
+
+
     this.frifoodPodatkiService.prijavuporabnika(userData).then(
       (data) => {
         console.log(data);
         var token = data.pagetoken;
         this.authentication.shraniZeton(token);
-        this.router.navigateByUrl(this.zgodovina.vrniPredhodnjeUrlNaslove());
+
+        console.log("prejsni naslov -> ",this.zgodovina.vrniPredhodnjeUrlNaslove());
+
+        if(this.zgodovina.vrniPredhodnjeUrlNaslove() == "/register")
+          this.router.navigateByUrl("")
+        else
+          this.router.navigateByUrl(this.zgodovina.vrniPredhodnjeUrlNaslove());
       }
-    ).catch((err) => (this.info = "Napacen email ali geslo"));
+    ).catch((err) => (this.info = "Napacen email ali geslo "));
   }
 
   checkIfOkToLogin()

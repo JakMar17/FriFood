@@ -39,6 +39,11 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "express-swagger-generator": "^1.1.17"
+    "chai": "^4.2.0",
+    "chromedriver": "^79.0.0",
+    "express-swagger-generator": "^1.1.17",
+    "mocha": "^7.0.0",
+    "mochawesome": "^4.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.5"
   }
 }
