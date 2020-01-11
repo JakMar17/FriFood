@@ -26,6 +26,13 @@ import {AdminLocationsComponent} from "./components/adminDashboard/locations/adm
 import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
 import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
 import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
+import { ModalComponentComponent as ModalComponentComponent } from './components/modal-component/modal-component.component';
+
+
+import { MatDialogRef} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -47,6 +54,8 @@ import { AdminUsersComponent } from './components/adminDashboard/users/admin-use
     AdminPanelComponent,
     AdminCommentsComponent,
     AdminUsersComponent,
+    ModalComponentComponent
+
   ],
 
   imports: [
@@ -57,9 +66,16 @@ import { AdminUsersComponent } from './components/adminDashboard/users/admin-use
     AppUsmerjanjeModule,
     NgbModule,
     NgbModalModule,
-    FileUploadModule
+    FileUploadModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [OgrodjeComponent]
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
+  bootstrap: [OgrodjeComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }
