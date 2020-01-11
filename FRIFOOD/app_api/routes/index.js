@@ -30,8 +30,6 @@ const multipartMiddleware = multipart({
  *    description: Obvladovanje restavracij
  *  - name: Analytics
  *    description: Obvladovanje analytics
- *  - name: Db
- *    description: Obvladovanje baze
 */
 
 /**
@@ -382,18 +380,132 @@ router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
 router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCommentsByRestaurantIdPerPage);
 
 
-router.get('/updateRestaurantRating/:id', ctrlComments.updateRestaurantRating);
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
+
+/**
+ * @swagger
+ * path:
+ *  /restaurants:
+ *   get:
+ *    summary: pridobi restavracije
+ *    description: vrne vse restavracije
+ *    tags: [Restaurant]
+ *    responses:
+ *     "200":
+ *      description: restavracije
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/restaurants"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
 router.delete('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
 router.put('/restaurants/update', ctrlRestavracija.updateResturant);
 router.delete('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
+
+/**
+ * @swagger
+ * path:
+ *  /restaurants/{id}:
+ *   get:
+ *    summary: pridobi restavracijo
+ *    description: vrne restavracijo glede na id
+ *    tags: [Restaurant]
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: string
+ *         required: true
+ *    responses:
+ *     "200":
+ *      description: restavracija
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/restaurants"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
+
+/**
+ * @swagger
+ * path:
+ *  /search/{name}:
+ *   get:
+ *    summary: pridobi restavracije z iskanjem
+ *    description: vrne restavracije glede na iskano ime, dela tudi z delno podanimi imeni
+ *    tags: [Restaurant]
+ *    parameters:
+ *     - in: path
+ *       name: name
+ *       schema:
+ *         type: string
+ *         required: true
+ *    responses:
+ *     "200":
+ *      description: restavracije
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/restaurants"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/search/:name', ctrlRestavracija.getRestaurantBySearch);
 
 router.post('/database/drop', ctrlDatabase.dropDatabase);
 router.post('/database/fill', ctrlDatabase.fillDatabase);
 
+/**
+ * @swagger
+ * path:
+ *  /analytics:
+ *   get:
+ *    summary: pridobi statistiko
+ *    description: vrne vso statistioko v bazi
+ *    tags: [Analytics]
+ *    responses:
+ *     "200":
+ *      description: statistika
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/analytics"
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
 
 router.put('/analytics', ctrlAnalytics.updateAnalyticsByName);
