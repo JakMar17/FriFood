@@ -23,6 +23,13 @@ import {UserProfileComponent} from "./components/userProfile/userProfile.compone
 import { FileUploadModule } from 'ng2-file-upload';
 import { RestaurantlistComponent } from './components/restaurantlist/restaurantlist.component';
 import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
+import { ModalComponentComponent as ModalComponentComponent } from './components/modal-component/modal-component.component';
+
+
+import { MatDialogRef} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -41,6 +48,8 @@ import {AdminLocationsComponent} from "./components/adminDashboard/locations/adm
     RestaurantaddComponent,
     ZvezdiceComponent,
     RestaurantlistComponent,
+    ModalComponentComponent
+
   ],
 
   imports: [
@@ -51,9 +60,16 @@ import {AdminLocationsComponent} from "./components/adminDashboard/locations/adm
     AppUsmerjanjeModule,
     NgbModule,
     NgbModalModule,
-    FileUploadModule
+    FileUploadModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [],
-  bootstrap: [OgrodjeComponent]
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
+  bootstrap: [OgrodjeComponent],
+  entryComponents: [ModalComponentComponent]
 })
 export class AppModule { }

@@ -18,7 +18,21 @@
           </a>
 <!--[attr.data-target]="'#'+komentar._id+'modalZaKomentar'" data-whatever="@mdo"-->
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <button class="dropdown-item btn-danger" (click)="open(content)">Uredi</button>
+            <div>
+              <app-modal-component
+                naslov="Uredi komentar"
+                buttonDescription="Spremeni"
+                closeButton="Objavi"
+
+                [openButonClass] = "'dropdown-item btn-danger'"
+
+                [restaurantPathID]="komentar.restaurant"
+                [user]="komentar.author._id"
+
+                (formSubmitEvent)='updateComment($event)'>
+
+              </app-modal-component>
+            </div>
             <button class="dropdown-item btn-danger" (click)="deleteComment()" >Izbriši</button>
           </div>
         </div>
@@ -26,6 +40,7 @@
     </div>
   </div>
 
+  <!--
   <ng-template #content let-modal>
     <div class="modal-header">
       <h5 class="modal-title">Spremeni komentar</h5>
@@ -54,6 +69,9 @@
 
     </div>
   </ng-template>
+-->
+
+
 
 
 </div>

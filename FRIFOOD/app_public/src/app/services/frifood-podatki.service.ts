@@ -66,8 +66,8 @@ export class FrifoodPodatkiService {
       .catch(this.obdelajNapako);
   }
 
-  getRestaurantById(restaurantId: string): Promise<Restaurant> {
-    const url: string = `${environment.apiUrl}/restaurants/${restaurantId}`;
+  getRestaurantById(id: string): Promise<Restaurant> {
+    const url: string = `${environment.apiUrl}/restaurants/${id}`;
     console.log(url);
     return this.http
       .get(url)
