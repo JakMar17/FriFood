@@ -55,8 +55,7 @@
           </tr>
           </thead>
           <tbody>
-
-<!--          <table class="table" style="table-layout: fixed; width: 100%">-->
+          
             <tr *ngFor="let comment of comments">
               <th scope="row" style="word-wrap: break-word">{{comment._id}}</th>
               <td style="word-wrap: break-word">{{comment.date}}</td>
@@ -69,7 +68,6 @@
                 </a>
               </td>
             </tr>
-<!--          </table>-->
 
 <!--          &lt;!&ndash;    Modal for showing correction details&ndash;&gt;-->
 <!--          <div class="modal fade" id = "{{ comment._id}}" tabindex="-1" role="dialog" aria-hidden="true">-->
