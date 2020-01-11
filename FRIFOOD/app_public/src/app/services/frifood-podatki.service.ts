@@ -47,7 +47,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .put(url, podatkiObrazca)
+        .put(url, podatkiObrazca, httpLastnosti)
         .toPromise()
         .then(odgovor => odgovor as Comment)
         .catch(this.obdelajNapako);
@@ -66,9 +66,9 @@ export class FrifoodPodatkiService {
       };
     }
     return this.http
-      .put(url, podatkiObrazca)
+      .put(url, podatkiObrazca, httpLastnosti)
       .toPromise()
-      .then(responde => responde as User)
+      .then(responde => responde as unknown as User)
       .catch(this.obdelajNapako);
   }
 
@@ -94,7 +94,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .delete(url)
+        .delete(url, httpLastnosti)
         .toPromise()
         .catch(this.obdelajNapako);
     }
@@ -111,7 +111,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .post(url, podatkiObrazca)
+        .post(url, podatkiObrazca, httpLastnosti)
         .toPromise()
         .then(odgovor => odgovor as Comment)
         .catch(this.obdelajNapako);
@@ -238,7 +238,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .delete(url)
+        .delete(url, httpLastnosti)
         .toPromise()
         .then(response => response as Restaurant)
         .catch(this.obdelajNapako);
@@ -305,7 +305,7 @@ export class FrifoodPodatkiService {
         })
       };
       this.http
-        .post(url, files)
+        .post(url, files, httpLastnosti)
         .subscribe((response) => {
           console.log('response received is ', response);
         })
