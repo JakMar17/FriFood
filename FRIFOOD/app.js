@@ -89,7 +89,7 @@ app.use('/admin', adminOverviewRouter);
 app.use('/admin-locations', adminLocationsRouter);
 app.use('/admin-rates', adminRatesRouter);
 app.use('/admin-comments', adminCommentsRouter);
-app.use('/admin-users', adminUsersRouter);
+app.use('/users', adminUsersRouter);
 app.use('/admin-waitinglist', adminWaitinglistRouter);
 
 app.use('/restaurant-add', restaurantAddRouter);

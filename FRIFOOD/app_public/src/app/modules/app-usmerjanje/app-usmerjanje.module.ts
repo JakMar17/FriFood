@@ -12,6 +12,7 @@ import {UserProfileComponent} from "../../components/userProfile/userProfile.com
 import {RestaurantlistComponent} from "../../components/restaurantlist/restaurantlist.component";
 import {AdminLocationsComponent} from "../../components/adminDashboard/locations/adminLocations.component";
 import {AdminCommentsComponent} from "../../components/adminDashboard/comments/admin-comments.component";
+import {AdminUsersComponent} from "../../components/adminDashboard/users/admin-users.component";
 
 
 const poti: Routes = [
@@ -50,6 +51,10 @@ const poti: Routes = [
   {
     path: 'admin/comments',
     component: AdminCommentsComponent
+  },
+  {
+    path: 'admin/users',
+    component: AdminUsersComponent
   },
   {
     path: 'restaurant-list',

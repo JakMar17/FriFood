@@ -25,6 +25,7 @@ import { RestaurantlistComponent } from './components/restaurantlist/restaurantl
 import {AdminLocationsComponent} from "./components/adminDashboard/locations/adminLocations.component";
 import { AdminPanelComponent } from './components/adminDashboard/admin-panel/admin-panel.component';
 import { AdminCommentsComponent } from './components/adminDashboard/comments/admin-comments.component';
+import { AdminUsersComponent } from './components/adminDashboard/users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AdminCommentsComponent } from './components/adminDashboard/comments/adm
     RestaurantlistComponent,
     AdminPanelComponent,
     AdminCommentsComponent,
+    AdminUsersComponent,
   ],
 
   imports: [
