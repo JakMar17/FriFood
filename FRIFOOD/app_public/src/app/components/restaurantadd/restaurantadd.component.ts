@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import {Restaurant} from "../../classes/Restaurant";
 import {FileUploader, FileUploadModule} from 'ng2-file-upload';
 import { environment } from '../../../environments/environment';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-restaurantadd',
   templateUrl: './restaurantadd.component.html',
@@ -12,7 +13,7 @@ import { environment } from '../../../environments/environment';
 })
 export class RestaurantaddComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService) { }
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
 
   @ViewChild('file', null) file
   public files: Set<File> = new Set()
@@ -81,7 +82,7 @@ export class RestaurantaddComponent implements OnInit {
     console.log(name);
 
     if(this.restaurantForm.name == "" || this.restaurantForm.description=="" || this.restaurantForm.address == ""
-    || this.restaurantForm.studentPrice === 0 || this.restaurantForm.mealPrice === 0)
+    || (this.restaurantForm.student && this.restaurantForm.studentPrice === 0) || this.restaurantForm.mealPrice === 0)
       this.formError = "Polja ne smejo biti prazna";
 
     else
@@ -94,7 +95,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputMondayTo")).value
       }
       else
-        this.formError = "prosim podajte cas"
+        this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openTuesday")).checked) {
         this.restaurantForm.timeTable.tuesday = 'ZAPRTO';
@@ -103,7 +104,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputTuesdayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openWednesday")).checked) {
         this.restaurantForm.timeTable.wednesday = 'ZAPRTO';
@@ -113,7 +114,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputWednesdayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openThursday")).checked) {
         this.restaurantForm.timeTable.thursday = 'ZAPRTO';
@@ -122,7 +123,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputThursdayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openFriday")).checked) {
         this.restaurantForm.timeTable.friday = 'ZAPRTO';
@@ -131,7 +132,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputFridayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openSaturday")).checked) {
         this.restaurantForm.timeTable.saturday = 'ZAPRTO';
@@ -140,7 +141,7 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputSaturdayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       if ((<HTMLInputElement>document.getElementById("openSunday")).checked) {
         this.restaurantForm.timeTable.sunday = 'ZAPRTO';
@@ -150,14 +151,15 @@ export class RestaurantaddComponent implements OnInit {
           + '-' + (<HTMLInputElement>document.getElementById("inputSundayTo")).value
       }
     else
-      this.formError = "prosim podajte cas"
+      this.formError = "prosim podajte cas";
 
       this.restaurantForm.icon = (<HTMLInputElement>document.getElementById("file2")).value;
       this.restaurantForm.front = (<HTMLInputElement>document.getElementById("file")).value;
 
       if(this.formError == "")
       this.frifoodPodatkiService.addNewRestaurant(this.restaurantForm as Restaurant).then(restaurant => {
-        console.log("Restavracija dodana", restaurant)
+        console.log("Restavracija dodana", restaurant);
+        this.router.navigate(['restaurant-list']);
       });
 
     }

@@ -15,13 +15,13 @@ const dodajRestavracijo = (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }*/
 
-    let monday = req.body.monday;
-    let tuesday = req.body.tuesday;
-    let wednesday = req.body.wednesday;
-    let thursday = req.body.thursday;
-    let friday = req.body.friday;
-    let saturday = req.body.saturday;
-    let sunday = req.body.sunday;
+    let monday = req.body.timeTable.monday;
+    let tuesday = req.body.timeTable.tuesday;
+    let wednesday = req.body.timeTable.wednesday;
+    let thursday = req.body.timeTable.thursday;
+    let friday = req.body.timeTable.friday;
+    let saturday = req.body.timeTable.saturday;
+    let sunday = req.body.timeTable.sunday;
     console.log("timeTable");
     let commentSection = new Comments([]);
     let restaurant = new Restaurant({
