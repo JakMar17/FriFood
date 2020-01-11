@@ -22,7 +22,7 @@
                   <p>Cena malice: &euro;{{restaurant.mealPrice}} </p>
                   <p *ngIf="restaurant.student">Doplačilo na bone: &euro;{{restaurant.studentPrice}}</p>
                   <button  type="button" [routerLink]="'restaurantView' | transformLink:restaurant._id" class="btn btn-link">Več o restavraciji</button>
-                  <button type="button" [routerLink]="'commentPage' | transformLink2:restaurant._id:'1'" class="btn btn-link mb-4">Oceni in komentiraj</button>
+                  <button type="button" [routerLink]="'commentPage' | transformLink2:restaurant._id:'1'" class="btn btn-link">Oceni in komentiraj</button>
                 </div>
               </div>
               <div class="col-md-1"></div>
