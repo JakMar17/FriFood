@@ -82,22 +82,29 @@ const getUsers = (req, res) => {
 };
 
 const updateUser = (req, res) => {
+    console.log("tukaj");
 
-    var id = req.body.userID.toString();
+    var id = req.body._id.toString();
     var ObjectId = (mongoose.Types.ObjectId);
 
-    Uporabnik.updateOne({"_id": id}, {$set:
+    console.log("User:" + req.body.admin.toString());
+
+    Uporabnik.updateOne({"_id": ObjectId(id)}, {$set:
             {
                 "name": req.body.name.toString(),
                 "surname": req.body.surname.toString(),
-                "email": req.body.email.toString()
+                "email": req.body.email.toString(),
+                "admin": req.body.admin
             }
     }, function (error, result) {
-        if (error)
+        if (error){
+            console.log(error)
+            ;
             return res.status(500).json(error);
+        }
         else {
 
-            res.redirect(req.body.returnADR.toString());
+            return res.status(200).json(result);
         }
     });
 };
@@ -112,7 +119,7 @@ const deleteUser = (req, res) => {
             else res.status(200).json(result);
         })
 
-}
+};
 
 module.exports = {
     vrniUporabnika,
@@ -120,5 +127,5 @@ module.exports = {
     getUserById,
     getUsers,
     updateUser,
-    deleteUser
+    deleteUser,
 };

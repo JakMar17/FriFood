@@ -213,7 +213,7 @@ router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
  *      description: Napaka na strežniku pri dostopu do podatkovne baze.
  */
 router.get('/users', ctrlUporabniki.getUsers);
-router.post('/users', ctrlUporabniki.updateUser);
+router.put('/users', ctrlUporabniki.updateUser);
 router.get('/userdelete/:id', ctrlUporabniki.deleteUser);
 
 

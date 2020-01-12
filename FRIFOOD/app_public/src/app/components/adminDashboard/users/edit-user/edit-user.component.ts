@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../../../classes/User";
 import {FrifoodPodatkiService} from "../../../../services/frifood-podatki.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AvtentikacijaService} from "../../../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -10,12 +11,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private frifoodService: FrifoodPodatkiService, private router: ActivatedRoute, private r: Router) {
+  constructor(
+    private frifoodService: FrifoodPodatkiService,
+    private router: ActivatedRoute,
+    private r: Router,
+    private avtentikacija: AvtentikacijaService) {
     this.getUserById();
   }
 
   private id: string;
-  private user: User;
+  private user: User = new User();
   private selected: string;
   private notSelected: string;
   private opozorilo:string;
@@ -38,16 +43,33 @@ export class EditUserComponent implements OnInit {
   }
 
 
-  private updateUser(user:User): void {
+  private updateUser(): void {
 
     try {
       let typeOfUser :string = (<HTMLInputElement>document.getElementById('type')).value;
-      if (typeOfUser === "Administrator")
-        user.admin = true;
-      else
-        user.admin = false;
 
-      this.r.navigate(["/admin/users"]);
+      console.log(this.avtentikacija.decodeToken()._id)
+
+      // if(this.avtentikacija.decodeToken()._id === this.user._id) {
+      //   alert("marija");
+      //   return null;
+      // }
+
+
+      if (this.avtentikacija.decodeToken()._id != this.user._id) {
+        if (typeOfUser === "Administrator")
+          this.user.admin = true;
+        else
+          this.user.admin = false;
+      }
+
+      this.frifoodService.updateUser(this.user)
+        .then(
+          (data) => {
+            data = this.user;
+            this.r.navigate(["/admin/users"]);
+          }
+        );
     } catch (e) {
       return null;
     }
