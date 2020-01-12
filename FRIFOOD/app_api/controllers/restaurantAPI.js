@@ -83,8 +83,8 @@ const deleteRestaurant = (req, res) => {
 
     Restaurant.deleteOne(
         {"_id": ObjectID(id)}, function (error, result) {
-            if(error) return console.log(error);
-            else res.redirect(req.body.returnADR.toString());
+            if(error) return res.status(404).json(error);
+            else res.status(204);
         }
     );
 };
@@ -95,11 +95,11 @@ const deleteRestaurantByID = (req, res) => {
 
     Restaurant.deleteOne(
         {"_id": ObjectID(id)}, function (error, result) {
-            if(error) return error;
-            else return null;
+            if(error) return res.status(404).json(error);
+            else return res.status(204);
         }
-    )
-}
+    );
+};
 
 const updateResturant = (req, res) => {
 
@@ -115,7 +115,7 @@ const updateResturant = (req, res) => {
             return res.status(500).json(error);
         else
             res.redirect(res.body.returnADR.toString());
-    })
+    });
 };
 
 const getRestaurantById = (req, res) => {
