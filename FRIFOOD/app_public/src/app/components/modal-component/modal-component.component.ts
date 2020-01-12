@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalDismissReasons, NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {Comment} from "../../classes/Comment";
 import {User} from "../../classes/User";
 
@@ -26,6 +26,7 @@ export class ModalComponentComponent implements OnInit {
   tmp: string;
   @Output() formSubmitEvent = new EventEmitter();
 
+  public modalReference: any;
 
   public formData = {
     restaurant: '',
@@ -43,11 +44,12 @@ export class ModalComponentComponent implements OnInit {
     console.log(this.restaurantPathID, "<-->"+this.user);
     this.tmp = this.valueForTextArea;
 
-    this.modalService.open(content, {centered: true, }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalReference = this.modalService.open(content, {centered: true, });
+    this.modalReference.result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
   }
 
   private getDismissReason(reason: any): string {
@@ -59,6 +61,7 @@ export class ModalComponentComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
 
   submitForm(content){
     this.errorString = "";
@@ -73,6 +76,7 @@ export class ModalComponentComponent implements OnInit {
     } else {
       this.errorString = "Zahtevani so vsi podatki, prosim poskusite ponovno!";
     }
+    this.modalReference.close();
   }
 
   ngOnInit(): void {

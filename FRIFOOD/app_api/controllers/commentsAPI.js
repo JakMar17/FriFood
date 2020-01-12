@@ -71,9 +71,9 @@ const readComments = (req, res) => {
 
 const deleteComment = (req, res) => {
 
-    var id = req.body.komentarID.toString();
+    // var id = req.body.komentarID.toString();
+    var id = req.params.id;
     var ObjectID = mongoose.Types.ObjectId;
-
 
     Comments.deleteOne(
         {"_id": ObjectID(id)}, function(error, result){
@@ -100,6 +100,7 @@ const getCommentsByRestaurantIdPerPage = (req, res) => {
     var restaurantID = req.params.id;
     var page = req.params.pageNumber;
 
+    console.log(restaurantID);
     console.log(page);
 
     Comments.find({restaurant: restaurantID}, null, { skip: page*10 }).limit(10)
@@ -108,7 +109,7 @@ const getCommentsByRestaurantIdPerPage = (req, res) => {
             (error, comments) => {
                 if (!comments) {
                     return res.status(404).json({
-                        "error": "no rstaurant"
+                        "error": "no restaurant"
                     });
                 } else if (error) {
                     return res.status(500).json(error);
