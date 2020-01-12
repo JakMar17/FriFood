@@ -248,7 +248,17 @@ Gost lahko na spletni aplikaciji:
 
 ### Prijavljeni uporabnik (Običajni uporabnik)
 Prijavljeni uporabnik lahko na spletni aplikcaiji:
-*   vse, akr lahko počne gost (neprijavljeni uporabnik)
+*   vse, kar lahko počne gost (neprijavljeni uporabnik)
 *   pregleduje svoje aktivnosti in podatke o svoje profilu (`/profile`)
 *   dodaja komentarje in ocenjuje aplikacije
 *   svoje komentarje lahko ureja in briše
+*   dodaja lahko nove restavracije
+
+### Administrator sistema
+Administrator lahko na spletni aplikaciji:
+*   vse, kar lahko prijavljeni uporabnik
+*   dostopa do Administratorskega pogleda (`/admin/*`)
+*   briše v sistem dodane restavracije (`/admin`locations`)
+*   pregleduje in ureja registrirane uporabnike (`/admin/users`)
+*   briše vse objavljene ocene in komentarje (`/admin/comments`)
+*   dostopa do analitike strani (`/admin/analytics`)

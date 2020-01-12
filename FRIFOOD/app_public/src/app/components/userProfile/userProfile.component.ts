@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
   private user: User;
 
   public activities: any;
+  public src: string = "/assets/images/profile/user_avatar.png";
 
   private getUserByEmail(): void {
     this.user = this.autenticate.decodeToken();
