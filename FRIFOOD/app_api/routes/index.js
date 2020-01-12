@@ -712,6 +712,48 @@ router.post('/restaurantADD', avtentikacija, ctrlRestavracija.dodajRestavracijo)
  */
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
 
+/**
+ * @swagger
+ * path:
+ *  /deleteRestaurant/{id}:
+ *   delete:
+ *    summary: odstrani restavracijo
+ *    description: Odstrani restavracijo iz podatkovne baze.
+ *    tags: [Restaurants]
+ *    security:
+ *    - jwt: []
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *    responses:
+ *     "200":
+ *      description: sporocilo
+ *      content:
+ *       application/json:
+ *        schema:
+ *         type: object
+ *         properties:
+ *            message:
+ *                type: string
+ *     "401":
+ *      description: Unauthorized.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka v podatkovni bazi.
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ */
 router.delete('/deleteRestaurant/:id', avtentikacija, ctrlRestavracija.deleteRestaurantByID);
 
 /**
