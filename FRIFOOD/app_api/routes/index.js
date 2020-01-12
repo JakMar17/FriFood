@@ -60,11 +60,12 @@ const multipartMiddleware = multipart({
  *       required: true
  *    responses:
  *     "200":
+ *      description: Registracija uspešna.
  *      content:
  *       application/json:
  *        schema:
  *         type: object
- *          $ref: "#/components/schemas/uporabnikSchema"
+ *         $ref: "#/components/schemas/uporabnikSchema"
  *     "400":
  *      description: Napaka zahteve, manjkajo obvezni parametri.
  *      content:
