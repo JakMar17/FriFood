@@ -7,6 +7,11 @@ var ctrlDatabase = require('../controllers/databaseAPI');
 var ctrlAnalytics = require('../controllers/analyticsAPI');
 var ctrlAvtentikacija = require('../controllers/avtentikacija');
 
+var jwt = require('express-jwt');
+var avtentikacija = jwt({
+    secret: process.env.JWT_GESLO,
+    userProperty: 'payload'
+});
 
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
@@ -198,7 +203,7 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  *                      type: string
  */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
-router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
+router.post('/uporabniki', avtentikacija, ctrlUporabniki.narediUporabnika);
 
 
 /**
@@ -232,11 +237,11 @@ router.post('/uporabniki',ctrlUporabniki.narediUporabnika);
  *                      type: string
  */
 router.get('/users', ctrlUporabniki.getUsers);
-router.put('/users', ctrlUporabniki.updateUser);
+router.put('/users', avtentikacija, ctrlUporabniki.updateUser);
 
 
-router.put('/comments/update', ctrlComments.updateComment);
-router.post('/comments/update', ctrlComments.updateComment);
+router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
+router.post('/comments/update', avtentikacija, ctrlComments.updateComment);
 
 /**
  * @swagger
@@ -269,9 +274,9 @@ router.post('/comments/update', ctrlComments.updateComment);
  *                      type: string
  */
 router.get('/comments', ctrlComments.readComments);
-router.post('/comments', ctrlComments.createComment);
-router.delete('/comments/delete/:id', ctrlComments.deleteComment);
-router.post('/comments/delete', ctrlComments.deleteComment);
+router.post('/comments', avtentikacija, ctrlComments.createComment);
+router.delete('/comments/delete/:id', avtentikacija, ctrlComments.deleteComment);
+router.post('/comments/delete', avtentikacija, ctrlComments.deleteComment);
 
 /**
  * @swagger
@@ -442,7 +447,7 @@ router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCom
  *     "500":
  *      description: Napaka na strežniku pri dostopu do podatkovne baze.
  */
-router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
+router.post('/restaurantADD', avtentikacija, ctrlRestavracija.dodajRestavracijo);
 
 /**
  * @swagger
@@ -470,9 +475,9 @@ router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
  *                      type: string
  */
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
-router.delete('/restaurants/delete', ctrlRestavracija.deleteRestaurant);
-router.put('/restaurants/update', ctrlRestavracija.updateResturant);
-router.delete('/deleteRestaurant/:id', ctrlRestavracija.deleteRestaurantByID);
+router.delete('/restaurants/delete', avtentikacija, ctrlRestavracija.deleteRestaurant);
+router.put('/restaurants/update', avtentikacija, ctrlRestavracija.updateResturant);
+router.delete('/deleteRestaurant/:id', avtentikacija, ctrlRestavracija.deleteRestaurantByID);
 
 /**
  * @swagger
@@ -540,8 +545,8 @@ router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
  */
 router.get('/search/:name', ctrlRestavracija.getRestaurantBySearch);
 
-router.post('/database/drop', ctrlDatabase.dropDatabase);
-router.post('/database/fill', ctrlDatabase.fillDatabase);
+router.post('/database/drop', avtentikacija, ctrlDatabase.dropDatabase);
+router.post('/database/fill', avtentikacija, ctrlDatabase.fillDatabase);
 
 /**
  * @swagger
@@ -570,8 +575,8 @@ router.post('/database/fill', ctrlDatabase.fillDatabase);
  */
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
 
-router.put('/analytics', ctrlAnalytics.updateAnalyticsByName);
+router.put('/analytics', avtentikacija, ctrlAnalytics.updateAnalyticsByName);
 
-router.post('/upload',multipartMiddleware, ctrlDatabase.uploadFile);
+router.post('/upload',multipartMiddleware, avtentikacija, ctrlDatabase.uploadFile);
 
 module.exports = router;
