@@ -4,9 +4,9 @@ const m2s = require('mongoose-to-swagger');
 
 /**
  * @swagger
-*components:
+*  components:
 *   schemas:
-*       commentSchema:
+*       comments:
 *           type: object
 *           properties:
 *
@@ -17,9 +17,9 @@ const m2s = require('mongoose-to-swagger');
 *               date:
 *                   type: date
 *               restaurant:
-*                   $ref: '#/components/schemas/restaurantSchema'
+*                   $ref: '#/components/schemas/restaurants'
 *               author:
-*                   $ref: '#/components/schemas/uporabnikiShema'
+*                   $ref: '#/components/schemas/uporabnikShema'
  */
 
 const commentSchema = new Schema ({
@@ -32,3 +32,25 @@ const commentSchema = new Schema ({
 
 var comment = mongoose.model('comments', commentSchema, "Comments");
 
+
+/**
+ * @swagger
+ *  components:
+ *   examples:
+ *    NeNajdemLokacije:
+ *     summary: ne najdem lokacije
+ *     value:
+ *      sporočilo: Ne najdem lokacije.
+ *    NeNajdemKomentarja:
+ *     summary: ne najdem komentarja
+ *     value:
+ *      sporočilo: Ne najdem komentarja.
+ *    NiNobenegaKomentarja:
+ *     summary: ni nobenega komentarja
+ *     value:
+ *      sporočilo: Ni nobenega komentarja.
+ *    NiZetona:
+ *     summary: ni JWT žetona
+ *     value:
+ *      sporočilo: "UnauthorizedError: No authorization token was found."
+ */

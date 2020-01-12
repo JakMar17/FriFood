@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
  * @swagger
  * components:
  *  schemas:
- *   restaurantSchema:
+ *   restaurants:
  *    type: object
  *    properties:
  *     name:
@@ -35,7 +35,7 @@ const Schema = mongoose.Schema;
  *          items:
  *              type: string
  *     comments:
- *          $ref: '#/components/schemas/commentSchema'
+ *          $ref: '#/components/schemas/comments'
  */
 
 const restaurantSchema = new mongoose.Schema({
