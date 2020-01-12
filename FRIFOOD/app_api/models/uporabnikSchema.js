@@ -61,8 +61,8 @@ uporabnikiShema.methods.generirajJwt = function() {
         elektronskiNaslov: this.email,
         ime: this.name,
         priimek: this.surname,
-        datumPoteka: parseInt(datumPoteka.getTime() / 1000, 10),
-        admin: this.admin
+        admin: this.admin,
+        datumPoteka: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_GESLO);
 };
 
