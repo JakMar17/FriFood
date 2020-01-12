@@ -17,6 +17,8 @@ export class AdminLocationsComponent implements OnInit {
   private mail: string = "janez.novak@fri.uni-lj.si";
   public user: User;
 
+
+
   public locations: Restaurant[];
 
   private getUserByEmail(): void {

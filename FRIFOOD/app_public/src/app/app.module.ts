@@ -37,6 +37,7 @@ import { TransformLink2Pipe } from './pipes/transform-link2.pipe';
 import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
 import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
 import {CommentModalComponent} from "./components/adminDashboard/comments/comment-modal/comment-modal.component";
+import { EditUserComponent } from './components/adminDashboard/users/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {CommentModalComponent} from "./components/adminDashboard/comments/commen
     TransformLink2Pipe,
     ZgodovinaPipePipe,
     ModalPopupComponent,
-    CommentModalComponent
+    CommentModalComponent,
+    EditUserComponent
   ],
   exports: [
     ZgodovinaPipePipe

@@ -102,12 +102,23 @@ const updateUser = (req, res) => {
     });
 };
 
-// const deleteUser =
+const deleteUser = (req, res) => {
+    var id = req.params.userId;
+    var ObjectId = (mongoose.Types.ObjectId);
+
+    Uporabnik.deleteOne({"_id": ObjectId(id)},
+        function (error, result) {
+            if (error) res.status(404).json(result);
+            else res.status(200).json(result);
+        })
+
+}
 
 module.exports = {
     vrniUporabnika,
     narediUporabnika,
     getUserById,
     getUsers,
-    updateUser
+    updateUser,
+    deleteUser
 };
