@@ -194,7 +194,61 @@ Dokončali smo LP2&3 dne 9.12. 2019 - 02:45
 
 # 4. LP
 
-SPA aplikacija na eni strani
+
+## Namestitev aplikacije v lokalnem okolju
+> Navodila v nadaljevanju predvidevajo, da je v lokalnem okolju mogoče izvajati ukaze `npm` in poganjanje podatkovne baze mongoDB.
+
+### Prenos `git` repozitorija
+1. Z ukazom `git clone https://github.com/sp-2019-2020/LP-14.git` v trenutno mapo namestimo datoteke iz oddaljenega repozitorija.
+
+ali
+
+1. Uporabimo ukaz `git clone git@github.com:sp-2019-2020/LP-14.git`.
+
+### Dodajanje JWT_GESLO
+
+1. Premaknemo se v mapo `.\LP-14\FRIFOOD`
+2. Ustvarimo novo datoteko z imeno `.env`
+3. V datoteko `.env` dodatmo spodnjo vsebino
+
+```
+JWT_GESLO=IXqvBBSlvJkjC86FHSpT
+```
+
+### Namestitev Express strežniškega okolja in MongoDB baze
+
+1. Premaknemo se v mapo `.\LP-14\FRIFOOD`
+2.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
+3.  Izvedemo ukaz `npm install dotenv --save`
+3.  Z ukazom `nodemon` ali `node app.js` zaženemo Express strežnik. V konzoli dobimo podatek o povezavi na podatkovno bazo.
+
+*Podatkovna baza je dostopna na naslovu `localhost:3000`.*
+
+### Namestitev Angular aplikacije
+
+> *Spodnji ukazi veljajo ob predpostavki, da že imamo zagnano streniško okolje Express*
+
+1.  Premaknemo se v mapo `.\LP-14\FRIFOOD\app_public`
+2.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
+3. Izvedemo ukaz `ng serve --host 0.0.0.0 --port 8081 --disableHostCheck` Angular aplikacija se prevede in zažene.
+
+*Angular aplikacija je dostopna na naslovu `localhost:8081`.*
 
 
 # 5. LP
+
+## Razlike med vrstami uporabnikov
+Spletna aplikacija podpira tri vrste uporabnikov: **gostujočega uporabnika**, **prijavljenega _običajnega uporabnika_** in **administratorja**.
+
+### Gost (neprijavljeni uporabnik)
+Gost lahko na spletni aplikaciji:
+*   pregleduje seznam vnešenih restvracij, podatke o restavraciji ter komentarje z ocenami
+*   uporablja lahko zemljevid ter po njem išče restvarcije vnešene v sistemu in ostale (prek Google API)
+*   išče prek vgrajenega isklanega mehanizma po imenu restavracij, ki so vnesene v sistemu
+
+### Prijavljeni uporabnik (Običajni uporabnik)
+Prijavljeni uporabnik lahko na spletni aplikcaiji:
+*   vse, akr lahko počne gost (neprijavljeni uporabnik)
+*   pregleduje svoje aktivnosti in podatke o svoje profilu (`/profile`)
+*   dodaja komentarje in ocenjuje aplikacije
+*   svoje komentarje lahko ureja in briše
