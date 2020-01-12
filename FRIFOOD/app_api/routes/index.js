@@ -557,7 +557,7 @@ router.post('/database/fill', ctrlDatabase.fillDatabase);
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/analytics"
+ *         $ref: "#/components/schemas/analyticsSchema"
  *     "500":
  *      description: Napaka v podatkovni bazi.
  *      content:
