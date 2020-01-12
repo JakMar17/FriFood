@@ -313,7 +313,6 @@ router.put('/users', avtentikacija, ctrlUporabniki.updateUser);
 
 
 router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
-router.post('/comments/update', avtentikacija, ctrlComments.updateComment);
 
 /**
  * @swagger
