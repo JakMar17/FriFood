@@ -31,7 +31,7 @@ var swaggerOptions = {
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
     servers: [
-      { url: "http://localhost:8081/api" },
+      { url: "http://localhost:3000/api" },
       { url: "https://edugeocache-sp-2019.herokuapp.com/api" }
     ]
   },
