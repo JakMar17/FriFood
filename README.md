@@ -194,7 +194,140 @@ Dokončali smo LP2&3 dne 9.12. 2019 - 02:45
 
 # 4. LP
 
-SPA aplikacija na eni strani
+
+## Namestitev aplikacije v lokalnem okolju
+> Navodila v nadaljevanju predvidevajo, da je v lokalnem okolju mogoče izvajati ukaze `npm` in poganjanje podatkovne baze mongoDB.
+
+### Prenos `git` repozitorija
+1. Z ukazom `git clone https://github.com/sp-2019-2020/LP-14.git` v trenutno mapo namestimo datoteke iz oddaljenega repozitorija.
+
+ali
+
+1. Uporabimo ukaz `git clone git@github.com:sp-2019-2020/LP-14.git`.
+
+### Dodajanje JWT_GESLO
+
+1. Premaknemo se v mapo `.\LP-14\FRIFOOD`
+2. Ustvarimo novo datoteko z imeno `.env`
+3. V datoteko `.env` dodatmo spodnjo vsebino
+
+```
+JWT_GESLO=IXqvBBSlvJkjC86FHSpT
+```
+
+### Namestitev Express strežniškega okolja in MongoDB baze
+
+1. Premaknemo se v mapo `.\LP-14\FRIFOOD`
+2.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
+3.  Izvedemo ukaz `npm install dotenv --save`
+3.  Z ukazom `nodemon` ali `node app.js` zaženemo Express strežnik. V konzoli dobimo podatek o povezavi na podatkovno bazo.
+
+*Podatkovna baza je dostopna na naslovu `localhost:3000`.*
+
+### Namestitev Angular aplikacije
+
+> *Spodnji ukazi veljajo ob predpostavki, da že imamo zagnano streniško okolje Express*
+
+1.  Premaknemo se v mapo `.\LP-14\FRIFOOD\app_public`
+2.  Izvedemo ukaz `npm install` s čemer namestimo potrebne vmesnike za zagon aplikacije.
+3. Izvedemo ukaz `ng serve --host 0.0.0.0 --port 8081 --disableHostCheck` Angular aplikacija se prevede in zažene.
+
+*Angular aplikacija je dostopna na naslovu `localhost:8081`.*
 
 
 # 5. LP
+
+## Razlike med vrstami uporabnikov
+Spletna aplikacija podpira tri vrste uporabnikov: **gostujočega uporabnika**, **prijavljenega _običajnega uporabnika_** in **administratorja**.
+
+### Gost (neprijavljeni uporabnik)
+Gost lahko na spletni aplikaciji:
+*   pregleduje seznam vnešenih restvracij, podatke o restavraciji ter komentarje z ocenami
+*   uporablja lahko zemljevid ter po njem išče restvarcije vnešene v sistemu in ostale (prek Google API)
+*   išče prek vgrajenega isklanega mehanizma po imenu restavracij, ki so vnesene v sistemu
+
+### Prijavljeni uporabnik (Običajni uporabnik)
+Prijavljeni uporabnik lahko na spletni aplikcaiji:
+*   vse, kar lahko počne gost (neprijavljeni uporabnik)
+*   pregleduje svoje aktivnosti in podatke o svoje profilu (`/profile`)
+*   dodaja komentarje in ocenjuje aplikacije
+*   svoje komentarje lahko ureja in briše
+*   dodaja lahko nove restavracije
+
+### Administrator sistema
+Administrator lahko na spletni aplikaciji:
+*   vse, kar lahko prijavljeni uporabnik
+*   dostopa do Administratorskega pogleda (`/admin/*`)
+*   briše v sistem dodane restavracije (`/admin`locations`)
+*   pregleduje in ureja registrirane uporabnike (`/admin/users`)
+*   briše vse objavljene ocene in komentarje (`/admin/comments`)
+*   dostopa do analitike strani (`/admin/analytics`)
+
+## Čas nalaganja strani
+### Brave (osnovan na Chromium)
+#### Začetno nalaganje aplikacije
+> Začetno izvajanje se je izvajalo na osnovni strani `/`
+
+Začetno nalaganje aplikacije je skupaj trajalo **5,85 sekund**, pri tem se je skupaj preneslo **8,5MB** ter opravilo **38 zahtev**.
+
+V tabeli se nahaja 10 datotek, ki so potrebovale največ časa za prenos:
+|Ime datoteke|Čas (v ms)|
+|---|---|
+|začetna poizvedba na spletno stran|305|
+|Google Analitika JS datoteka|218|
+|`vendor.js`|213|
+|Google Maps API|173|
+|Material Icons knjižnica|139|
+|`jquery-3.3.1.slim.min.js`|130|
+|`common.js`|128|
+|Roboto font knjižnica|126|
+|`all.css`|124|
+|`scripts.js`|123|
+|`util.js`|115|
+
+#### Nadaljno nalaganje strani
+
+|Stran|Število zahtevkov|Skupen čas nalaganja (ms)|
+|---|---|---|
+|Začetna stran `/`|2|12|
+|Pregled restavracij `/restaurant-list`|49|496|
+|Več o restavraciji `/restaurantView/...`|3|26|
+|Komentarji restavracije `/commentPage/...`|12|449|
+|Prijava `/login`|2|17|
+|Prijava uporabnika|11|116|
+|Ogled profila `/profile`|2|383|
+|Admin Dashboard Lokacije|2|22|
+|Admin Dashboard Komentarji|3|109|
+|Admin Dashboard Uporabniki|1|9|
+|Urejanje uporabnika|1|16|
+|Admin Dashboard Analitika|1|8|
+|Dodajanje nove restavracije|3|325|
+
+Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+
+### Mozzila Firefox
+#### Začetno nalaganje aplikacije
+> Začetno izvajanje se je izvajalo na osnovni strani `/`
+
+Začetno nalaganje aplikacije je skupaj trajalo **5,90 sekund**, pri tem se je skupaj preneslo **8,96MB** ter opravilo **39 zahtev**.
+
+
+#### Nadaljno nalaganje strani
+
+|Stran|Število zahtevkov|Skupen čas nalaganja (ms)|
+|---|---|---|
+|Začetna stran `/`|2|12|
+|Pregled restavracij `/restaurant-list`|26|780|
+|Več o restavraciji `/restaurantView/...`|2|46|
+|Komentarji restavracije `/commentPage/...`|9|86|
+|Prijava `/login`|2|10|
+|Prijava uporabnika|11|225|
+|Ogled profila `/profile`|5|173|
+|Admin Dashboard Lokacije|2|10|
+|Admin Dashboard Komentarji|3|49|
+|Admin Dashboard Uporabniki|1|8|
+|Urejanje uporabnika|1|5|
+|Admin Dashboard Analitika|1|7|
+|Dodajanje nove restavracije|3|11|
+
+Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).

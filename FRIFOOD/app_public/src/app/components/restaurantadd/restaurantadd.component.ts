@@ -10,6 +10,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ModalPopupComponent} from "../modal-popup/modal-popup.component";
 import {ModalPogojiComponent} from "../modal-pogoji/modal-pogoji.component";
 import {AvtentikacijaService} from "../../services/avtentikacija.service";
+
 @Component({
   selector: 'app-restaurantadd',
   templateUrl: './restaurantadd.component.html',
@@ -250,3 +251,6 @@ export class RestaurantaddComponent implements OnInit {
   }
 
 }
+
+
+

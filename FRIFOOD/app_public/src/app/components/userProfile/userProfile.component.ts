@@ -23,9 +23,10 @@ export class UserProfileComponent implements OnInit {
 
   private mail: string = this.autenticate.decodeToken().email;
   private user_id: string = this.autenticate.decodeToken()._id;
-  public user: User;
+  private user: User;
 
   public activities: any;
+  public src: string = "/assets/images/profile/user_avatar.png";
 
   private getUserByEmail(): void {
     this.user = this.autenticate.decodeToken();
@@ -36,6 +37,7 @@ export class UserProfileComponent implements OnInit {
     this.friFoodPodatkiServices.getUserById(this.user_id).then(
       (data) => {
         this.user = data;
+        this.getComments();
       }
     )
   }
@@ -65,7 +67,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUserByEmail();
+    this.getUserById();
   }
 
 
