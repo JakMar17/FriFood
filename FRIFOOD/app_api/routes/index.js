@@ -851,7 +851,7 @@ router.post('/database/fill', avtentikacija, ctrlDatabase.fillDatabase);
  */
 router.get('/analytics', ctrlAnalytics.returnAnalytics);
 
-router.put('/analytics', avtentikacija, ctrlAnalytics.updateAnalyticsByName);
+router.put('/analytics', ctrlAnalytics.updateAnalyticsByName);
 
 router.post('/upload',multipartMiddleware, avtentikacija, ctrlDatabase.uploadFile);
 
