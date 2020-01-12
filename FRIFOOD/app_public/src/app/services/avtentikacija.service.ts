@@ -13,7 +13,6 @@ export class AvtentikacijaService {
 
   public isAdmin(): boolean{
     var data = this.decodeToken();
-    console.log(data.admin);
     if(data.admin === true){
       return true;
     }else{
