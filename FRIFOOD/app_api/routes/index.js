@@ -394,7 +394,6 @@ router.put('/comments/update', avtentikacija, ctrlComments.updateComment);
 router.get('/comments', ctrlComments.readComments);
 router.post('/comments', avtentikacija, ctrlComments.createComment);
 router.delete('/comments/delete/:id', avtentikacija, ctrlComments.deleteComment);
-router.post('/comments/delete', avtentikacija, ctrlComments.deleteComment);
 
 /**
  * @swagger
@@ -595,8 +594,7 @@ router.post('/restaurantADD', avtentikacija, ctrlRestavracija.dodajRestavracijo)
  *                      type: string
  */
 router.get('/restaurants', ctrlRestavracija.readRestaurants);
-router.delete('/restaurants/delete', avtentikacija, ctrlRestavracija.deleteRestaurant);
-router.put('/restaurants/update', avtentikacija, ctrlRestavracija.updateResturant);
+
 router.delete('/deleteRestaurant/:id', avtentikacija, ctrlRestavracija.deleteRestaurantByID);
 
 /**
