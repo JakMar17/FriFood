@@ -379,7 +379,69 @@ router.get('/commentAuthor/:authorID', ctrlComments.getCommentsByUser);
  */
 router.get('/commentsByRestaurantIdPerPage/:id/:pageNumber', ctrlComments.getCommentsByRestaurantIdPerPage);
 
-
+/**
+ * @swagger
+ * path:
+ *  /restaurantADD:
+ *   post:
+ *    summary: restaurant-add
+ *    description: Zapis restavracije v bazo.
+ *    tags: [Restaurants]
+ *    requestBody:
+ *       description: Prametri
+ *       required: true
+ *       content:
+ *           application/json:
+ *               schema:
+ *                  type: object
+ *                  properties:
+ *                      name:
+ *                          type: string
+ *                      address:
+ *                          type: string
+ *                      rating:
+ *                          type: number
+ *                      mealPrice:
+ *                          type: number
+ *                      student:
+ *                          type: boolean
+ *                      studentPrice:
+ *                          type: number
+ *                      type: array
+ *                      timeTable:
+ *                          type: string
+ *                      description:
+ *                          type: string
+ *    responses:
+ *     "201":
+ *      description: Restavracija je dodana.
+ *      content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: "#/components/schemas/restaurants"
+ *     "400":
+ *      description: Zahtevani so vsi podatki
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "401":
+ *      description: Unauthorized
+ *      content:
+ *       application/json:
+ *          schema:
+ *              type: object
+ *              properties:
+ *                  napaka:
+ *                      type: string
+ *     "500":
+ *      description: Napaka na strežniku pri dostopu do podatkovne baze.
+ */
 router.post('/restaurantADD', ctrlRestavracija.dodajRestavracijo);
 
 /**

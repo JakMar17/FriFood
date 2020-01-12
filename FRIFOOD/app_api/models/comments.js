@@ -19,7 +19,7 @@ const m2s = require('mongoose-to-swagger');
 *               restaurant:
 *                   $ref: '#/components/schemas/restaurants'
 *               author:
-*                   $ref: '#/components/schemas/uporabnikShema'
+*                   $ref: '#/components/schemas/uporabnikSchema'
  */
 
 const commentSchema = new Schema ({
