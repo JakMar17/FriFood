@@ -30,7 +30,7 @@ export class AnalyticsComponent implements OnInit {
     scales : {
       yAxes: [{
         ticks: {
-          max : 60,
+          max : 200,
           min : 0,
         }
       }],
