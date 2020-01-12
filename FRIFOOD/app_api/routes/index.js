@@ -821,8 +821,8 @@ router.get('/restaurants/:id', ctrlRestavracija.getRestaurantById);
  */
 router.get('/search/:name', ctrlRestavracija.getRestaurantBySearch);
 
-router.post('/database/drop', avtentikacija, ctrlDatabase.dropDatabase);
-router.post('/database/fill', avtentikacija, ctrlDatabase.fillDatabase);
+router.post('/database/drop', ctrlDatabase.dropDatabase);
+router.post('/database/fill', ctrlDatabase.fillDatabase);
 
 /**
  * @swagger

@@ -6,7 +6,6 @@ const fileUpload = require('express-fileupload');
 const Restaurant = mongoose.model('restaurant');
 const Comments = mongoose.model('comments');
 const Uporabnik = mongoose.model('uporabniki');
-const Analytics = mongoose.model('analytics');
 
 const dropDatabase = (req, res) => {
     console.log("Trying to delete database");
@@ -15,7 +14,13 @@ const dropDatabase = (req, res) => {
         if (process.env.NODE_ENV === 'production') {
             dbURI = process.env.MONGODB_CLOUD_URI;
         }
-        mongoose.connection.db.dropDatabase()
+
+        //mongoose.connection.db.dropDatabase()
+
+        Restaurant.collection.drop();
+        Comments.collection.drop();
+        Uporabnik.collection.drop();
+
         console.log("DONE");
         res.status(203);
     } else {
@@ -33,7 +38,7 @@ const fillDatabase = (req, res) => {
     if (req.body.validation === 'THIS_IS_VALIDATION_KEY') {
         console.log("Got valid key 2: " + req.body.validation);
 
-        var analytics = new Analytics({
+        /*var analytics = new Analytics({
             name: 'googleAPI',
             numAPICalls: 0
         });
@@ -41,7 +46,7 @@ const fillDatabase = (req, res) => {
         analytics.save(function (err) {
             if (err) return console.error(err);
             console.log("ADDING Analytics.ts SUCCESSFUL");
-        });
+        });*/
 
         var commentSection = new Comments([]);
 

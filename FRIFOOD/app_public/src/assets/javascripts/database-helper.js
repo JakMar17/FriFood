@@ -15,12 +15,12 @@ function dropDatabase(key) {
 
 function dropText(){
     let konzola = document.getElementById("konzola");
-    konzola.innerHTML = "DROPPING DATABASE!";
+    konzola.innerHTML = "DATABASE dropped";
 }
 
 function fillText(){
     let konzola = document.getElementById("konzola");
-    konzola.innerHTML = "FILLING DATABASE!";
+    konzola.innerHTML = "DATABASE created";
 }
 
 function fillAPIText(){
