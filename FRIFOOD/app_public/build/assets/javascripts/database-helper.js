@@ -21,7 +21,6 @@ function dropText(){
 function fillText(){
     let konzola = document.getElementById("konzola");
     konzola.innerHTML = "DATABASE created";
-
 }
 
 function fillAPIText(){

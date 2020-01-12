@@ -13,16 +13,34 @@ const registracija = (req, res) => {
     uporabnik.name = req.body.name;
     uporabnik.surname = req.body.surname;
     uporabnik.email = req.body.email;
-    uporabnik.admin = true;
-    var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
-    uporabnik.nakljucnaVrednost = vrednosti[0];
-    uporabnik.zgoscenaVrednost = vrednosti[1];
-    uporabnik.save(napaka => {
-        if (napaka) {
-            res.status(500).json(napaka);
-        } else {
-            res.status(200).json({"žeton": uporabnik.generirajJwt()})
+
+    uporabnik.admin = false;
+
+    Uporabnik.find({email: req.body.email}, function (error, user) {
+        if (!user)
+        {
+            console.log("email ne obstaja OK to register")
+            var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
+            uporabnik.nakljucnaVrednost = vrednosti[0];
+            uporabnik.zgoscenaVrednost = vrednosti[1];
+            uporabnik.save(napaka => {
+                if (napaka) {
+                    console.log(napaka)
+                    res.status(500).json(napaka);
+                } else {
+                    res.status(200).json({"žeton": uporabnik.generirajJwt()})
+                }
+            });
         }
+        else if (error)
+        {
+            res.status(500).json(error);
+        }
+        else
+         {
+             console.log("email obstaja")
+             res.status(500).json("user obstaja");
+         }
     });
 };
 
