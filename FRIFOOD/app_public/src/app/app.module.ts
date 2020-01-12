@@ -69,12 +69,9 @@ import { ModalPogojiComponent } from './components/modal-pogoji/modal-pogoji.com
     ZgodovinaPipePipe,
     ModalPopupComponent,
     CommentModalComponent,
-<<<<<<< HEAD
-    EditUserComponent
-=======
+    EditUserComponent,
     AnalyticsComponent,
     ModalPogojiComponent
->>>>>>> develop
   ],
   exports: [
     ZgodovinaPipePipe
