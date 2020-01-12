@@ -41,7 +41,8 @@ process.on("unhandledRejection", (error) => {
             .usingServer(seleniumUrl)
             .build();
 
-        describe("Registration of a new user", async function() {
+
+        describe("Registration and login of a new user", async function() {
             this.timeout(30000);
             before(async function() {
                 await browser.get(appUrl);
@@ -51,21 +52,82 @@ process.on("unhandledRejection", (error) => {
             //    // go to /db and drop base
             // });
 
-            it("User login", async function() {
-               let url = await browser.findElement(
-                   By.xpath("//a[contains(text(), 'prijava')]")
-               );
-               await expect(url).to.not.be.empty;
-               await url.click();
+            it("Open dropdown", async function() {
+                let url = await browser.findElement(
+                    By.id("navbarDropdown")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
             });
-            it("User register", async function() {
-                await waitForLoad(browser, 5,
-                    "//button[contains(text(), 'prijava')]");
-                let povezava = await brskalnik.findElement(
-                    By.xpath("//a[contains(text(), 'registrirajte')]"));
-                await expect(povezava).to.not.be.empty;
-                await povezava.click();
+
+            it("Go to register page", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//a[contains(text(), 'REGISTRACIJA')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
             });
+
+            it("Input data and register", async function() {
+                let name = browser.findElement(By.id('name'));
+                await expect(name).to.not.be.empty;
+                await name.sendKeys("David");
+
+                let surname = browser.findElement(By.id('surname'));
+                await expect(surname).to.not.be.empty;
+                await surname.sendKeys("Kralj");
+
+                let email = browser.findElement(By.id('email'));
+                await expect(email).to.not.be.empty;
+                await email.sendKeys("random.email@gmail.com");
+
+                let passwd1 = browser.findElement(By.id('passwd1'));
+                await expect(passwd1).to.not.be.empty;
+                await passwd1.sendKeys("12345");
+
+                let passwd2 = browser.findElement(By.id('passwd2'));
+                await expect(passwd2).to.not.be.empty;
+                await passwd2.sendKeys("12345");
+
+                let path = await browser.findElement(
+                    By.id('register')
+                );
+                await expect(path).to.not.be.empty;
+                await path.click();
+            });
+
+            it("Open dropdown", async function() {
+                let url = await browser.findElement(
+                    By.id("navbarDropdown")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Go to login page", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//a[contains(text(), 'PRIJAVA')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Input data and login", async function() {
+                let email = browser.findElement(By.id('email'));
+                await expect(email).to.not.be.empty;
+                await email.sendKeys("random.email@gmail.com");
+
+                let passwd = browser.findElement(By.id('passwd'));
+                await expect(passwd).to.not.be.empty;
+                await passwd.sendKeys("12345");
+
+                let path = await browser.findElement(
+                    By.id('signIn')
+                );
+                await expect(path).to.not.be.empty;
+                await path.click();
+            });
+
         });
 
     } catch (error) { console.log(new Error(error.message));
