@@ -215,69 +215,6 @@ router.get('/uporabniki/:email', ctrlUporabniki.vrniUporabnika);
  */
 router.get('/user/:userID', ctrlUporabniki.getUserById);
 
-
-/**
- * @swagger
- * path:
- *  /uporabniki:
- *   post:
- *    summary: kreiranje uporabnika
- *    description: s to metodo se kreira uporabnik
- *    tags: [Uporabniki/Users]
- *    security:
- *    - jwt: []
- *    requestBody:
- *       description: Parametri
- *       required: true
- *       content:
- *           application/json:
- *               schema:
- *                  type: object
- *                  properties:
- *                      name:
- *                          type: string
- *                      surname:
- *                          type: string
- *                      email:
- *                          type: string
- *                      passwd1:
- *                          type: string
- *                      passwd2:
- *                          type: string
- *    responses:
- *     "200":
- *      description: page Token
- *      content:
- *       application/json:
- *        schema:
- *              type: object
- *              properties:
- *                  pageToken:
- *                      type: string
- *     "400":
- *      description: Zahtevani so vsi podatki
- *      content:
- *       application/json:
- *          schema:
- *              type: object
- *              properties:
- *                  napaka:
- *                      type: string
- *     "401":
- *      description: Unathorized
- *      content:
- *       application/json:
- *          schema:
- *              type: object
- *              properties:
- *                  napaka:
- *                      type: string
- *     "500":
- *      description: Napaka na strežniku pri dostopu do podatkovne baze.
- */
-router.post('/uporabniki', avtentikacija, ctrlUporabniki.narediUporabnika);
-
-
 /**
  * @swagger
  * path:
