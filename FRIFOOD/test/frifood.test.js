@@ -51,21 +51,6 @@ process.on("unhandledRejection", (error) => {
             // it("Clean database", async function() {
             //    // go to /db and drop base
             // });
-            // it("Open dropdown", async function() {
-            //     let url = await browser.findElement(
-            //         By.id("navbarDropdown")
-            //     );
-            //     await expect(url).to.not.be.empty;
-            //     await url.click();
-            // });
-            //
-            // it("User login", async function() {
-            //     let url = await browser.findElement(
-            //         By.xpath("//a[contains(text(), 'PRIJAVA')]")
-            //     );
-            //     await expect(url).to.not.be.empty;
-            //     await url.click();
-            // });
 
             it("Open dropdown", async function() {
                 let url = await browser.findElement(
