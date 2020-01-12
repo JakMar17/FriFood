@@ -47,7 +47,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .post(url, podatkiObrazca)
+        .put(url, podatkiObrazca)
         .toPromise()
         .then(odgovor => odgovor as Comment)
         .catch(this.obdelajNapako);
@@ -83,8 +83,8 @@ export class FrifoodPodatkiService {
   }
 
 
-  public deleteComment(podatkiObrazca: any): Promise<Comment> {
-    const url: string = `${environment.apiUrl}/comments/delete`;
+  public deleteComment(podatkiObrazca: any) {
+    const url: string = `${environment.apiUrl}/comments/delete/${podatkiObrazca.komentarID}`;
     if(!this.authenticate.isLoggedIn()){
       this.myError("User not logged in!");
     }else {
@@ -94,9 +94,8 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .post(url, podatkiObrazca)
+        .delete(url)
         .toPromise()
-        .then(odgovor => odgovor as Comment)
         .catch(this.obdelajNapako);
     }
   }
@@ -239,7 +238,7 @@ export class FrifoodPodatkiService {
         })
       };
       return this.http
-        .get(url)
+        .delete(url)
         .toPromise()
         .then(response => response as Restaurant)
         .catch(this.obdelajNapako);
@@ -250,7 +249,7 @@ export class FrifoodPodatkiService {
     const url: string = `${environment.apiUrl}/analytics`;
     console.log(url);
     return this.http
-      .post(url, analytics)
+      .put(url, analytics)
       .toPromise()
       .then(response => response as Analytics)
       .catch(this.obdelajNapako);

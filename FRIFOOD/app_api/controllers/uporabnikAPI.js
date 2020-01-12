@@ -20,6 +20,9 @@ const vrniUporabnika = (req, res) => {
 const getUserById = (req, res) => {
     var userID = req.params.userID;
 
+
+    console.log(req.params.userID)
+
     Uporabnik.findOne({"_id": userID}, function (error, user) {
         if (!user)
             return res.status(404).json({
