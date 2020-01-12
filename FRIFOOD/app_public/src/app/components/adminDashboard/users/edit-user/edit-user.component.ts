@@ -40,13 +40,18 @@ export class EditUserComponent implements OnInit {
 
   private updateUser(user:User): void {
 
-    let typeOfUser :string = document.getElementById('type').value;
-    if (typeOfUser === "Administrator")
-      user.admin = true;
-    else
-      user.admin = false;
+    try {
+      let typeOfUser :string = (<HTMLInputElement>document.getElementById('type')).value;
+      if (typeOfUser === "Administrator")
+        user.admin = true;
+      else
+        user.admin = false;
 
-    this.r.navigate(["/admin/users"]);
+      this.r.navigate(["/admin/users"]);
+    } catch (e) {
+      return null;
+    }
+
   }
 
   ngOnInit(): void {
