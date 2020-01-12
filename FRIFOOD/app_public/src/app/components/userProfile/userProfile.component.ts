@@ -3,6 +3,7 @@ import {FrifoodPodatkiService} from "../../services/frifood-podatki.service";
 import {Router} from "@angular/router";
 import { User } from "../../classes/User";
 import {AvtentikacijaService} from "../../services/avtentikacija.service";
+import {Comment} from "../../classes/Comment";
 
 @Component({
   selector: 'app-userProfile',
@@ -43,6 +44,18 @@ export class UserProfileComponent implements OnInit {
     this.friFoodPodatkiServices.getCommentsByUser(this.user._id).then(
       (data) => {
         this.activities = data;
+      }
+    )
+  }
+
+  public deleteComment(comment: Comment): void {
+    let del = {
+      komentarID: comment._id
+    };
+
+    this.friFoodPodatkiServices.deleteComment(del).then(
+      (data) => {
+        this.ngOnInit();
       }
     )
   }

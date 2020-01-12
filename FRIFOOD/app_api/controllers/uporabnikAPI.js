@@ -102,6 +102,8 @@ const updateUser = (req, res) => {
     });
 };
 
+// const deleteUser =
+
 module.exports = {
     vrniUporabnika,
     narediUporabnika,
