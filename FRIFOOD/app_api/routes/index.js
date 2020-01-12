@@ -721,6 +721,9 @@ router.get('/restaurants', ctrlRestavracija.readRestaurants);
  *    parameters:
  *     - in: path
  *       name: id
+ *       schema:
+ *        type: string
+ *       required: true
  *    responses:
  *     "200":
  *      description: sporocilo
