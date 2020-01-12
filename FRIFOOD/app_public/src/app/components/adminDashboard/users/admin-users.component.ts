@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
 import {User} from "../../../classes/User";
 import {Router} from "@angular/router";
+import {AvtentikacijaService} from "../../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-admin-users',
@@ -10,14 +11,18 @@ import {Router} from "@angular/router";
 })
 export class AdminUsersComponent implements OnInit {
 
-  constructor(private frifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
+  constructor(private frifoodPodatkiService: FrifoodPodatkiService, private router: Router, private authenticator: AvtentikacijaService) { }
 
-  public users: User[];
+  public users: User[] = [];
 
   private getUsers(): void {
     this.frifoodPodatkiService.getUporabniki().then(
       (data) => {
-        this.users = data;
+        for(let i = 0; i < data.length; i++){
+          if(data[i]._id != this.authenticator.decodeToken()._id){
+            this.users.push(data[i]);
+          }
+        }
       }
     )
   }
