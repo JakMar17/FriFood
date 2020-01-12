@@ -34,6 +34,8 @@ const Schema = mongoose.Schema;
  *          type: array
  *          items:
  *              type: string
+ *     comments:
+ *          $ref: '#/components/schemas/commentSchema'
  */
 
 const restaurantSchema = new mongoose.Schema({
@@ -56,9 +58,6 @@ const restaurantSchema = new mongoose.Schema({
     comments:  { type: Schema.Types.ObjectId, ref: 'komentarji' },
     icon: String,
     front: String,
-
-
-    img: { data: Buffer, contentType: String }
 
 });
 
