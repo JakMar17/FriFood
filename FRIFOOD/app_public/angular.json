@@ -49,8 +49,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/encryption.js",
-              "src/restaurantAddValidation.js"
+              "src/encryption.js"
             ],
             "es5BrowserSupport": true
           },
