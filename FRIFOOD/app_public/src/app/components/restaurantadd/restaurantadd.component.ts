@@ -6,6 +6,10 @@ import {Restaurant} from "../../classes/Restaurant";
 import {FileUploader, FileUploadModule} from 'ng2-file-upload';
 import { environment } from '../../../environments/environment';
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ModalPopupComponent} from "../modal-popup/modal-popup.component";
+import {ModalPogojiComponent} from "../modal-pogoji/modal-pogoji.component";
+import {AvtentikacijaService} from "../../services/avtentikacija.service";
 @Component({
   selector: 'app-restaurantadd',
   templateUrl: './restaurantadd.component.html',
@@ -13,10 +17,31 @@ import {Router} from "@angular/router";
 })
 export class RestaurantaddComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router) { }
+  constructor(private renderer: Renderer2, private frifoodPodatkiService: FrifoodPodatkiService, private router: Router, private matDialog: MatDialog, private authenticator: AvtentikacijaService) { }
 
   @ViewChild('file', null) file
   public files: Set<File> = new Set()
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(ModalPopupComponent, dialogConfig);
+  }
+  openModal2() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component-2";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(ModalPogojiComponent, dialogConfig);
+  }
 
   onFilesAdded() {
     const files: { [key: string]: File } = this.file.nativeElement.files;
@@ -195,8 +220,20 @@ export class RestaurantaddComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  redirect(url: string): void {
+    this.router.navigate([url]);
+  }
 
+  private checkUser(){
+    let loggedIn = this.authenticator.isLoggedIn();
+    if(!loggedIn){
+      this.openModal();
+      this.redirect('/');
+    }
+  }
+
+  ngOnInit() {
+    this.checkUser();
     const script = this.renderer.createElement('script');
     script.src = `./assets/javascripts/restaurantAddValidation.js`;
     this.renderer.appendChild(document.head, script);

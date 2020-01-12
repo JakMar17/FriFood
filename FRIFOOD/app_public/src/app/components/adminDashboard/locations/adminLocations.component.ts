@@ -3,6 +3,7 @@ import {FrifoodPodatkiService} from "../../../services/frifood-podatki.service";
 import { User } from "../../../classes/User";
 import {Router} from "@angular/router";
 import {Restaurant} from "../../../classes/Restaurant";
+import {AvtentikacijaService} from "../../../services/avtentikacija.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,9 +13,9 @@ import {Restaurant} from "../../../classes/Restaurant";
 
 export class AdminLocationsComponent implements OnInit {
 
-  constructor(private friFoodPodatkiServices: FrifoodPodatkiService, private router: Router) {}
+  constructor(private friFoodPodatkiServices: FrifoodPodatkiService, private router: Router, private authentication: AvtentikacijaService) {}
 
-  private mail: string = "janez.novak@fri.uni-lj.si";
+  private mail: string = this.authentication.decodeToken().elektronskiNaslov;
   public user: User;
 
 

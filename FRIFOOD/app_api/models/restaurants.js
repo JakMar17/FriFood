@@ -1,6 +1,43 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   restaurants:
+ *    type: object
+ *    properties:
+ *     name:
+ *          type: string
+ *     address:
+ *          type: string
+ *     rating:
+ *          type: number
+ *
+ *     mealPrice:
+ *          type: number
+ *     student:
+ *          type: number
+ *     studentPrice:
+ *          type: number
+ *
+ *
+ *     description:
+ *          type: string
+ *     icon:
+ *          type: string
+ *     front:
+ *          type: string
+ *     timeTable:
+ *          type: array
+ *          items:
+ *              type: string
+ *     comments:
+ *          $ref: '#/components/schemas/comments'
+ */
+
 const restaurantSchema = new mongoose.Schema({
     name: String,
     address: String,
@@ -21,9 +58,6 @@ const restaurantSchema = new mongoose.Schema({
     comments:  { type: Schema.Types.ObjectId, ref: 'komentarji' },
     icon: String,
     front: String,
-
-
-    img: { data: Buffer, contentType: String }
 
 });
 

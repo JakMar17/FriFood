@@ -38,6 +38,9 @@ import { ZgodovinaPipePipe } from './pipes/zgodovina-pipe.pipe';
 import { ModalPopupComponent } from './components/modal-popup/modal-popup.component';
 import {CommentModalComponent} from "./components/adminDashboard/comments/comment-modal/comment-modal.component";
 import { EditUserComponent } from './components/adminDashboard/users/edit-user/edit-user.component';
+import { AnalyticsComponent } from './components/adminDashboard/analytics/analytics/analytics.component';
+import {ChartsModule} from "ng2-charts";
+import { ModalPogojiComponent } from './components/modal-pogoji/modal-pogoji.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,12 @@ import { EditUserComponent } from './components/adminDashboard/users/edit-user/e
     ZgodovinaPipePipe,
     ModalPopupComponent,
     CommentModalComponent,
+<<<<<<< HEAD
     EditUserComponent
+=======
+    AnalyticsComponent,
+    ModalPogojiComponent
+>>>>>>> develop
   ],
   exports: [
     ZgodovinaPipePipe
@@ -82,7 +90,8 @@ import { EditUserComponent } from './components/adminDashboard/users/edit-user/e
     FileUploadModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
   ],
   providers: [{
     provide: MatDialogRef,
@@ -91,6 +100,6 @@ import { EditUserComponent } from './components/adminDashboard/users/edit-user/e
     ZgodovinaPipePipe
   ],
   bootstrap: [OgrodjeComponent],
-  entryComponents: [ModalComponentComponent, ModalPopupComponent]
+  entryComponents: [ModalComponentComponent, ModalPopupComponent, ModalPogojiComponent]
 })
 export class AppModule { }

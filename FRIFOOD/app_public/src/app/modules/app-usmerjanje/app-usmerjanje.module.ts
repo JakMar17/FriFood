@@ -15,6 +15,8 @@ import {AdminCommentsComponent} from "../../components/adminDashboard/comments/a
 import {AdminUsersComponent} from "../../components/adminDashboard/users/admin-users.component";
 import {LogoutComponent} from "../../components/logout/logout.component";
 import {EditUserComponent} from "../../components/adminDashboard/users/edit-user/edit-user.component";
+import {AnalyticsComponent} from "../../components/adminDashboard/analytics/analytics/analytics.component";
+import {ChartsModule} from "ng2-charts";
 
 
 const poti: Routes = [
@@ -62,6 +64,10 @@ const poti: Routes = [
     component: AdminUsersComponent
   },
   {
+    path: 'admin/analytics',
+    component: AnalyticsComponent
+  },
+  {
     path: 'restaurant-list',
     component: RestaurantlistComponent
   },
@@ -79,7 +85,8 @@ const poti: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(poti)
+    RouterModule.forRoot(poti),
+    ChartsModule
   ],
   exports: [RouterModule]
 })

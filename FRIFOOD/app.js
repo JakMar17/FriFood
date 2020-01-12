@@ -31,16 +31,20 @@ var swaggerOptions = {
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
     servers: [
-      { url: "http://localhost:8081/api" },
+      { url: "http://localhost:3000/api" },
       { url: "https://edugeocache-sp-2019.herokuapp.com/api" }
     ]
   },
   apis: [
-    "./app_api/models/lokacije.js",
-    "./app_api/models/uporabniki.js",
+    "./app_api/models/comments.js",
+    "./app_api/models/uporabnikSchema.js",
+    "./app_api/models/restaurants.js",
+    "./app_api/models/analytics.js",
     "./app_api/routes/index.js"
   ]
 };
+
+
 const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
 
@@ -69,34 +73,6 @@ var databaseRouter = require('./app_server/routes/database');
 
 var app = express();
 
-const expressSwagger = require('express-swagger-generator')(app);
-let options = {
-  swaggerDefinition: {
-    info: {
-      description: 'This is a sample server',
-      title: 'Swagger',
-      version: '1.0.0',
-    },
-    host: 'localhost:3000/docs',
-    basePath: '/api/docs',
-    produces: [
-      "application/json",
-      "application/xml"
-    ],
-    schemes: ['http'],
-    securityDefinitions: {
-      JWT: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        description: "",
-      }
-    }
-  },
-  basedir: __dirname, //app absolute path
-  files: ['./app_api/routes/**/*.js'] //Path to the API handle folder
-};
-expressSwagger(options)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -137,10 +113,12 @@ app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });*/
-
+var options = {
+  explorer: false
+};
 app.use('/api', indexApi);
 
-indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument,options));
 indexApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
 });
@@ -197,3 +175,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+module.exports.swaggerOptoins = swaggerOptions;

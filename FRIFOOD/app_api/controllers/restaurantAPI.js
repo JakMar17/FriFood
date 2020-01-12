@@ -57,58 +57,6 @@ const dodajRestavracijo = (req, res) => {
         }
     });
 
-    //console.log(req.body.front);
-    //restaurant.img.contentType = 'image/png';
-
-
-    /*restaurant.img.data = fs.readFile(imgPath, (err, rez) => {
-
-
-
-    });*/
-
-
-
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    /*let naslovna_slika = req.body.front;
-    let ns_t = req.body.front.name.split('.');
-    let naslovnaPath = "./public/restaurant-images/" + restaurant._id + '-ns.' + ns_t[ns_t.length - 1];
-    // Use the mv() method to place the file somewhere on your server
-    // naslovna_slika.mv(naslovnaPath, function(err) {
-    //     if (err){
-    //         return res.status(500);
-    //     }
-    //     console.log("FILE UPLOADED");
-    // });
-
-    let ikonaSlika = req.body.icon;
-    let ns_i = req.body.icon.name.split('.');
-
-    let ikonaPath = "./public/restaurant-images/" + restaurant._id + '-ik.' + ns_i[ns_i.length - 1];
-
-    // Use the mv() method to place the file somewhere on your server
-    // ikonaSlika.mv(ikonaPath, function(err) {
-    //     if (err){
-    //         console.log("FUCK");
-    //         return res.status(500);
-    //     }
-    //     console.log("FILE UPLOADED");
-    // });
-
-    ikonaPath = "./restaurant-images/" + restaurant._id + '-ik.' + ns_i[ns_i.length - 1];
-    naslovnaPath = "./restaurant-images/" + restaurant._id + '-ns.' + ns_t[ns_t.length - 1];
-
-    restaurant.icon = ikonaPath;
-    restaurant.front = naslovnaPath;
-
-    // save model to database
-    restaurant.save().exec((error, restaurant) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json(error);
-        }else
-            res.status(200).json(restaurant);
-    })*/
 };
 
 const readRestaurants = (req, res) => {

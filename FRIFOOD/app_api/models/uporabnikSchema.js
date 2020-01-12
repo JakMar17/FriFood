@@ -3,6 +3,30 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 const Schema = mongoose.Schema;
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   uporabnikSchema:
+ *    type: object
+ *    properties:
+ *     name:
+ *          type: string
+ *     surname:
+ *          type: string
+ *     email:
+ *          type: string
+ *
+ *     admin:
+ *          type: bool
+ *     zgoscenaVrednost:
+ *          type: string
+ *     nakljucnaVrednost:
+ *          type: string
+ *
+ */
+
 const uporabnikiShema = new mongoose.Schema({
     name: String,
     surname: String,
@@ -37,8 +61,8 @@ uporabnikiShema.methods.generirajJwt = function() {
         elektronskiNaslov: this.email,
         ime: this.name,
         priimek: this.surname,
-        datumPoteka: parseInt(datumPoteka.getTime() / 1000, 10),
-        admin: this.admin
+        admin: this.admin,
+        datumPoteka: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_GESLO);
 };
 

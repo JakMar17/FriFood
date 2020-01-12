@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Uporabnik = mongoose.model('uporabniki');
 
 const registracija = (req, res) => {
+
+    console.log(req.body);
+
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.passwd1) {
         return res.status(400).json({"sporočilo": "Zahtevani so vsi podatki"});
     }
@@ -10,7 +13,7 @@ const registracija = (req, res) => {
     uporabnik.name = req.body.name;
     uporabnik.surname = req.body.surname;
     uporabnik.email = req.body.email;
-    uporabnik.admin = false;
+    uporabnik.admin = true;
     var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
     uporabnik.nakljucnaVrednost = vrednosti[0];
     uporabnik.zgoscenaVrednost = vrednosti[1];
