@@ -19,11 +19,11 @@ export class EditUserComponent implements OnInit {
     this.getUserById();
   }
 
-  private id: string;
-  private user: User = new User();
-  private selected: string;
-  private notSelected: string;
-  private opozorilo:string;
+  public id: string;
+  public user: User = new User();
+  public selected: string;
+  public notSelected: string;
+  public opozorilo:string;
 
   async getUserById(): Promise<any> {
     await this.frifoodService.getUserById(
@@ -43,7 +43,7 @@ export class EditUserComponent implements OnInit {
   }
 
 
-  private updateUser(): void {
+  public updateUser(): void {
 
     try {
       let typeOfUser :string = (<HTMLInputElement>document.getElementById('type')).value;
