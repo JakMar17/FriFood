@@ -23,6 +23,18 @@ export class AdminCommentsComponent implements OnInit {
     )
   }
 
+  public deleteComment(comment: Comment): void {
+    let del = {
+      komentarID: comment._id
+    };
+
+    this.frifoodPodatkiServices.deleteComment(del).then(
+      (data) => {
+        this.ngOnInit();
+      }
+    )
+  }
+
   ngOnInit() {
     this.getComments();
   }
