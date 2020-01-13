@@ -361,15 +361,17 @@ Največ časa za nalaganje potrebuje Seznam restvracij, saj, poleg prenosa podat
 ### Specifikacija testnega sistema
 |||
 |---|---|
-|CPU|Core i7-8705G|
-|RAM|16,00GB|
+|CPU|Core i7-4710HQ|
+|RAM|8,00GB|
 |OS|Windows 10 Pro 64-bit|
 |način postavitve|lokalno|
 
-### [Specifikacija testa](FRIFOOD/test/JMeter/jmeter.properties)
+### Specifikacija testa
+Pognanih je bilo 4989 poizvedb (uporabnikov), z razmikom 1.
+Loop count je bil nastavljen na 1, ker smo test želeli pognati le enkrat.
 
-### [Rezultati testa](FRIFOOD/test/JMeter/jmeter.log)
-Strežnik se je sesul pri 4989 poizvedbah.
+### [Rezultati testa](FRIFOOD/test/JMeter/Results.csv)
+Strežnik se je sesul pri 4398. poizvedbi.
 
 ## Varnostni pregled
 ### [Začetno poročilo](frifood/test/security/pre-fix-zap.html)
