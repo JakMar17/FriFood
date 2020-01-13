@@ -50,7 +50,7 @@ const dodajRestavracijo = (req, res) => {
     console.log("C:/Users/Žiga/Desktop/asciiLetters.bmp");
 
     restaurant.save((err, rez) => {
-        if (err) console.log(err);
+        if (err) res.status(400).json(err);
         else {
             console.log(rez);
             return res.status(200).json(rez);

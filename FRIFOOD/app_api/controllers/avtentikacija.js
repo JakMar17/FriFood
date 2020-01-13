@@ -16,9 +16,8 @@ const registracija = (req, res) => {
 
     uporabnik.admin = false;
 
-    Uporabnik.find({email: req.body.email}, function (error, user) {
-        if (!user)
-        {
+    Uporabnik.findOne({email: req.body.email}, function (error, user) {
+        if (!user) {
             console.log("email ne obstaja OK to register")
             var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
             uporabnik.nakljucnaVrednost = vrednosti[0];
@@ -36,10 +35,9 @@ const registracija = (req, res) => {
         {
             res.status(500).json(error);
         }
-        else
-         {
+        else {
              console.log("email obstaja")
-             res.status(500).json("user obstaja");
+             res.status(409).json({"sporočilo": "Uporabnik s tem naslovom že obstaja"});
          }
     });
 };
@@ -58,7 +56,7 @@ const prijava = (req, res) => {
             return res.status(401).json(informacije);
         }
     })(req, res);
-}
+};
 
 module.exports = {
     registracija,
