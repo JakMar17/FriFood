@@ -372,8 +372,8 @@ Največ časa za nalaganje potrebuje Seznam restvracij, saj, poleg prenosa podat
 Strežnik se je sesul pri 4989 poizvedbah.
 
 ## Varnostni pregled
-### [Začetno poročilo](frifood/test/security/pre-fix-zap.html)
-### [Končno poročilo](frifood/test/security/post-fix-zap.html)
+### [Začetno poročilo](FRIFOOD/test/security/pre-fix-zap.html)
+### [Končno poročilo](FRIFOOD/test/security/post-fix-zap.html)
 ### Ignorirane napake
 #### `Ignore: Absence of Anti-CSRF Tokens.`
 
@@ -429,8 +429,8 @@ Rešitev je bila implementirana v `app.js`, gre za *false positive*:
 ```
 
 ## Test funkcionalnosti
-### [Scenarij](frifood/test/FriFood.test.js)
-### [Poročilo](frifood/test/porocilo/porocilo.html)
+### [Scenarij](FRIFOOD/test/FriFood.test.js)
+### [Poročilo](FRIFOOD/test/porocilo/porocilo.html)
 
 ## Analiza na google analytics
 https://analytics.google.com/analytics/web/
