@@ -36,7 +36,7 @@ const registracija = (req, res) => {
             res.status(500).json(error);
         }
         else {
-             console.log("email obstaja")
+             console.log("email obstaja");
              res.status(409).json({"sporočilo": "Uporabnik s tem naslovom že obstaja"});
          }
     });

@@ -154,7 +154,7 @@ export class FrifoodPodatkiService {
     return this.http
       .post(url, user)
       .toPromise()
-      .then(odgovor => odgovor as User)
+      .then(odgovor => odgovor as any)
       .catch(this.obdelajNapako);
   }
 

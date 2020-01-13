@@ -264,6 +264,14 @@ Administrator lahko na spletni aplikaciji:
 *   dostopa do analitike strani (`/admin/analytics`)
 
 ## Čas nalaganja strani
+### Specifikacija testnega sistema
+|||
+|---|---|
+|CPU|Core i7-8705G|
+|RAM|16,00GB|
+|OS|Windows 10 Pro 64-bit|
+|način postavitve|lokalno|
+
 ### Brave (osnovan na Chromium)
 #### Začetno nalaganje aplikacije
 > Začetno izvajanje se je izvajalo na osnovni strani `/`
@@ -331,3 +339,95 @@ Začetno nalaganje aplikacije je skupaj trajalo **5,90 sekund**, pri tem se je s
 |Dodajanje nove restavracije|3|11|
 
 Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+
+## Spremljanje uporabe aplikacije
+
+### GTag
+```javascript
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156003548-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156003548-1');
+</script>
+```
+
+### [Poročilo o uporabi](docs/GoogleAnalitika/analitika.pdf)
+
+## Test obremenitve
+### Specifikacija testnega sistema
+|||
+|---|---|
+|CPU|Core i7-8705G|
+|RAM|16,00GB|
+|OS|Windows 10 Pro 64-bit|
+|način postavitve|lokalno|
+
+### [Specifikacija testa](FRIFOOD/test/JMeter/jmeter.properties)
+
+### [Rezultati testa](FRIFOOD/test/JMeter/jmeter.log)
+Strežnik se je sesul pri 4989 poizvedbah.
+
+## Varnostni pregled
+### [Začetno poročilo](frifood/test/security/pre-fix-zap.html)
+### [Končno poročilo](frifood/test/security/post-fix-zap.html)
+### Ignorirane napake
+#### `Ignore: Absence of Anti-CSRF Tokens.`
+
+CSRF je način napada, kjer avtentikacija poteka z piškotki.
+
+**Primer napada:**
+Jaz pošljem nekomu `GET: https://nekastoritev/izbrisi-racun`, ta nekdo odpre link in račun je izbrisan avtomatsko.
+
+**Kako preprečiti?**
+Preveri se, da je uporabnik res naložil najprej spletno stran za izbris in šele potem kliknil na gumb z akcijo GET https://nekastoritev/izbrisi-racun.
+To se naredi tako, da se ob generiranju forma za izbris pošlje zraven še token, ki se ga doda requestu.
+
+**Zakaj napako ignoriramo?**
+Vsak request se ročno avtenticira tako da se doda header Authorization: Bearer, torej s takšnim trikom uporabnika ne moreš dodati njegovega tokena v request.
+
+#### `Ignore: Cross-Domain JavaScript Source File Inclusion`
+Napaka se pojavi ob uporabi javascript datotek iz zunanjih virov, v našem primeru je to zunanji API, ki ga uporabljamo - Google Maps API.
+
+#### `Ignore: Content-Type Header Missing`
+Napaka se pojavi ob napačno/nepravilno določenih glavah zunanjih storitev.
+
+#### `Ignore: Application Error Disclosure`
+Gre za *false positive* napako, ki jo javlja program.
+
+#### `Alert: CSP Scanner: Wildcard Directive`
+Rešitev je bila implementirana v `app.js`, gre za *false positive*:
+```javascript
+const csp = require('express-csp-header');
+		app.use(csp({
+  		policies: {
+    		'default-src': [csp.SELF],
+  		  'script-src': [csp.SELF, csp.INLINE, 'somehost.com'],
+  		  'style-src': [csp.SELF, 'mystyles.net'],
+  		  'img-src': ['data:', 'images.com'],
+ 		   'worker-src': [csp.NONE],
+  		  'block-all-mixed-content': true
+ 		 }
+        }));
+```
+
+#### `Alert: X-Frame-Options Header Not Set, X-Content-Type-Options Header Missing, Web Browser XSS Protection Not Enabled`
+
+Rešitev je bila implementirana v `app.js`, gre za *false positive*:
+```javascript
+// Odprava varnostnih pomanjkljivosti
+		app.disable('x-powered-by');
+		app.use((req, res, next) => {
+		  res.header('X-Frame-Options', 'DENY');
+		  res.setHeader('X-XSS-Protection', '1; mode=block');
+		  res.setHeader('X-Content-Type-Options', 'nosniff');
+		  next();
+		});
+```
+
+## Test funkcionalnosti
+### Scenarij (linkaj)
+### Poročilo (linkaj)
