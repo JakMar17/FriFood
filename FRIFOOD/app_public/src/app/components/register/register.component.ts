@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
   {
     this.frifoodPodatkiService.dodajuporabnika(newUser).then(
       (data) => {
-        console.log(data.name);
         this.router.navigateByUrl(this.zgodovina.vrniPredhodnjeUrlNaslove());
 
       }
@@ -43,18 +42,19 @@ export class RegisterComponent implements OnInit {
     if(newUser.name.length > 0)
       if(newUser.surname.length > 0)
         if (newUser.email.indexOf("@") >= 0 && newUser.email.length >= 3)
-          if(newUser.passwd1.length>0 && newUser.passwd1==newUser.passwd2)
-          {
-            this.registriraj(newUser);
+          if(newUser.passwd1.length>0 && newUser.passwd1==newUser.passwd2) {
+              this.frifoodPodatkiService.getuserByEmail(newUser.email).then((data) => {
+              this.info = "Uporabnik s tem e-pošnim naslovom že obstaja!";
+            }, (Error) => {this.registriraj(newUser)});
           }
           else
-            this.info = "Napacno geslo"
+            this.info = "Napacno geslo";
         else
-          this.info = "Napacen email"
+          this.info = "Napacen email";
       else
-        this.info = "Vnesi primek"
+        this.info = "Vnesi primek";
     else
-      this.info = "Vnesi ime"
+      this.info = "Vnesi ime";
 
   }
 
