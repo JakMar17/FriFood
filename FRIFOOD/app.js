@@ -32,7 +32,7 @@ var swaggerOptions = {
     },
     servers: [
       { url: "http://localhost:3000/api" },
-      { url: "https://edugeocache-sp-2019.herokuapp.com/api" }
+      { url: "https://frifood-2019.herokuapp.com/api" }
     ]
   },
   apis: [
