@@ -117,6 +117,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Odprava tezav s CSP
 const csp = require('express-csp-header');
 app.use(csp({
   policies: {

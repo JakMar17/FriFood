@@ -1,0 +1,63 @@
+Ignore: Absence of Anti-CSRF Tokens.
+Why:
+Kaj je CSRF:
+nacin napada, kjer avtentikacija poteka s piškotki.
+Primer: jaz posljem nekomu url: GET https://nekastoritev/izbrisi-racun
+Nekdo ta link odpre in racun se mu izbrise. Zakaj? Browser vedno poslje piskotke. in ce je avtentikacija v piskotkih se zahteva avtomatsko avtenticira.
+
+Kako se stvar prepreči?
+Preveri se, da je uporabnik res naložil najprej spletno stran za izbris in šele potem kliknil na gumb z akcijo GET https://nekastoritev/izbrisi-racun.
+To se naredi tako, da se ob generiranju forma za izbris pošlje zraven še token, ki se ga doda requestu.
+
+Zakaj mi tega ne potrebujemo?
+Če ste aplikacijo zimplementirali kot smo jo na predavanjih se vsak request ročno avtenticira tako da se doda header Authorization: Bearer Torej s takšnim trikom uporabnika ne moreš dodati njegovega tokena v request.
+
+Zakaj bi vam potem sploh vrglo ta error?
+- Moje ugibanje je nekako v tej smeri: Preverite kakšne piškotke imate naložene na strani (developer tools->storage->cookies)
+Ker je mogoče OWASP zamešal neke druge piškotke s piškotki iz avtentikacije.
+- Ali pa ste token dodali v piškotek namesto direktno v header. V tem primeru morate dodati Anti-CSRF token. (random žeton ob vsakem nalaganju strani)
+- Lahko da ta error vrže po defaultu, če ne najde CSRF zaščite
+
+
+Ignore: Cross-Domain JavaScript Source File Inclusion
+Why:
+Error se pojavi zaradi uporabe javascripta drugih strani in ne našega (imported javascript aka cross-domain). NAPIS BOLJ NATANCNO JAKOB
+
+Ignore: Content-Type Header Missing
+Why:
+Express dev team: There isn't a way to disable because it was a security vulnerability reported against us @ https://github.com/expressjs/express/issues/3490
+
+Ignore: Application Error Disclosure
+Why:
+This is false positive, because ZAP scanned a JS-URL which has keywords like RuntimeError:, that is why we got this false positive message.
+
+
+
+Implemented but attack scan didnt fucking work:
+
+Alert: CSP Scanner: Wildcard Directive
+	Implementirana je koda, ki skrbi za CSP (Content Security Policy) errorje. Nahaja se v app.js:
+	Code:
+		const csp = require('express-csp-header');
+		app.use(csp({
+  		policies: {
+    		'default-src': [csp.SELF],
+  		  'script-src': [csp.SELF, csp.INLINE, 'somehost.com'],
+  		  'style-src': [csp.SELF, 'mystyles.net'],
+  		  'img-src': ['data:', 'images.com'],
+ 		   'worker-src': [csp.NONE],
+  		  'block-all-mixed-content': true
+ 		 }
+		}));
+
+Alert: X-Frame-Options Header Not Set, X-Content-Type-Options Header Missing, Web Browser XSS Protection Not Enabled
+	Implementirana je koda, ki skrbi za pravilno reševanje teh errorjev (nastavljanje headerjev). Nahaja se v app.js:
+	Code:
+		// Odprava varnostnih pomanjkljivosti
+		app.disable('x-powered-by');
+		app.use((req, res, next) => {
+		  res.header('X-Frame-Options', 'DENY');
+		  res.setHeader('X-XSS-Protection', '1; mode=block');
+		  res.setHeader('X-Content-Type-Options', 'nosniff');
+		  next();
+		});
