@@ -374,8 +374,8 @@ Loop count je bil nastavljen na 1, ker smo test želeli pognati le enkrat.
 Strežnik se je sesul pri 4398. poizvedbi.
 
 ## Varnostni pregled
-### [Začetno poročilo](frifood/test/security/pre-fix-zap.html)
-### [Končno poročilo](frifood/test/security/post-fix-zap.html)
+### [Začetno poročilo](FRIFOOD/test/security/pre-fix-zap.html)
+### [Končno poročilo](FRIFOOD/test/security/post-fix-zap.html)
 ### Ignorirane napake
 #### `Ignore: Absence of Anti-CSRF Tokens.`
 
@@ -431,5 +431,8 @@ Rešitev je bila implementirana v `app.js`, gre za *false positive*:
 ```
 
 ## Test funkcionalnosti
-### Scenarij (linkaj)
-### Poročilo (linkaj)
+### [Scenarij](FRIFOOD/test/FriFood.test.js)
+### [Poročilo](FRIFOOD/test/porocilo/porocilo.html)
+
+## Analiza na google analytics
+https://analytics.google.com/analytics/web/
