@@ -372,8 +372,8 @@ Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje up
 Strežnik se je sesul pri 4989 poizvedbah.
 
 ## Varnostni pregled
-### Začetno poročilo
-### Končno poročilo
+### [Začetno poročilo](frifood/test/security/pre-fix-zap.html)
+### [Končno poročilo](frifood/test/security/post-fix-zap.html)
 ### Ignorirane napake
 #### `Ignore: Absence of Anti-CSRF Tokens.`
 
@@ -427,3 +427,7 @@ Rešitev je bila implementirana v `app.js`, gre za *false positive*:
 		  next();
 		});
 ```
+
+## Test funkcionalnosti
+### Scenarij (linkaj)
+### Poročilo (linkaj)
