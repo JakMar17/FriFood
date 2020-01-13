@@ -50,24 +50,24 @@ const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
 //var indexRouter = require('./app_server/routes/index');
 var indexApi = require('./app_api/routes/index');
-var loginRouter = require('./app_server/routes/login');
-
-var registerRouter = require('./app_server/routes/register');
-var commentPageRouter = require('./app_server/routes/commentPage');
-var restaurantViewRouter = require('./app_server/routes/restaurantView');
-var restaurantListRouter = require('./app_server/routes/restaurant-list');
-var userProfileRouter = require('./app_server/routes/userProfile');
-var userSettingRouter = require('./app_server/routes/userSetting');
-
-var adminOverviewRouter = require('./app_server/routes/adminOverview');
-var adminLocationsRouter = require('./app_server/routes/adminLocations');
-var adminRatesRouter = require('./app_server/routes/adminRates');
-var adminCommentsRouter = require('./app_server/routes/adminComments');
-var adminUsersRouter = require('./app_server/routes/adminUsers');
-var adminWaitinglistRouter = require ('./app_server/routes/adminWaitingList');
-
-var restaurantAddRouter = require('./app_server/routes/restaurant-add');
-
+// var loginRouter = require('./app_server/routes/login');
+//
+// var registerRouter = require('./app_server/routes/register');
+// var commentPageRouter = require('./app_server/routes/commentPage');
+// var restaurantViewRouter = require('./app_server/routes/restaurantView');
+// var restaurantListRouter = require('./app_server/routes/restaurant-list');
+// var userProfileRouter = require('./app_server/routes/userProfile');
+// var userSettingRouter = require('./app_server/routes/userSetting');
+//
+// var adminOverviewRouter = require('./app_server/routes/adminOverview');
+// var adminLocationsRouter = require('./app_server/routes/adminLocations');
+// var adminRatesRouter = require('./app_server/routes/adminRates');
+// var adminCommentsRouter = require('./app_server/routes/adminComments');
+// var adminUsersRouter = require('./app_server/routes/adminUsers');
+// var adminWaitinglistRouter = require ('./app_server/routes/adminWaitingList');
+//
+// var restaurantAddRouter = require('./app_server/routes/restaurant-add');
+//
 var databaseRouter = require('./app_server/routes/database');
 
 
@@ -146,29 +146,29 @@ indexApi.get("/swagger.json", (req, res) => {
 });
 
 //app.use('/', indexRouter);
-
-app.use('/login', loginRouter);
-app.use('/loginCheck', loginRouter);
-
-app.use('/register', registerRouter);
-
-app.use('/commentPage', commentPageRouter);
-app.use('/addComment', commentPageRouter);
-
-app.use('/restaurantView', restaurantViewRouter);
-
-app.use('/restaurant-list', restaurantListRouter);
-app.use('/profile', userProfileRouter);
-app.use('/userSetting', userSettingRouter);
-
-app.use('/admin', adminOverviewRouter);
-app.use('/admin-locations', adminLocationsRouter);
-app.use('/admin-rates', adminRatesRouter);
-app.use('/admin-comments', adminCommentsRouter);
-app.use('/users', adminUsersRouter);
-app.use('/admin-waitinglist', adminWaitinglistRouter);
-
-app.use('/restaurant-add', restaurantAddRouter);
+//
+// app.use('/login', loginRouter);
+// app.use('/loginCheck', loginRouter);
+//
+// app.use('/register', registerRouter);
+//
+// app.use('/commentPage', commentPageRouter);
+// app.use('/addComment', commentPageRouter);
+//
+// app.use('/restaurantView', restaurantViewRouter);
+//
+// app.use('/restaurant-list', restaurantListRouter);
+// app.use('/profile', userProfileRouter);
+// app.use('/userSetting', userSettingRouter);
+//
+// app.use('/admin', adminOverviewRouter);
+// app.use('/admin-locations', adminLocationsRouter);
+// app.use('/admin-rates', adminRatesRouter);
+// app.use('/admin-comments', adminCommentsRouter);
+// app.use('/users', adminUsersRouter);
+// app.use('/admin-waitinglist', adminWaitinglistRouter);
+//
+// app.use('/restaurant-add', restaurantAddRouter);
 //app.use('/restaurantData', restaurantAddRouter);
 
 app.use('/db', databaseRouter);
