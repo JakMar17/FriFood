@@ -429,5 +429,8 @@ Rešitev je bila implementirana v `app.js`, gre za *false positive*:
 ```
 
 ## Test funkcionalnosti
-### Scenarij (linkaj)
-### Poročilo (linkaj)
+### [Scenarij](frifood/test/FriFood.test.js)
+### [Poročilo](frifood/test/porocilo/porocilo.html)
+
+## Analiza na google analytics
+https://analytics.google.com/analytics/web/
