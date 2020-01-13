@@ -31,7 +31,6 @@ var swaggerOptions = {
       url: "https://choosealicense.com/licenses/lgpl-3.0"
     },
     servers: [
-      { url: "http://localhost:3000/api" },
       { url: "https://frifood-2019.herokuapp.com/api" }
     ]
   },
