@@ -310,6 +310,7 @@ export class FrifoodPodatkiService {
           console.log('response received is ', response);
         })
     }
+
     /*
 
     // this will be the our resulting map

@@ -13,7 +13,7 @@ const registracija = (req, res) => {
     uporabnik.name = req.body.name;
     uporabnik.surname = req.body.surname;
     uporabnik.email = req.body.email;
-    uporabnik.admin = true;
+    uporabnik.admin = false;
     var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
     uporabnik.nakljucnaVrednost = vrednosti[0];
     uporabnik.zgoscenaVrednost = vrednosti[1];
@@ -25,6 +25,29 @@ const registracija = (req, res) => {
         }
     });
 };
+
+const registerForDB = (req, res) => {
+    console.log(req.body);
+
+    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.passwd1) {
+        return res.status(400).json({"sporočilo": "Zahtevani so vsi podatki"});
+    }
+    const uporabnik = new Uporabnik();
+    uporabnik.name = req.body.name;
+    uporabnik.surname = req.body.surname;
+    uporabnik.email = req.body.email;
+    uporabnik.admin = req.body.admin;
+    var vrednosti = uporabnik.nastaviGeslo(req.body.passwd1);
+    uporabnik.nakljucnaVrednost = vrednosti[0];
+    uporabnik.zgoscenaVrednost = vrednosti[1];
+    uporabnik.save(napaka => {
+        if (napaka) {
+            res.status(500).json(napaka);
+        } else {
+            res.status(200).json({"žeton": uporabnik.generirajJwt()})
+        }
+    });
+}
 
 const prijava = (req, res) => {
     if (!req.body.email || !req.body.passwd) {
@@ -44,5 +67,6 @@ const prijava = (req, res) => {
 
 module.exports = {
     registracija,
-    prijava
+    prijava,
+    registerForDB
 };

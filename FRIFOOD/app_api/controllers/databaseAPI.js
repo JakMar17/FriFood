@@ -38,15 +38,6 @@ const fillDatabase = (req, res) => {
     if (req.body.validation === 'THIS_IS_VALIDATION_KEY') {
         console.log("Got valid key 2: " + req.body.validation);
 
-        /*var analytics = new Analytics({
-            name: 'googleAPI',
-            numAPICalls: 0
-        });
-
-        analytics.save(function (err) {
-            if (err) return console.error(err);
-            console.log("ADDING Analytics.ts SUCCESSFUL");
-        });*/
 
         var commentSection = new Comments([]);
 
@@ -55,7 +46,9 @@ const fillDatabase = (req, res) => {
                 name: 'Janez',
                 surname: 'Novak',
                 email: 'janez.novak@fri.uni-lj.si',
-                passwd: 'supergeslo'
+                admin: true,
+                nakljucnaVrednost: "59174777078f1a973749321bc524615d",
+                zgoscenaVrednost: "96167e2dc75641df5655fc93c40f3972f9d267de8b12f7827235eb122171d0e667601b9e2fb2524811ae29b583f9dde5056417f2fd4ec2e24f79221b9e9e5b78"
             }
         );
 
@@ -81,9 +74,7 @@ const fillDatabase = (req, res) => {
                 sunday: "ZAPRTO"
             },
             description: "Restavracija v drugem nadstropju objekta X. Poceni, dobro in včasih iz vrečke.",
-            comments: commentSection,
-            icon: '/images/ikona123.png',
-            front: '/images/naslovna123.png',
+            comments: commentSection
         });
         // save model to database
         restavracija.save(function (err) {
@@ -119,31 +110,38 @@ const fillDatabase = (req, res) => {
             console.log("ADDING RESTAURANT TWO SUCCESSFUL");
         });
 
-        var comments = new Comments({
+        for (i = 0; i < 30; i++) {
+            var comments = new Comments({
+                restaurant: restavracija._id.toString(),
+                comment: i,
+                date: Date.now(),
+                rating: 3,
+                author: uporabnik
+            });
+
+            comments.save(function (err) {
+                if (err) return console.error(err);
+            });
+        }
+
+        var comments2 = new Comments({
             restaurant: restavracija._id.toString(),
-            comment: "Včasih meh, vedno pa super zaposleni!",
+            comment: "Več kot super zaposleni, nič manj kot zaposleni!",
             date: Date.now(),
             rating: 3,
             author: uporabnik
         });
 
-        comments.save(function (err) {
-            if (err) return console.error(err);
-            console.log("ADDING COMMENT ONE SUCCESSFUL");
-        });
-
-        var comments2 = new Comments({
-            restaurant: restavracija2._id.toString(),
-            comment: "VEDNO NAJBOLJŠI WOHOOO!",
-            date: Date.now(),
-            rating: 5,
-            author: uporabnik
-        });
-
         comments2.save(function (err) {
             if (err) return console.error(err);
-            console.log("ADDING COMMENT TWO SUCCESSFUL");
+            comments.save(function (err) {
+                if (err) return console.error(err);
+                console.log("ADDING COMMENT ONE SUCCESSFUL");
+            });
         });
+
+
+
 
     } else {
         return res.status(400).json({
