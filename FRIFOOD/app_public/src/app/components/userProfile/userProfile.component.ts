@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
 
   private mail: string = this.autenticate.decodeToken().email;
   private user_id: string = this.autenticate.decodeToken()._id;
-  private user: User;
+  public user: User;
 
   public activities: any;
   public src: string = "/assets/images/profile/user_avatar.png";

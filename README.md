@@ -262,3 +262,72 @@ Administrator lahko na spletni aplikaciji:
 *   pregleduje in ureja registrirane uporabnike (`/admin/users`)
 *   briše vse objavljene ocene in komentarje (`/admin/comments`)
 *   dostopa do analitike strani (`/admin/analytics`)
+
+## Čas nalaganja strani
+### Brave (osnovan na Chromium)
+#### Začetno nalaganje aplikacije
+> Začetno izvajanje se je izvajalo na osnovni strani `/`
+
+Začetno nalaganje aplikacije je skupaj trajalo **5,85 sekund**, pri tem se je skupaj preneslo **8,5MB** ter opravilo **38 zahtev**.
+
+V tabeli se nahaja 10 datotek, ki so potrebovale največ časa za prenos:
+|Ime datoteke|Čas (v ms)|
+|---|---|
+|začetna poizvedba na spletno stran|305|
+|Google Analitika JS datoteka|218|
+|`vendor.js`|213|
+|Google Maps API|173|
+|Material Icons knjižnica|139|
+|`jquery-3.3.1.slim.min.js`|130|
+|`common.js`|128|
+|Roboto font knjižnica|126|
+|`all.css`|124|
+|`scripts.js`|123|
+|`util.js`|115|
+
+#### Nadaljno nalaganje strani
+
+|Stran|Število zahtevkov|Skupen čas nalaganja (ms)|
+|---|---|---|
+|Začetna stran `/`|2|12|
+|Pregled restavracij `/restaurant-list`|49|496|
+|Več o restavraciji `/restaurantView/...`|3|26|
+|Komentarji restavracije `/commentPage/...`|12|449|
+|Prijava `/login`|2|17|
+|Prijava uporabnika|11|116|
+|Ogled profila `/profile`|2|383|
+|Admin Dashboard Lokacije|2|22|
+|Admin Dashboard Komentarji|3|109|
+|Admin Dashboard Uporabniki|1|9|
+|Urejanje uporabnika|1|16|
+|Admin Dashboard Analitika|1|8|
+|Dodajanje nove restavracije|3|325|
+
+Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+
+### Mozzila Firefox
+#### Začetno nalaganje aplikacije
+> Začetno izvajanje se je izvajalo na osnovni strani `/`
+
+Začetno nalaganje aplikacije je skupaj trajalo **5,90 sekund**, pri tem se je skupaj preneslo **8,96MB** ter opravilo **39 zahtev**.
+
+
+#### Nadaljno nalaganje strani
+
+|Stran|Število zahtevkov|Skupen čas nalaganja (ms)|
+|---|---|---|
+|Začetna stran `/`|2|12|
+|Pregled restavracij `/restaurant-list`|26|780|
+|Več o restavraciji `/restaurantView/...`|2|46|
+|Komentarji restavracije `/commentPage/...`|9|86|
+|Prijava `/login`|2|10|
+|Prijava uporabnika|11|225|
+|Ogled profila `/profile`|5|173|
+|Admin Dashboard Lokacije|2|10|
+|Admin Dashboard Komentarji|3|49|
+|Admin Dashboard Uporabniki|1|8|
+|Urejanje uporabnika|1|5|
+|Admin Dashboard Analitika|1|7|
+|Dodajanje nove restavracije|3|11|
+
+Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).

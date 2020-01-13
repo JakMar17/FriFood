@@ -80,12 +80,12 @@ var source = "<div class=\"row-fill\"></div>\n" +
     "                       </div>\n" +
     "                       <div class=\"col-md-4 col-sm-4 col-xs-4\"></div>\n" +
     "                           <div class=\"col-md-1 col-sm-1 col-xs-1\">\n" +
-    "                              <img class=\"rs-image-logo\" src=\"{{restaurant.icon}}\" alt=\"Placeholder\">" +
+    // "                              <img class=\"rs-image-logo\" src=\"{{restaurant.icon}}\" alt=\"Placeholder\">" +
     "                           </div>\n" +
     "                       </div>\n" +
     "                       <div class=\"row rs-image-row\">\n" +
     "                           <div class=\"col-md-12 col-sm-12\">\n" +
-    "                               <img class=\"img-fluid rs-image\" src=\"{{restaurant.photo}}\" alt=\"Placeholder\">\n" +
+    // "                               <img class=\"img-fluid rs-image\" src=\"{{restaurant.photo}}\" alt=\"Placeholder\">\n" +
     "                       </div>\n" +
     "                    </div>\n" +
     "            </div>" +

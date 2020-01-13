@@ -84,6 +84,7 @@ require('./public/javascripts/restaurant-list-helper');
 
 app.use(bodyParser.json());
 app.use(fileUpload());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -107,7 +108,26 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
+// Odprava varnostnih pomanjkljivosti
+app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.header('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  next();
+});
 
+const csp = require('express-csp-header');
+app.use(csp({
+  policies: {
+    'default-src': [csp.SELF],
+    'script-src': [csp.SELF, csp.INLINE, 'somehost.com'],
+    'style-src': [csp.SELF, 'mystyles.net'],
+    'img-src': ['data:', 'images.com'],
+    'worker-src': [csp.NONE],
+    'block-all-mixed-content': true
+  }
+}));
 
 /*app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
