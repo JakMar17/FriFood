@@ -258,7 +258,7 @@ Prijavljeni uporabnik lahko na spletni aplikcaiji:
 Administrator lahko na spletni aplikaciji:
 *   vse, kar lahko prijavljeni uporabnik
 *   dostopa do Administratorskega pogleda (`/admin/*`)
-*   briše v sistem dodane restavracije (`/admin`locations`)
+*   briše v sistem dodane restavracije (`/admin/locations`)
 *   pregleduje in ureja registrirane uporabnike (`/admin/users`)
 *   briše vse objavljene ocene in komentarje (`/admin/comments`)
 *   dostopa do analitike strani (`/admin/analytics`)
@@ -311,7 +311,7 @@ V tabeli se nahaja 10 datotek, ki so potrebovale največ časa za prenos:
 |Admin Dashboard Analitika|1|8|
 |Dodajanje nove restavracije|3|325|
 
-Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+Največ časa za nalaganje potrebuje Seznam restvracij, saj, poleg prenosa podatkov o vseh restavracijah iz baze, za svoje delovanje uporablja zunanji Google API (Google Maps).
 
 ### Mozzila Firefox
 #### Začetno nalaganje aplikacije
@@ -338,7 +338,7 @@ Začetno nalaganje aplikacije je skupaj trajalo **5,90 sekund**, pri tem se je s
 |Admin Dashboard Analitika|1|7|
 |Dodajanje nove restavracije|3|11|
 
-Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+Največ časa za nalaganje potrebuje Seznam restvracij, saj, poleg prenosa podatkov o vseh restavracijah iz baze, za svoje delovanje uporablja zunanji Google API (Google Maps).
 
 ## Spremljanje uporabe aplikacije
 
