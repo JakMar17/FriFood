@@ -264,6 +264,14 @@ Administrator lahko na spletni aplikaciji:
 *   dostopa do analitike strani (`/admin/analytics`)
 
 ## Čas nalaganja strani
+### Specifikacija testnega sistema
+|||
+|---|---|
+|CPU|Core i7-8705G|
+|RAM|16,00GB|
+|OS|Windows 10 Pro 64-bit|
+|način postavitve|lokalno|
+
 ### Brave (osnovan na Chromium)
 #### Začetno nalaganje aplikacije
 > Začetno izvajanje se je izvajalo na osnovni strani `/`
@@ -331,3 +339,21 @@ Začetno nalaganje aplikacije je skupaj trajalo **5,90 sekund**, pri tem se je s
 |Dodajanje nove restavracije|3|11|
 
 Največ časa za nalaganje potrebuje Seznam restvracij saj za svoje delovanje uporablja zunanji Google API (Google Maps).
+
+## Spremljanje uporabe aplikacije
+
+### GTag
+```javascript
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156003548-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156003548-1');
+</script>
+```
+
+### [Poročilo o uporabi](docs/GoogleAnalitika/analitika.pdf)
+
