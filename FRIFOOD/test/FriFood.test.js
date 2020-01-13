@@ -1,5 +1,5 @@
 const { exec } = require("child_process");
-const { describe, it, after, before } = require("mocha");
+const { describe, it, after, before, context } = require("mocha");
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const expect = require("chai").expect;
@@ -128,6 +128,184 @@ process.on("unhandledRejection", (error) => {
                 await path.click();
             });
 
+        });
+
+        describe("Go to restaurant list and redirect to more more info about restaurants", async function() {
+            this.timeout(30000);
+            before(async function() {
+                await browser.get(appUrl);
+            });
+
+            it("Go to restaurant list page", async function() {
+                let url1 = await browser.findElement(
+                    By.id('link-front')
+                );
+                await expect(url1).to.not.be.empty;
+                await url1.click();
+
+                let url = await browser.findElement(
+                    By.id('welcome-search-button')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Click on first restaurant to get location", async function() {
+                let url = await browser.findElement(
+                    By.className('restaurant')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Click on comment and rate button", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//button[contains(text(), 'Več o restavraciji')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+        });
+
+        describe("Go to comment page of first restaurant and write a comment ", async function() {
+            this.timeout(30000);
+            before(async function() {
+                await browser.get(appUrl);
+            });
+
+            it("Go to restaurant list page", async function() {
+                let url1 = await browser.findElement(
+                    By.id('link-front')
+                );
+                await expect(url1).to.not.be.empty;
+                await url1.click();
+
+                let url = await browser.findElement(
+                    By.id('welcome-search-button')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Click on first restaurant to get location", async function() {
+                let url = await browser.findElement(
+                    By.className('restaurant')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Click on get more info about this restaurant", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//button[contains(text(), 'Oceni in komentiraj')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Open comment window", async function() {
+                let url = await browser.findElement(
+                    By.id('add-comment-button')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Set rating", async function() {
+                let url = await browser.findElement(
+                    By.id('ocena')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+
+                let rate = await browser.findElement(
+                    By.xpath("//option[contains(text(), '3')]")
+                );
+                await expect(rate).to.not.be.empty;
+                await rate.click();
+            });
+
+            it("Write comment and publish it", async function() {
+                let comment = await browser.findElement(
+                    By.id('newCommentText')
+                );
+                await expect(comment).to.not.be.empty;
+                await comment.sendKeys("Selenium delam v nedeljo ob 11ih, god help me! Pa komaj nekje na polovici sem...");
+                let submit = await browser.findElement(
+                    By.xpath("//button[contains(text(), 'Objavi')]")
+                );
+                await expect(submit).to.not.be.empty;
+                await submit.click();
+            });
+        });
+
+        describe("Go to user page and check your comments!", async function() {
+            this.timeout(30000);
+            before(async function() {
+                await browser.get(appUrl);
+            });
+
+            it("Open dropdown", async function() {
+                let url = await browser.findElement(
+                    By.id("navbarDropdown")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Go to user page", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//a[contains(text(), 'OGLED PROFILA')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+        });
+
+        describe("Go home, check restaurants again and sign out", async function() {
+            this.timeout(30000);
+            before(async function() {
+                await browser.get(appUrl);
+            });
+
+            it("Go to home page (if not there)", async function() {
+                let url1 = await browser.findElement(
+                    By.id('link-front')
+                );
+                await expect(url1).to.not.be.empty;
+                await url1.click();
+            });
+
+            it("Lets go check the restaurants again (maybe we find sth new)", async function() {
+                let rst = await browser.findElement(
+                    By.id('welcome-search-button')
+                );
+                await expect(rst).to.not.be.empty;
+                await rst.click();
+
+                let url = await browser.findElement(
+                    By.className('restaurant')
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Open dropdown", async function() {
+                let url = await browser.findElement(
+                    By.id("navbarDropdown")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
+
+            it("Sign out", async function() {
+                let url = await browser.findElement(
+                    By.xpath("//a[contains(text(), 'ODJAVA')]")
+                );
+                await expect(url).to.not.be.empty;
+                await url.click();
+            });
         });
 
     } catch (error) { console.log(new Error(error.message));
